@@ -18,6 +18,7 @@ CASI D'USO (ordine sparso)
 //TODO: indicare l'attore per ogni caso (admin, utente normale, entrambi)
 Visulizzazione di tutti i film nel sito
 Ricerca dei film (per titolo, per attore, per categoria ecc..)
+Ordinare film (ordine asc, desc)
 Fare login
 Registrarsi
 Vedere i dettagli di ogni film
