@@ -1,0 +1,37 @@
+ANALISI
+Si vuole realizzare un sito per la visualizzazione di caratteristiche sui film disponibili sul mercato.
+Le caratteristiche d'interesse possono essere:
+trama, recensioni, attori, copertina ecc..
+
+PAGINE PRINCIPALI
+Home page
+Pagina film singolo (con le info su film)
+Pagina rating
+Suddivisione dei film in macro aree (azione/horror/etc...)
+Pagina statistiche (più visti/votati,etc)
+Pagina login - registrazione
+Pagina utente admin
+Pagina utente normale (films che hai commentato/votato, visto, lista desideri,etc)
+Pagina storia sito/presentazione/contattaci
+
+CASI D'USO (ordine sparso)
+//TODO: indicare l'attore per ogni caso (admin, utente normale, entrambi)
+Visulizzazione di tutti i film nel sito
+Ricerca dei film (per titolo, per attore, per categoria ecc..)
+Fare login
+Registrarsi
+Vedere i dettagli di ogni film
+Marcare film come già visto
+Rimuovere film già visto
+Vedere ranking del film
+Votare un film
+Commentare un film
+Inserire un film
+Modificare un film
+Cancellare un film
+Inserire un attore
+Modificare un attore
+Cancellare un attore
+Associare un attore a un film
+Rimuovere un attore da un film
+Modificare dati profilo utente
