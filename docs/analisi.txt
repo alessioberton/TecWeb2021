@@ -13,6 +13,8 @@ Pagina login - registrazione
 Pagina utente admin
 Pagina utente normale (films che hai commentato/votato, visto, lista desideri,etc)
 Pagina storia sito/presentazione/contattaci
+Pagina 404
+Pagina inserimento film/attore da parte del admin
 
 CASI D'USO (ordine sparso)
 //TODO: indicare l'attore per ogni caso (admin, utente normale, entrambi)
