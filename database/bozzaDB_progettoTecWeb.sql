@@ -84,7 +84,7 @@ CREATE TABLE Attore
     Cognome      VARCHAR(40) NOT NULL,
     Data_nascita DATE        NOT NULL,
     ID_foto      INT        DEFAULT NULL,
-	sesso        SESSO      DEFAULT NULL,
+	Sesso        SESSO      DEFAULT NULL,
     PRIMARY KEY (ID),
 	FOREIGN KEY (ID_foto) REFERENCES Foto (ID) ON DELETE NO ACTION
 );
@@ -116,15 +116,15 @@ CREATE TABLE Utente
 
 CREATE TABLE Valutazione
 (
-    utente             VARCHAR(10)  NOT NULL,
+    Utente             VARCHAR(10)  NOT NULL,
     ID_film            INT          NOT NULL,
     Testo              VARCHAR(512) NOT NULL,
-    In_moderazione     BOOLEAN      NOT NULL,
+    In_moderazione     bool      NOT NULL,
     Data_inserimento   DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Data_aggiornamento DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Stelle             INT          NOT NULL,
-    PRIMARY KEY (utente, ID_Film),
-    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
+    PRIMARY KEY (Utente, ID_Film),
+    FOREIGN KEY (Utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
     FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
 );
 
@@ -133,17 +133,17 @@ ALTER TABLE Valutazione
 
 CREATE TABLE Scheda_Utente
 (
-    utente      VARCHAR(10)     NOT NULL,
+    Utente      VARCHAR(10)     NOT NULL,
 	ID_Film     INT     NOT NULL,
-	Visto       BOOL    NOT NULL    DEFAULT FALSE,
-	Salvato     BOOL    NOT NULL    DEFAULT FALSE,
-	Suggerito   BOOL    NOT NULL    DEFAULT FALSE,
-	PRIMARY KEY (utente, ID_Film),
-    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
+	Visto       bool    NOT NULL    DEFAULT FALSE,
+	Salvato     bool    NOT NULL    DEFAULT FALSE,
+	Suggerito   bool    NOT NULL    DEFAULT FALSE,
+	PRIMARY KEY (Utente, ID_Film),
+    FOREIGN KEY (Utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
     FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
 );
 ALTER TABLE Scheda_Utente
-    ADD CHECK (Visto or salvato or suggerito = true);
+    ADD CHECK (Visto or Salvato or Suggerito = true);
 
 INSERT INTO Genere (Nome)
 VALUES ('Animazione'),
@@ -215,13 +215,13 @@ VALUES ('user1', 'aleber@gmail.com', 'Password 1', 'Nome 1', 'Cognome 1', '10-01
        ('user3', 'batman.batman@gmail.com', 'Password 3', 'Nome 3', 'Cognome 3', '22-07-2000', 3, 'Moderatore', 'Donna'),
        ('user4', 'superman@gmail.com', 'Password 4', 'Nome 4', 'Cognome 4', '08-04-1999', 4, 'Utente', 'Uomo');
 
-INSERT INTO Valutazione(utente, ID_film, Testo, In_moderazione, Data_inserimento, Data_aggiornamento, Stelle)
+INSERT INTO Valutazione(Utente, ID_film, Testo, In_moderazione, Data_inserimento, Data_aggiornamento, Stelle)
 VALUES ('user1', 1, 'Commento 1', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3),
        ('user1', 2, 'Commento 2', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2),
        ('user2', 4, 'Commento 1', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5),
        ('user3', 2, 'Commento 4', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
 
-INSERT INTO Scheda_Utente(utente, ID_film, visto, salvato, suggerito)
+INSERT INTO Scheda_Utente(Utente, ID_film, Visto, Salvato, Suggerito)
 VALUES ('user1', 2, true, false, false),
        ('user1', 1, true, false, true),
        ('user2', 2, true, false, true),
