@@ -1,4 +1,20 @@
 ANALISI
+/*
+Possibile idea: 
+L'esperienza del lockdown combinata all'aumento dei servizi offerti ha portato ad un notevole incremento degli abbonamenti a piattaforme di streaming video. Con l'aumentare degli utenti è cresciuta anche l'offerta che diventa sempre più ricca, eterogenea e multicanale. Come conseguenza, i film disponibili sono sempre di più, se decidiamo di guardare un film abbiamo un ricco elenco tra cui scegliere e il rischio che si corre è di passare più tempo a cercare il film piuttosto che guardarlo. 
+Per questo l’obiettivo di questo progetto è realizzare un sito che aiuti l’utente (abbonato ad almeno una piattaforma) nel selezionare le informazioni veramente necessarie affinché possa scegliere velocemente il film da vedere. 
+
+Utenti a cui ci rivolgiamo: prevalentemente Millennials ("gli abbonati tra i Millennials sono +17% rispetto agli abbonati tra i Baby Boomers"), usufruitori di più servizi ("Chi è abbonato ad almeno una piattaforma SVOD è anche molto probabile che abbia più di un abbonamento in contemporanea-sono 43% coloro che dichiarano di averne due, 20% che dicono di averne tre, e 10% quattro o più.") e che scelgono i contenuti anche sulla base di "iniziative meno formali" come campagne sui social o passaparola.
+Questi dati sono presi da "The Media Challenge: tra fruizione lineare e on-demand"
+[rivolgendoci ad utenti che già sono abbonati a piattaforme, possiamo essere sicuri che il nostro target dispone della tecnologia necessaria per supportare HTML5]
+
+Per raggiungere il nostro obiettivo avrà importanza l'aspetto social (es. opinioni, voti) e un sistema di ricerca che non tenga conto solamente del genere del film, ma che includa anche:
+- disponibilità (se l'utente può arrivare a vedere quel film, quindi se è disponibile nella piattaforma a cui è abbonato e se è accessibile a tutti-disponibile audiodescrizione e/o sottotitoli)
+-"livello di impegno" ricercato (es. demenziale, leggero, medio, alto, estremo?)
+-"Mood": sul piano emotivo cosa ricerca l'utente [riprendere possibili studi di psicologia - es. nostro umore-possiamo ricercare elementi che sono affini o contrari al nostro umore]
+-Tema principale trattato nel film
+*/
+
 Si vuole realizzare un sito per la visualizzazione di caratteristiche sui film disponibili sul mercato.
 Le caratteristiche d'interesse possono essere:
 trama, recensioni, attori, copertina ecc..
