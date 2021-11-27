@@ -1,0 +1,170 @@
+CREATE
+    TYPE CLASSIFICAZIONE AS ENUM ('T', 'VM14', 'VM18');
+CREATE
+    TYPE MOOD AS ENUM ('suspence', 'protesta', 'commovente', 'trash','comico','sentimentale', 'sorprendente');
+CREATE
+    TYPE LIVELLO AS ENUM ('demenziale','basso','medio', 'alto');
+CREATE
+    TYPE PERMESSI AS ENUM ('Admin', 'Moderatore', 'Utente');
+CREATE
+    TYPE SESSO AS ENUM ('Uomo','Donna','Altro');
+
+
+CREATE TABLE Lista_generi
+(
+    Nome VARCHAR(20) NOT NULL,
+    PRIMARY KEY (Nome)
+);
+
+CREATE TABLE Immagini
+(
+    ID          INT      NOT NULL,
+    Descrizione text     NOT NULL,
+    Percorso    text     NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE Piattaforma
+(
+    Nome                 VARCHAR(20)   NOT NULL,
+	Info_abbonamento     VARCHAR(150)  NOT NULL,
+	PRIMARY KEY(Nome)
+);
+
+
+CREATE TABLE Film
+(
+    ID                INT               NOT NULL,
+    Titolo            VARCHAR(40)       NOT NULL,
+    Anno              VARCHAR(4)        NOT NULL,
+	Paese             VARCHAR(35)       NOT NULL,
+	Durata            time              NOT NULL,
+	Trama             VARCHAR(500)      NOT NULL,
+	Locandina         int               NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (Locandina) REFERENCES Immagini (ID) ON DELETE NO ACTION
+);
+
+CREATE TABLE Disponibilità
+(
+    Piattaforma      VARCHAR(20)   NOT NULL,
+	Film             int           NOT NULL,
+	CC               bool          NOT NULL,
+	SDH              bool          NOT NULL,
+	AD               bool          NOT NULL,
+	CostoAggiuntivo  bool          DEFAULT FALSE,
+	TempoLimite      date  ,
+	PRIMARY KEY (Piattaforma, Film),
+    FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE NO ACTION,
+	FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION	
+);
+
+CREATE TABLE Categorizzazione
+(
+    Film                INT                      NOT NULL,
+    Tema                VARCHAR(200)             NOT NULL,
+    Eta_pubblico        CLASSIFICAZIONE          NOT NULL,
+    ImpegnoRichiesto    LIVELLO                  NOT NULL,
+    Mood                MOOD                     NOT NULL,
+    Riconoscimenti      BOOL                     NOT NULL DEFAULT false,
+    PRIMARY KEY (Film),
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION	
+);
+
+CREATE TABLE Attore
+(
+    ID              INT            NOT NULL,
+    Nome            VARCHAR(40)    NOT NULL,
+    Cognome         VARCHAR(40)    NOT NULL,
+    Data_nascita    DATE           NOT NULL,
+    Data_morte      DATE           DEFAULT NULL,
+    ID_foto         INT            DEFAULT NULL,
+    Note_carriera   VARCHAR(500)   DEFAULT NULL,
+    PRIMARY KEY (ID),
+	FOREIGN KEY (ID_foto) REFERENCES Immagini (ID) ON DELETE NO ACTION
+);
+
+
+CREATE TABLE Genere_Film
+(
+    ID_film       INT            NOT NULL,
+    Nome_genere   VARCHAR(20)    NOT NULL,
+    PRIMARY KEY (ID_film, Nome_genere),
+    FOREIGN KEY (ID_film) REFERENCES Film (ID) ON DELETE NO ACTION,
+    FOREIGN KEY (Nome_genere) REFERENCES Genere (Nome) ON DELETE NO ACTION
+);
+
+
+CREATE TABLE Cast_Film 
+(
+    Film     INT   NOT NULL,
+	Attore   INT   NOT NULL,
+	PRIMARY KEY (Film, attore),
+	FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION,
+    FOREIGN KEY (Attore) REFERENCES Attore (ID) ON DELETE NO ACTION
+);
+
+CREATE TABLE Regia 
+(
+    Film     INT   NOT NULL,
+	Regista   INT   NOT NULL,
+	PRIMARY KEY (Film, Regista),
+	FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION,
+    FOREIGN KEY (Regista) REFERENCES Attore (ID) ON DELETE NO ACTION
+);
+
+
+CREATE TABLE Utente
+(
+    Username         VARCHAR(10)                                 NOT NULL,
+    Email            VARCHAR(40) CHECK (Email LIKE '%_@__%.__%') NOT NULL,
+    Password         VARCHAR(20)                                 NOT NULL,
+    Nome             VARCHAR(40)                                 NOT NULL,
+    Cognome          VARCHAR(40)                                 NOT NULL,
+    Data_nascita     DATE                                        NOT NULL,
+    foto_profilo     INT      DEFAULT NULL,
+    Permessi         PERMESSI DEFAULT NULL,
+    Sesso            SESSO    DEFAULT NULL,
+    PRIMARY KEY (Username),
+    FOREIGN KEY (foto_profilo) REFERENCES Immagini (ID) ON DELETE NO ACTION
+);
+
+CREATE TABLE Valutazione
+(
+    utente             VARCHAR(10)  NOT NULL,
+    ID_film            INT          NOT NULL,
+    Commento           VARCHAR(512) NOT NULL,
+    In_moderazione     BOOLEAN      NOT NULL,
+    Data_inserimento   DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Data_aggiornamento DATE         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Stelle             INT          NOT NULL,
+    PRIMARY KEY (utente, ID_Film),
+    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
+    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
+);
+
+ALTER TABLE Valutazione
+    ADD CHECK (Stelle >= 1 AND Stelle <= 5);
+
+CREATE TABLE Scheda_Utente
+(
+    utente      VARCHAR(10)     NOT NULL,
+	ID_Film     INT     NOT NULL,
+	Visto       BOOL    NOT NULL    DEFAULT FALSE,
+	Salvato     BOOL    NOT NULL    DEFAULT FALSE,
+	Suggerito   BOOL    NOT NULL    DEFAULT FALSE,
+	PRIMARY KEY (utente, ID_Film),
+    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
+    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
+);
+ALTER TABLE Scheda_Utente
+    ADD CHECK (Visto or salvato or suggerito = true);
+
+CREATE TABLE Follower
+(
+    Follower    VARCHAR(10)     NOT NULL, 
+    Following   VARCHAR(10)     NOT NULL,
+    PRIMARY KEY (Follower, Following),
+    FOREIGN KEY (Follower) REFERENCES Utente (Username) ON DELETE NO ACTION,
+    FOREIGN KEY (Following )  REFERENCES Utente (Username) ON DELETE NO ACTION
+);
