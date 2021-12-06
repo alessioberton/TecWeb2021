@@ -147,12 +147,3 @@ CREATE TABLE Scheda_Utente
 );
 ALTER TABLE Scheda_Utente
     ADD CHECK (Visto or salvato or suggerito = true);
-
-CREATE TABLE Follower
-(
-    Follower    VARCHAR(10)     NOT NULL, 
-    Following   VARCHAR(10)     NOT NULL,
-    PRIMARY KEY (Follower, Following),
-    FOREIGN KEY (Follower) REFERENCES Utente (Username) ON DELETE NO ACTION,
-    FOREIGN KEY (Following )  REFERENCES Utente (Username) ON DELETE NO ACTION
-);
