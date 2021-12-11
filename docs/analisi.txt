@@ -55,7 +55,7 @@ Associare un attore a un film
 Rimuovere un attore da un film
 Modificare dati profilo utente
 
-PAGINE
+MACRO PAGINE
 home
 login
 registrazione
