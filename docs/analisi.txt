@@ -54,3 +54,16 @@ Cancellare un attore
 Associare un attore a un film
 Rimuovere un attore da un film
 Modificare dati profilo utente
+
+PAGINE
+home
+login
+registrazione
+ricerca
+dettaglio film
+dettaglio attore
+area utente
+    - info utente
+    - lista recensioni
+    - lista scheda utente
+    - amministratore
