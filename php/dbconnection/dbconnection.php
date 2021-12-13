@@ -8,22 +8,22 @@
        private $connection;
    
        public function openDBConnection(){
-           $this->$connection = new mysqli(DBConnection::HOST_DB,DBConnection::USERNAME,DBConnection::PASSWORD,DBConnection::DATABASE_NAME);
+           $this->connection = new mysqli(DBConnection::HOST_DB,DBConnection::USERNAME,DBConnection::PASSWORD,DBConnection::DATABASE_NAME);
  
-           if(!$this->$connection->connect_errno){
+           if(!$this->connection->connect_errno){
                return true;
            }
            else{
-                throw new Exception($this->$connection->connect_error);
+                throw new Exception($this->connection->connect_error);
            }
        }
    
        public function closeConnection(){
-           $this->$connection->close();
+           $this->connection->close();
        }
 
        public function getConnection(){
-           return $this->$connection;
+           return $this->connection;
        }
    }
 ?>
