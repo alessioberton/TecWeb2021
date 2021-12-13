@@ -9,7 +9,7 @@ CREATE TABLE Lista_generi
 
 CREATE TABLE Immagini
 (
-    ID          INT      NOT NULL,
+    ID          INT      NOT NULL AUTO_INCREMENT,
     Descrizione text     NOT NULL,
     Percorso    text     NOT NULL,
     PRIMARY KEY (ID)
@@ -25,7 +25,7 @@ CREATE TABLE Piattaforma
 
 CREATE TABLE Film
 (
-    ID                INT               NOT NULL,
+    ID                INT               NOT NULL AUTO_INCREMENT,
     Titolo            VARCHAR(40)       NOT NULL,
     lingua_titolo     VARCHAR(2)        NOT NULL,
     Anno              VARCHAR(4)        NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Categorizzazione
 
 CREATE TABLE Attore
 (
-    ID              INT            NOT NULL,
+    ID              INT            NOT NULL AUTO_INCREMENT,
     Nome            VARCHAR(40)    NOT NULL,
     Cognome         VARCHAR(40)    NOT NULL,
     Data_nascita    DATE           NOT NULL,
