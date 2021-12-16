@@ -34,7 +34,7 @@ CREATE TABLE Film
     Trama             VARCHAR(500)      NOT NULL,
     Locandina         int               NOT NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (Locandina) REFERENCES Immagini (ID) ON DELETE NO ACTION
+    FOREIGN KEY (Locandina) REFERENCES Immagini (ID) ON DELETE SET NULL
 );
 
 CREATE TABLE Disponibilità
@@ -47,8 +47,8 @@ CREATE TABLE Disponibilità
     CostoAggiuntivo  bool          DEFAULT FALSE,
     TempoLimite      date  ,
     PRIMARY KEY (Piattaforma, Film),
-    FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE NO ACTION,
-    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION	
+    FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE CASCADE,
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Categorizzazione
@@ -60,7 +60,7 @@ CREATE TABLE Categorizzazione
     Mood                ENUM ('suspence', 'protesta', 'commovente', 'trash','comico','sentimentale', 'sorprendente') NOT NULL,
     Riconoscimenti      BOOL                                                                                         NOT NULL DEFAULT false,
     PRIMARY KEY (Film),
-    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION	
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Attore
@@ -73,7 +73,7 @@ CREATE TABLE Attore
     ID_foto         INT            DEFAULT NULL,
     Note_carriera   VARCHAR(500)   DEFAULT NULL,
     PRIMARY KEY (ID),
-    FOREIGN KEY (ID_foto) REFERENCES Immagini (ID) ON DELETE NO ACTION
+    FOREIGN KEY (ID_foto) REFERENCES Immagini (ID) ON DELETE SET NULL
 );
 
 
@@ -82,8 +82,8 @@ CREATE TABLE Genere_Film
     ID_film       INT            NOT NULL,
     Nome_genere   VARCHAR(20)    NOT NULL,
     PRIMARY KEY (ID_film, Nome_genere),
-    FOREIGN KEY (ID_film) REFERENCES Film (ID) ON DELETE NO ACTION,
-    FOREIGN KEY (Nome_genere) REFERENCES Lista_generi (Nome) ON DELETE NO ACTION
+    FOREIGN KEY (ID_film) REFERENCES Film (ID) ON DELETE CASCADE,
+    FOREIGN KEY (Nome_genere) REFERENCES Lista_generi (Nome) ON DELETE CASCADE
 );
 
 
@@ -92,8 +92,8 @@ CREATE TABLE Cast_Film
     Film     INT   NOT NULL,
     Attore   INT   NOT NULL,
     PRIMARY KEY (Film, attore),
-    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION,
-    FOREIGN KEY (Attore) REFERENCES Attore (ID) ON DELETE NO ACTION
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE,
+    FOREIGN KEY (Attore) REFERENCES Attore (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Regia 
@@ -101,8 +101,8 @@ CREATE TABLE Regia
     Film     INT   NOT NULL,
     Regista   INT   NOT NULL,
     PRIMARY KEY (Film, Regista),
-    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE NO ACTION,
-    FOREIGN KEY (Regista) REFERENCES Attore (ID) ON DELETE NO ACTION
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE,
+    FOREIGN KEY (Regista) REFERENCES Attore (ID) ON DELETE CASCADE
 );
 
 
@@ -115,7 +115,7 @@ CREATE TABLE Utente
     foto_profilo     INT                                         DEFAULT NULL,
     Permessi         ENUM ('Admin', 'Moderatore', 'Utente')      DEFAULT NULL,
     PRIMARY KEY (Username),
-    FOREIGN KEY (foto_profilo) REFERENCES Immagini (ID) ON DELETE NO ACTION
+    FOREIGN KEY (foto_profilo) REFERENCES Immagini (ID) ON DELETE SET NULL
 );
 
 CREATE TABLE Valutazione
@@ -127,8 +127,8 @@ CREATE TABLE Valutazione
     Data_inserimento   TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Stelle             INT          NOT NULL,
     PRIMARY KEY (utente, ID_Film),
-    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
-    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
+    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE CASCADE,
+    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE CASCADE
 );
 
 ALTER TABLE Valutazione
@@ -142,8 +142,8 @@ CREATE TABLE Scheda_Utente
     Salvato     BOOL    NOT NULL    DEFAULT FALSE,
     Suggerito   BOOL    NOT NULL    DEFAULT FALSE,
     PRIMARY KEY (utente, ID_Film),
-    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE NO ACTION,
-    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE NO ACTION
+    FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE CASCADE,
+    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE CASCADE
 );
 ALTER TABLE Scheda_Utente
     ADD CHECK (Visto or salvato or suggerito = true);
