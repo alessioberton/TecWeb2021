@@ -67,3 +67,44 @@ area utente
     - lista recensioni
     - lista scheda utente
     - amministratore
+
+TABELLE
+
+Andrea:
+
+UTENTE
+inserimento
+
+IMMAGINI
+inserimento
+cancellazione (cascade)
+
+ATTORE
+inserimento
+modifica (note_carriera, nome, cognome, data_nascita, data_modifica)
+cancellazione
+
+Loris:
+
+FILM
+inserimento
+modifica (titolo, lingua_titolo, trama, anno, paese, durata)
+cancellazione
+
+CATEGORIZZAZIONE
+inserimento
+modifica (mood, tema, eta_pubblico, riconoscimenti, livello)
+cancellazione (cascade)
+
+DISPONIBILITA
+inserimento
+modifica
+cancellazione (cascade)
+
+VALUTAZIONE
+inserimento
+cancellazione
+
+SCHEDA_UTENTE
+inserimento (automatico alla creazione utente)
+modifica
