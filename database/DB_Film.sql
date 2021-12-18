@@ -1,6 +1,3 @@
-
-
-
 CREATE TABLE Lista_generi
 (
     Nome VARCHAR(20) NOT NULL,
