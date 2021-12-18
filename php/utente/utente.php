@@ -20,7 +20,7 @@ class Utente extends Connectable{
                   VALUES(?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sssss",$username,$email,$password,$data_nascita,$permessi);
+        $stmt->bind_param("sssss",$username,$email,md5($password),$data_nascita,$permessi);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
