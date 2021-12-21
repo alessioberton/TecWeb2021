@@ -106,7 +106,7 @@ CREATE TABLE Regia
 CREATE TABLE Utente
 (
     Username         VARCHAR(10)                                 NOT NULL,
-    Email            VARCHAR(40) CHECK (Email LIKE '%_@__%.__%') NOT NULL,
+    Email            VARCHAR(40) NOT NULL,
     Password         VARCHAR(32)                                 NOT NULL,
     Data_nascita     DATE                                        NOT NULL,
     foto_profilo     INT                                         DEFAULT NULL,
