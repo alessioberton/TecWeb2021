@@ -1,5 +1,7 @@
 <?php
-require_once("../dbconnection/dbconnection.php");
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+
+require_once($abs_path."dbconnection/dbconnection.php");
 
 class Connectable{
     protected $connection;

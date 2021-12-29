@@ -1,6 +1,8 @@
 <?php
-require_once('../connectable/connectable.php');
-require_once('../immagine/immagine.php');
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+
+require_once($abs_path.'connectable/connectable.php');
+require_once($abs_path.'immagine/immagine.php');
 
 class Attore extends Connectable{
 
@@ -87,6 +89,15 @@ class Attore extends Connectable{
         else{
             throw new Exception("id_attore non trovato");
         }
+    }
+
+    function getLastInsertedAttore(){
+        $query = "SELECT * FROM Attore ORDER BY ID DESC LIMIT 1";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_array(MYSQLI_ASSOC);
     }
 
 }

@@ -1,5 +1,7 @@
 <?php
-require_once('../connectable/connectable.php');
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+
+require_once($abs_path.'connectable/connectable.php');
 
 class Immagine extends Connectable{
 
@@ -43,6 +45,19 @@ class Immagine extends Connectable{
         else{
             throw new Exception("id_immagine non trovato");
         }
+    }
+
+    function getLastInsertedImmagine(){
+        $query = "SELECT * FROM Immagini ORDER BY ID DESC LIMIT 1";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows <= 0){
+            throw new Exception("Nessuna immagine presente");
+        }
+
+        return $result->fetch_array(MYSQLI_ASSOC);
     }
 }
 

@@ -1,6 +1,9 @@
 <?php
-require_once('../connectable/connectable.php');
-require_once('../immagine/immagine.php');
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+
+
+require_once($abs_path.'connectable/connectable.php');
+require_once($abs_path.'immagine/immagine.php');
 
 class Utente extends Connectable{
 
