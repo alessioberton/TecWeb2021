@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logon!</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+
+</head>
+<body>
+
+<div id="id01" class="modal">
+
+    <form method="post" action="../php/logic/autenticazione/logon.php" id="logon_form" class="vertical_logon">
+        <fieldset>
+            <legend xml:lang="en">Registrazione</legend>
+            <div class="container">
+                <label for="mail"><b>Mail</b></label>
+                <input type="text" id="mail" placeholder="Inserisci e-mail" name="mail" required>
+
+                <label for="username"><b>Username</b></label>
+                <input type="text" id="username" placeholder="Inserisci nome utente" name="username" required>
+
+                <label for="data_nascita">Seleziona data di nascita:</label><br>
+                <input type="date" id="data_nascita" name="data_nascita" required><br>
+
+                <label for="pwd"><b>Password</b></label>
+                <input type="password" id="pwd" placeholder="Enter Password" name="pwd" minlength="5" maxlength="12"
+                       required>
+
+                <label for="pwd"><b>Ripeti password</b></label>
+                <input type="password" id="repeat_pwd" placeholder="Enter Password" name="repeat_pwd" minlength="5"
+                       maxlength="12" required>
+
+                <button type="submit">Logon</button>
+
+                <a href="../php/logic/autenticazione/login.php" >Sei già registrato? CLICCA QUI</a>
+
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+</body>
+</html>

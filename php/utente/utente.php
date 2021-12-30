@@ -1,5 +1,5 @@
 <?php
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
 
 require_once($abs_path.'connectable/connectable.php');
@@ -7,14 +7,17 @@ require_once($abs_path.'immagine/immagine.php');
 
 class Utente extends Connectable{
 
-    function find($username){
-        $query = "SELECT * FROM Utente WHERE Username = ?";
-
+    function find($mail, $pwd){
+        $query = "SELECT * FROM utente WHERE Email= ? AND password = ?";
+//        $query = "SELECT * FROM utente WHERE Email=\"$mail\" AND password=\"$pwd\"";
+        echo ($query);
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("s",$username);
+        $stmt->bind_param("ss",$mail, $pwd);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result = $stmt->affected_rows > 0;
+//        echo ($result);
+//        return $result = $stmt->affected_rows > 0;
+        return $result;
 
     }
 
