@@ -1,4 +1,6 @@
 <?php
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+
 require_once('../connectable/connectable.php');
 
 class Valutazione extends Connectable {
@@ -21,7 +23,6 @@ class Valutazione extends Connectable {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result = $stmt->affected_rows > 0;
-
     }
 
 	function findByUser($username){
@@ -35,10 +36,10 @@ class Valutazione extends Connectable {
     }
 
 	function inserisci($username, $film_id, $commento, $in_moderazione=false, $Data_inserimento, $Stelle){
-        $query = "INSERT INTO VALUTAZIONE(utente,ID_film,Commento,In_moderazione,Data_inserimento,Stelle) VALUES(?,?,?,?,?)";
+        $query = "INSERT INTO VALUTAZIONE(utente, ID_film, Commento, In_moderazione, Data_inserimento, Stelle) VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sisss", $username, $film_id, $commento, $in_moderazione, $Data_inserimento, $Stelle);
+        $stmt->bind_param("sisssi", $username, $film_id, $commento, $in_moderazione, $Data_inserimento, $Stelle);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
