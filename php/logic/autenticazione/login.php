@@ -29,19 +29,26 @@ if(isset($_POST['mail'])) {
     $pwd = $_POST["pwd"];
     $utente = new Utente();
     try {
-        $query_array = convertQuery($utente->find($mail, $pwd));
-        $_SESSION['logged'] = true;
-        $_SESSION['email'] = $mail;
-        $_SESSION['username'] = $query_array[0]['Username'];
-        $_SESSION['data_nascita'] = $query_array[0]['Data_nascita'];
-        $_SESSION['foto_profilo'] = $query_array[0]['foto_profilo'];
-        $_SESSION['permessi'] = $query_array[0]['Permessi'];
-        if (isset($_POST['remember'])) {
-            setcookie("mail", $mail, 86400);
-            setcookie("pwd", $pwd, 86400);
-        }
+        $query_array = $utente->find($mail, $pwd);
+        if ($query_array != null) {
+            $_SESSION['logged'] = true;
+            $_SESSION['email'] = $mail;
+            $_SESSION['username'] = $query_array['Username'];
+            $_SESSION['data_nascita'] = $query_array['Data_nascita'];
+            $_SESSION['foto_profilo'] = $query_array['foto_profilo'];
+            $_SESSION['permesso'] = $query_array['Permessi'];
+            if (isset($_POST['remember'])) {
+                setcookie("mail", $mail, 86400);
+                setcookie("pwd", $pwd, 86400);
+            }
         header('location: ../profilo.php');
         exit();
+        } else {
+            $error="[Mail o password errate]";
+            $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
+            $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
+            echo $pagina_errore;
+        }
     } catch (Exception $e) {
         $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);

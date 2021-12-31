@@ -10,8 +10,6 @@ function getAbs_path(&$abs_path): void {
     include_once($abs_path."utente/utente.php");
     include_once($abs_path."immagine/immagine.php");
     include_once($abs_path."logic/sessione.php");
-    debug_to_console(json_encode("ciao"));
-
     if ($_SESSION['logged'] == true) {
         header('location: ../profilo.php');
         exit();
@@ -34,12 +32,13 @@ if(isset($_POST['mail'])) {
     $data_nascita = $_POST["data_nascita"];
     $utente = new Utente();
     try {
-        $utente->inserisci($username, $mail, $pwd, $username, $data_di_nascita, "Utente");
+        $utente->inserisci($username, $mail, $pwd, $data_nascita, "Utente");
         header('location: login.php');
         exit;
     } catch (Exception $e) {
+        $error="[Mail già in uso]";
         $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
-        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
         echo $pagina_errore;
     }
 }

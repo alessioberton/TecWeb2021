@@ -3,6 +3,7 @@ $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
 
 require_once($abs_path.'connectable/connectable.php');
+require_once($abs_path.'functions/functions.php');
 require_once($abs_path.'immagine/immagine.php');
 
 class Utente extends Connectable{
@@ -13,22 +14,20 @@ class Utente extends Connectable{
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ss",$mail, $pwd);
         $stmt->execute();
-        $result = $stmt->get_result();
-//        if($result < 0){
-//            throw new Exception($this->connection->error);
-//        }
-        return $result;
+        $result = convertQuery($stmt->get_result());
+        return $result[0] ?? null;
 
     }
 
     function inserisci($username,$email,$password,$data_nascita,$permessi=NULL){
-        $query = "INSERT INTO Utente(Username,Email,Password,Data_nascita,Permessi)
-                  VALUES(?,?,?,?,?)";
-
+        $datan= $this->connection->real_escape_string(trim(htmlentities($data_nascita)));
+        $psw= md5($password);
+        $query = "INSERT INTO Utente(Username,Email,Password,Data_nascita,Permessi) VALUES(?,?,?,?,?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sssss",$username,$email,md5($password),$data_nascita,$permessi);
+        $stmt->bind_param("sssss",$username,$email,$psw,$datan,$permessi);
         $stmt->execute();
         $result = $stmt->affected_rows;
+        print "<h2>" . $result . "</h2>";
         if($result < 0){
             throw new Exception($this->connection->error);
         }
