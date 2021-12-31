@@ -9,14 +9,14 @@ class Utente extends Connectable{
 
     function find($mail, $pwd){
         $query = "SELECT * FROM utente WHERE Email= ? AND password = ?";
-//        $query = "SELECT * FROM utente WHERE Email=\"$mail\" AND password=\"$pwd\"";
         echo ($query);
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ss",$mail, $pwd);
         $stmt->execute();
         $result = $stmt->get_result();
-//        echo ($result);
-//        return $result = $stmt->affected_rows > 0;
+//        if($result < 0){
+//            throw new Exception($this->connection->error);
+//        }
         return $result;
 
     }

@@ -7,10 +7,10 @@ function upload_image($folder_path,$file,$maxSize = 500000){
     global $_FILES;
 
     $target_dir = $folder_path;
-    $target_file = $target_dir . basename($_FILES[$file]["name"]);
+    $target_file = $target_dir.basename($_FILES[$file]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
+
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES[$file]["tmp_name"]);
@@ -38,8 +38,25 @@ function upload_image($folder_path,$file,$maxSize = 500000){
 
     // if everything is ok, try to upload file    
     if (!move_uploaded_file($_FILES[$file]["tmp_name"], $target_file)) {
-        throw new Exception("Sorry, there was an error uploading your file."); 
+        throw new Exception("Sorry, there was an error uploading your file.");
     }
-
 }
-?>
+
+//restituisce matrice contenente tabelle risultato della query passata
+function convertQuery($query_res): array {
+    $arr = array();
+    if ($query_res) {
+        while ($row=$query_res->fetch_array(MYSQLI_ASSOC)) {
+            $arr[] = $row;
+        }
+    }
+    return $arr;
+}
+
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}

@@ -23,5 +23,7 @@ getAbs_path($abs_path);
 
 
 $DOM = file_get_contents("../../html/profilo.html");
+print_r($_SESSION);
+
 
 echo($DOM);
