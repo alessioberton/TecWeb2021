@@ -9,11 +9,11 @@ function getAbs_path(&$abs_path): void {
     include_once($abs_path."functions/functions.php");
     include_once($abs_path."utente/utente.php");
     include_once($abs_path."immagine/immagine.php");
-//    include_once($abs_path."logic/sessione.php");
+    include_once($abs_path."logic/sessione.php");
     debug_to_console(json_encode("ciao"));
 
     if ($_SESSION['logged'] == true) {
-        header('location: ../../../html/homepage.html');
+        header('location: ../profilo.php');
         exit();
     }
 
@@ -22,31 +22,28 @@ function getAbs_path(&$abs_path): void {
 
 getAbs_path($abs_path);
 
+$DOM = file_get_contents("../../../html/login.html");
+echo($DOM);
 
-$mail = $_POST["mail"];
-$pwd = $_POST["pwd"];
-$utente = new Utente();
+//Controllo di venire da login.html e non tramite giri strani
+if(isset($_POST['mail'])) {
 
-try {
+    $mail = $_POST["mail"];
+    $pwd = $_POST["pwd"];
+    $utente = new Utente();
+
+    try {
 //    debug_to_console(json_encode("ciao2"));
-    $test = $utente->find($mail, $pwd);
-    $_SESSION['logged'] = true;
-    if (isset($_POST['remember'])) {
-        setcookie("mail", $mail, 86400);
-        setcookie("pwd", $pwd, 86400);
+        $test = $utente->find($mail, $pwd);
+        $_SESSION['logged'] = true;
+        if (isset($_POST['remember'])) {
+            setcookie("mail", $mail, 86400);
+            setcookie("pwd", $pwd, 86400);
+        }
+
+    } catch (Exception $e) {
+        $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
+        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        echo $pagina_errore;
     }
-
-} catch (Exception $e) {
-    $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
-    echo $pagina_errore;
 }
-
-//function debug_to_console($data)
-//{
-//    $output = $data;
-//    if (is_array($output))
-//        $output = implode(',', $output);
-//
-//    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-//}
