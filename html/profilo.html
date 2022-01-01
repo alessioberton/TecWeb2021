@@ -12,37 +12,37 @@
 <div id="content">
     %ERROR%
     <h1 id="page_title">Il mio profilo</h1>
-    <img class="img_profilo" id="img_profilo-view" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
+    <img class="img_profilo" id="img_profilo-view" src="../../img/imgnotfound.jpg" alt="immagine di profilo"/>
 
     <div id="profile-view">
         <h2 class="profile-view_title">I miei dati utente</h2>
         <dl class="list_profilo">
             <dt>La mia <span xml:lang="en">Email</span>:</dt>
             <dd>%EMAIL%</dd>
+            <dt>Data di Nascita: </dt>
+            <dd>%DATA_NASCITA%</dd>
             <dt>Tipo di utenza: </dt>
             <dd>%UTENZA%</dd>
         </dl>
 
         <h2 class="profile-view_title">I miei dati personali</h2>
         <dl class="list_profilo">
-            <dt>Nome: </dt>
-            <dd>%NOME%</dd>
-            <dt>Cognome: </dt>
-            <dd>%COGNOME%</dd>
-            <dt>Sesso: </dt>
-            <dd>%SESSO%</dd>
-            <dt>Data di Nascita: </dt>
-            <dd>%DATA_NASCITA%</dd>
-            <dt>Partita <abbr title="imposta sul valore aggiunto">IVA</abbr>:</dt>
-            <dd>%PARTITA_IVA%</dd>
-            <dt>Ragione Sociale: </dt>
-            <dd>%RAGIONESOCIALE%</dd>
+
         </dl>
     </div>
+    <form method="post" action="" enctype="multipart/form-data" id="edit_foto_profilo" class="vertical_input_form">
+
+    <label for="nuova_immagine">Modifica immagine:</label>
+    <input type="file" id="nuova_immagine" name="nuova_immagine"><br>
+        <input type="submit" name="cambia_foto" value="Modifica foto profilo" id="cambia_foto"/>
+    </form>
+
 
     <a href="autenticazione/logout.php" class="btn">log-out</a>
-    <a class="btn right" href="modifica_profilo.php">Modifica profilo</a>
-    <a class="btn alert_btn right" href="rimuovi_profilo.php">Rimuovi profilo</a>
+
+
+
+
 </div>
 
 </body>

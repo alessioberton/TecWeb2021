@@ -26,7 +26,7 @@ echo($DOM);
 //Controllo di venire da logon.html e non tramite giri strani
 if(isset($_POST['mail'])) {
     $username = $_POST["username"];
-    $mail = $_POST["mail"];
+    $mail = trim($_POST["mail"]);
     $pwd = $_POST["pwd"];
     $repeat_pwd = $_POST["repeat_pwd"];
     $data_nascita = $_POST["data_nascita"];

@@ -5,11 +5,10 @@
  * @return void
  */
 function getAbs_path(&$abs_path): void {
-    $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
-    include_once($abs_path."functions/functions.php");
-    include_once($abs_path."utente/utente.php");
-    include_once($abs_path."immagine/immagine.php");
-    include_once($abs_path."logic/sessione.php");
+    include_once($_SESSION['$abs_path_php']."functions/functions.php");
+    include_once($_SESSION['$abs_path_php']."utente/utente.php");
+    include_once($_SESSION['$abs_path_php']."immagine/immagine.php");
+    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
 
 //    if ($_SESSION['logged'] == false) {
 //    debug_to_console(json_encode("entro"));
