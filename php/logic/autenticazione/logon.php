@@ -1,27 +1,22 @@
 <?php
 
-/**
- * @param $abs_path
- * @return void
- */
-function getAbs_path(&$abs_path): void {
-    $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
-    include_once($abs_path."functions/functions.php");
-    include_once($abs_path."utente/utente.php");
-    include_once($abs_path."immagine/immagine.php");
-    include_once($abs_path."logic/sessione.php");
+include '../../config.php';
+
+function getAbs_path(): void {
+    include_once($_SESSION['$abs_path_php']."functions/functions.php");
+    include_once($_SESSION['$abs_path_php']."utente/utente.php");
+    include_once($_SESSION['$abs_path_php']."immagine/immagine.php");
+    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     if ($_SESSION['logged'] == true) {
         header('location: ../profilo.php');
         exit();
     }
-
     $_POST = array_map('empty_to_null', $_POST);
 }
 
-getAbs_path($abs_path);
+getAbs_path();
 
-$DOM = file_get_contents("../../../html/logon.html");
-echo($DOM);
+$page = file_get_contents("../../../html/logon.html");
 
 //Controllo di venire da logon.html e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -37,8 +32,10 @@ if(isset($_POST['mail'])) {
         exit;
     } catch (Exception $e) {
         $error="[Mail già in uso]";
-        $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
         $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
         echo $pagina_errore;
     }
 }
+
+echo $page;

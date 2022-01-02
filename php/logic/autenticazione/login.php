@@ -2,10 +2,6 @@
 
 include '../../config.php';
 
-/**
- * @param $abs_path
- * @return void
- */
 function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."functions/functions.php");
     include_once($_SESSION['$abs_path_php']."utente/utente.php");
@@ -20,7 +16,6 @@ function getAbs_path(): void {
 
 getAbs_path();
 $page = file_get_contents("../../../html/login.html");
-echo $page;
 
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -44,13 +39,15 @@ if(isset($_POST['mail'])) {
         exit();
         } else {
             $error="[Mail o password errate]";
-            $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
+            $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
             $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
             echo $pagina_errore;
         }
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($abs_path . "../html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
         echo $pagina_errore;
     }
 }
+
+echo $page;

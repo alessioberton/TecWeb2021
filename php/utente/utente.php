@@ -8,7 +8,7 @@ require_once($abs_path.'immagine/immagine.php');
 class Utente extends Connectable {
 
     function find($mail, $pwd) {
-        $query = "SELECT * FROM utente WHERE Email= ? AND password = ?";
+        $query = "SELECT * FROM utente WHERE Email = ? AND password = ?";
         echo($query);
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ss", $mail, $pwd);
@@ -20,12 +20,34 @@ class Utente extends Connectable {
     function inserisci($username, $email, $password, $data_nascita, $permessi = NULL) {
         $datan = $this->connection->real_escape_string(trim(htmlentities($data_nascita)));
         $psw = md5($password);
-        $query = "INSERT INTO Utente(Username,Email,Password,Data_nascita,Permessi) VALUES(?,?,?,?,?)";
+        $query = "INSERT INTO Utente(Username, Email, Password, Data_nascita, Permessi) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sssss", $username, $email, $psw, $datan, $permessi);
+        $stmt->bind_param("issss", $username, $email, $psw, $datan, $permessi);
         $stmt->execute();
         $result = $stmt->affected_rows;
-        if ($result < 0) {
+        if ($result < 1) {
+            throw new Exception($this->connection->error);
+        }
+    }
+
+    function aggiorna_mail($username, $email) {
+        $query = "UPDATE Utente SET Email = ? WHERE Username = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("ss", $email, $username);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if ($result < 1) {
+            throw new Exception($this->connection->error);
+        }
+    }
+
+    function aggiorna_password($username, $password) {
+        $query = "UPDATE Utente SET Password = ? WHERE Username = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("ss", $password, $username);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if ($result < 1) {
             throw new Exception($this->connection->error);
         }
     }
