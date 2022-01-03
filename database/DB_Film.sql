@@ -37,7 +37,7 @@ CREATE TABLE Film
 CREATE TABLE Disponibilità
 (
     Piattaforma      VARCHAR(20)   NOT NULL,
-    Film             int           NOT NULL,
+    Film             INT           NOT NULL,
     CC               bool          NOT NULL,
     SDH              bool          NOT NULL,
     AD               bool          NOT NULL,
@@ -105,23 +105,24 @@ CREATE TABLE Regia
 
 CREATE TABLE Utente
 (
-    Username         VARCHAR(10)                                 NOT NULL,
-    Email            VARCHAR(40) NOT NULL,
+    Username         INT                                         NOT NULL AUTO_INCREMENT,
+    Email            VARCHAR(40)                                 NOT NULL,
     Password         VARCHAR(32)                                 NOT NULL,
     Data_nascita     DATE                                        NOT NULL,
     foto_profilo     INT                                         DEFAULT NULL,
     Permessi         ENUM ('Admin', 'Moderatore', 'Utente')      DEFAULT NULL,
     PRIMARY KEY (Username),
+    CONSTRAINT Email_unique UNIQUE (Email),
     FOREIGN KEY (foto_profilo) REFERENCES Immagini (ID) ON DELETE SET NULL
 );
 
 CREATE TABLE Valutazione
 (
-    utente             VARCHAR(10)  NOT NULL,
+    utente             INT          NOT NULL,
     ID_film            INT          NOT NULL,
     Commento           VARCHAR(512) NOT NULL,
-    In_moderazione     BOOLEAN      NOT NULL,
-    Data_inserimento   TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    In_moderazione     BOOL         NOT NULL,
+    Data_inserimento   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Stelle             INT          NOT NULL,
     PRIMARY KEY (utente, ID_Film),
     FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE CASCADE,
@@ -133,14 +134,14 @@ ALTER TABLE Valutazione
 
 CREATE TABLE Scheda_Utente
 (
-    utente      VARCHAR(10)     NOT NULL,
+    utente      INT     NOT NULL,
     ID_Film     INT     NOT NULL,
     Visto       BOOL    NOT NULL    DEFAULT FALSE,
     Salvato     BOOL    NOT NULL    DEFAULT FALSE,
     Suggerito   BOOL    NOT NULL    DEFAULT FALSE,
     PRIMARY KEY (utente, ID_Film),
     FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE CASCADE,
-    FOREIGN KEY (ID_film )  REFERENCES Film (ID) ON DELETE CASCADE
+    FOREIGN KEY (ID_film)  REFERENCES Film (ID) ON DELETE CASCADE
 );
 ALTER TABLE Scheda_Utente
     ADD CHECK (Visto or salvato or suggerito = true);

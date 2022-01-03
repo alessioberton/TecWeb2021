@@ -5,7 +5,7 @@ function empty_to_null($value){
 
 function upload_image($folder_path,$file,$maxSize = 500000){
     $target_dir = $folder_path;
-    $target_file = $target_dir . basename($_FILES[$file]["name"]);
+    $target_file = $target_dir.basename($_FILES[$file]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 

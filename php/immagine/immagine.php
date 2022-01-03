@@ -2,6 +2,7 @@
 $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
 require_once($abs_path.'connectable/connectable.php');
+//require_once($abs_path.'dbconnection/dbconnection.php');
 
 class Immagine extends Connectable{
 
@@ -11,25 +12,27 @@ class Immagine extends Connectable{
         $stmt->bind_param("s",$id_immagine);
         $stmt->execute();
         $result = convertQuery($stmt->get_result());
-//        echo "<script>console.log('Debug Objects: " . implode(',', $result[0]) . "' );</script>";
         return $result[0] ?? null;
     }
 
-    function inserisci($descrizione,$percorso){
-        $query = "INSERT INTO Immagini(Descrizione,Percorso) VALUES(?,?)";
+    function inserisci($descrizione,$percorso): int {
+        $query = "INSERT INTO Immagini(Descrizione,Percorso) VALUES(?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("ss",$descrizione,$percorso);
+        $stmt->bind_param("ss", $descrizione, $percorso);
         $stmt->execute();
         $result = $stmt->affected_rows;
-        if($result < 0){
+        if ($result < 1){
             throw new Exception($this->connection->error);
         }
+        echo "<script>console.log('Debug Objects: " . $this->connection->insert_id . "' );</script>";
+
+        return $this->connection->insert_id;
     }
 
-    function update($id,$nome){
-        $query = "UPDATE Immagini SET Nome = ? WHERE ID = ?";
+    function update($id, $percorso){
+        $query = "UPDATE Immagini SET Percorso = ? WHERE ID = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("si", $nome, $id);
+        $stmt->bind_param("si", $percorso, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 1){
@@ -39,9 +42,7 @@ class Immagine extends Connectable{
 
     function elimina($id_immagine){
         if($this->find($id_immagine)){
-            $query = "DELETE FROM Immagini
-                      WHERE ID = ?";
-
+            $query = "DELETE FROM Immagini WHERE ID = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i",$id_immagine);
             $stmt->execute();
@@ -57,7 +58,6 @@ class Immagine extends Connectable{
 
     function getLastInsertedImmagine(){
         $query = "SELECT * FROM Immagini ORDER BY ID DESC LIMIT 1";
-
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -68,5 +68,3 @@ class Immagine extends Connectable{
         return $result->fetch_array(MYSQLI_ASSOC);
     }
 }
-
-?>

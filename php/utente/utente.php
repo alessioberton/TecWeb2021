@@ -19,7 +19,8 @@ class Utente extends Connectable {
 
     function inserisci($username, $email, $password, $data_nascita, $permessi = NULL) {
         $datan = $this->connection->real_escape_string(trim(htmlentities($data_nascita)));
-        $psw = md5($password);
+//        $psw = md5($password);
+        $psw = $password;
         $query = "INSERT INTO Utente(Username, Email, Password, Data_nascita, Permessi) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("issss", $username, $email, $psw, $datan, $permessi);
@@ -33,7 +34,7 @@ class Utente extends Connectable {
     function aggiorna_mail($username, $email) {
         $query = "UPDATE Utente SET Email = ? WHERE Username = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("ss", $email, $username);
+        $stmt->bind_param("si", $email, $username);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if ($result < 1) {
@@ -44,7 +45,7 @@ class Utente extends Connectable {
     function aggiorna_password($username, $password) {
         $query = "UPDATE Utente SET Password = ? WHERE Username = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("ss", $password, $username);
+        $stmt->bind_param("si", $password, $username);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if ($result < 1) {
