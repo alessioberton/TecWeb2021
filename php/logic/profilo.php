@@ -14,18 +14,16 @@ function getAbs_path(): void {
     $_POST = array_map('empty_to_null', $_POST);
 }
 
+getAbs_path();
+
 $errore = '';
 $percorso_immagine = '../../img/utenti/imgnotfound.jpg';
 $nome_immagine_presente = 'imgnotfound.jpg';
 $nuova_password = '';
 $nuova_mail = '';
 
-getAbs_path();
-
-
 $img = new Immagine();
 $utente = new Utente();
-
 
 $page = file_get_contents("../../html/profilo.html");
 print_r($_SESSION);

@@ -24,10 +24,10 @@ CREATE TABLE Film
 (
     ID                INT               NOT NULL AUTO_INCREMENT,
     Titolo            VARCHAR(40)       NOT NULL,
-    lingua_titolo     VARCHAR(2)        NOT NULL,
+    Lingua_titolo     VARCHAR(2)        NOT NULL,
     Anno              VARCHAR(4)        NOT NULL,
     Paese             VARCHAR(35)       NOT NULL,
-    Durata            time              NOT NULL,
+    Durata            INT              NOT NULL,
     Trama             VARCHAR(500)      NOT NULL,
     Locandina         int,
     PRIMARY KEY (ID),
