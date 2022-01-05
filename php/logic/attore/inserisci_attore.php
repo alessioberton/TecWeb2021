@@ -1,6 +1,6 @@
 <?php
 
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 $max_dim_img = 1300000; // Kb
 
 include_once($abs_path."attore/attore.php");
