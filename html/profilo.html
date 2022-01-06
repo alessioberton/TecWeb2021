@@ -12,16 +12,18 @@
 <div id="content">
     ERRORE
     <h1 id="page_title">Il mio profilo</h1>
-    <img class="img_profilo" id="img_profilo-view" src="../../img/utenti/imgnotfound.jpg" alt="immagine di profilo"/>
+    <a href='../logic/profilo.php'>
+        <img class="img_profilo" id="img_profilo-view" src="../../img/utenti/imgnotfound.jpg" alt="immagine di profilo"/>
+    </a>
 
     <div id="profile-view">
         <h2 class="profile-view_title">I miei dati utente</h2>
         <dl class="list_profilo">
             <dt>La mia <span xml:lang="en">Email</span>:</dt>
             <dd>EMAIL</dd>
-            <dt>Data di Nascita: </dt>
+            <dt>Data di Nascita:</dt>
             <dd>DATA_NASCITA</dd>
-            <dt>Tipo di utenza: </dt>
+            <dt>Tipo di utenza:</dt>
             <dd>UTENZA</dd>
         </dl>
 
@@ -32,8 +34,8 @@
     </div>
     <form method="post" action="" enctype="multipart/form-data" id="edit_foto_profilo" class="vertical_input_form">
 
-    <label for="nuova_immagine">Modifica immagine:</label>
-    <input type="file" id="nuova_immagine" name="nuova_immagine"><br>
+        <label for="nuova_immagine">Modifica immagine:</label>
+        <input type="file" id="nuova_immagine" name="nuova_immagine"><br>
         <input type="submit" name="cambia_foto" value="Modifica foto profilo" id="cambia_foto"/>
     </form>
 
@@ -50,7 +52,8 @@
             <label for="ripeti_nuova_pwd"> Ripeti <span lang="en">password</span>:</label>
             <input type="password" name="ripeti_nuova_pwd" id="ripeti_nuova_pwd" class="full_width_input"/>
 
-            <input type="submit" name="modifica_pwd_btn" id="modifica_pwd_btn" value="Modifica password" class="btn right"/>
+            <input type="submit" name="modifica_pwd_btn" id="modifica_pwd_btn" value="Modifica password"
+                   class="btn right"/>
         </fieldset>
     </form>
 
@@ -64,13 +67,14 @@
             <label for="nuova_mail"><b>nuova Email</b></label>
             <input type="email" id="nuova_mail" name="nuova_mail" required>
 
-            <input type="submit" name="modifica_mail_btn" id="modifica_mail_btn" value="Modifica E-mail" class="btn right"/>
+            <input type="submit" name="modifica_mail_btn" id="modifica_mail_btn" value="Modifica E-mail"
+                   class="btn right"/>
         </fieldset>
     </form>
 
     <a href="autenticazione/logout.php" class="btn">log-out</a>
 
-
+    <a href="homepage.php" class="btn">Homepage</a>
 
 
 </div>

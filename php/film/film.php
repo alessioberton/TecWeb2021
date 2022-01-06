@@ -14,6 +14,13 @@ class Film extends Connectable {
         return $result[0] ?? null;
     }
 
+    function find_all(){
+        $query = "SELECT * FROM film";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
 	function inserisci($film_id, $tema, $eta_pubblico, $livello, $riconoscimenti){
         $query = "INSERT INTO Categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti) VALUES(?,?,?,?,?,?)";
 

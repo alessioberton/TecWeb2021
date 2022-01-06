@@ -3,16 +3,23 @@ $abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
 
 require_once('../connectable/connectable.php');
 
-class Dispobilita extends Connectable {
+class Disponibilita extends Connectable {
 
-	function find($film_id, $piattaforma){
-		$query = "SELECT * FROM disponibilità WHERE Film  = ? AND Piattaforma = ?";
-
+	function find_by_film($film_id){
+		$query = "SELECT * FROM disponibilità WHERE Film = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("is", $film_id, $piattaforma);
+        $stmt->bind_param("i", $film_id);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result = $stmt->affected_rows > 0;
+        return convertQuery($stmt->get_result());
+
+    }
+
+    function find_by_platform($piattaforma){
+        $query = "SELECT * FROM disponibilità WHERE Piattaforma = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("s", $piattaforma);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
     }
 
 	function inserisci($film_id, $piattaforma, $cc, $sdh, $ad, $costo_aggiuntivo, $tempo_limite){
