@@ -17,7 +17,6 @@ class Connectable{
         }
 
         $this->connection = $this->connection->getConnection();
-        
+
     }
 }
-?>

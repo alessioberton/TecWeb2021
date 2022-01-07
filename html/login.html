@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Login!</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+
+</head>
+<body>
+
+<div id="id01" class="modal">
+
+    <form method="post" action="../autenticazione/login.php" id="login_form" class="vertical_login">
+        <fieldset>
+            <legend xml:lang="en">Autenticazione</legend>
+            <div class="container">
+                <label for="mail"><b>Email</b></label>
+                <input type="email" id="mail" placeholder="Inserisci l'email" name="mail" required>
+
+                <label for="pwd"><b>Password</b></label>
+                <input type="password" id="pwd" placeholder="Inserisci la password" name="pwd" minlength="5" maxlength="12"
+                       required>
+
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" id="remember" checked="checked" name="remember"> Ricordami
+                </label>
+
+                <a href="../autenticazione/logon.php" >Non sei ancora registrato? CLICCA QUI</a>
+
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+</body>
+</html>
