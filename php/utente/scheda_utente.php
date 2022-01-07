@@ -30,7 +30,7 @@ class SchedaUtente extends Connectable{
         $query = "INSERT INTO scheda_utente(utente, ID_film, Visto, Salvato, Suggerito) VALUES(?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sibbb", $username, $film_id, $visto, $salvato, $suggerito);
+        $stmt->bind_param("siiii", $username, $film_id, $visto, $salvato, $suggerito);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){

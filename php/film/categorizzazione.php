@@ -19,7 +19,7 @@ class Categorizzazione extends Connectable {
         $query = "INSERT INTO Categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti) VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("isssb", $film_id, $tema, $eta_pubblico, $livello, $riconoscimenti);
+        $stmt->bind_param("isssi", $film_id, $tema, $eta_pubblico, $livello, $riconoscimenti);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
