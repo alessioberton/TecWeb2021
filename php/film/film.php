@@ -60,7 +60,7 @@ class Film extends Connectable{
 
     function associa_immagine($id_film, $id_immagine){
         $immagine = new Immagine();
-        if($this->find($id_film) && $immagine->find($id_immagine))
+        if($this->findById($id_film) && $immagine->find($id_immagine))
         {
             $query = "UPDATE Film SET Locandina = ?
                       WHERE ID = ?";
@@ -79,7 +79,7 @@ class Film extends Connectable{
     }
 
     function elimina($id_film){
-        if($this->find($id_film)){
+        if($this->findById($id_film)){
             $query = "DELETE FROM Film
                       WHERE ID = ?";
 
@@ -97,7 +97,7 @@ class Film extends Connectable{
     }
 
     function modifica($id_film,$titolo,$lingua_titolo,$anno,$paese,$durata,$trama){
-        if($this->find($id_film)){
+        if($this->findById($id_film)){
             $query = "UPDATE Film SET
                       Titolo = ?,
                       lingua_titolo = ?,
@@ -121,7 +121,7 @@ class Film extends Connectable{
     }
 
 	function delete($film_id){
-		if($this->find($film_id)){
+		if($this->findById($film_id)){
 			$query = "DELETE FROM Categorizzazione WHERE ID_film = ?";
 
             $stmt = $this->connection->prepare($query);
