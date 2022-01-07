@@ -40,7 +40,7 @@ $tempo_limite = $_POST["tempo_limite"];
 $film = new Film();
 
 try{
-    $film->inserisci($titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
+    $film->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
     $id_film = $film->getLastInsertedFilm()["ID"];
 
     if(!empty($immagine)){
