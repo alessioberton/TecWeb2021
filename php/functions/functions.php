@@ -42,4 +42,5 @@ function upload_image($folder_path,$file,$maxSize = 500000){
     }
 
 }
+
 ?>

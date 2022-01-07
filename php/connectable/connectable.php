@@ -1,5 +1,5 @@
 <?php
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
 require_once($abs_path."dbconnection/dbconnection.php");
 
