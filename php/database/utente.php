@@ -1,9 +1,10 @@
 <?php
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
-require_once($abs_path.'database/connectable.php');
-require_once($abs_path.'database/immagine.php');
-require_once($abs_path.'logic/functions.php');
+require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+
+require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once($_SESSION['$abs_path_php'].'database/immagine.php');
+require_once($_SESSION['$abs_path_php'].'logic/functions.php');
 
 class Utente extends Connectable {
 

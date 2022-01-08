@@ -1,7 +1,7 @@
 <?php
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
+require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 
-require_once('../database/connectable.php');
+require_once($_SESSION['$abs_path_php'].'database/connectable.php');
 
 class Valutazione extends Connectable {
 

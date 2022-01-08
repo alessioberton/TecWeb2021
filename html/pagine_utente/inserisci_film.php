@@ -1,14 +1,13 @@
 <?php
 
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
-$max_dim_img = 1300000; // Kb
+require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 
-include_once($abs_path."film/film.php");
-include_once($abs_path."immagine/immagine.php");
-include_once($abs_path."categorizzazione/categorizzazione.php");
-include_once($abs_path."genereFilm/genereFilm.php");
-include_once($abs_path."disponibilita/disponibilita.php");
-include_once($abs_path."functions/functions.php");
+require_once($_SESSION['$abs_path_php']."database/film_crud.php");
+require_once($_SESSION['$abs_path_php']."database/immagine.php");
+require_once($_SESSION['$abs_path_php']."database/categorizzazione.php");
+require_once($_SESSION['$abs_path_php']."database/genereFilm.php");
+require_once($_SESSION['$abs_path_php']."database/disponibilita.php");
+require_once($_SESSION['$abs_path_php']."logic/functions.php");
 
 $_POST = array_map('empty_to_null', $_POST);
 
@@ -37,23 +36,23 @@ $ad = filter_var($_POST["ad"],FILTER_VALIDATE_BOOLEAN);
 $costo_aggiuntivo = filter_var($_POST["costo_aggiuntivo"],FILTER_VALIDATE_BOOLEAN);
 $tempo_limite = $_POST["tempo_limite"];
 
-$film = new Film();
+$film_crud = new Film_crud();
 
 try{
-    $film->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
-    $id_film = $film->getLastInsertedFilm()["ID"];
+    $film_crud->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
+    $id_film = $film_crud->getLastInsertedFilm()["ID"];
 
     if(!empty($immagine)){
-        upload_image($abs_path."../img/","immagine",$max_dim_img);
+        upload_image($_SESSION['$abs_path_img']."film/","immagine",$_SESSION['max_dim_img']);
 
-        $percorso_immagine = $abs_path."../img/" . basename($_FILES["immagine"]["name"]);
+        $percorso_immagine = $_SESSION['$abs_path_img']."film/" . basename($_FILES["immagine"]["name"]);
         
         $immagine = new Immagine();
         $immagine->inserisci($descrizione_immagine,$percorso_immagine);
 
         $id_immagine = $immagine->getLastInsertedImmagine()["ID"];
         
-        $film->associa_immagine($id_film,$id_immagine);
+        $film_crud->associa_immagine($id_film,$id_immagine);
     }
 
     $categorizzazione = new Categorizzazione();
