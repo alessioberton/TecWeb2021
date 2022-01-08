@@ -1,0 +1,21 @@
+Home 						"/home", "/"
+Ricerca						"/ricerca"
+Contatti					"/contatti"
+Info aggiuntive/Storia(?)	"/storia"
+
+Risultati ricerca			"/results&{lista parametri ricerca se possibile}"
+Scheda film / Commenti		"/ricerca/{nome film e parametri che lo identificano}"
+Scheda Attore				"/ricerca/{nome attore e parametri che lo identificano}"
+
+Login						"/login"
+Registrazione				"/registrazione"
+Dati utente					"/user"
+Lista visti					"/user/visti"
+Lista salvati				"/user/salvati"
+Lista recensioni			"/user/reviews"
+
+Inserisci/modifica Film		"/admin/film&{parametri che lo identificano se modifica se no niente}"
+Inserisci/modifica Attore	"/admin/attore&{parametri che lo identificano se modifica se no niente}"
+
+404 						"/404"
+Accesso negato				"/denied" oppure niente questa pagina e direttamente redirect a login o home

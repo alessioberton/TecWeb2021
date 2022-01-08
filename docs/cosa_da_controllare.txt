@@ -1,0 +1,5 @@
+- Contrasto colori
+- font leggibile
+- css stampa
+- responsive
+bla bla bla...

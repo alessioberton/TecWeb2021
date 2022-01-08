@@ -1,11 +1,11 @@
 <?php
 
-include '../../config.php';
+include '../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."functions/functions.php");
-    include_once($_SESSION['$abs_path_php']."utente/utente.php");
-    include_once($_SESSION['$abs_path_php']."immagine/immagine.php");
+    include_once($_SESSION['$abs_path_php']."functions.php");
+    include_once($_SESSION['$abs_path_php']."database/utente.php");
+    include_once($_SESSION['$abs_path_php']."database/immagine.php");
     include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     if ($_SESSION['logged'] == true) {
         header('location: ../profilo.php');
@@ -15,7 +15,7 @@ function getAbs_path(): void {
 }
 
 getAbs_path();
-$page = file_get_contents("../../../html/login.html");
+$page = file_get_contents("./login.html");
 
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -39,12 +39,12 @@ if(isset($_POST['mail'])) {
         exit();
         } else {
             $error="[Mail o password errate]";
-            $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+            $pagina_errore = file_get_contents($_SESSION['$abs_path']."./errore.html");
             $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
             echo $pagina_errore;
         }
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."./errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
         echo $pagina_errore;
     }
