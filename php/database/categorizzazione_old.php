@@ -1,7 +1,7 @@
 <?php
 $abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
 
-require_once('../connectable/connectable.php');
+require_once('../database/connectable.php');
 
 class Categorizzazione extends Connectable {
 

@@ -1,12 +1,12 @@
 <?php
 
-include '../config.php';
+include '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."functions/functions.php");
-    include_once($_SESSION['$abs_path_php']."attore/attore.php");
-    include_once($_SESSION['$abs_path_php']."immagine/immagine.php");
     include_once($_SESSION['$abs_path_php']."logic/sessione.php");
+    include_once($_SESSION['$abs_path_php']."logic/functions.php");
+    include_once($_SESSION['$abs_path_php']."database/attore.php");
+    include_once($_SESSION['$abs_path_php']."database/immagine.php");
 //    if ($_SESSION['logged'] == false) {
 //        header('location: ../accesso_negato.php');
 //        exit();
@@ -15,7 +15,7 @@ function getAbs_path(): void {
 }
 
 getAbs_path();
-$page = file_get_contents("../../html/mostra_attore.html");
+$page = file_get_contents("mostra_attore.html");
 $errore = '';
 
 $attore = new Attore();
@@ -32,7 +32,7 @@ try {
     }
     $page = str_replace("ERRORE", $errore, $page);
 } catch (Exception $e) {
-    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
     $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
     echo $pagina_errore;
 }

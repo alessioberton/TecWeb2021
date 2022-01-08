@@ -66,7 +66,7 @@ try{
     $disponibilita->inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$tempo_limite);
 }
 catch(Exception $e){
-    $pagina_errore = file_get_contents($abs_path."../html/errore.html");
+    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
     $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
     echo $pagina_errore;
 }

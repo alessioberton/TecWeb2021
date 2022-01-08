@@ -1,8 +1,8 @@
 <?php
 $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
-require_once($abs_path.'connectable/connectable.php');
-require_once($abs_path.'immagine/immagine.php');
+require_once($abs_path.'database/connectable.php');
+require_once($abs_path.'database/immagine.php');
 
 class Attore extends Connectable{
 

@@ -12,9 +12,7 @@
 <div id="content">
     ERRORE
     <h1 id="page_title">Il mio profilo</h1>
-    <a href='../logic/profilo.php'>
-        <img class="img_profilo" id="img_profilo-view" src="../../img/utenti/imgnotfound.jpg" alt="immagine di profilo"/>
-    </a>
+    <img class="img_profilo" id="img_profilo-view" src="../../img/utenti/imgnotfound.jpg" alt="immagine di profilo"/>
 
     <div id="profile-view">
         <h2 class="profile-view_title">I miei dati utente</h2>
@@ -39,7 +37,7 @@
         <input type="submit" name="cambia_foto" value="Modifica foto profilo" id="cambia_foto"/>
     </form>
 
-    <form method="post" action="../logic/profilo.php" id="modifica_psw" class="vertical_input_form">
+    <form method="post" action="profilo.php" id="modifica_psw" class="vertical_input_form">
         <fieldset>
             <legend>Modifica Password</span></legend>
 
@@ -57,7 +55,7 @@
         </fieldset>
     </form>
 
-    <form method="post" action="../logic/profilo.php" id="modifica_mail" class="vertical_input_form">
+    <form method="post" action="profilo.php" id="modifica_mail" class="vertical_input_form">
         <fieldset>
             <legend>Modifica E-mail</span></legend>
 
@@ -72,9 +70,9 @@
         </fieldset>
     </form>
 
-    <a href="autenticazione/logout.php" class="btn">log-out</a>
+    <a href="../../php/logic/logout.php" class="btn">log-out</a>
 
-    <a href="homepage.php" class="btn">Homepage</a>
+    <a href="../pagine_principali/homepage.php" class="btn">Homepage</a>
 
 
 </div>

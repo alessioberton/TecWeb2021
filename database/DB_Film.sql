@@ -27,7 +27,7 @@ CREATE TABLE Film
     Lingua_titolo     VARCHAR(2)        NOT NULL,
     Anno              VARCHAR(4)        NOT NULL,
     Paese             VARCHAR(35)       NOT NULL,
-    Durata            INT              NOT NULL,
+    Durata            INT               NOT NULL,
     Trama             VARCHAR(500)      NOT NULL,
     Locandina         int,
     PRIMARY KEY (ID),
@@ -42,7 +42,8 @@ CREATE TABLE Disponibilità
     SDH              bool          NOT NULL,
     AD               bool          NOT NULL,
     CostoAggiuntivo  bool          DEFAULT FALSE,
-    TempoLimite      date  ,
+    Giorno_entrata   date          NOT NULL,
+    Giorno_uscita    date,
     PRIMARY KEY (Piattaforma, Film),
     FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE CASCADE,
     FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE
@@ -143,8 +144,8 @@ CREATE TABLE Scheda_Utente
     FOREIGN KEY (utente) REFERENCES Utente (Username) ON DELETE CASCADE,
     FOREIGN KEY (ID_film)  REFERENCES Film (ID) ON DELETE CASCADE
 );
-ALTER TABLE Scheda_Utente
-    ADD CHECK (Visto or salvato or suggerito = true);
+
+ALTER TABLE Scheda_Utente ADD CHECK (Visto or salvato or suggerito = true);
 
 
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`) VALUES ('Netflix', '11 EURO AL MESE');

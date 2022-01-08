@@ -1,14 +1,14 @@
 <?php
 
-include '../config.php';
+include '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."functions/functions.php");
-    include_once($_SESSION['$abs_path_php']."utente/utente.php");
-    include_once($_SESSION['$abs_path_php']."immagine/immagine.php");
     include_once($_SESSION['$abs_path_php']."logic/sessione.php");
+    include_once($_SESSION['$abs_path_php']."logic/functions.php");
+    include_once($_SESSION['$abs_path_php']."database/utente.php");
+    include_once($_SESSION['$abs_path_php']."database/immagine.php");
     if ($_SESSION['logged'] == false) {
-        header('location: ../accesso_negato.php');
+        header('location: ../pagine_altre/accesso_negato.php');
         exit();
     }
     $_POST = array_map('empty_to_null', $_POST);
@@ -25,7 +25,7 @@ $nuova_mail = '';
 $img = new Immagine();
 $utente = new Utente();
 
-$page = file_get_contents("../../html/profilo.html");
+$page = file_get_contents("profilo.html");
 print_r($_SESSION);
 
 $page = str_replace("EMAIL", $_SESSION['email'], $page);
@@ -49,7 +49,7 @@ try {
     }
     $page = str_replace("ERRORE", $errore, $page);
 } catch (Exception $e) {
-    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
     $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
     echo $pagina_errore;
 }
@@ -69,7 +69,7 @@ if (!empty($nome_nuova_immagine)) {
         echo $nome_immagine_presente;
         $nome_immagine_presente = $nome_nuova_immagine;
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
         echo $pagina_errore;
     }
@@ -80,7 +80,7 @@ if (isset($_POST['modifica_pwd_btn'])) {
     try {
         if ($_POST["nuova_pwd"] == $nuova_password) $utente->aggiorna_password($_SESSION['username'], $nuova_password);
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
         echo $pagina_errore;
     }
@@ -94,7 +94,7 @@ if (isset($_POST['modifica_mail_btn'])) {
         $page = str_replace($_SESSION['email'], $_POST['nuova_mail'], $page);
         $_SESSION['email'] = $_POST["nuova_mail"];
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/errore.html");
+        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
         $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
         echo $pagina_errore;
     }

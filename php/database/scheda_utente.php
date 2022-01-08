@@ -1,7 +1,7 @@
 <?php
 $abs_path = $_SERVER["DOCUMENT_ROOT"].'/progetto_tecweb/php/';
 
-require_once($abs_path.'connectable/connectable.php');
+require_once($abs_path.'database/connectable.php');
 
 class SchedaUtente extends Connectable{
 

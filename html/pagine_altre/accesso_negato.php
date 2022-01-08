@@ -1,3 +1,6 @@
 <?php
-$page = file_get_contents("../html/accesso_negato.html");
+
+include '../../php/config.php';
+
+$page = file_get_contents("accesso_negato.html");
 echo $page;

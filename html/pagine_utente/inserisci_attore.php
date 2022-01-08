@@ -1,45 +1,48 @@
 <?php
 
-$abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
-$max_dim_img = 1300000; // Kb
+include '../../php/config.php';
 
-include_once($abs_path."attore/attore.php");
-include_once($abs_path."immagine/immagine.php");
-include_once($abs_path."functions/functions.php");
+include_once($_SESSION['$abs_path_php']."logic/sessione.php");
+include_once($_SESSION['$abs_path_php']."database/attore.php");
+include_once($_SESSION['$abs_path_php']."database/immagine.php");
+include_once($_SESSION['$abs_path_php']."logic/functions.php");
 
 $_POST = array_map('empty_to_null', $_POST);
 
-$nome = $_POST["nome"];
-$cognome = $_POST["cognome"];
-$data_nascita = $_POST["data_nascita"];
-$data_morte = $_POST["data_morte"];
-$note_carriera = $_POST["note_carriera"];
-$descrizione_immagine = $_POST["descrizione_immagine"];
-$immagine = $_FILES["immagine"]["name"];
+$page = file_get_contents("inserisci_attore.html");
 
-$attore = new Attore();
+if (isset($_POST['nome'])) {
+    $nome = $_POST["nome"];
+    $cognome = $_POST["cognome"];
+    $data_nascita = $_POST["data_nascita"];
+    $data_morte = $_POST["data_morte"];
+    $note_carriera = $_POST["note_carriera"];
+    $descrizione_immagine = $_POST["descrizione_immagine"];
+    $immagine = $_FILES["immagine"]["name"];
 
-try{
-    $attore->inserisci($nome,$cognome,$data_nascita,$data_morte,$note_carriera);
-    $id_attore = $attore->getLastInsertedAttore()["ID"];
+    $attore = new Attore();
 
-    if(!empty($immagine)){
-        upload_image($abs_path."../img/","immagine",$max_dim_img);
+    try {
+        $attore->inserisci($nome, $cognome, $data_nascita, $data_morte, $note_carriera);
+        $id_attore = $attore->getLastInsertedAttore()["ID"];
 
-        $percorso_immagine = $abs_path."../img/" . basename($_FILES["immagine"]["name"]);
-        
-        $immagine = new Immagine();
-        $immagine->inserisci($descrizione_immagine,$percorso_immagine);
+        if (!empty($immagine)) {
+            upload_image($_SESSION['$abs_path_img'] . "immagine", $_SESSION["max_dim_img"]);
 
-        $id_immagine = $immagine->getLastInsertedImmagine()["ID"];
-        
-        $attore->associa_immagine($id_attore,$id_immagine);
+            $percorso_immagine = $_SESSION['$abs_path_img'] . basename($_FILES["immagine"]["name"]);
+
+            $immagine = new Immagine();
+            $immagine->inserisci($descrizione_immagine, $percorso_immagine);
+
+            $id_immagine = $immagine->getLastInsertedImmagine()["ID"];
+
+            $attore->associa_immagine($id_attore, $id_immagine);
+        }
+    } catch (Exception $e) {
+        $pagina_errore = file_get_contents($_SESSION['$abs_path'] . "html/pagine_altre/errore.html");
+        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        echo $pagina_errore;
     }
 }
-catch(Exception $e){
-    $pagina_errore = file_get_contents($abs_path."../html/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
-    echo $pagina_errore;
-}
 
-?>
+echo $page;

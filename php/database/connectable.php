@@ -1,7 +1,7 @@
 <?php
 $abs_path = $_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/';
 
-require_once($abs_path."dbconnection/dbconnection.php");
+require_once($abs_path."database/dbconnection.php");
 
 class Connectable{
     protected $connection;
