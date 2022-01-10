@@ -1,0 +1,13 @@
+- Contrasto colori
+- font leggibile
+- css stampa
+- responsive
+
+- [] Colour contrast analyser
+- [] W3C validator
+- [] Images: per vedere se gli alt sono autoesplicative
+- [] Test drue Miller: (socchiudere gli occhi per vedere se si riconoscono i link)
+- [] Total validator
+- [] Nvda: screen reader
+- [] Wave, arc, axe: errori
+- [] Sltindlink: simula la disabilità
