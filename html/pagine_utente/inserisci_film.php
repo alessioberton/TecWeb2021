@@ -29,12 +29,11 @@ $riconoscimenti = filter_var($_POST["riconoscimenti"],FILTER_VALIDATE_BOOLEAN);
 $genere = $_POST["genere"];
 
 $piattaforma = $_POST["piattaforma"];
-
-$cc = filter_var($_POST["cc"],FILTER_VALIDATE_BOOLEAN);
-$sdh = filter_var($_POST["sdh"],FILTER_VALIDATE_BOOLEAN);
-$ad = filter_var($_POST["ad"],FILTER_VALIDATE_BOOLEAN);
-$costo_aggiuntivo = filter_var($_POST["costo_aggiuntivo"],FILTER_VALIDATE_BOOLEAN);
-$tempo_limite = $_POST["tempo_limite"];
+$cc = $_POST["cc"];
+$sdh = $_POST["sdh"];
+$ad = $_POST["ad"];
+$costo_aggiuntivo = $_POST["costo_aggiuntivo"];
+$tempo_limite = array_map('empty_to_null',$_POST["tempo_limite"]);
 
 $film_crud = new Film_crud();
 
@@ -62,7 +61,16 @@ try{
     $genereFilm->inserisci($id_film,$genere);
 
     $disponibilita = new Disponibilita();
-    $disponibilita->inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$tempo_limite);
+    foreach($piattaforma as $nome_piattaforma => $val_piattaforma){
+        $nome_piattaforma;
+        $cc_piattaforma = filter_var($cc[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
+        $sdh_piattaforma = filter_var($sdh[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
+        $ad_piattaforma = filter_var($ad[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
+        $costo_aggiuntivo_piattaforma = filter_var($costo_aggiuntivo[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
+        $tempo_limite_piattaforma = $tempo_limite[$nome_piattaforma];
+
+        $disponibilita->inserisci($nome_piattaforma,$id_film,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$tempo_limite_piattaforma);
+    }
 }
 catch(Exception $e){
     $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
