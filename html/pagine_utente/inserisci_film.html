@@ -22,7 +22,13 @@
         <input type="number" id="anno" name="anno" min="1900"><br>
 
         <label for="paese">Paese:</label><br>
-        <input type="text" id="paese" name="paese"><br>
+        <select id="paese" name="paese">
+            <option value="it">Italia</option>
+            <option value="us">Stati Uniti</option>
+            <option value="en">Inghilterra</option>
+            <option value="de">Germania</option>
+            <option value="fr">Francia</option>
+        </select><br>
 
         <label for="durata">Durata:</label><br>
         <input type="time" id="durata" name="durata"><br>
@@ -70,13 +76,32 @@
         </select><br>
 
         <!-- TODO: prendere dati dinamicamente -->
-        <label for="genere">Genere:</label><br>
-        <select id="genere" name="genere">
-            <option value="azione">Azione</option>
-            <option value="avventura">Avventura</option>
-            <option value="horror">Horror</option>
-            <option value="Comico">Comico</option>
-        </select><br>
+        <p>Genere:</p>
+        <input type="checkbox" id="genere_anime" name="genere[anime]">
+        <label for="genere_anime">Anime</label><br>
+
+        <input type="checkbox" id="genere_animazione" name="genere[animazione]">
+        <label for="genere_animazione">Animazione</label><br>
+
+        <input type="checkbox" id="genere_avventura" name="genere[avventura]">
+        <label for="genere_avventura">Avventura</label><br>
+
+        <input type="checkbox" id="genere_azione" name="genere[azione]">
+        <label for="genere_azione">Azione</label><br>
+
+        <input type="checkbox" id="genere_biografico" name="genere[biografico]">
+        <label for="genere_biografico">Biografico</label><br>
+
+        <input type="checkbox" id="genere_commedia" name="genere[commedia]">
+        <label for="genere_commedia">Commedia</label><br>
+
+        <input type="checkbox" id="genere_documentario" name="genere[documentario]">
+        <label for="genere_documentario">Documentario</label><br>
+
+        <input type="checkbox" id="genere_drammatico" name="genere[drammatico]">
+        <label for="genere_drammatico">Drammatico</label><br>
+
+        <p>Piattaforma:</p>
 
         <input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]">
         <label for="piattaforma_netflix">Netflix</label><br>

@@ -16,7 +16,7 @@ $lingua_titolo = $_POST["lingua_titolo"];
 $trama = $_POST["trama"];
 $anno = $_POST["anno"];
 $paese = $_POST["paese"];
-$durata = $_POST["durata"];
+$durata = timeToSeconds($_POST["durata"]);
 $descrizione_immagine = $_POST["descrizione_immagine"];
 $immagine = $_FILES["immagine"]["name"];
 
@@ -58,7 +58,9 @@ try{
     $categorizzazione->inserisci($id_film,$tema,$eta_publico,$livello,$mood,$riconoscimenti);
 
     $genereFilm = new GenereFilm();
-    $genereFilm->inserisci($id_film,$genere);
+    foreach($genere as $nome_genere => $val_genere){
+        $genereFilm->inserisci($id_film,$nome_genere);
+    }
 
     $disponibilita = new Disponibilita();
     foreach($piattaforma as $nome_piattaforma => $val_piattaforma){

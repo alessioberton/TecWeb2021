@@ -66,3 +66,14 @@ function debug_to_console($data) {
 
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
+
+function timeToSeconds($time){
+    
+    $dt = new DateTime("1970-01-01 $time", new DateTimeZone('UTC'));
+    $seconds = (int)$dt->getTimestamp();
+    return $seconds;
+}
+
+function secondsToTime($seconds){
+    return gmdate("H:i:s", $seconds);
+}
