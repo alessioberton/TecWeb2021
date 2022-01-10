@@ -148,32 +148,32 @@ CREATE TABLE Scheda_Utente
 ALTER TABLE Scheda_Utente
     ADD CHECK (Visto or salvato or suggerito = true);
 
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11 EURO AL MESE');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('AmazonPrime', '7 EURO AL MESE');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Crunchyroll', '4 EURO AL MESE');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Rakuten', '14 EURO AL MESE');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Disney+', '9 EURO AL MESE');
 
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Anime');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Animazione');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Avventura');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Azione');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Biografico');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Commedia');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Documentario');
-INSERT INTO `lista_generi` (Nome)
+INSERT INTO `Lista_generi` (Nome)
 VALUES ('Drammatico');
 
 INSERT INTO Immagini(ID, Descrizione, Percorso)
@@ -189,8 +189,8 @@ VALUES (1, 'Foto 1', 'film/film1.jpg'),
        (10, 'Foto 10', 'film/film10.jpg'),
        (11, 'Foto 11', 'film/film11.jpg'),
        (12, 'Foto 12', 'film/film12.jpg'),
-       (13, 'Foto 13', 'film/film13.jpg');
-    (32, 'Foto Profilo', 'utenti/CatturaLogProd.PNG');
+       (13, 'Foto 13', 'film/film13.jpg'),
+       (32, 'Foto Profilo', 'utenti/CatturaLogProd.PNG');
 
 INSERT INTO Film (ID, Titolo, Lingua_titolo, Anno, Paese, Durata, Trama, Locandina)
 VALUES (1, 'Film 1', 'IT', 2021, 'Inghilterra', '112', 'Trama del film', 1),
@@ -199,50 +199,50 @@ VALUES (1, 'Film 1', 'IT', 2021, 'Inghilterra', '112', 'Trama del film', 1),
        (4, 'Film 4', 'IT', 2010, 'Italia', '88', 'Trama del film4', 4),
        (5, 'Film 5', 'IT', 2023, 'Inghilterra', '92', 'Trama del film5', 5);
 
-INSERT INTO Disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, TempoLimite)
-VALUES ('Netflix', 1, true, true, true, false, '10-02-2022'),
-       ('Amazon Prime', 2, false, true, false, true, null),
-       ('Disney+', 5, true, true, false, false, null),
-       ('Netflix', 2, false, true, false, false, null);
+INSERT INTO Disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
+VALUES ('Netflix', 1, true, true, true, false, '2022-10-02',null),
+       ('AmazonPrime', 2, false, true, false, true, '2022-04-20',null),
+       ('Disney+', 5, true, true, false, false, '2022-06-02',null),
+       ('Netflix', 2, false, true, false, false, '2022-12-20',null);
 
 
 INSERT INTO Attore(`ID`, `Nome`, `Cognome`, `Data_nascita`, `Data_morte`, `ID_foto`, `Note_carriera`)
 VALUES (1, 'Brad', 'Pitt', '1963-12-18', NULL, NULL,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie '),
-       (2, 'Ridley', 'Scotto', '1973-12-18', NULL, 32,
+       (2, 'Ridley', 'Scotto', '1973-12-18', NULL, 7,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie '),
-       (3, 'Adam', 'Sendler', '1954-12-18', NULL, 34,
+       (3, 'Adam', 'Sendler', '1954-12-18', NULL, 11,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie ');
 
 
 INSERT INTO Categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti)
 VALUES (1, 'Tema Strano e triste', 'T', 'basso', 'commovente', true),
-       (2, 'Tema cattivo', false, 'VM18', 'trash', true),
+       (2, 'Tema cattivo', 'VM18', 'medio', 'trash', true),
        (3, 'Tema triste e strano', 'VM14', 'medio', 'comico', false),
        (4, 'Tema lellato', 'VM14', 'basso', 'sorprendente', false),
        (5, 'Tema barabbo e babbeo', 'T', 'medio', 'sentimentale', true);
 
-INSERT INTO `cast_film` (`Film`, `Attore`)
+INSERT INTO `Cast_Film` (`Film`, `Attore`)
 VALUES (1, 1),
        (1, 2),
        (2, 2),
        (3, 3);
 
-INSERT INTO `regia` (`Film`, `Regista`)
+INSERT INTO `Regia` (`Film`, `Regista`)
 VALUES (1, 3),
        (2, 2),
        (3, 2),
        (4, 3),
        (5, 1);
 
-INSERT INTO `scheda_utente` (`utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
+INSERT INTO `Scheda_Utente` (`utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
 VALUES (1, 1, true, false, true),
        (1, 3, false, true, true),
        (1, 4, true, false, false),
        (1, 5, false, true, true);
 
 
-INSERT INTO `valutazione` (`utente`, `ID_film`, `Commento`, `In_moderazione`, `Data_inserimento`, `Stelle`)
+INSERT INTO `Valutazione` (`utente`, `ID_film`, `Commento`, `In_moderazione`, `Data_inserimento`, `Stelle`)
 VALUES (1, 1, 'Bello i guesss', false, current_timestamp(), 5),
        (1, 3, 'Brutto i guesss', false, current_timestamp(), 3),
        (1, 4, 'Ciao i guesss', true, current_timestamp(), 2),
