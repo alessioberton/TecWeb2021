@@ -9,12 +9,11 @@ class Film_crud extends Connectable{
 
     function findById($id_film){
         $query = "SELECT * FROM Film WHERE ID = ?";
-
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i",$id_film);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result = $stmt->affected_rows > 0;
+        $result = convertQuery($stmt->get_result());
+        return $result[0] ?? null;
     }
 
     function find($titolo){

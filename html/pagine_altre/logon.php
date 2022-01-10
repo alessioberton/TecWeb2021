@@ -20,14 +20,13 @@ $page = file_get_contents("logon.html");
 
 //Controllo di venire da logon.html e non tramite giri strani
 if(isset($_POST['mail'])) {
-    $username = $_POST["username"];
     $mail = trim($_POST["mail"]);
     $pwd = $_POST["pwd"];
     $repeat_pwd = $_POST["repeat_pwd"];
     $data_nascita = $_POST["data_nascita"];
     $utente = new Utente();
     try {
-        $utente->inserisci($username, $mail, $pwd, $data_nascita, "Utente");
+        $utente->inserisci($mail, $pwd, $data_nascita, "Utente");
         header('location: login.php');
         exit;
     } catch (Exception $e) {

@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 
+require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once($_SESSION['$abs_path_php'].'logic/functions.php');
 
 class SchedaUtente extends Connectable{
 
@@ -18,12 +19,11 @@ class SchedaUtente extends Connectable{
 
     function findByUser($username){
         $query = "SELECT * FROM scheda_utente WHERE utente = ?";
-
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("i", $username);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result = $stmt->affected_rows > 0;
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
     }
 	
 	function inserisci($username, $film_id, $visto, $salvato, $suggerito){

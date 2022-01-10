@@ -7,6 +7,7 @@ function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/utente.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
+    include_once($_SESSION['$abs_path_php']."database/scheda_utente.php");
     if ($_SESSION['logged'] == false) {
         header('location: ../pagine_altre/accesso_negato.php');
         exit();
@@ -15,6 +16,7 @@ function getAbs_path(): void {
 }
 
 getAbs_path();
+$page = file_get_contents("profilo.html");
 
 $errore = '';
 $percorso_immagine = '../../img/utenti/imgnotfound.jpg';
@@ -25,25 +27,23 @@ $nuova_mail = '';
 $img = new Immagine();
 $utente = new Utente();
 
-$page = file_get_contents("profilo.html");
-print_r($_SESSION);
+//print_r($_SESSION);
 
-$page = str_replace("EMAIL", $_SESSION['email'], $page);
-$page = str_replace("UTENZA", $_SESSION['permesso'], $page);
-$page = str_replace("DATA_NASCITA", $_SESSION['data_nascita'], $page);
-$page = str_replace("VECCHIA_MAIL", $_SESSION['email'], $page);
+$page = str_replace("#EMAIL#", $_SESSION['email'], $page);
+$page = str_replace("#UTENZA#", $_SESSION['permesso'], $page);
+$page = str_replace("#DATA_NASCITA#", $_SESSION['data_nascita'], $page);
+$page = str_replace("#VECCHIA_MAIL#", $_SESSION['email'], $page);
 
 try {
     $query_array = $img->find($_SESSION['foto_profilo']);
     if ($query_array != null) {
         $nome_immagine_presente = $query_array['Percorso'];
         $nuovo_percorso_immagine = '../../img/'.$query_array['Percorso'];
-        echo $nuovo_percorso_immagine;
         $page = str_replace($percorso_immagine, $nuovo_percorso_immagine, $page);
         $percorso_immagine = $nuovo_percorso_immagine;
     } else {
         $id_user_img = $img->inserisci('Foto profilo', 'utenti/imgnotfound.jpg');
-        $utente->associa_immagine($_SESSION['username'], $id_user_img);
+            $utente->associa_immagine($_SESSION['username'], $id_user_img);
         $_SESSION['foto_profilo'] = $id_user_img;
         $errore = 'Immagine inserita';
     }
@@ -99,5 +99,40 @@ if (isset($_POST['modifica_mail_btn'])) {
         echo $pagina_errore;
     }
 }
+
+$scheda_utente = new SchedaUtente();
+$conta_visto = 0;
+$conta_salvati = 0;
+$conta_valutati = 0;
+$array_visto = array();
+$array_salvato = array();
+$array_valutato = array();
+
+try {
+    $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['username']);
+    foreach($query_array_scheda_utente as $value) {
+        if ($value["Visto"] == true) {
+            $conta_visto += 1;
+            $array_visto[] = $value;
+        }
+        if ($value["Salvato"] == true){
+            $conta_salvati += 1;
+            $array_salvato[] = $value;
+        }
+        if ($value["Suggerito"] == true) {
+            $conta_valutati += 1;
+            $array_valutato[] = $value;
+        }
+    }
+    $_SESSION["array_visto"] = $array_visto;
+    $page = str_replace("#FILM_VISTI#", $conta_visto, $page);
+    $page = str_replace("#FILM_SALVATI#", $conta_salvati, $page);
+    $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);
+} catch (Exception $e) {
+    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+    echo $pagina_errore;
+}
+
 
 echo $page;

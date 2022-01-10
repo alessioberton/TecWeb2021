@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Film Visti</title>
-	</head>
-	<body>
-		Film Visti
-	</body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Film Visti</title>
+</head>
+<body>
+
+<h2> Numero film visti: #NUMERO_FILM_VISTI# </h2>
+
+<h4>Ordina per</h4>
+
+<select id="lingua_titolo" name="lingua_titolo">
+    <option value="it">Italiano</option>
+    <option value="en">Inglese</option>
+</select>
+
+
+<div id="content">
+    <h1 id="page_title">Ultimi Film visti</h1>
+    #LIST#
+</div>
+
+
+</body>
 </html>

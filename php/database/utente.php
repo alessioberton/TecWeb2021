@@ -1,7 +1,6 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
-
 require_once($_SESSION['$abs_path_php'].'database/connectable.php');
 require_once($_SESSION['$abs_path_php'].'database/immagine.php');
 require_once($_SESSION['$abs_path_php'].'logic/functions.php');
@@ -18,13 +17,13 @@ class Utente extends Connectable {
         return $result[0] ?? null;
     }
 
-    function inserisci($username, $email, $password, $data_nascita, $permessi = NULL) {
+    function inserisci($email, $password, $data_nascita, $permessi = NULL) {
         $datan = $this->connection->real_escape_string(trim(htmlentities($data_nascita)));
 //        $psw = md5($password);
         $psw = $password;
-        $query = "INSERT INTO Utente(Username, Email, Password, Data_nascita, Permessi) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO Utente(Email, Password, Data_nascita, Permessi) VALUES (?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("issss", $username, $email, $psw, $datan, $permessi);
+        $stmt->bind_param("ssss", $email, $psw, $datan, $permessi);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if ($result < 1) {

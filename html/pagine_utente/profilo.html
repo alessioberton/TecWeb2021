@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Profilo!</title>
+    <title>Pagina profilo!</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
 
 </head>
@@ -18,11 +18,11 @@
         <h2 class="profile-view_title">I miei dati utente</h2>
         <dl class="list_profilo">
             <dt>La mia <span xml:lang="en">Email</span>:</dt>
-            <dd>EMAIL</dd>
+            <dd>#EMAIL#</dd>
             <dt>Data di Nascita:</dt>
-            <dd>DATA_NASCITA</dd>
+            <dd>#DATA_NASCITA#</dd>
             <dt>Tipo di utenza:</dt>
-            <dd>UTENZA</dd>
+            <dd>#UTENZA#</dd>
         </dl>
 
         <h2 class="profile-view_title">I miei dati personali</h2>
@@ -39,7 +39,7 @@
 
     <form method="post" action="profilo.php" id="modifica_psw" class="vertical_input_form">
         <fieldset>
-            <legend>Modifica Password</span></legend>
+            <legend>Modifica Password</legend>
 
             <label for="vecchia_pwd">Vecchia <span lang="en">password</span>:</label>
             <input type="password" id="vecchia_pwd" name="vecchia_pwd" class="full_width_input"/>
@@ -57,10 +57,10 @@
 
     <form method="post" action="profilo.php" id="modifica_mail" class="vertical_input_form">
         <fieldset>
-            <legend>Modifica E-mail</span></legend>
+            <legend>Modifica E-mail</legend>
 
             <label for="vecchia_mail"><b>vecchia Email</b></label>
-            <input type="email" id="vecchia_mail" name="vecchia_mail" value="VECCHIA_MAIL" disabled>
+            <input type="email" id="vecchia_mail" name="vecchia_mail" value="#VECCHIA_MAIL#" disabled>
 
             <label for="nuova_mail"><b>nuova Email</b></label>
             <input type="email" id="nuova_mail" name="nuova_mail" required>
@@ -70,8 +70,16 @@
         </fieldset>
     </form>
 
-    <a href="../../php/logic/logout.php" class="btn">log-out</a>
+    <h1 id="info_title">Il mio profilo</h1>
 
+    <dl class="list_info">
+        <dt><a href="film_visti.php">Film visti </a>: #FILM_VISTI#</dt>
+        <dt><a href="film_salvati.php"> Film salvati </a>: #FILM_SALVATI#</dt>
+        <dt><a href="film_valutati.php">Film valutati </a>: #FILM_VALUTATI#</dt>
+    </dl>
+
+
+    <a href="../../php/logic/logout.php" class="btn">log-out</a>
     <a href="../pagine_principali/homepage.php" class="btn">Homepage</a>
 
 
