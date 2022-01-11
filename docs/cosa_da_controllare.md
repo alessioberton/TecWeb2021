@@ -11,3 +11,4 @@
 - [ ] Nvda: screen reader
 - [ ] Wave, arc, axe: errori
 - [ ] Sltindlink: simula la disabilità
+- [ ] Vischeck: contrasto colori
