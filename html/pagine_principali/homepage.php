@@ -33,10 +33,6 @@ try {
         $page = str_replace("../../img/film/imgnotfound".$i.".jpg", "../../img/".$percorso_film, $page);
     }
 
-
-//    print_r($film_netflix);
-//    print_r($film_titolo);
-
 }catch (Exception $e){
 
 }

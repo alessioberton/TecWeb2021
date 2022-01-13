@@ -25,6 +25,15 @@ class SchedaUtente extends Connectable{
         $result = convertQuery($stmt->get_result());
         return $result ?? null;
     }
+
+    function findByFilmUser($id_film,$username){
+        $query = "SELECT * FROM scheda_utente WHERE id_film = ? AND utente = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("ii", $id_film,$username);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
+    }
 	
 	function inserisci($username, $film_id, $visto, $salvato, $suggerito){
         $query = "INSERT INTO scheda_utente(utente, ID_film, Visto, Salvato, Suggerito) VALUES(?,?,?,?,?)";

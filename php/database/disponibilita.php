@@ -22,13 +22,13 @@ class Disponibilita extends Connectable{
         return convertQuery($stmt->get_result());
     }
     
-    function inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$tempo_limite=NULL){
+    function inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata, $giorno_uscita=NULL){
 
-        $query = "INSERT INTO Disponibilità(Piattaforma,Film,CC,SDH,AD,CostoAggiuntivo,TempoLimite)
-                  VALUES(?,?,?,?,?,?,?)";
+        $query = "INSERT INTO Disponibilità(Piattaforma,Film,CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
+                  VALUES(?,?,?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("siiiiis",$piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$tempo_limite);
+        $stmt->bind_param("siiiiiss",$piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata,$giorno_uscita);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){

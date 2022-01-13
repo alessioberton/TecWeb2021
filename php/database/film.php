@@ -12,6 +12,7 @@ class Film {
     public $durata;
     public $trama;
     public $locandina = -666;
+    public $piattaforme;
 
     public function __construct($array) {
         $this->id = $array["ID"];
@@ -22,6 +23,7 @@ class Film {
         $this->durata = $array["Durata"];
         $this->trama = $array["Trama"];
         $this->locandina = $array["Locandina"];
+        $this->piattaforme = $array["Piattaforme"];
     }
 
 

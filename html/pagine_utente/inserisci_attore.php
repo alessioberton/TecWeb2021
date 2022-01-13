@@ -28,7 +28,7 @@ if (isset($_POST['nome'])) {
         if (!empty($immagine)) {
             upload_image($_SESSION['$abs_path_img'] ."attori/", "immagine", $_SESSION["max_dim_img"]);
 
-            $percorso_immagine = $_SESSION['$abs_path_img'] ."attori/". basename($_FILES["immagine"]["name"]);
+            $percorso_immagine = "attori/". basename($_FILES["immagine"]["name"]);
 
             $immagine = new Immagine();
             $immagine->inserisci($descrizione_immagine, $percorso_immagine);
