@@ -33,7 +33,8 @@ $cc = $_POST["cc"];
 $sdh = $_POST["sdh"];
 $ad = $_POST["ad"];
 $costo_aggiuntivo = $_POST["costo_aggiuntivo"];
-$tempo_limite = array_map('empty_to_null',$_POST["tempo_limite"]);
+$giorno_entrata = array_map('empty_to_null',$_POST["giorno_entrata"]);
+$giorno_uscita = array_map('empty_to_null',$_POST["giorno_uscita"]);
 
 $film_crud = new Film_crud();
 
@@ -44,7 +45,7 @@ try{
     if(!empty($immagine)){
         upload_image($_SESSION['$abs_path_img']."film/","immagine",$_SESSION['max_dim_img']);
 
-        $percorso_immagine = $_SESSION['$abs_path_img']."film/" . basename($_FILES["immagine"]["name"]);
+        $percorso_immagine = "film/" . basename($_FILES["immagine"]["name"]);
         
         $immagine = new Immagine();
         $immagine->inserisci($descrizione_immagine,$percorso_immagine);
@@ -69,9 +70,10 @@ try{
         $sdh_piattaforma = filter_var($sdh[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
         $ad_piattaforma = filter_var($ad[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
         $costo_aggiuntivo_piattaforma = filter_var($costo_aggiuntivo[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
-        $tempo_limite_piattaforma = $tempo_limite[$nome_piattaforma];
+        $giorno_entrata_piattaforma = $giorno_entrata[$nome_piattaforma];
+        $giorno_uscita_piattaforma = $giorno_uscita[$nome_piattaforma];
 
-        $disponibilita->inserisci($nome_piattaforma,$id_film,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$tempo_limite_piattaforma);
+        $disponibilita->inserisci($nome_piattaforma,$id_film,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$giorno_entrata_piattaforma,$giorno_uscita_piattaforma);
     }
 }
 catch(Exception $e){

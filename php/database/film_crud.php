@@ -17,7 +17,7 @@ class Film_crud extends Connectable{
     }
 
     function find($titolo){
-		$query = "SELECT * FROM film WHERE Titolo = ?";
+		$query = "SELECT * FROM Film WHERE Titolo = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s", $titolo);
         $stmt->execute();
@@ -26,10 +26,18 @@ class Film_crud extends Connectable{
     }
 
     function find_all(){
-        $query = "SELECT * FROM film";
+        $query = "SELECT Film.*, Immagini.Percorso AS img_path, Immagini.descrizione AS img_desc
+                  FROM Film
+                  LEFT JOIN Immagini ON Immagini.id = Film.locandina";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
-        return convertQuery($stmt->get_result());
+        $result = convertQuery($stmt->get_result());
+
+        foreach($result as &$film){
+            $film["Piattaforme"] = $this->getPiattaforme($film["ID"]);
+        }
+
+        return $result;
     }
 
     function inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama){
@@ -142,5 +150,16 @@ class Film_crud extends Connectable{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_array(MYSQLI_ASSOC);
+    }
+
+    function getPiattaforme($film_id){
+        $query = "SELECT *
+                  FROM Piattaforma
+                  JOIN Disponibilità ON Piattaforma.nome = Disponibilità.piattaforma
+                  WHERE Disponibilità.film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);           
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
     }
 }

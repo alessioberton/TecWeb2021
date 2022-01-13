@@ -6,6 +6,7 @@
 </head>
 <body>
     <form method="post" action="inserisci_film.php" enctype="multipart/form-data">
+        <!-- TODO: associare regista e attori al film -->
         <label for="titolo">Titolo:</label><br>
         <input type="text" id="titolo" name="titolo"><br>
 
@@ -118,8 +119,11 @@
         <input type="checkbox" id="costo_aggiuntivo_netflix" name="costo_aggiuntivo[netflix]">
         <label for="costo_aggiuntivo_netflix">Costo aggiuntivo</label><br>
 
-        <label for="tempo_limite_netflix">Tempo limite:</label><br>
-        <input type="date" id="tempo_limite_netflix" name="tempo_limite[netflix]" ><br>
+        <label for="giorno_entrata_netflix">Entrata:</label><br>
+        <input type="date" id="giorno_entrata_netflix" name="giorno_entrata[netflix]" ><br>
+
+        <label for="giorno_uscita_netflix">Uscita:</label><br>
+        <input type="date" id="giorno_uscita_netflix" name="giorno_uscita[netflix]" ><br>
 
         <input type="checkbox" id="piattaforma_prime" name="piattaforma[prime_video]">
         <label for="piattaforma_prime">Prime Video</label><br>
@@ -136,44 +140,53 @@
         <input type="checkbox" id="costo_aggiuntivo_prime" name="costo_aggiuntivo[prime_video]">
         <label for="costo_aggiuntivo_prime">Costo aggiuntivo</label><br>
 
-        <label for="tempo_limite_prime">Tempo limite:</label><br>
-        <input type="date" id="tempo_limite_prime" name="tempo_limite[prime_video]" ><br>
+        <label for="giorno_entrata_prime">Entrata:</label><br>
+        <input type="date" id="giorno_entrata_prime" name="giorno_entrata[prime_video]" ><br>
 
-        <input type="checkbox" id="piattaforma_nowtv" name="piattaforma[now_tv]">
+        <label for="giorno_uscita_prime">Uscita:</label><br>
+        <input type="date" id="giorno_uscita_prime" name="giorno_uscita[prime_video]" ><br>
+
+        <input type="checkbox" id="piattaforma_nowtv" name="piattaforma[nowtv]">
         <label for="piattaforma_nowtv">Now TV</label><br>
 
-        <input type="checkbox" id="cc_nowtv" name="cc[now_tv]">
+        <input type="checkbox" id="cc_nowtv" name="cc[nowtv]">
         <label for="cc_nowtv">CC</label><br>
 
-        <input type="checkbox" id="sdh_nowtv" name="sdh[now_tv]">
+        <input type="checkbox" id="sdh_nowtv" name="sdh[nowtv]">
         <label for="sdh_nowtv">SDH</label><br>
 
-        <input type="checkbox" id="ad_nowtv" name="ad[now_tv]">
+        <input type="checkbox" id="ad_nowtv" name="ad[nowtv]">
         <label for="ad_nowtv">AD</label><br>
 
-        <input type="checkbox" id="costo_aggiuntivo_nowtv" name="costo_aggiuntivo[now_tv]">
+        <input type="checkbox" id="costo_aggiuntivo_nowtv" name="costo_aggiuntivo[nowtv]">
         <label for="costo_aggiuntivo_nowtv">Costo aggiuntivo</label><br>
 
-        <label for="tempo_limite_nowtv">Tempo limite:</label><br>
-        <input type="date" id="tempo_limite_nowtv" name="tempo_limite[now_tv]" ><br>
+        <label for="giorno_entrata_nowtv">Entrata:</label><br>
+        <input type="date" id="giorno_entrata_nowtv" name="giorno_entrata[nowtv]" ><br>
 
-        <input type="checkbox" id="piattaforma_timvision" name="piattaforma[tim_vision]">
+        <label for="giorno_uscita_nowtv">Uscita:</label><br>
+        <input type="date" id="giorno_uscita_nowtv" name="giorno_uscita[nowtv]" ><br>
+
+        <input type="checkbox" id="piattaforma_timvision" name="piattaforma[timvision]">
         <label for="piattaforma_timvision">Tim Vision</label><br>
 
-        <input type="checkbox" id="cc_timvision" name="cc[tim_vision]">
+        <input type="checkbox" id="cc_timvision" name="cc[timvision]">
         <label for="cc_timvision">CC</label><br>
 
-        <input type="checkbox" id="sdh_timvision" name="sdh[tim_vision]">
+        <input type="checkbox" id="sdh_timvision" name="sdh[timvision]">
         <label for="sdh_timvision">SDH</label><br>
 
-        <input type="checkbox" id="ad_timvision" name="ad[tim_vision]">
+        <input type="checkbox" id="ad_timvision" name="ad[timvision]">
         <label for="ad_timvision">AD</label><br>
 
-        <input type="checkbox" id="costo_aggiuntivo_timvision" name="costo_aggiuntivo[tim_vision]">
+        <input type="checkbox" id="costo_aggiuntivo_timvision" name="costo_aggiuntivo[timvision]">
         <label for="costo_aggiuntivo_timvision">Costo aggiuntivo</label><br>
 
-        <label for="tempo_limite_timvision">Tempo limite:</label><br>
-        <input type="date" id="tempo_limite_timvision" name="tempo_limite[tim_vision]" ><br>
+        <label for="giorno_entrata_timvision">Entrata:</label><br>
+        <input type="date" id="giorno_entrata_timvision" name="giorno_entrata[timvision]" ><br>
+
+        <label for="giorno_uscita_timvision">Uscita:</label><br>
+        <input type="date" id="giorno_uscita_timvision" name="giorno_uscita[timvision]" ><br>
 
         <input type="submit" value="Inserisci">
       </form>
