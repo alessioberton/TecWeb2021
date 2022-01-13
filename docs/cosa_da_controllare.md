@@ -11,3 +11,9 @@
 - [ ] Nvda: screen reader
 - [ ] Wave, arc, axe: errori
 - [ ] Sltindlink: simula la disabilità
+- [ ] Vischeck: contrasto colori
+- Plug-in e strumenti per aiuto nello sviluppo:
+  - [ ] FireFox Web Developer Toolbar
+  - [ ] Chrome Device Emulation
+  - [ ] Silktide – estensione Chrome che simula diversi tipi di disabilità
+  - [ ] IE Accessibility Toolbar
