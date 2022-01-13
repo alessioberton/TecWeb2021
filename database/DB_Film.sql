@@ -249,3 +249,6 @@ VALUES (1, 1, 'Bello i guesss', false, current_timestamp(), 5),
        (1, 5, 'cocoa i guesss', false, current_timestamp(), 4),
        (2, 1, 'sacmsnamcsa i guesss', false, current_timestamp(), 1),
        (2, 3, 'dalamsldaò i guesss', false, current_timestamp(), 4);
+
+INSERT INTO `Utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
+VALUES ("admin", "admin@admin.com", "admin", "19/05/1995", "bla", "Admin");

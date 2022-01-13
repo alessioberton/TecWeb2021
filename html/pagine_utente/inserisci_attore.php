@@ -1,13 +1,9 @@
 <?php
-
 require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 
 require_once($_SESSION['$abs_path_php']."database/attore.php");
 require_once($_SESSION['$abs_path_php']."database/immagine.php");
 require_once($_SESSION['$abs_path_php']."logic/functions.php");
-require_once($_SESSION['$abs_path_php']."logic/sessione.php");
-
-
 $_POST = array_map('empty_to_null', $_POST);
 
 if (isset($_POST['nome'])) {

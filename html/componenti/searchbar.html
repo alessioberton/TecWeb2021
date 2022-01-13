@@ -1,1 +1,12 @@
-<input type="text" />
+<div id="searchBarContainer">
+	<label for="search" class="visuallyHidden">Search: </label>
+	<input
+		type="text"
+		name="search"
+		id="search"
+		onkeyup="getSearchResults(this.value)"
+		onfocus="getSearchResults(this.value)"
+		onBlur="cleanSearchBar()"
+	/>
+	<ul id="suggestionList"></ul>
+</div>

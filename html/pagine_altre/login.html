@@ -1,49 +1,30 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Login!</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
-
-</head>
-<body>
-
-<div id="id01" class="modal">
-
-    <h1>Login</h1>
-
-    <form method="post" action="login.php" id="login_form" class="vertical_login">
-        <fieldset>
-            <legend>Email</legend>
-            <div class="container">
-                <label for="mail"><b>Email</b></label>
-                <input type="email" id="mail" placeholder="Inserisci l'email" name="mail" required>
-
-            </div>
-        </fieldset>
-        <div>
-            <label for="pwd"><b>Password</b></label>
-            <input type="password" id="pwd" placeholder="Inserisci la password" name="pwd" minlength="5"
-                   maxlength="12"
-                   required>
-        </div>
-
-        <div>
-            <button type="submit">Login</button>
-            <label>
-                <input type="checkbox" id="remember" checked="checked" name="remember"> Ricordami
-            </label>
-
-        </div>
-
-
-        <p>Non hai un account? <a href="logon.php">Registrati</a></p>
-
-</div>
-
-</fieldset>
-</form>
-</div>
-
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Login</title>
+	</head>
+	<body>
+		<main>
+			<h2>Login</h2>
+			<form method="post" action="login.php">
+				<fieldset>
+					<label for="mail">Email</label>
+					<input type="email" id="mail" placeholder="Inserisci l'email" name="mail" required />
+					<label for="pwd">Password</label>
+					<input
+						type="password"
+						id="pwd"
+						placeholder="Inserisci la password"
+						name="pwd"
+						minlength="5"
+						maxlength="12"
+						required
+					/>
+				</fieldset>
+				<button type="submit">Login</button>
+			</form>
+			<p>Non hai un account? <a href="logon.php">Registrati</a></p>
+		</main>
+	</body>
 </html>

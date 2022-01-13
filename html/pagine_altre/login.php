@@ -1,9 +1,7 @@
 <?php
-
 include '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/utente.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
@@ -15,7 +13,7 @@ function getAbs_path(): void {
 }
 
 getAbs_path();
-$page = file_get_contents("login.html");
+
 
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -26,15 +24,18 @@ if(isset($_POST['mail'])) {
         $query_array = $utente->find($mail, $pwd);
         if ($query_array != null) {
             $_SESSION['logged'] = true;
-            $_SESSION['email'] = $mail;
+			$_SESSION['user'] = $query_array;
+
+           /*  $_SESSION['email'] = $mail;
             $_SESSION['username'] = $query_array['Username'];
             $_SESSION['data_nascita'] = $query_array['Data_nascita'];
             $_SESSION['foto_profilo'] = $query_array['foto_profilo'];
-            $_SESSION['permesso'] = $query_array['Permessi'];
-            if (isset($_POST['remember'])) {
+            $_SESSION['permesso'] = $query_array['Permessi']; */
+
+           	/*  if (isset($_POST['remember'])) {
                 setcookie("mail", $mail, 86400);
                 setcookie("pwd", $pwd, 86400);
-            }
+            } */
         header('location: ../pagine_utente/profilo.php');
         exit();
         } else {
@@ -50,4 +51,7 @@ if(isset($_POST['mail'])) {
     }
 }
 
+$page = file_get_contents("login.html");
 echo $page;
+
+?>
