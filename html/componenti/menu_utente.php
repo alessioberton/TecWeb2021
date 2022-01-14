@@ -6,7 +6,7 @@
 			<li id="adminMenu">
 				<h2>Amministratore</h2>
 				<ul>
-					<li><a href="../pagine_utente/inserisci_attore.php">Inserisci Film</a></li>
+					<li><a href="../pagine_utente/inserisci_film.php">Inserisci Film</a></li>
 					<li><a href="../pagine_utente/inserisci_attore.php">Inserisci Attore</a></li>
 				</ul>
 			</li>

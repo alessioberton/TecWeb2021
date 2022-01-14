@@ -4,6 +4,8 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 require_once($_SESSION['$abs_path_php']."database/attore.php");
 require_once($_SESSION['$abs_path_php']."database/immagine.php");
 require_once($_SESSION['$abs_path_php']."logic/functions.php");
+include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+
 $_POST = array_map('empty_to_null', $_POST);
 
 if (isset($_POST['nome'])) {
@@ -39,3 +41,9 @@ if (isset($_POST['nome'])) {
         echo $pagina_errore;
     }
 }
+
+$page = file_get_contents("inserisci_attore.html");
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+echo $page;
+?>
