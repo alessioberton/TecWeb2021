@@ -1,10 +1,11 @@
 <?php
-include '../../php/config.php';
+include_once '../../php/config.php';
 
 function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/utente.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
+	include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
     if ($_SESSION['logged'] == true) {
         header('location: ../pagine_utente/profilo.php');
         exit();
@@ -25,8 +26,8 @@ if(isset($_POST['mail'])) {
         if ($query_array != null) {
             $_SESSION['logged'] = true;
 			$_SESSION['user'] = $query_array;
-
-           /*  $_SESSION['email'] = $mail;
+			
+           /*  $_SESSION['user']['email] = $mail;
             $_SESSION['username'] = $query_array['Username'];
             $_SESSION['data_nascita'] = $query_array['Data_nascita'];
             $_SESSION['foto_profilo'] = $query_array['foto_profilo'];
@@ -52,6 +53,8 @@ if(isset($_POST['mail'])) {
 }
 
 $page = file_get_contents("login.html");
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 echo $page;
 
 ?>

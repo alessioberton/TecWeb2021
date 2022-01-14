@@ -1,5 +1,5 @@
 <?php
-include '../../php/config.php';
+include_once '../../php/config.php';
 
 function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."logic/functions.php");

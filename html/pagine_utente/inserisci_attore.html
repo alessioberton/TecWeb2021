@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Inserisci Attore</title>
-</head>
-<body>
-    <form method="post" action="inserisci_attore.php" enctype="multipart/form-data">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome"><br>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Inserisci Attore</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+		<script src="../componenti/main.js"></script>
+	</head>
+	<body>
+		<commonPageElements />
+		<form method="post" action="inserisci_attore.php" enctype="multipart/form-data">
+			<label for="nome">Nome:</label><br />
+			<input type="text" id="nome" name="nome" /><br />
 
-        <label for="cognome">Cognome:</label><br>
-        <input type="text" id="cognome" name="cognome"><br>
+			<label for="cognome">Cognome:</label><br />
+			<input type="text" id="cognome" name="cognome" /><br />
 
-        <label for="data_nascita">Data nascita:</label><br>
-        <input type="date" id="data_nascita" name="data_nascita"><br>
+			<label for="data_nascita">Data nascita:</label><br />
+			<input type="date" id="data_nascita" name="data_nascita" /><br />
 
-        <label for="data_morte">Data morte:</label><br>
-        <input type="date" id="data_morte" name="data_morte"><br>
+			<label for="data_morte">Data morte:</label><br />
+			<input type="date" id="data_morte" name="data_morte" /><br />
 
-        <label for="note_carriera">Note carriera (max 500):</label><br>
-        <textarea id="note_carriera" name="note_carriera" maxlength="500"></textarea><br>
+			<label for="note_carriera">Note carriera (max 500):</label><br />
+			<textarea id="note_carriera" name="note_carriera" maxlength="500"></textarea><br />
 
-        <label for="immagine">Immagine:</label>
-        <input type="file" id="immagine" name="immagine"><br>
+			<label for="immagine">Immagine:</label>
+			<input type="file" id="immagine" name="immagine" /><br />
 
-        <label for="descrizione_immagine">Descrizione immagine (max 100):</label><br>
-        <textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100"></textarea><br>
+			<label for="descrizione_immagine">Descrizione immagine (max 100):</label><br />
+			<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100"></textarea><br />
 
-        <input type="submit" value="Inserisci">
-      </form>
-</body>
+			<input type="submit" value="Inserisci" />
+		</form>
+	</body>
 </html>

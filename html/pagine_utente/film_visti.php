@@ -1,5 +1,5 @@
 <?php
-include '../../php/config.php';
+include_once '../../php/config.php';
 
 function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
@@ -9,6 +9,7 @@ function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."database/film.php");
     include_once($_SESSION['$abs_path_php']."database/film_crud.php");
     include_once($_SESSION['$abs_path_php']."database/valutazione.php");
+	include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
     if ($_SESSION['logged'] == false) {
         header('location: ../pagine_altre/accesso_negato.php');
         exit();
@@ -59,9 +60,8 @@ try {
 $list .= "</dl>";
 
 $page = str_replace("#LIST#", $list, $page);
-
-
-
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 
 echo $page;
 ?>

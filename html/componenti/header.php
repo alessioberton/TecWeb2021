@@ -3,7 +3,7 @@
 
 	class Header {
 		public $userButton = <<<HTML
-			<button id="userNavigationButton" type="button">
+			<button id="userNavigationButton" type="button" onclick="toggleMenu('userNavigation')">
 				<!--icon here-->
 				<span>Menu Utente</span>
 			</button>

@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Film Visti</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Film Visti</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+		<script src="../componenti/main.js"></script>
+	</head>
+	<body>
+		<commonPageElements />
+		<h2>Numero film visti: #NUMERO_FILM_VISTI#</h2>
 
-<h2> Numero film visti: #NUMERO_FILM_VISTI# </h2>
+		<h4>Ordina per</h4>
 
-<h4>Ordina per</h4>
+		<select id="lingua_titolo" name="lingua_titolo">
+			<option value="it">Italiano</option>
+			<option value="en">Inglese</option>
+		</select>
 
-<select id="lingua_titolo" name="lingua_titolo">
-    <option value="it">Italiano</option>
-    <option value="en">Inglese</option>
-</select>
-
-
-<div id="content">
-    <h1 id="page_title">Ultimi Film visti</h1>
-    #LIST#
-</div>
-
-
-</body>
+		<div id="content">
+			<h1 id="page_title">Ultimi Film visti</h1>
+			#LIST#
+		</div>
+	</body>
 </html>

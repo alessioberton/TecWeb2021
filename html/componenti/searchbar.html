@@ -6,7 +6,7 @@
 		id="search"
 		onkeyup="getSearchResults(this.value)"
 		onfocus="getSearchResults(this.value)"
-		onBlur="cleanSearchBar()"
 	/>
+	<button onclick="clearSearchResults(event)"><span>Clear bar</span></button>
 	<ul id="suggestionList"></ul>
 </div>
