@@ -7,8 +7,7 @@ function getSearchResults(string) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function () {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			console.log(this.response);
-			document.getElementById("suggestionList").appendChild(document.createTextNode(this.response));
+			document.getElementById("suggestionList").innerHTML = this.responseText;
 		}
 	};
 	xmlHttp.open("GET", "../../php/database/ricerca.php?q=" + string, true);
