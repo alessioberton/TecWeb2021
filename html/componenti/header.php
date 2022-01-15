@@ -19,9 +19,9 @@
 		function render(){
 			$html = file_get_contents($_SESSION['$abs_path_html']."componenti/header.html");
 			if(__FILE__ == "homepage.php"){
-				$html = str_replace("<mainNavigationSearchBar />", "", $html);	
+				$html = str_replace("<searchbarFilm />", "", $html);	
 			}else{
-				$html = str_replace("<mainNavigationSearchBar />", file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html"), $html);	
+				$html = str_replace("<searchbarFilm />", file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html"), $html);	
 			}
 			if ($_SESSION['logged']) {
 				$html = str_replace("<userButton />", $this-> userButton, $html);	

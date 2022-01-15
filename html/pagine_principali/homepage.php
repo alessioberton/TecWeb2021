@@ -28,7 +28,9 @@ $page = str_replace("<commonPageElements />", $commonPageElements->render(), $pa
 }catch (Exception $e){} */
 
 $searchBar = file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html");
-$page = str_replace("<searchBar />", $searchBar, $page);
+$page = str_replace("<searchbarFilm />", $searchBar, $page);
+$searchBarAttore = file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_attore.html");
+$page = str_replace("<searchbarAttore />", $searchBarAttore, $page);
 
 echo $page;
 ?>

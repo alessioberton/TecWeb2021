@@ -53,7 +53,7 @@ function clearActorSearchResults() {
 }
 
 function insertActor(nome_attore, id_attore) {
-	if (document.getElementById(nome_attore.replace(/\s/g, ""))) return;
+	if (document.getElementById(id_attore)) return;
 	document.getElementById("hiddenActorList").innerHTML +=
 		'<input id="' +
 		id_attore +
