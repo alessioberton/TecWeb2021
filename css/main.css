@@ -54,11 +54,11 @@ nav.menuActive {
 	display: block;
 }
 
-#searchBarContainer {
+#movieSelect {
 	position: relative;
 }
 
-#suggestionList {
+#movieSuggestionList {
 	position: absolute;
 	background-color: black;
 
@@ -66,14 +66,14 @@ nav.menuActive {
 	width: 100%;
 }
 
-#suggestionList > li a {
+#movieSuggestionList > li a {
 	height: 60px;
 	display: flex;
 	align-items: center;
 	color: white;
 }
 
-#suggestionList > li img {
+#movieSuggestionList > li a img {
 	width: 40px;
 	height: 50px;
 }

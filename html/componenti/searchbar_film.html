@@ -1,0 +1,14 @@
+<div id="movieSelect">
+	<div id="movieSelectInput">
+		<label for="movieSearch" class="visuallyHidden">Ricerca Film: </label>
+		<input
+			type="text"
+			name="movieSearch"
+			id="movieSearch"
+			onkeyup="getMovieSearchResults(this.value)"
+			onfocus="getMovieSearchResults(this.value)"
+		/>
+		<button onclick="clearMovieSearchResults(event)" type="button"><span>Clear bar</span></button>
+	</div>
+	<ul id="movieSuggestionList"></ul>
+</div>

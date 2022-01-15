@@ -21,7 +21,7 @@
 			if(__FILE__ == "homepage.php"){
 				$html = str_replace("<mainNavigationSearchBar />", "", $html);	
 			}else{
-				$html = str_replace("<mainNavigationSearchBar />", file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar.html"), $html);	
+				$html = str_replace("<mainNavigationSearchBar />", file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html"), $html);	
 			}
 			if ($_SESSION['logged']) {
 				$html = str_replace("<userButton />", $this-> userButton, $html);	
