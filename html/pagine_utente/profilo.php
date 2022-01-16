@@ -120,6 +120,8 @@ try {
         }
     }
     $_SESSION["array_visto"] = $array_visto;
+    $_SESSION["array_salvato"] = $array_salvato;
+    $_SESSION["array_valutato"] = $array_valutato;
     $page = str_replace("#FILM_VISTI#", $conta_visto, $page);
     $page = str_replace("#FILM_SALVATI#", $conta_salvati, $page);
     $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);

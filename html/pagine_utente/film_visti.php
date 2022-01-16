@@ -21,8 +21,10 @@ function getAbs_path(): void
 getAbs_path();
 
 $page = file_get_contents("film_visti.html");
-$array_visto = $_SESSION["array_visto"];
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 
+$array_visto = $_SESSION["array_visto"];
 $list = '<dl >';
 
 $page = str_replace("#NUMERO_FILM_VISTI#", count($array_visto), $page);
@@ -79,8 +81,7 @@ foreach ($lista_film as $value) {
 $list .= "</dl>";
 
 $page = str_replace("#LIST#", $list, $page);
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+
 
 $filtro_selezione = "<label for='option_film_visti'>Ordina per:</label>
     <select id='option_film_visti' name='option_film_visti'>
