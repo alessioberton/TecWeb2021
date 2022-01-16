@@ -1,12 +1,10 @@
 <?php
-
 include '../../php/config.php';
 
 function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/utente.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     if ($_SESSION['logged'] == true) {
         header('location: ../profilo.php');
         exit();
@@ -16,7 +14,6 @@ function getAbs_path(): void {
 
 getAbs_path();
 
-$page = file_get_contents("logon.html");
 
 //Controllo di venire da logon.html e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -37,4 +34,6 @@ if(isset($_POST['mail'])) {
     }
 }
 
+$page = file_get_contents("logon.html");
 echo $page;
+?>

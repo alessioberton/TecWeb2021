@@ -1,9 +1,7 @@
 <?php
-
 include '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
     include_once($_SESSION['$abs_path_php']."database/scheda_utente.php");

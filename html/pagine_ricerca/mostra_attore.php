@@ -1,16 +1,10 @@
 <?php
-
-include '../../php/config.php';
+include_once '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/attore.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
-//    if ($_SESSION['logged'] == false) {
-//        header('location: ../accesso_negato.php');
-//        exit();
-//    }
     $_POST = array_map('empty_to_null', $_POST);
 }
 

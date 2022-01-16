@@ -1,9 +1,8 @@
 <?php
-
-include '../../php/config.php';
+include_once '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
+	include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/utente.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
@@ -14,8 +13,8 @@ function getAbs_path(): void {
     }
     $_POST = array_map('empty_to_null', $_POST);
 }
-
 getAbs_path();
+
 $page = file_get_contents("profilo.html");
 
 $errore = '';
@@ -24,18 +23,14 @@ $nome_immagine_presente = 'imgnotfound.jpg';
 $nuova_password = '';
 $nuova_mail = '';
 
+$page = str_replace("#EMAIL#", $_SESSION['user']['Email'], $page);
+$page = str_replace("#PERMESSI#", $_SESSION['user']['Permessi'], $page);
+$page = str_replace("#DATA_NASCITA#", $_SESSION['user']['Data_nascita'], $page);
+
 $img = new Immagine();
 $utente = new Utente();
-
-//print_r($_SESSION);
-
-$page = str_replace("#EMAIL#", $_SESSION['email'], $page);
-$page = str_replace("#UTENZA#", $_SESSION['permesso'], $page);
-$page = str_replace("#DATA_NASCITA#", $_SESSION['data_nascita'], $page);
-$page = str_replace("#VECCHIA_MAIL#", $_SESSION['email'], $page);
-
 try {
-    $query_array = $img->find($_SESSION['foto_profilo']);
+    $query_array = $img->find($_SESSION['user']['foto_profilo']);
     if ($query_array != null) {
         $nome_immagine_presente = $query_array['Percorso'];
         $nuovo_percorso_immagine = '../../img/'.$query_array['Percorso'];
@@ -43,8 +38,8 @@ try {
         $percorso_immagine = $nuovo_percorso_immagine;
     } else {
         $id_user_img = $img->inserisci('Foto profilo', 'utenti/imgnotfound.jpg');
-            $utente->associa_immagine($_SESSION['username'], $id_user_img);
-        $_SESSION['foto_profilo'] = $id_user_img;
+        $utente->associa_immagine($_SESSION['user']['username'], $id_user_img);
+       	$_SESSION['user']['foto_profilo'] = $id_user_img;
         $errore = 'Immagine inserita';
     }
     $page = str_replace("ERRORE", $errore, $page);
@@ -109,7 +104,7 @@ $array_salvato = array();
 $array_valutato = array();
 
 try {
-    $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['username']);
+    $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['user']['Username']);
     foreach($query_array_scheda_utente as $value) {
         if ($value["Visto"] == true) {
             $conta_visto += 1;
@@ -134,5 +129,7 @@ try {
     echo $pagina_errore;
 }
 
-
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 echo $page;
+?>

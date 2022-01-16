@@ -8,6 +8,8 @@ require_once($_SESSION['$abs_path_php']."database/categorizzazione.php");
 require_once($_SESSION['$abs_path_php']."database/genereFilm.php");
 require_once($_SESSION['$abs_path_php']."database/disponibilita.php");
 require_once($_SESSION['$abs_path_php']."logic/functions.php");
+include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+
 
 $_POST = array_map('empty_to_null', $_POST);
 
@@ -82,4 +84,8 @@ catch(Exception $e){
     echo $pagina_errore;
 }
 
+$page = file_get_contents("inserisci_film.html");
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+echo $page;
 ?>
