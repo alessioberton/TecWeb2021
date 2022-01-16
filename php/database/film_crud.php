@@ -3,6 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 
 require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once($_SESSION['$abs_path_php'].'logic/functions.php');
 require_once($_SESSION['$abs_path_php'].'database/immagine.php');
 
 class Film_crud extends Connectable{
@@ -23,6 +24,16 @@ class Film_crud extends Connectable{
         $stmt->execute();
         $result = convertQuery($stmt->get_result());
         return $result[0] ?? null;
+    }
+
+    function guessByTitle($titolo){
+        $titolo = $titolo."%";
+        $query = "SELECT * FROM Film WHERE Titolo LIKE ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("s", $titolo);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
     }
 
     function find_all(){

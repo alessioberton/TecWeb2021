@@ -29,6 +29,15 @@ $page = str_replace("#NUMERO_FILM_VISTI#", count($array_visto), $page);
 $film_crud = new Film_crud();
 $immagine = new Immagine();
 $valutazione_model = new Valutazione();
+$link_valutazione = "";
+
+if (isset($_POST["option_film_visti"])) {
+    echo $_POST["option_film_visti"];
+
+}
+
+//print_r($_GET);
+//print_r($_POST);
 
 
 try {
@@ -36,12 +45,12 @@ try {
         $view_film = file_get_contents('../componenti/view_film.html');
         $film = new Film($film_crud->findById($value["ID_Film"]));
         $percorso_film = $immagine->find($film->locandina)["Percorso"];
-        $percorso_film = "../../img/$percorso_film";
+        $percorso_film = "../../img/".$percorso_film;
         $view_film = str_replace("#LOCANDINA#", $percorso_film, $view_film);
         $view_film = str_replace("#TITOLO#", $film->titolo, $view_film);
         $view_film = str_replace("#ANNO#", $film->anno, $view_film);
         $avg_valutazione = $valutazione_model->find_avg_by_film_id($film->id);
-        $valutazione_obj = $valutazione_model->findByUser($_SESSION['username']);
+        $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
         $view_film = str_replace("#VOTO#", $avg_valutazione["VALUTAZIONE_MEDIA"], $view_film);
         foreach ($valutazione_obj as $value_single){
         if (in_array($film->id, $value_single))
