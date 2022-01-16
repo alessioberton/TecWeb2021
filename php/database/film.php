@@ -12,6 +12,7 @@ class Film {
     public $durata;
     public $trama;
     public $locandina = -666;
+    public $voto = 0;
 
     public function __construct($array) {
         $this->id = $array["ID"];

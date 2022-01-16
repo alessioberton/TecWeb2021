@@ -85,3 +85,19 @@ function dateEurToUsa($dateEur){
 function dateUsaToEur($dateUsa){
     return date("d-m-Y", strtotime($dateUsa));
 }
+
+//ordinamento array di oggetti
+function sortArrayByKey(&$array,$key,$string = false,$asc = true){
+    if ($string) {
+        usort($array,function ($a, $b) use(&$key,&$asc) {
+            if($asc)    return strcmp(strtolower($a->$key), strtolower($b->$key));
+            else        return strcmp(strtolower($b->$key), strtolower($a->$key));
+        });
+    } else {
+        usort($array,function ($a, $b) use(&$key,&$asc) {
+            if($a->$key == $b->$key) {return 0; }
+            if($asc) return ($a->$key < $b->$key) ? -1 : 1;
+            else     return ($a->$key > $b->$key) ? -1 : 1;
+        });
+    }
+}
