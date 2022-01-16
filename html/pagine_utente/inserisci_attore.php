@@ -8,7 +8,12 @@ include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
 
 $_POST = array_map('empty_to_null', $_POST);
 
-if (isset($_POST['nome'])) {
+$page = file_get_contents("inserisci_attore.html");
+$esito_inserimento = "";
+
+if(!empty($_GET["inserted"])) $esito_inserimento = "Attore inserito con successo";
+
+if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
     $data_nascita = $_POST["data_nascita"];
@@ -35,15 +40,15 @@ if (isset($_POST['nome'])) {
 
             $attore->associa_immagine($id_attore, $id_immagine);
         }
+
+        header("location: inserisci_attore.php?inserted=1");
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path'] . "html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
-        echo $pagina_errore;
+        $esito_inserimento = $e;
     }
 }
 
-$page = file_get_contents("inserisci_attore.html");
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
 echo $page;
 ?>
