@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-		<title>Attore!</title>
-		<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-	</head>
-	<body>
-		<div id="content">
-			ERRORE
-			<h1 id="page_title">Sto attore</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Attore!</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
 
-			<div id="profile-view">
-				<h2 class="profile-view_title">I dati dell attore</h2>
-				<dl class="list_attore">
-					<dt>Nome</dt>
-					<dd>#NOME#</dd>
-					<dt>Cognome</dt>
-					<dd>#COGNOME#</dd>
-					<dt>Data di nascita</dt>
-					<dd>#DATA_NASCITA#</dd>
-				</dl>
-			</div>
-		</div>
-	</body>
+</head>
+<body>
+
+
+<div id="content">
+    ERRORE
+    <h1 id="page_title">#NOME# #COGNOME#</h1>
+
+    <img class="img_film" src="../../img/attori/imgnotfound.jpg" height="100px" width="100px" alt="foto di #NOME# #COGNOME#"/>
+
+
+    <div id="profile-view">
+        <h2 class="profile-view_title">I dati dell attore</h2>
+        <dl class="list_attore">
+            <dt>Data di nascita: </dt>
+            <dd>#DATA_NASCITA#</dd>
+            <dt>#DATA_MORTE_LABEL#</dt>
+            <dd>#DATA_MORTE#</dd>
+        </dl>
+
+        <a href="mostra_attore.php"> Note sulla carriera</a>
+        <a href="mostra_attore.php"> Elenco film</a>
+    </div>
+
+    <h2> Statistiche dell' attore </h2>
+
+    <dl class="list_attore">
+        <dt>Numero film totali: #NUMERO_FILM_TOTALE# </dt>
+        <dt>Numero con ruolo da protaggonista: #NUMERO_FILM_PROTAGONISTA# </dt>
+        <dt>Numero film come attore non protagonisti: #DIFFERENZA_NUMERO# </dt>
+
+    </dl>
+
+
+
+</div>
+
+</body>
 </html>
