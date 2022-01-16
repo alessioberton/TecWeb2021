@@ -80,7 +80,7 @@ try{
 }
 catch(Exception $e){
     $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+    $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;
 }
 

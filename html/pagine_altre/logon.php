@@ -29,7 +29,7 @@ if(isset($_POST['mail'])) {
     } catch (Exception $e) {
         $error="[Mail già in uso]";
         $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("</error_message>", $error, $pagina_errore);
+        $pagina_errore = str_replace("#ERROR_MESSAGE#", $error, $pagina_errore);
         echo $pagina_errore;
     }
 }
