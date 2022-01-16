@@ -173,4 +173,16 @@ class Film_crud extends Connectable{
         $stmt->execute();
         return convertQuery($stmt->get_result());
     }
+
+    function getAttori($film_id){
+        $query = "SELECT *
+                  FROM Cast_film 
+                  JOIN Attore ON Attore.id = Cast_film.attore
+                  WHERE Cast_film.film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
+    }
 }
