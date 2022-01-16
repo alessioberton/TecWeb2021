@@ -15,16 +15,8 @@
 <h4>Ordina per</h4>
 
 <form method="post" action="film_visti.php">
-
-    <label for="option_film_visti">Ordina per:</label>
-    <select id="option_film_visti" name="option_film_visti">
-        <option value="empty">Ordina per</option>
-        <option value="title">Titolo</option>
-        <option value="year">Anno</option>
-        <option value="mark">Voto</option>
-    </select>
-
-        <button type="submit">Filtra</button>
+    <filterFilm />
+    <button type="submit">Filtra</button>
 </form>
 
 <div id="content">

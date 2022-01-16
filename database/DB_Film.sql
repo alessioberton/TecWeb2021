@@ -126,8 +126,8 @@ CREATE TABLE Valutazione
     Data_inserimento TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Stelle           INT          NOT NULL,
     PRIMARY KEY (Utente, ID_Film),
-    FOREIGN KEY (Utente) REFERENCES Utente (Username) ON DELETE CASCADE,
-    FOREIGN KEY (ID_film) REFERENCES Film (ID) ON DELETE CASCADE
+    FOREIGN KEY (Utente) REFERENCES Utente (Username),
+    FOREIGN KEY (ID_film) REFERENCES Film (ID)
 );
 
 ALTER TABLE Valutazione
@@ -141,27 +141,27 @@ CREATE TABLE Scheda_Utente
     Salvato   BOOL NOT NULL DEFAULT FALSE,
     Suggerito BOOL NOT NULL DEFAULT FALSE,
     PRIMARY KEY (Utente, ID_Film),
-    FOREIGN KEY (Utente) REFERENCES Utente (Username) ON DELETE CASCADE,
-    FOREIGN KEY (ID_film) REFERENCES Film (ID) ON DELETE CASCADE
+    FOREIGN KEY (Utente) REFERENCES Utente (Username),
+    FOREIGN KEY (ID_film) REFERENCES Film (ID)
 );
 
 ALTER TABLE Scheda_Utente
     ADD CHECK (Visto or salvato or suggerito = true);
 
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Netflix', '11 EURO AL MESE');
+VALUES ('Netflix', '11 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('AmazonPrime', '7 EURO AL MESE');
+VALUES ('AmazonPrime', '7 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Crunchyroll', '4 EURO AL MESE');
+VALUES ('Crunchyroll', '4 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Rakuten', '14 EURO AL MESE');
+VALUES ('Rakuten', '14 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Disney+', '9 EURO AL MESE');
+VALUES ('Disney+', '9 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('NowTV', '6 EURO AL MESE');
+VALUES ('NowTV', '6 euro al mese');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('TimVision', '7.99 EURO AL MESE');
+VALUES ('TimVision', '7.99 euro al mese');
 
 INSERT INTO `Lista_generi` (Nome)
 VALUES ('Anime');
@@ -181,42 +181,50 @@ INSERT INTO `Lista_generi` (Nome)
 VALUES ('Drammatico');
 
 INSERT INTO Immagini(ID, Descrizione, Percorso)
-VALUES (1, 'Foto 1', 'film/film1.jpg'),
-       (2, 'Foto 2', 'film/film2.jpg'),
-       (3, 'Foto 3', 'film/film3.jpg'),
-       (4, 'Foto 4', 'film/film4.jpg'),
-       (5, 'Foto 5', 'film/film5.jpg'),
-       (6, 'Foto 6', 'film/film6.jpg'),
-       (7, 'Foto 7', 'film/film7.jpg'),
-       (8, 'Foto 8', 'film/film8.jpg'),
-       (9, 'Foto 9', 'film/film9.jpg'),
-       (10, 'Foto 10', 'film/film10.jpg'),
-       (11, 'Foto 11', 'film/film11.jpg'),
-       (12, 'Foto 12', 'film/film12.jpg'),
-       (13, 'Foto 13', 'film/film13.jpg'),
-       (32, 'Foto Profilo', 'utenti/CatturaLogProd.PNG');
+VALUES (1, 'Foto 1', 'film/dune.jpg'),
+       (2, 'Foto 2', 'film/freaks out.jpg'),
+       (3, 'Foto 3', 'film/il re leone.jpg'),
+       (4, 'Foto 4', 'film/matrix.jpg'),
+       (5, 'Foto 5', 'film/nomadland.jpg'),
+       (6, 'Foto 6', 'film/spiderman.jpg'),
+       (7, 'adam sendler', 'attori/adam sendler.jpg'),
+       (8, 'brad pitt', 'attori/brad pitt.jpg'),
+       (9, 'bruce willis', 'attori/bruce willis.jpg'),
+       (10, 'catherine zeta jones', 'attori/catherine zeta jones.jpg'),
+       (11, 'chris evans', 'attori/chris evans.jpg'),
+       (12, 'jennifer aniston', 'attori/jennifer aniston.jpg'),
+       (13, 'jim carrey', 'attori/jim carrey.jpg'),
+       (14, 'leonardo dicaprio', 'attori/leonardo dicaprio.jpg'),
+       (15, 'rydley scott', 'attori/rydley scott.jpg'),
+       (16, 'sandra bullock', 'attori/sandra bullock.jpg'),
+       (17, 'utente', 'utenti/imgnotfound.jpg'),
+       (18, 'utente', 'utenti/imgnotfound.jpg');
 
 INSERT INTO Film (ID, Titolo, Lingua_titolo, Anno, Paese, Durata, Trama, Locandina)
-VALUES (1, 'Film 1', 'IT', 2021, 'Inghilterra', '112', 'Trama del film', 1),
-       (2, 'Film 2', 'EN', 2001, 'Inghilterra', '110', 'Trama del film2', 2),
-       (3, 'Film 3', 'FR', 2011, 'Spagna', '76', 'Trama del film3', 3),
-       (4, 'Film 4', 'IT', 2010, 'Italia', '88', 'Trama del film4', 4),
-       (5, 'Film 5', 'IT', 2023, 'Inghilterra', '92', 'Trama del film5', 5);
+VALUES (1, 'dune', 'EN', '2019', 'Stati uniti', 113,
+        'La trama è bella lunga e claslòcmsalòcmaslc l òamsvlòcm lla ld dlò a.\"\"\"\"!!!!!!!!!!scmal mm\r\n\r\n\r\nfsdcs<',
+        1),
+       (2, 'freaks out', 'EN', '2021', 'Inghilterra', 112, 'Trama freaks out', 2),
+       (3, 'il re leone', 'IT', '2001', 'Inghilterra', 110, 'Trama il re leone', 3),
+       (4, 'matrix', 'EN', '2011', 'Spagna', 76, 'Trama matrix', 4),
+       (5, 'nomadland', 'EN', '2010', 'Italia', 88, 'Trama nomadland', 5),
+       (6, 'spiderman', 'EN', '2023', 'Inghilterra', 92, 'Trama spiderman', 6);
 
 INSERT INTO Disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
-VALUES ('Netflix', 1, true, true, true, false, '2022-10-02',null),
-       ('AmazonPrime', 2, false, true, false, true, '2022-04-20',null),
-       ('Disney+', 5, true, true, false, false, '2022-06-02',null),
-       ('Netflix', 2, false, true, false, false, '2022-12-20',null);
+VALUES ('Netflix', 1, true, true, true, false, '2022-10-02', null),
+       ('AmazonPrime', 2, false, true, false, true, '2022-04-20', null),
+       ('Disney+', 5, true, true, false, false, '2022-06-02', null),
+       ('Netflix', 2, false, true, false, false, '2022-12-20', null);
 
 
 INSERT INTO Attore(`ID`, `Nome`, `Cognome`, `Data_nascita`, `Data_morte`, `ID_foto`, `Note_carriera`)
-VALUES (1, 'Brad', 'Pitt', '1963-12-18', NULL, NULL,
+VALUES (1, 'Brad', 'Pitt', '1963-12-18', NULL, 8,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie '),
-       (2, 'Ridley', 'Scotto', '1973-12-18', NULL, 7,
+       (2, 'Ridley', 'Scott', '1973-12-18', NULL, 15,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie '),
-       (3, 'Adam', 'Sendler', '1954-12-18', NULL, 11,
+       (3, 'Adam', 'Sendler', '1954-12-18', NULL, 7,
         'Pitt ha guadagnato dapprima una certa notorietà interpretando un cowboy autostoppista nel film Thelma & Louise (1991) di Ridley Scott. Questo gli ha permesso, negli anni successivi, di avere i suoi primi ruoli da protagonista nei drammi In mezzo scorre il fiume (1992) di Robert Redford e Vento di passioni (1994) di Edward Zwick e nell\'horror Intervista col vampiro (1994) di Neil Jordan. Le sue prove attoriali nel thriller Seven di David Fincher e nel fantascientifico L\'esercito delle 12 scimmie ');
+
 
 
 INSERT INTO Categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti)
@@ -239,20 +247,21 @@ VALUES (1, 3),
        (4, 3),
        (5, 1);
 
-INSERT INTO `Scheda_Utente` (`utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
+INSERT INTO `Utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
+VALUES (1, "admin@admin.com", "admin", "19/05/1995", 17, "Admin"),
+       (2, "user@user.com", "userrr", "19/05/2005", 18, "Utente");
+
+INSERT INTO `Scheda_Utente` (`Utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
 VALUES (1, 1, true, false, true),
        (1, 3, false, true, true),
        (1, 4, true, false, false),
        (1, 5, false, true, true);
 
 
-INSERT INTO `Valutazione` (`utente`, `ID_film`, `Commento`, `In_moderazione`, `Data_inserimento`, `Stelle`)
+INSERT INTO `Valutazione` (`Utente`, `ID_film`, `Commento`, `In_moderazione`, `Data_inserimento`, `Stelle`)
 VALUES (1, 1, 'Bello i guesss', false, current_timestamp(), 5),
        (1, 3, 'Brutto i guesss', false, current_timestamp(), 3),
        (1, 4, 'Ciao i guesss', true, current_timestamp(), 2),
        (1, 5, 'cocoa i guesss', false, current_timestamp(), 4),
        (2, 1, 'sacmsnamcsa i guesss', false, current_timestamp(), 1),
        (2, 3, 'dalamsldaò i guesss', false, current_timestamp(), 4);
-
-INSERT INTO `Utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
-VALUES ("admin", "admin@admin.com", "admin", "19/05/1995", "bla", "Admin");
