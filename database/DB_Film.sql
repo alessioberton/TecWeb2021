@@ -158,6 +158,10 @@ INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Rakuten', '14 EURO AL MESE');
 INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Disney+', '9 EURO AL MESE');
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
+VALUES ('NowTV', '6 EURO AL MESE');
+INSERT INTO `Piattaforma` (`Nome`, `Info_abbonamento`)
+VALUES ('TimVision', '7.99 EURO AL MESE');
 
 INSERT INTO `Lista_generi` (Nome)
 VALUES ('Anime');
