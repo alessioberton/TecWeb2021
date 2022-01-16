@@ -3,14 +3,9 @@
 include '../../php/config.php';
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/sessione.php");
     include_once($_SESSION['$abs_path_php']."logic/functions.php");
     include_once($_SESSION['$abs_path_php']."database/attore.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
-//    if ($_SESSION['logged'] == false) {
-//        header('location: ../accesso_negato.php');
-//        exit();
-//    }
     $_POST = array_map('empty_to_null', $_POST);
 }
 
@@ -18,30 +13,32 @@ getAbs_path();
 $page = file_get_contents("mostra_attore.html");
 $errore = '';
 
+$id_attore = $_GET["id"];
+
 $attore = new Attore();
+$immagine = new Immagine();
 
 try {
-    $_SESSION["attore"] = $attore->find_nome_cognome_nascita("Ridley", "Scotto", "1973-12-18");
-    if ($_SESSION["attore"] != null) {
-        print_r($_SESSION["attore"]);
-        $page = str_replace("#NOME#", $_SESSION["attore"]['Nome'], $page);
-        $page = str_replace("#COGNOME#", $_SESSION["attore"]['Cognome'], $page);
-        $page = str_replace("#DATA_NASCITA#", $_SESSION["attore"]['Data_nascita'], $page);
-        if ($_SESSION["attore"]['Data_morte'] != null) {
-            $page = str_replace("#DATA_MORTE_LABEL#", "Data morte: " , $page);
-            $page = str_replace("#DATA_MORTE#", $_SESSION["attore"]['Data_morte'], $page);
-        } else {
-            $page = str_replace("#DATA_MORTE_LABEL#", " " , $page);
-            $page = str_replace("#DATA_MORTE#", "", $page);
-        }
+    if (!empty($id_attore)) {
+        $attore_data = $attore->getById($id_attore);
+
+        $page = str_replace("#NOME#", $attore_data["Nome"], $page);
+        $page = str_replace("#COGNOME#", $attore_data["Cognome"], $page);
+        $page = str_replace("#DATA_NASCITA#", dateUsaToEur($attore_data["Data_nascita"]), $page);
+        $id_immagine = $attore_data["ID_foto"];
+        $percorso_immagine = $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"];
+        $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
+        $page = str_replace("#URL_IMG_ATTORE#", $percorso_immagine, $page);
+        $page = str_replace("#ALT_IMG_ATTORE#", $descrizione_immagine, $page);
+        $num_film = $attore->numeroFilm($id_attore);
+        $page = str_replace("#NUMERO_FILM_TOTALI#", $num_film, $page);
     } else {
-        $errore = 'Attore bhoooooooooo ahah  ;:-((';
+        $errore = 'Parametro id non passato';
     }
-    $page = str_replace("ERRORE", $errore, $page);
 } catch (Exception $e) {
-    $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
-    echo $pagina_errore;
+    $errore = $e;
 }
+
+$page = str_replace("#ERROR_MESSAGE#", $errore, $page);
 
 echo $page;

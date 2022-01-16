@@ -77,3 +77,11 @@ function timeToSeconds($time){
 function secondsToTime($seconds){
     return gmdate("H:i:s", $seconds);
 }
+
+function dateEurToUsa($dateEur){
+    return date("Y-m-d", strtotime($dateEur));
+}
+
+function dateUsaToEur($dateUsa){
+    return date("d-m-Y", strtotime($dateUsa));
+}

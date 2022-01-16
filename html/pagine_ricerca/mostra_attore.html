@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Attore!</title>
+    <title>#NOME# #COGNOME# - Attore</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
 
 </head>
@@ -10,36 +10,34 @@
 
 
 <div id="content">
-    ERRORE
+    #ERROR_MESSAGE#
     <h1 id="page_title">#NOME# #COGNOME#</h1>
 
-    <img class="img_film" src="../../img/attori/imgnotfound.jpg" height="100px" width="100px" alt="foto di #NOME# #COGNOME#"/>
+    <img class="img_attore" src="#URL_IMG_ATTORE#" alt="#ALT_IMG_ATTORE#"/>
 
 
     <div id="profile-view">
-        <h2 class="profile-view_title">I dati dell attore</h2>
         <dl class="list_attore">
             <dt>Data di nascita: </dt>
-            <dd>#DATA_NASCITA#</dd>
-            <dt>#DATA_MORTE_LABEL#</dt>
-            <dd>#DATA_MORTE#</dd>
+                <dd>#DATA_NASCITA#</dd>
         </dl>
+    </div>
 
+    <p class="link_utili">
         <a href="mostra_attore.php"> Note sulla carriera</a>
         <a href="mostra_attore.php"> Elenco film</a>
-    </div>
+    </p>
 
     <h2> Statistiche dell' attore </h2>
 
     <dl class="list_attore">
-        <dt>Numero film totali: #NUMERO_FILM_TOTALE# </dt>
-        <dt>Numero con ruolo da protaggonista: #NUMERO_FILM_PROTAGONISTA# </dt>
-        <dt>Numero film come attore non protagonisti: #DIFFERENZA_NUMERO# </dt>
-
+        <dt>Numero film totali:</dt>
+            <dd>#NUMERO_FILM_TOTALI#</dd>
+        <dt>Numero con ruolo da protaggonista:</dt>
+            <dd>#NUMERO_FILM_PROTAGONISTA#</dd>
+        <dt>Numero film come attore non protagonisti:</dt>
+            <dd>#DIFFERENZA_NUMERO#</dd>
     </dl>
-
-
-
 </div>
 
 </body>

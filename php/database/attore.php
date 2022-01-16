@@ -92,4 +92,31 @@ class Attore extends Connectable{
         return $result->fetch_array(MYSQLI_ASSOC);
     }
 
+    function getById($id_attore){
+        if ($this->find($id_attore)) {
+            $query = "SELECT * FROM Attore WHERE Id = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param("i" ,$id_attore);
+            $stmt->execute();
+            $result = convertQuery($stmt->get_result());
+            return $result[0] ?? null;
+        } else{
+            throw new Exception("id_attore non trovato");
+        }
+    }
+
+    function numeroFilm($id_attore){
+        if ($this->find($id_attore)){
+            $query = "SELECT COUNT(*) AS num_film 
+                      FROM Cast_film 
+                      WHERE Attore = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param("i" ,$id_attore);
+            $stmt->execute();
+            $result = convertQuery($stmt->get_result());
+            return $result[0]["num_film"] ?? null;
+        } else{
+            throw new Exception("id_attore non trovato");
+        }
+    }
 }
