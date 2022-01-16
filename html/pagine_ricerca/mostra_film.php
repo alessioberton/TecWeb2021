@@ -49,8 +49,6 @@ if (isset($_GET["titolo"])) {
                     }
 
                     $page .= $piattaforma_section;
-                    $_SESSION["logged"] = true;// TODO: togliere
-                    $_SESSION["username"] = 1;// TODO: togliere
                     if($_SESSION["logged"]){
                         $scheda_utente = new SchedaUtente();
                         $scheda_result = $scheda_utente->findByFilmUser($value["ID"],$_SESSION["username"]);
