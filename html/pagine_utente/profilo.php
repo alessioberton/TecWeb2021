@@ -45,7 +45,7 @@ try {
     $page = str_replace("ERRORE", $errore, $page);
 } catch (Exception $e) {
     $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+    $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;
 }
 
@@ -65,7 +65,7 @@ if (!empty($nome_nuova_immagine)) {
         $nome_immagine_presente = $nome_nuova_immagine;
     } catch (Exception $e) {
         $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
     }
 }
@@ -76,7 +76,7 @@ if (isset($_POST['modifica_pwd_btn'])) {
         if ($_POST["nuova_pwd"] == $nuova_password) $utente->aggiorna_password($_SESSION['username'], $nuova_password);
     } catch (Exception $e) {
         $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
     }
 }
@@ -90,7 +90,7 @@ if (isset($_POST['modifica_mail_btn'])) {
         $_SESSION['email'] = $_POST["nuova_mail"];
     } catch (Exception $e) {
         $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+        $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
     }
 }
@@ -125,7 +125,7 @@ try {
     $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);
 } catch (Exception $e) {
     $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-    $pagina_errore = str_replace("</error_message>", $e, $pagina_errore);
+    $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;
 }
 
