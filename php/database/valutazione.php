@@ -6,7 +6,9 @@ require_once($_SESSION['$abs_path_php'].'database/connectable.php');
 class Valutazione extends Connectable {
 
 	function find($username, $film_id){
-		$query = "SELECT * FROM VALUTAZIONE WHERE utente = ? AND ID_film = ?";
+		$query = "SELECT * FROM Valutazione 
+                  JOIN Utente ON Utente.username = Valutazione.utente
+                  WHERE Valutazione.utente = ? AND Valutazione.ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ii", $username, $film_id);
         $stmt->execute();
@@ -16,6 +18,18 @@ class Valutazione extends Connectable {
 
     function findByFilmID($film_id){
 		$query = "SELECT * FROM VALUTAZIONE WHERE ID_film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
+    }
+
+    function getByFilmIdWithUtente($film_id){
+		$query = "SELECT * 
+                  FROM Valutazione
+                  JOIN Utente ON Utente.username = Valutazione.utente
+                  WHERE Valutazione.ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();
@@ -68,6 +82,21 @@ class Valutazione extends Connectable {
         }
     }
 
+    function modifica($username, $film_id, $commento, $in_moderazione, $Stelle){
+        $query = "UPDATE Valutazione SET
+                  Commento = ?,
+                  In_moderazione = ?,
+                  Stelle = ?
+                  WHERE utente = ? AND id_film = ?
+                  ";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("siiii", $commento, $in_moderazione, $Stelle, $username, $film_id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if($result < 0){
+            throw new Exception($this->connection->error);
+        }
+    }
 }
 
 ?>
