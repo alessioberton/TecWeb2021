@@ -76,4 +76,8 @@ if (isset($_GET["titolo"])) {
         echo $pagina_errore;
     }
 
+$page = str_replace("#VISTO#", "", $page);
+$page = str_replace("#SALVATO#", "", $page);
+
+
 echo $page;
