@@ -1,0 +1,16 @@
+<div>
+    <form method="post" action="commenti.php?id=#ID_FILM#">
+        <img class="img_utente" src="#URL_IMG_UTENTE#" alt="#ALT_IMG_UTENTE#">
+        #EMAIL_UTENTE# 
+        <select class="valutazione_stelle" name="valutazione_stelle">
+            <option value="1" #SELECTED1#>1</option>
+            <option value="2" #SELECTED2#>2</option>
+            <option value="3" #SELECTED3#>3</option>
+            <option value="4" #SELECTED4#>4</option>
+            <option value="5" #SELECTED5#>5</option>
+        </select>
+        <textarea class="insert_commento" maxlength="200" name="commento" placeholder="Inserisci qui il tuo commento (max 200 caratteri)">#COMMENTO_UTENTE#</textarea>
+        <input type="hidden" name="modifica" value="#MODIFICA_COMMENTO#">
+        <input type="submit" value="Pubblica">
+    </form>
+</div>
