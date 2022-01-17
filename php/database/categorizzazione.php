@@ -14,9 +14,23 @@ class Categorizzazione extends Connectable{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result = $stmt->affected_rows > 0;
-
     }
-    
+
+    function dynamic_find($sql){
+        $query = "SELECT * FROM Categorizzazione";
+        if (!empty($query)) {
+            $query .= ' WHERE ' . implode(' OR ', $sql);
+        }
+
+        echo $query;
+
+        $stmt = $this->connection->prepare($query);
+//        $stmt->bind_param("s",$query);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
+
     function inserisci($id_film,$tema,$eta_pubblico,$livello,$mood,$riconoscimenti){
         if($this->find($id_film)){
             throw new Exception("id_film gia' presente");
