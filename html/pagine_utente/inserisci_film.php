@@ -7,10 +7,12 @@ require_once($_SESSION['$abs_path_php']."database/immagine.php");
 require_once($_SESSION['$abs_path_php']."database/categorizzazione.php");
 require_once($_SESSION['$abs_path_php']."database/genereFilm.php");
 require_once($_SESSION['$abs_path_php']."database/disponibilita.php");
+require_once($_SESSION['$abs_path_php']."database/cast_film.php");
 require_once($_SESSION['$abs_path_php']."logic/functions.php");
 include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
 
 $page = file_get_contents("inserisci_film.html");
+$searchbar_attore_component = file_get_contents($_SESSION['$abs_path_html'] . "componenti/searchbar_attore.html");
 $esito_inserimento = "";
 
 if(!empty($_GET["inserted"])) $esito_inserimento = "Film inserito con successo";
@@ -43,6 +45,8 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
     $costo_aggiuntivo = $_POST["costo_aggiuntivo"];
     $giorno_entrata = array_map('empty_to_null',$_POST["giorno_entrata"]);
     $giorno_uscita = array_map('empty_to_null',$_POST["giorno_uscita"]);
+
+    $attori = array_map('empty_to_null',$_POST["actors"]);
 
     $film_crud = new Film_crud();
 
@@ -84,6 +88,11 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
             $disponibilita->inserisci($nome_piattaforma,$id_film,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$giorno_entrata_piattaforma,$giorno_uscita_piattaforma);
         }
 
+        $cast_film = new Cast_film();
+        foreach($attori as $attore_id){
+            $cast_film->inserisci($id_film,$attore_id);
+        }
+
         header("location: inserisci_film.php?inserted=1");
     }
     catch(Exception $e){
@@ -94,5 +103,6 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
+$page = str_replace("#INSERISCI_ATTORI#", $searchbar_attore_component, $page);
 echo $page;
 ?>

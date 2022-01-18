@@ -58,7 +58,7 @@ function insertActor(nome_attore, id_attore) {
 		'<input id="' +
 		id_attore +
 		"box" +
-		'" type="checkbox" hidden checked disabled name="actors[]" value="' +
+		'" type="checkbox" hidden checked name="actors[]" value="' +
 		id_attore +
 		'" />';
 

@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once($_SESSION['$abs_path_php'].'logic/functions.php');
 
 require_once($_SESSION['$abs_path_php'].'database/connectable.php');
 require_once($_SESSION['$abs_path_php'].'database/immagine.php');
@@ -118,5 +119,16 @@ class Attore extends Connectable{
         } else{
             throw new Exception("id_attore non trovato");
         }
+    }
+
+    function guessByName($nome_attore){
+        $nome_attore = $nome_attore."%";
+        $query = "SELECT * FROM Attore 
+                  WHERE CONCAT(nome, ' ', cognome) LIKE ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("s", $nome_attore);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
     }
 }
