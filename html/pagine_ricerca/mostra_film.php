@@ -6,6 +6,8 @@ function getAbs_path(): void
     include_once($_SESSION['$abs_path_php'] . "logic/functions.php");
     include_once($_SESSION['$abs_path_php'] . "database/immagine.php");
     include_once($_SESSION['$abs_path_php'] . "database/scheda_utente.php");
+    include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+
     $_POST = array_map('empty_to_null', $_POST);
 }
 
@@ -82,5 +84,7 @@ if (isset($_GET["titolo"])) {
 $page = str_replace("#VISTO#", "", $page);
 $page = str_replace("#SALVATO#", "", $page);
 
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 
 echo $page;

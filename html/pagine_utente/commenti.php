@@ -7,6 +7,8 @@ function getAbs_path(): void {
     include_once($_SESSION['$abs_path_php']."database/film_crud.php");
     include_once($_SESSION['$abs_path_php']."database/valutazione.php");
     include_once($_SESSION['$abs_path_php']."database/immagine.php");
+    include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+
     $_POST = array_map('empty_to_null', $_POST);
 }
 
@@ -97,5 +99,8 @@ try {
 }
 
 $page = str_replace("#ERROR_MESSAGE#", $errore, $page);
+
+$commonPageElements = new CommonPageElements();
+$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 
 echo $page;
