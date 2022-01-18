@@ -22,6 +22,7 @@ if (isset($_GET["titolo"])) {
         if (isset($_SESSION["film"])) {
             foreach ($_SESSION["film"] as $value) {
                 if ($_GET["titolo"] == $value["Titolo"]) {
+                    $id_film = $value["ID"];
                     $id_immagine = $value["Locandina"];
                     $page = str_replace("#TITOLO_PAGINA#", $value['Titolo'], $page);
                     $page = str_replace("#TITOLO#", $value['Titolo'], $page);
@@ -50,12 +51,14 @@ if (isset($_GET["titolo"])) {
                         $page = str_replace("#PIATTAFORME#", $piattaforma_section, $page);
                         if($_SESSION["logged"]){
                             $scheda_utente = new SchedaUtente();
-                            $scheda_result = $scheda_utente->findByFilmUser($value["ID"],$_SESSION["user"]["Username"]);
+                            $scheda_result = $scheda_utente->findByFilmUser($id_film,$_SESSION["user"]["Username"]);
                             if($scheda_result[0]["Visto"])                     
                                 $page = str_replace("#VISTO#", "VISTO", $page);
                             if($scheda_result[0]["Salvato"])
                                 $page = str_replace("#SALVATO#", "SALVATO", $page);
                         }
+
+                        $page = str_replace("#ID_FILM#", $id_film, $page);
 
                         break;
                     } catch (Exception $e) {
@@ -67,12 +70,12 @@ if (isset($_GET["titolo"])) {
             }
         } else {
             $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-            $pagina_errore = str_replace("#ERROR_MESSAGE#", "Film non più esistente, very sorry", $pagina_errore);
+            $pagina_errore = str_replace("#ERROR_MESSAGE#", "Film non più esistente", $pagina_errore);
             echo $pagina_errore;
         } 
     } else {
         $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
-        $pagina_errore = str_replace("#ERROR_MESSAGE#", "Link non corretto lololol", $pagina_errore);
+        $pagina_errore = str_replace("#ERROR_MESSAGE#", "Link non corretto", $pagina_errore);
         echo $pagina_errore;
     }
 
