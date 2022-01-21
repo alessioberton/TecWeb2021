@@ -36,17 +36,17 @@ CREATE TABLE Film
 
 CREATE TABLE Disponibilità
 (
-    Piattaforma     VARCHAR(20) NOT NULL,
     Film            INT         NOT NULL,
+    Piattaforma     VARCHAR(20) NOT NULL,
     CC              bool        NOT NULL,
     SDH             bool        NOT NULL,
     AD              bool        NOT NULL,
     CostoAggiuntivo bool DEFAULT FALSE,
     Giorno_entrata  date        NOT NULL,
     Giorno_uscita   date,
-    PRIMARY KEY (Piattaforma, Film),
-    FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE CASCADE,
-    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE
+    PRIMARY KEY (Film, Piattaforma),
+    FOREIGN KEY (Film) REFERENCES Film (ID) ON DELETE CASCADE,
+    FOREIGN KEY (Piattaforma) REFERENCES Piattaforma (Nome) ON DELETE CASCADE
 );
 
 CREATE TABLE Categorizzazione
@@ -210,11 +210,11 @@ VALUES (1, 'dune', 'EN', '2019', 'Stati uniti', 113,
        (5, 'nomadland', 'EN', '2010', 'Italia', 88, 'Trama nomadland', 5),
        (6, 'spiderman', 'EN', '2023', 'Inghilterra', 92, 'Trama spiderman', 6);
 
-INSERT INTO Disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
-VALUES ('Netflix', 1, true, true, true, false, '2022-10-02', null),
-       ('AmazonPrime', 2, false, true, false, true, '2022-04-20', null),
-       ('Disney+', 5, true, true, false, false, '2022-06-02', null),
-       ('Netflix', 2, false, true, false, false, '2022-12-20', null);
+INSERT INTO Disponibilità(Film, Piattaforma CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
+VALUES (1, 'Netflix', true, true, true, false, '2022-10-02', null),
+       (2, 'AmazonPrime', false, true, false, true, '2022-04-20', null),
+       (5, 'Disney+', true, true, false, false, '2022-06-02', null),
+       (2, 'Netflix', false, true, false, false, '2022-12-20', null);
 
 
 INSERT INTO Attore(`ID`, `Nome`, `Cognome`, `Data_nascita`, `Data_morte`, `ID_foto`, `Note_carriera`)

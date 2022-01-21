@@ -15,14 +15,16 @@ class Film {
     public $voto = 0;
 
     public function __construct($array) {
-        $this->id = $array["ID"];
-        $this->titolo = $array["Titolo"];
-        $this->lingua_titolo = $array["Lingua_titolo"];
-        $this->anno = $array["Anno"];
-        $this->paese = $array["Paese"];
-        $this->durata = $array["Durata"];
-        $this->trama = $array["Trama"];
-        $this->locandina = $array["Locandina"];
+        if ($array) {
+            $this->id = $array["ID"];
+            $this->titolo = $array["Titolo"];
+            $this->lingua_titolo = $array["Lingua_titolo"];
+            $this->anno = $array["Anno"];
+            $this->paese = $array["Paese"];
+            $this->durata = $array["Durata"];
+            $this->trama = $array["Trama"];
+            $this->locandina = $array["Locandina"];
+        }
     }
 
 }

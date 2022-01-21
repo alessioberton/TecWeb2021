@@ -5,30 +5,50 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
 require_once($_SESSION['$abs_path_php'].'database/connectable.php');
 
 class Disponibilita extends Connectable{
-    function find_by_film($film_id){
+
+    function find_by_film($film_id): array {
 		$query = "SELECT * FROM disponibilità WHERE Film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();
         return convertQuery($stmt->get_result());
-
     }
 
-    function find_by_platform($piattaforma){
+    function find_by_platform($piattaforma): array {
         $query = "SELECT * FROM disponibilità WHERE Piattaforma = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s", $piattaforma);
         $stmt->execute();
         return convertQuery($stmt->get_result());
     }
-    
-    function inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata, $giorno_uscita=NULL){
 
-        $query = "INSERT INTO Disponibilità(Piattaforma,Film,CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
+    function dynamic_find($sql): array {
+        $query = "SELECT * FROM disponibilità";
+        $query .= ' WHERE ' . implode(' OR ', $sql);
+        echo $query;
+        $stmt = $this->connection->prepare($query);
+//        $stmt->bind_param("s",$query);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
+    function find_all(): array {
+        $query = "SELECT * FROM disponibilità";
+        $stmt = $this->connection->prepare($query);
+
+//        $stmt->bind_param("s",$query);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
+
+    function inserisci($id_film, $piattaforma, $cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata, $giorno_uscita=NULL){
+
+        $query = "INSERT INTO Disponibilità(Film, Piattaforma, CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
                   VALUES(?,?,?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("siiiiiss",$piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata,$giorno_uscita);
+        $stmt->bind_param("isiiiiss",$id_film,$piattaforma,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata,$giorno_uscita);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
@@ -53,5 +73,3 @@ class Disponibilita extends Connectable{
     }
 
 }
-
-?>
