@@ -44,11 +44,12 @@ class Disponibilita extends Connectable{
 
     function inserisci($id_film, $piattaforma, $cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata, $giorno_uscita=NULL){
 
-        $query = "INSERT INTO disponibilità(Film, Piattaforma, CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
+        $query = "INSERT INTO disponibilità(Piattaforma, Film, CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
                   VALUES(?,?,?,?,?,?,?,?)";
-
+        
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("isiiiiss",$id_film,$piattaforma,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata,$giorno_uscita);
+        
+        $stmt->bind_param("siiiiiss",$piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata,$giorno_uscita);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){

@@ -46,7 +46,7 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
     $giorno_entrata = array_map('empty_to_null',$_POST["giorno_entrata"]);
     $giorno_uscita = array_map('empty_to_null',$_POST["giorno_uscita"]);
 
-    $attori = array_map('empty_to_null',$_POST["actors"]);
+    $attori = $_POST["actors"];
 
     $film_crud = new Film_crud();
 
@@ -84,8 +84,8 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
             $costo_aggiuntivo_piattaforma = filter_var($costo_aggiuntivo[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
             $giorno_entrata_piattaforma = $giorno_entrata[$nome_piattaforma];
             $giorno_uscita_piattaforma = $giorno_uscita[$nome_piattaforma];
-
-            $disponibilita->inserisci($nome_piattaforma,$id_film,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$giorno_entrata_piattaforma,$giorno_uscita_piattaforma);
+            
+            $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$giorno_entrata_piattaforma,$giorno_uscita_piattaforma);
         }
 
         $cast_film = new Cast_film();
