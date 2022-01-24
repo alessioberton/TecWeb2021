@@ -1,11 +1,11 @@
 <?php
-include_once '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/functions.php");
-    include_once($_SESSION['$abs_path_php']."database/utente.php");
-    include_once($_SESSION['$abs_path_php']."database/immagine.php");
-	include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+    require_once(__DIR__.'/../../php/logic/functions.php');
+    require_once(__DIR__.'/../../php/database/utente.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
+	require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
     if ($_SESSION['logged'] == true) {
         header('location: ../pagine_utente/profilo.php');
         exit();
@@ -27,32 +27,22 @@ if(isset($_POST['mail'])) {
             $_SESSION['logged'] = true;
 			$_SESSION['user'] = $query_array;
 			
-           /*  $_SESSION['user']['email] = $mail;
-            $_SESSION['username'] = $query_array['Username'];
-            $_SESSION['data_nascita'] = $query_array['Data_nascita'];
-            $_SESSION['foto_profilo'] = $query_array['foto_profilo'];
-            $_SESSION['permesso'] = $query_array['Permessi']; */
-
-           	/*  if (isset($_POST['remember'])) {
-                setcookie("mail", $mail, 86400);
-                setcookie("pwd", $pwd, 86400);
-            } */
         header('location: ../pagine_utente/profilo.php');
         exit();
         } else {
             $error="[Mail o password errate]";
-            $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+            $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
             $pagina_errore = str_replace("#ERROR_MESSAGE#", $error, $pagina_errore);
             echo $pagina_errore;
         }
     } catch (Exception $e) {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+        $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
     }
 }
 
-$page = file_get_contents("login.html");
+$page = file_get_contents(__DIR__.'/login.html');
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 echo $page;

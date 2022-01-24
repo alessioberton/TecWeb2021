@@ -1,14 +1,14 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
-require_once($_SESSION['$abs_path_php'].'logic/functions.php');
+require_once(__DIR__.'/../../php/config.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
-require_once($_SESSION['$abs_path_php'].'database/immagine.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
 
 class Attore extends Connectable{
 
     function find($id_attore){
-        $query = "SELECT * FROM Attore WHERE ID = ?";
+        $query = "SELECT * FROM attore WHERE ID = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i",$id_attore);
         $stmt->execute();
@@ -19,8 +19,7 @@ class Attore extends Connectable{
 
 
     function find_nome_cognome_nascita($nome, $cognome, $data_nascita){
-        $query = "SELECT * FROM Attore WHERE Nome = ? AND Cognome = ? AND Data_nascita = ?";
-//        $query = "SELECT * FROM Attore WHERE Nome = ? AND Cognome = ?";
+        $query = "SELECT * FROM attore WHERE Nome = ? AND Cognome = ? AND Data_nascita = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("sss" ,$nome, $cognome, $data_nascita);
         $stmt->execute();
@@ -29,7 +28,7 @@ class Attore extends Connectable{
     }
 
     function inserisci($nome,$cognome,$data_nascita,$data_morte=NULL,$note_carriera=NULL){
-        $query = "INSERT INTO Attore(Nome,Cognome,Data_nascita,Data_morte,Note_carriera) VALUES(?,?,?,?,?)";
+        $query = "INSERT INTO attore(Nome,Cognome,Data_nascita,Data_morte,Note_carriera) VALUES(?,?,?,?,?)";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("sssss",$nome,$cognome,$data_nascita,$data_morte,$note_carriera);
         $stmt->execute();
@@ -42,7 +41,7 @@ class Attore extends Connectable{
     function associa_immagine($id_attore, $id_immagine){
         $immagine = new Immagine();
         if ($this->find($id_attore) && $immagine->find($id_immagine)) {
-            $query = "UPDATE Attore SET ID_foto = ? WHERE ID = ?";
+            $query = "UPDATE attore SET ID_foto = ? WHERE ID = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("ii",$id_immagine,$id_attore);
             $stmt->execute();
@@ -57,7 +56,7 @@ class Attore extends Connectable{
 
     function elimina($id_attore){
         if ($this->find($id_attore)) {
-            $query = "DELETE FROM Attore WHERE ID = ?";
+            $query = "DELETE FROM attore WHERE ID = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i",$id_attore);
             $stmt->execute();
@@ -72,7 +71,7 @@ class Attore extends Connectable{
 
     function modifica($id_attore,$nome,$cognome,$data_nascita,$data_morte=NULL,$note_carriera=NULL){
         if ($this->find($id_attore)) {
-            $query = "UPDATE Attore SET Nome = ?, Cognome = ?, Data_nascita = ?, Data_morte = ?, Note_carriera = ? WHERE ID = ?";
+            $query = "UPDATE attore SET Nome = ?, Cognome = ?, Data_nascita = ?, Data_morte = ?, Note_carriera = ? WHERE ID = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("sssssi",$nome,$cognome,$data_nascita,$data_morte,$note_carriera,$id_attore);
             $stmt->execute();
@@ -86,7 +85,7 @@ class Attore extends Connectable{
     }
 
     function getLastInsertedAttore(){
-        $query = "SELECT * FROM Attore ORDER BY ID DESC LIMIT 1";
+        $query = "SELECT * FROM attore ORDER BY ID DESC LIMIT 1";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -95,7 +94,7 @@ class Attore extends Connectable{
 
     function getById($id_attore){
         if ($this->find($id_attore)) {
-            $query = "SELECT * FROM Attore WHERE Id = ?";
+            $query = "SELECT * FROM attore WHERE Id = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i" ,$id_attore);
             $stmt->execute();
@@ -109,7 +108,7 @@ class Attore extends Connectable{
     function numeroFilm($id_attore){
         if ($this->find($id_attore)){
             $query = "SELECT COUNT(*) AS num_film 
-                      FROM Cast_film 
+                      FROM cast_film 
                       WHERE Attore = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i" ,$id_attore);
@@ -123,7 +122,7 @@ class Attore extends Connectable{
 
     function guessByName($nome_attore){
         $nome_attore = $nome_attore."%";
-        $query = "SELECT * FROM Attore 
+        $query = "SELECT * FROM attore 
                   WHERE CONCAT(nome, ' ', cognome) LIKE ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s", $nome_attore);

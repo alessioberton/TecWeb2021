@@ -1,10 +1,10 @@
 <?php
-include '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/functions.php");
-    include_once($_SESSION['$abs_path_php']."database/utente.php");
-    include_once($_SESSION['$abs_path_php']."database/immagine.php");
+    require_once(__DIR__.'/../../php/logic/functions.php');
+    require_once(__DIR__.'/../../php/database/utente.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
     if ($_SESSION['logged'] == true) {
         header('location: ../profilo.php');
         exit();
@@ -28,12 +28,12 @@ if(isset($_POST['mail'])) {
         exit;
     } catch (Exception $e) {
         $error="[Mail già in uso]";
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+        $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $error, $pagina_errore);
         echo $pagina_errore;
     }
 }
 
-$page = file_get_contents("logon.html");
+$page = file_get_contents(__DIR__.'/logon.html');
 echo $page;
 ?>

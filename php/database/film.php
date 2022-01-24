@@ -1,6 +1,4 @@
 <?php
-$abs_path = $_SERVER["DOCUMENT_ROOT"]."/TecWeb2021/php/";
-
 
 class Film {
 

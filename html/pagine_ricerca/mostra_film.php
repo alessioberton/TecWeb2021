@@ -1,12 +1,12 @@
 <?php
-include '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void
 {
-    include_once($_SESSION['$abs_path_php'] . "logic/functions.php");
-    include_once($_SESSION['$abs_path_php'] . "database/immagine.php");
-    include_once($_SESSION['$abs_path_php'] . "database/scheda_utente.php");
-    include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+    require_once(__DIR__.'/../../php/logic/functions.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
+    require_once(__DIR__.'/../../php/database/scheda_utente.php');
+    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
     $_POST = array_map('empty_to_null', $_POST);
 }
@@ -14,7 +14,7 @@ function getAbs_path(): void
 getAbs_path();
 $page = file_get_contents("mostra_film.html");
 $piattaforma_section = "";
-$piattaforma_component = file_get_contents($_SESSION['$abs_path_html'] . "componenti/view_piattaforme.html");
+$piattaforma_component = file_get_contents(__DIR__.'/../../html/componenti/view_piattaforme.html');
 $errore = '';
 $percorso_film = '';
 
@@ -64,19 +64,19 @@ if (isset($_GET["titolo"])) {
 
                         break;
                     } catch (Exception $e) {
-                        $pagina_errore = file_get_contents($_SESSION['$abs_path'] . "html/pagine_altre/errore.html");
+                        $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
                         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Errore server...", $pagina_errore);
                         echo $pagina_errore;
                     }
                 }
             }
         } else {
-            $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+            $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
             $pagina_errore = str_replace("#ERROR_MESSAGE#", "Film non più esistente", $pagina_errore);
             echo $pagina_errore;
         } 
     } else {
-        $pagina_errore = file_get_contents($_SESSION['$abs_path']."html/pagine_altre/errore.html");
+        $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Link non corretto", $pagina_errore);
         echo $pagina_errore;
     }

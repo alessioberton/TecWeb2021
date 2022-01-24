@@ -1,14 +1,14 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php']."database/attore.php");
-require_once($_SESSION['$abs_path_php']."database/immagine.php");
-require_once($_SESSION['$abs_path_php']."logic/functions.php");
-include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+require_once(__DIR__.'/../../php/database/attore.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
 $_POST = array_map('empty_to_null', $_POST);
 
-$page = file_get_contents("inserisci_attore.html");
+$page = file_get_contents(__DIR__.'/inserisci_attore.html');
 $esito_inserimento = "";
 
 if(!empty($_GET["inserted"])) $esito_inserimento = "Attore inserito con successo";
@@ -29,7 +29,7 @@ if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
         $id_attore = $attore->getLastInsertedAttore()["ID"];
 
         if (!empty($immagine)) {
-            upload_image($_SESSION['$abs_path_img'] ."attori/", "immagine", $_SESSION["max_dim_img"]);
+            upload_image(__DIR__."/../../img/attori/", "immagine", $_SESSION["max_dim_img"]);
 
             $percorso_immagine = "attori/". basename($_FILES["immagine"]["name"]);
 

@@ -1,8 +1,8 @@
 <?php
-include_once '../../php/config.php';
-include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+require_once(__DIR__.'/../../php/config.php');
+require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
-$page = file_get_contents("storia.html");
+$page = file_get_contents(__DIR__.'/storia.html');
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 echo $page;

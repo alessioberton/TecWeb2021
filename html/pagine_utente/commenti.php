@@ -1,13 +1,13 @@
 <?php
 
-include '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/functions.php");
-    include_once($_SESSION['$abs_path_php']."database/film_crud.php");
-    include_once($_SESSION['$abs_path_php']."database/valutazione.php");
-    include_once($_SESSION['$abs_path_php']."database/immagine.php");
-    include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+    require_once(__DIR__.'/../../php/logic/functions.php');
+    require_once(__DIR__.'/../../php/database/film_crud.php');
+    require_once(__DIR__.'/../../php/database/valutazione.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
+    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
     $_POST = array_map('empty_to_null', $_POST);
 }
@@ -15,8 +15,8 @@ function getAbs_path(): void {
 getAbs_path();
 
 $page = file_get_contents("commenti.html");
-$view_commenti_component = file_get_contents($_SESSION['$abs_path_html'] . "componenti/view_commento.html");
-$insert_commenti_component = file_get_contents($_SESSION['$abs_path_html'] . "componenti/insert_commento.html");
+$view_commenti_component = file_get_contents(__DIR__.'/../../html/componenti/view_commento.html');
+$insert_commenti_component = file_get_contents(__DIR__.'/../../html/componenti/insert_commento.html');
 $commenti_section = "";
 $errore = '';
 

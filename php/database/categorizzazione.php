@@ -1,13 +1,13 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
 
 class Categorizzazione extends Connectable{
 
     function find($id_film){
-        $query = "SELECT * FROM Categorizzazione WHERE Film = ?";
+        $query = "SELECT * FROM categorizzazione WHERE Film = ?";
 
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i",$id_film);
@@ -17,7 +17,7 @@ class Categorizzazione extends Connectable{
     }
 
     function dynamic_find($sql){
-        $query = "SELECT * FROM Categorizzazione";
+        $query = "SELECT * FROM categorizzazione";
         if (!empty($query)) {
             $query .= ' WHERE ' . implode(' OR ', $sql);
         }
@@ -36,7 +36,7 @@ class Categorizzazione extends Connectable{
             throw new Exception("id_film gia' presente");
         }
 
-        $query = "INSERT INTO Categorizzazione(Film,Tema,Eta_pubblico,Livello,Mood,Riconoscimenti)
+        $query = "INSERT INTO categorizzazione(Film,Tema,Eta_pubblico,Livello,Mood,Riconoscimenti)
                   VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);

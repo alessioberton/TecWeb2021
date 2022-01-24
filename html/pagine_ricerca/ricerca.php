@@ -1,13 +1,13 @@
 <?php
-include_once '../../php/config.php';
-include_once($_SESSION['$abs_path_html'] . "componenti/commonPageElements.php");
-include_once($_SESSION['$abs_path_php'] . "database/categorizzazione.php");
-include_once($_SESSION['$abs_path_php'] . "logic/functions.php");
-include_once($_SESSION['$abs_path_php'] . "database/utente.php");
-include_once($_SESSION['$abs_path_php'] . "database/immagine.php");
+require_once(__DIR__.'/../../php/config.php');
+require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+require_once(__DIR__.'/../../php/database/categorizzazione.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../php/database/utente.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
 $_POST = array_map('empty_to_null', $_GET);
 
-$page = file_get_contents("ricerca.html");
+$page = file_get_contents(__DIR__.'/ricerca.html');
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
 
@@ -38,13 +38,6 @@ if ($eta) {
 
 $test = $categorizizzazione->dynamic_find($sql);
 print_r($test);
-
-
-//print_r($piattaforme);
-//print_r($opzione);
-//print_r($genere);
-//print_r($eta);
-
 
 echo $page;
 

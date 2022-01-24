@@ -1,8 +1,8 @@
 <?php
-include_once '../config.php';
-include_once($_SESSION['$abs_path_php']."database/film_crud.php");
-include_once($_SESSION['$abs_path_php']."database/film.php");
-include_once($_SESSION['$abs_path_php']."database/immagine.php");
+require_once(__DIR__.'/../../php/config.php');
+require_once(__DIR__.'/../../php/database/film_crud.php');
+require_once(__DIR__.'/../../php/database/film.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
 
 $query = $_GET["q"];
 

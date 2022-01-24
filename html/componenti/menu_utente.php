@@ -1,5 +1,5 @@
 <?php
-	include_once '../../php/config.php';
+	require_once(__DIR__.'/../../php/config.php');
 	
 	class MenuUtente {
 		public $adminMenu = <<<HTML
@@ -15,7 +15,7 @@
 		function render(){
 			$html = "";
 			if ($_SESSION['logged']) {
-				$html = file_get_contents($_SESSION['$abs_path_html']."componenti/menu_utente.html");
+				$html = file_get_contents(__DIR__.'/../../html/componenti/menu_utente.html');
 				if($_SESSION['user']['Permessi'] == "Admin") {
 					$html = str_replace("<adminMenu />", $this->adminMenu, $html);
 				}

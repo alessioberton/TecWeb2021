@@ -1,8 +1,8 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
 
 class Disponibilita extends Connectable{
     function find_by_film($film_id){
@@ -24,7 +24,7 @@ class Disponibilita extends Connectable{
     
     function inserisci($piattaforma,$id_film,$cc,$sdh,$ad,$costo_aggiuntivo,$giorno_entrata, $giorno_uscita=NULL){
 
-        $query = "INSERT INTO Disponibilità(Piattaforma,Film,CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
+        $query = "INSERT INTO disponibilità(Piattaforma,Film,CC,SDH,AD,CostoAggiuntivo,giorno_entrata,giorno_uscita)
                   VALUES(?,?,?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);

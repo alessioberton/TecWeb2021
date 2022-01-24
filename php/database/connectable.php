@@ -1,8 +1,8 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/dbconnection.php');
+require_once(__DIR__.'/../../php/database/dbconnection.php');
 
 class Connectable{
     protected $connection;

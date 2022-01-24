@@ -1,18 +1,18 @@
 <?php
 
-include '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."logic/functions.php");
-    include_once($_SESSION['$abs_path_php']."database/attore.php");
-    include_once($_SESSION['$abs_path_php']."database/immagine.php");
-    include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+    require_once(__DIR__.'/../../php/logic/functions.php');
+    require_once(__DIR__.'/../../php/database/attore.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
+    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
     $_POST = array_map('empty_to_null', $_POST);
 }
 
 getAbs_path();
-$page = file_get_contents("mostra_attore.html");
+$page = file_get_contents(__DIR__.'/mostra_attore.html');
 $errore = '';
 
 $id_attore = $_GET["id"];

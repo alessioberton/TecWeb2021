@@ -1,14 +1,14 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
 
 class Valutazione extends Connectable {
 
 	function find($username, $film_id){
-		$query = "SELECT * FROM Valutazione 
-                  JOIN Utente ON Utente.username = Valutazione.utente
-                  WHERE Valutazione.utente = ? AND Valutazione.ID_film = ?";
+		$query = "SELECT * FROM valutazione 
+                  JOIN utente ON utente.username = valutazione.utente
+                  WHERE valutazione.utente = ? AND valutazione.ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ii", $username, $film_id);
         $stmt->execute();
@@ -17,7 +17,7 @@ class Valutazione extends Connectable {
     }
 
     function findByFilmID($film_id){
-		$query = "SELECT * FROM VALUTAZIONE WHERE ID_film = ?";
+		$query = "SELECT * FROM valutazione WHERE ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();
@@ -27,9 +27,9 @@ class Valutazione extends Connectable {
 
     function getByFilmIdWithUtente($film_id){
 		$query = "SELECT * 
-                  FROM Valutazione
-                  JOIN Utente ON Utente.username = Valutazione.utente
-                  WHERE Valutazione.ID_film = ?";
+                  FROM valutazione
+                  JOIN utente ON utente.username = valutazione.utente
+                  WHERE valutazione.ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();
@@ -38,7 +38,7 @@ class Valutazione extends Connectable {
     }
 
     function find_avg_by_film_id($film_id){
-        $query = "SELECT ROUND(AVG(STELLE),1) AS VALUTAZIONE_MEDIA FROM VALUTAZIONE WHERE ID_film = ?";
+        $query = "SELECT ROUND(AVG(STELLE),1) AS VALUTAZIONE_MEDIA FROM valutazione WHERE ID_film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();
@@ -47,7 +47,7 @@ class Valutazione extends Connectable {
     }
 
 	function findByUser($username){
-		$query = "SELECT * FROM VALUTAZIONE WHERE utente = ?";
+		$query = "SELECT * FROM valutazione WHERE utente = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i",$username);
         $stmt->execute();
@@ -56,7 +56,7 @@ class Valutazione extends Connectable {
     }
 
 	function inserisci($username, $film_id, $commento, $in_moderazione=false, $Data_inserimento, $Stelle){
-        $query = "INSERT INTO VALUTAZIONE(utente, ID_film, Commento, In_moderazione, Data_inserimento, Stelle) VALUES(?, ?, ? , ?, ?, ?)";
+        $query = "INSERT INTO valutazione(utente, ID_film, Commento, In_moderazione, Data_inserimento, Stelle) VALUES(?, ?, ? , ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("iisssi", $username, $film_id, $commento, $in_moderazione, $Data_inserimento, $Stelle);
         $stmt->execute();
@@ -68,7 +68,7 @@ class Valutazione extends Connectable {
 
 	function delete($username, $film_id){
 		if($this->find($username, $film_id)){
-			$query = "DELETE FROM VALUTAZIONE WHERE utente = ? AND ID_film = ?";
+			$query = "DELETE FROM valutazione WHERE utente = ? AND ID_film = ?";
 
             $stmt = $this->connection->prepare($query);
 			$stmt->bind_param("ii", $username,$film_id);
@@ -83,7 +83,7 @@ class Valutazione extends Connectable {
     }
 
     function modifica($username, $film_id, $commento, $in_moderazione, $Stelle){
-        $query = "UPDATE Valutazione SET
+        $query = "UPDATE valutazione SET
                   Commento = ?,
                   In_moderazione = ?,
                   Stelle = ?

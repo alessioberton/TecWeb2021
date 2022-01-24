@@ -1,12 +1,12 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
 
 class Immagine extends Connectable{
 
     function find($id_immagine){
-        $query = "SELECT * FROM Immagini WHERE ID = ?";
+        $query = "SELECT * FROM immagini WHERE ID = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s",$id_immagine);
         $stmt->execute();
@@ -15,7 +15,7 @@ class Immagine extends Connectable{
     }
 
     function inserisci($descrizione,$percorso): int {
-        $query = "INSERT INTO Immagini(Descrizione,Percorso) VALUES(?, ?)";
+        $query = "INSERT INTO immagini(Descrizione,Percorso) VALUES(?, ?)";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("ss", $descrizione, $percorso);
         $stmt->execute();
@@ -29,7 +29,7 @@ class Immagine extends Connectable{
     }
 
     function update($id, $percorso){
-        $query = "UPDATE Immagini SET Percorso = ? WHERE ID = ?";
+        $query = "UPDATE immagini SET Percorso = ? WHERE ID = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("si", $percorso, $id);
         $stmt->execute();
@@ -41,7 +41,7 @@ class Immagine extends Connectable{
 
     function elimina($id_immagine){
         if($this->find($id_immagine)){
-            $query = "DELETE FROM Immagini WHERE ID = ?";
+            $query = "DELETE FROM immagini WHERE ID = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i",$id_immagine);
             $stmt->execute();
@@ -56,7 +56,7 @@ class Immagine extends Connectable{
     }
 
     function getLastInsertedImmagine(){
-        $query = "SELECT * FROM Immagini ORDER BY ID DESC LIMIT 1";
+        $query = "SELECT * FROM immagini ORDER BY ID DESC LIMIT 1";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();

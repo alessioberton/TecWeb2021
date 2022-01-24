@@ -1,18 +1,18 @@
 <?php
-include_once '../../php/config.php';
+require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-    include_once($_SESSION['$abs_path_php']."database/film_crud.php");
-    include_once($_SESSION['$abs_path_php']."database/immagine.php");
-    include_once($_SESSION['$abs_path_php']."database/disponibilita.php");
-    include_once($_SESSION['$abs_path_php']."database/film.php");
-    include_once($_SESSION['$abs_path_php']."logic/functions.php");
-	include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+    require_once(__DIR__.'/../../php/database/film_crud.php');
+    require_once(__DIR__.'/../../php/database/immagine.php');
+    require_once(__DIR__.'/../../php/database/disponibilita.php');
+    require_once(__DIR__.'/../../php/database/film.php');
+    require_once(__DIR__.'/../../php/logic/functions.php');
+	require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
     $_POST = array_map('empty_to_null', $_POST);
 }
 getAbs_path();
 
-$page = file_get_contents("homepage.html");
+$page = file_get_contents(__DIR__."/homepage.html");
 
 $commonPageElements = new CommonPageElements();
 $page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
@@ -33,14 +33,14 @@ try {
     }
 
 }catch (Exception $e) {
-    $searchBar = file_get_contents($_SESSION['$abs_path_html'] . "componenti/searchBar.html");
+    $searchBar = file_get_contents(__DIR__.'/../../html/componenti/searchBar.html');
     $page = str_replace("<searchBar />", $searchBar, $page);
 
 }
 
-$searchBar = file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html");
+$searchBar = file_get_contents(__DIR__.'/../../html/componenti/searchbar_film.html');
 $page = str_replace("<searchbarFilm />", $searchBar, $page);
-$searchBarAttore = file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_attore.html");
+$searchBarAttore = file_get_contents(__DIR__.'/../../html/componenti/searchbar_attore.html');
 $page = str_replace("<searchbarAttore />", $searchBarAttore, $page);
 
 echo $page;

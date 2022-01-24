@@ -1,15 +1,15 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
-require_once($_SESSION['$abs_path_php'].'logic/functions.php');
-require_once($_SESSION['$abs_path_php'].'database/immagine.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
 
 class Film_crud extends Connectable{
 
     function findById($id_film){
-        $query = "SELECT * FROM Film WHERE ID = ?";
+        $query = "SELECT * FROM film WHERE ID = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i",$id_film);
         $stmt->execute();
@@ -18,7 +18,7 @@ class Film_crud extends Connectable{
     }
 
     function find($titolo){
-		$query = "SELECT * FROM Film WHERE Titolo = ?";
+		$query = "SELECT * FROM film WHERE Titolo = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s", $titolo);
         $stmt->execute();
@@ -28,7 +28,7 @@ class Film_crud extends Connectable{
 
     function guessByTitle($titolo){
         $titolo = $titolo."%";
-        $query = "SELECT * FROM Film WHERE Titolo LIKE ?";
+        $query = "SELECT * FROM film WHERE Titolo LIKE ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("s", $titolo);
         $stmt->execute();
@@ -37,9 +37,9 @@ class Film_crud extends Connectable{
     }
 
     function find_all(){
-        $query = "SELECT Film.*, Immagini.Percorso AS img_path, Immagini.descrizione AS img_desc
-                  FROM Film
-                  LEFT JOIN Immagini ON Immagini.id = Film.locandina";
+        $query = "SELECT film.*, immagini.Percorso AS img_path, immagini.descrizione AS img_desc
+                  FROM film
+                  LEFT JOIN immagini ON immagini.id = film.locandina";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = convertQuery($stmt->get_result());
@@ -52,7 +52,7 @@ class Film_crud extends Connectable{
     }
 
     function inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama){
-        $query = "INSERT INTO Film(Titolo,lingua_titolo,Anno,Paese,Durata,Trama)
+        $query = "INSERT INTO film(Titolo,lingua_titolo,Anno,Paese,Durata,Trama)
                   VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
@@ -65,7 +65,7 @@ class Film_crud extends Connectable{
     }
 
 	function inserisci($film_id, $tema, $eta_pubblico, $livello, $riconoscimenti){
-        $query = "INSERT INTO Categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti) VALUES(?,?,?,?,?,?)";
+        $query = "INSERT INTO categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti) VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("isssi", $film_id, $tema, $eta_pubblico, $livello, $riconoscimenti);
@@ -80,7 +80,7 @@ class Film_crud extends Connectable{
         $immagine = new Immagine();
         if($this->findById($id_film) && $immagine->find($id_immagine))
         {
-            $query = "UPDATE Film SET Locandina = ? WHERE ID = ?";
+            $query = "UPDATE film SET Locandina = ? WHERE ID = ?";
 
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("ii",$id_immagine,$id_film);
@@ -97,7 +97,7 @@ class Film_crud extends Connectable{
 
     function elimina($id_film){
         if($this->findById($id_film)){
-            $query = "DELETE FROM Film
+            $query = "DELETE FROM film
                       WHERE ID = ?";
 
             $stmt = $this->connection->prepare($query);
@@ -115,7 +115,7 @@ class Film_crud extends Connectable{
 
     function modifica($id_film,$titolo,$lingua_titolo,$anno,$paese,$durata,$trama){
         if($this->findById($id_film)){
-            $query = "UPDATE Film SET
+            $query = "UPDATE film SET
                       Titolo = ?,
                       lingua_titolo = ?,
                       Anno = ?,
@@ -139,7 +139,7 @@ class Film_crud extends Connectable{
 
 	function delete($film_id){
 		if($this->findById($film_id)){
-			$query = "DELETE FROM Categorizzazione WHERE ID_film = ?";
+			$query = "DELETE FROM categorizzazione WHERE ID_film = ?";
 
             $stmt = $this->connection->prepare($query);
 			$stmt->bind_param("i", $film_id);           
@@ -155,7 +155,7 @@ class Film_crud extends Connectable{
     }
 
     function getLastInsertedFilm(){
-        $query = "SELECT * FROM Film ORDER BY ID DESC LIMIT 1";
+        $query = "SELECT * FROM film ORDER BY ID DESC LIMIT 1";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
@@ -165,9 +165,9 @@ class Film_crud extends Connectable{
 
     function getPiattaforme($film_id){
         $query = "SELECT *
-                  FROM Piattaforma
-                  JOIN Disponibilità ON Piattaforma.nome = Disponibilità.piattaforma
-                  WHERE Disponibilità.film = ?";
+                  FROM piattaforma
+                  JOIN disponibilità ON piattaforma.nome = disponibilità.piattaforma
+                  WHERE disponibilità.film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);           
         $stmt->execute();
@@ -176,9 +176,9 @@ class Film_crud extends Connectable{
 
     function getAttori($film_id){
         $query = "SELECT *
-                  FROM Cast_film 
-                  JOIN Attore ON Attore.id = Cast_film.attore
-                  WHERE Cast_film.film = ?";
+                  FROM cast_film 
+                  JOIN attore ON attore.id = cast_film.attore
+                  WHERE cast_film.film = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("i", $film_id);
         $stmt->execute();

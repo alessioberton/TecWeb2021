@@ -1,18 +1,18 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php']."database/film_crud.php");
-require_once($_SESSION['$abs_path_php']."database/immagine.php");
-require_once($_SESSION['$abs_path_php']."database/categorizzazione.php");
-require_once($_SESSION['$abs_path_php']."database/genereFilm.php");
-require_once($_SESSION['$abs_path_php']."database/disponibilita.php");
-require_once($_SESSION['$abs_path_php']."database/cast_film.php");
-require_once($_SESSION['$abs_path_php']."logic/functions.php");
-include_once($_SESSION['$abs_path_html']."componenti/commonPageElements.php");
+require_once(__DIR__.'/../../php/database/film_crud.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
+require_once(__DIR__.'/../../php/database/categorizzazione.php');
+require_once(__DIR__.'/../../php/database/genereFilm.php');
+require_once(__DIR__.'/../../php/database/disponibilita.php');
+require_once(__DIR__.'/../../php/database/cast_film.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 
-$page = file_get_contents("inserisci_film.html");
-$searchbar_attore_component = file_get_contents($_SESSION['$abs_path_html'] . "componenti/searchbar_attore.html");
+$page = file_get_contents(__DIR__.'/inserisci_film.html');
+$searchbar_attore_component = file_get_contents(__DIR__.'/../../html/componenti/searchbar_attore.html');
 $esito_inserimento = "";
 
 if(!empty($_GET["inserted"])) $esito_inserimento = "Film inserito con successo";
@@ -55,7 +55,7 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
         $id_film = $film_crud->getLastInsertedFilm()["ID"];
 
         if(!empty($immagine)){
-            upload_image($_SESSION['$abs_path_img']."film/","immagine",$_SESSION['max_dim_img']);
+            upload_image(__DIR__.'/../../img/film/',"immagine",$_SESSION['max_dim_img']);
 
             $percorso_immagine = "film/" . basename($_FILES["immagine"]["name"]);
             

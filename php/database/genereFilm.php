@@ -1,13 +1,13 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/TecWeb2021/php/config.php');
+require_once(__DIR__.'/../../php/config.php');
 
-require_once($_SESSION['$abs_path_php'].'database/connectable.php');
+require_once(__DIR__.'/../../php/database/connectable.php');
 
 class GenereFilm extends Connectable{
     
     function inserisci($id_film,$nome_genere){
 
-        $query = "INSERT INTO Genere_Film(ID_film,Nome_genere)
+        $query = "INSERT INTO genere_film(ID_film,Nome_genere)
                   VALUES(?,?)";
 
         $stmt = $this->connection->prepare($query);

@@ -1,5 +1,5 @@
 <?php
-	include_once '../../php/config.php';
+	require_once(__DIR__.'/../../php/config.php');
 
 	class Header {
 		public $userButton = <<<HTML
@@ -17,11 +17,11 @@
 		HTML;
 
 		function render(){
-			$html = file_get_contents($_SESSION['$abs_path_html']."componenti/header.html");
+			$html = file_get_contents(__DIR__.'/../../html/componenti/header.html');
 			if(__FILE__ == "homepage.php"){
 				$html = str_replace("<searchbarFilm />", "", $html);	
 			}else{
-				$html = str_replace("<searchbarFilm />", file_get_contents($_SESSION['$abs_path_html']."componenti/searchbar_film.html"), $html);	
+				$html = str_replace("<searchbarFilm />", file_get_contents(__DIR__.'/../../html/componenti/searchbar_film.html'), $html);	
 			}
 			if ($_SESSION['logged']) {
 				$html = str_replace("<userButton />", $this-> userButton, $html);	
