@@ -1,4 +1,7 @@
 <?php
+require_once(__DIR__.'/../../php/logic/error_reporting.php');
+require_once(__DIR__.'/../config.php');
+
 function empty_to_null($value){
     return empty($value) ? NULL : $value;
 }
@@ -100,4 +103,8 @@ function sortArrayByKey(&$array,$key,$string = false,$asc = true){
             else     return ($a->$key > $b->$key) ? -1 : 1;
         });
     }
+}
+
+function siglaToPaese($sigla){
+    return $_SESSION['sigle_paesi'][strtoupper($sigla)] ?? "";
 }

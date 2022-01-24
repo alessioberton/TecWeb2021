@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
 require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
 require_once(__DIR__.'/../../php/database/categorizzazione.php');

@@ -1,4 +1,5 @@
 <?php
+	require_once(__DIR__.'/../../php/logic/error_reporting.php');
 	require_once(__DIR__.'/../../php/config.php');
 
 	require_once(__DIR__.'/../../php/database/attore.php');

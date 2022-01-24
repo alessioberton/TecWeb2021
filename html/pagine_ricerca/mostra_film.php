@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void
@@ -30,7 +31,7 @@ if (isset($_GET["titolo"])) {
                     $page = str_replace("#TITOLO#", $value['Titolo'], $page);
                     $page = str_replace("#LINGUA_TITOLO#", $value['Lingua_titolo'], $page);
                     $page = str_replace("#ANNO#", $value['Anno'], $page);
-                    $page = str_replace("#PAESE#", $value['Paese'], $page);
+                    $page = str_replace("#PAESE#", siglaToPaese($value['Paese']), $page);
                     $page = str_replace("#DURATA#", secondsToTime($value['Durata']), $page);
                     try{
                         $percorso_immagine = '../../img/'.$immagine->find($id_immagine)["Percorso"];
