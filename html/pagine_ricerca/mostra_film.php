@@ -33,7 +33,7 @@ if (isset($_GET["titolo"])) {
                     $page = str_replace("#PAESE#", $value['Paese'], $page);
                     $page = str_replace("#DURATA#", secondsToTime($value['Durata']), $page);
                     try{
-                        $percorso_immagine = $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"];
+                        $percorso_immagine = '../../img/'.$immagine->find($id_immagine)["Percorso"];
                         $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
                         $page = str_replace("#URL_IMG_FILM#", $percorso_immagine, $page);
                         $page = str_replace("#ALT_IMG_FILM#", $descrizione_immagine, $page);

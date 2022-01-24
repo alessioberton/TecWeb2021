@@ -28,7 +28,7 @@ try {
         $page = str_replace("#COGNOME#", $attore_data["Cognome"], $page);
         $page = str_replace("#DATA_NASCITA#", dateUsaToEur($attore_data["Data_nascita"]), $page);
         $id_immagine = $attore_data["ID_foto"];
-        $percorso_immagine = $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"];
+        $percorso_immagine = '../../img/'.$immagine->find($id_immagine)["Percorso"];
         $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
         $page = str_replace("#URL_IMG_ATTORE#", $percorso_immagine, $page);
         $page = str_replace("#ALT_IMG_ATTORE#", $descrizione_immagine, $page);

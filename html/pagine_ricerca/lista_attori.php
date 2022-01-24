@@ -33,7 +33,7 @@ try {
             $lista_attori_section = str_replace("#NOME_ATTORE#", $attore_film["Nome"], $lista_attori_section);
             $lista_attori_section = str_replace("#COGNOME_ATTORE#", $attore_film["Cognome"], $lista_attori_section);
             $id_immagine = $attore_film["ID_foto"];
-            $percorso_immagine = $immagine->find($id_immagine) ? $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+            $percorso_immagine = $immagine->find($id_immagine) ? '../../img/'.$immagine->find($id_immagine)["Percorso"] : '../../img/imgnotfound.jpg';
             $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
             $lista_attori_section = str_replace("#URL_IMG_ATTORE#", $percorso_immagine, $lista_attori_section);
             $lista_attori_section = str_replace("#ALT_IMG_ATTORE#", $descrizione_immagine, $lista_attori_section);

@@ -53,7 +53,7 @@ try {
             $valutazione_utente = $valutazione->find($_SESSION["user"]["Username"],$id_film);
 
             $id_immagine = $valutazione_utente["foto_profilo"];
-            $percorso_immagine = $immagine->find($id_immagine) ? $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+            $percorso_immagine = $immagine->find($id_immagine) ? '../../img/'.$immagine->find($id_immagine)["Percorso"] : '../../img/imgnotfound.jpg';
             $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
             $commenti_section = str_replace("#URL_IMG_UTENTE#", $percorso_immagine, $commenti_section);
             $commenti_section = str_replace("#ALT_IMG_UTENTE#", $descrizione_immagine, $commenti_section);
@@ -77,7 +77,7 @@ try {
             {
                 $commenti_section .= $view_commenti_component;
                 $id_immagine = $valutazione_item["foto_profilo"];
-                $percorso_immagine = $immagine->find($id_immagine) ? $_SESSION['$img_url'].$immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+                $percorso_immagine = $immagine->find($id_immagine) ? '../../img/'.$immagine->find($id_immagine)["Percorso"] : '../../img/imgnotfound.jpg';
                 $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
                 $commenti_section = str_replace("#URL_IMG_UTENTE#", $percorso_immagine, $commenti_section);
                 $commenti_section = str_replace("#ALT_IMG_UTENTE#", $descrizione_immagine, $commenti_section);
