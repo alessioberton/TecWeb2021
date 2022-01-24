@@ -17,7 +17,7 @@ class Categorizzazione extends Connectable{
     }
 
     function find_all(){
-        $query = "SELECT * FROM Categorizzazione";
+        $query = "SELECT * FROM categorizzazione";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return convertQuery($stmt->get_result());

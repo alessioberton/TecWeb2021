@@ -44,7 +44,7 @@ if (isset($_GET["titolo"])) {
                             $piattaforma_section .= $piattaforma_component;
                             $piattaforma_section = str_replace("#NOME_PIATTAFORMA#", $piattaforma["Nome"], $piattaforma_section);
                             $piattaforma_section = str_replace("#GIORNO_USCITA#", 
-                                                !empty($piattaforma["Giorno_uscita"])? " disponibile fino a ".$piattaforma["Giorno_uscita"]:"", 
+                                                !empty($piattaforma["Giorno_uscita"])? " disponibile fino a ".dateUsaToEur($piattaforma["Giorno_uscita"]):"", 
                                                 $piattaforma_section);
                             $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "CC" : "", $piattaforma_section);
                             $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "AD" : "", $piattaforma_section);

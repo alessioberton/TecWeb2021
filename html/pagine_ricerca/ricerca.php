@@ -73,7 +73,7 @@ if ($sto_cercando) {
     else $filtro_disponibilita = $disponibilia->find_all();
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
-        print "Nessun fil trovato";
+        print "Nessun film trovato";
     } else {
 
         foreach ($filtro_categoria as $value) {
@@ -133,7 +133,7 @@ if ($sto_cercando) {
         }
 
     foreach ($lista_film as $value){
-        print $value->titolo. " ";
+        print $value->titolo. " <br />";
     }
 
     }
