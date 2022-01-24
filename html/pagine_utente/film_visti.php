@@ -10,7 +10,7 @@ function getAbs_path(): void
     require_once(__DIR__.'/../../php/database/film.php');
     require_once(__DIR__.'/../../php/database/film_crud.php');
     require_once(__DIR__.'/../../php/database/valutazione.php');
-    require_once(__DIR__.'/../../php/componenti/commonPageElements.php');
+    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
     if ($_SESSION['logged'] == false) {
         header('location: ../pagine_altre/accesso_negato.php');
         exit();
