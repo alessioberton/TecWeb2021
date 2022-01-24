@@ -36,8 +36,8 @@ CREATE TABLE film
 
 CREATE TABLE disponibilità
 (
-    Piattaforma     VARCHAR(20) NOT NULL,
     Film            INT         NOT NULL,
+    Piattaforma     VARCHAR(20) NOT NULL,
     CC              bool        NOT NULL,
     SDH             bool        NOT NULL,
     AD              bool        NOT NULL,

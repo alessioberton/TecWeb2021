@@ -16,14 +16,16 @@ class Categorizzazione extends Connectable{
         return $result = $stmt->affected_rows > 0;
     }
 
+    function find_all(){
+        $query = "SELECT * FROM Categorizzazione";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
     function dynamic_find($sql){
         $query = "SELECT * FROM categorizzazione";
-        if (!empty($query)) {
-            $query .= ' WHERE ' . implode(' OR ', $sql);
-        }
-
-        echo $query;
-
+        $query .= ' WHERE ' . implode(' OR ', $sql);
         $stmt = $this->connection->prepare($query);
 //        $stmt->bind_param("s",$query);
         $stmt->execute();
