@@ -1,11 +1,13 @@
 <header>
-	<button id="mainNavigationButton" type="button" onclick="toggleMenu('mainNavigation')">
-		<!--icon here-->
-		<span>Menu Principale</span>
-	</button>
-	<h1>Cosa Guardi Stasera?</h1>
+	<div>
+		<button id="mainNavigationButton" type="button" ontouchstart="toggleMenu(event, 'mainNavigation')">
+			<span>Menu Principale</span>
+		</button>
+		<h1>Cosa Guardi Stasera?</h1>
 
-	<searchbarFilm />
+		<searchbarFilm />
 
-	<userButton />
+		<userButton />
+	</div>
+	<mainMenu />
 </header>

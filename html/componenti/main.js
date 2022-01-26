@@ -1,4 +1,10 @@
-function toggleMenu(menuID) {
+(function () {
+	document.addEventListener("touchstart", closeMenus);
+	document.addEventListener("touchstart", clearMovieSearchResults);
+	document.addEventListener("click", clearMovieSearchResults);
+})();
+
+function toggleMenu(event, menuID) {
 	var node = document.getElementById(menuID);
 	if (node.className == "menuActive") {
 		node.className = "";
@@ -6,6 +12,18 @@ function toggleMenu(menuID) {
 	} else {
 		node.className = "menuActive";
 	}
+	event.stopPropagation();
+}
+
+function closeMenus() {
+	var mainMenu = document.getElementById("mainNavigation");
+	var userMenu = document.getElementById("userNavigation");
+	if (mainMenu) mainMenu.className = "";
+	if (userMenu) userMenu.className = "";
+}
+
+function stopPropagation(domEvent) {
+	domEvent.stopPropagation();
 }
 
 function getMovieSearchResults(string) {
@@ -55,12 +73,7 @@ function clearActorSearchResults() {
 function insertActor(nome_attore, id_attore) {
 	if (document.getElementById(id_attore)) return;
 	document.getElementById("hiddenActorList").innerHTML +=
-		'<input id="' +
-		id_attore +
-		"box" +
-		'" type="checkbox" hidden checked name="actors[]" value="' +
-		id_attore +
-		'" />';
+		'<input id="' + id_attore + "box" + '" type="checkbox" hidden checked name="actors[]" value="' + id_attore + '" />';
 
 	document.getElementById("actorList").innerHTML +=
 		"<li id=" +
