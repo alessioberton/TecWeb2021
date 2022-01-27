@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    <title>Lista Attori - #TITOLO_FILM#</title>
-    <link rel="stylesheet" href="../../css/main.css" media="screen" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lista Attori - #TITOLO_FILM#</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+	</head>
+	<body>
+		<commonPageElements />
 
-</head>
-<body>
-    <commonPageElements />
+		<div id="content">
+			#ERROR_MESSAGE#
+			<h1 id="page_title">Lista Attori</h1>
 
-<div id="content">
-    #ERROR_MESSAGE#
-    <h1 id="page_title">Lista Attori</h1>
-
-    <dl class="list_attori">
-        #ATTORI#
-    </dl>
-</div>
-
-</body>
+			<dl class="list_attori">#ATTORI#</dl>
+		</div>
+	</body>
 </html>

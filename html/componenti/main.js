@@ -4,8 +4,8 @@
 	document.addEventListener("click", clearMovieSearchResults);
 })();
 
-function toggleMenu(event, menuID) {
-	var node = document.getElementById(menuID);
+function toggleMenu(event) {
+	var node = document.getElementById("heading");
 	if (node.className == "menuActive") {
 		node.className = "";
 		node.removeAttribute("class");
@@ -16,10 +16,8 @@ function toggleMenu(event, menuID) {
 }
 
 function closeMenus() {
-	var mainMenu = document.getElementById("mainNavigation");
-	var userMenu = document.getElementById("userNavigation");
+	var mainMenu = document.getElementById("heading");
 	if (mainMenu) mainMenu.className = "";
-	if (userMenu) userMenu.className = "";
 }
 
 function stopPropagation(domEvent) {
@@ -28,6 +26,8 @@ function stopPropagation(domEvent) {
 
 function getMovieSearchResults(string) {
 	var suggestionList = document.getElementById("movieSuggestionList");
+	var headerFlexbox = document.getElementById("topbar");
+	headerFlexbox.className = "searching";
 	if (string.length < 2) {
 		suggestionList.innerHTML = "";
 		return;
@@ -43,8 +43,16 @@ function getMovieSearchResults(string) {
 	xmlHttp.send();
 }
 
-function clearMovieSearchResults(event) {
+function clearMovieSearchResultsAndBar(event) {
+	var headerFlexbox = document.getElementById("topbar");
+	headerFlexbox.className = "";
 	document.getElementById("movieSearch").value = "";
+	document.getElementById("movieSuggestionList").innerHTML = "";
+}
+
+function clearMovieSearchResults(event) {
+	var headerFlexbox = document.getElementById("topbar");
+	headerFlexbox.className = "";
 	document.getElementById("movieSuggestionList").innerHTML = "";
 }
 

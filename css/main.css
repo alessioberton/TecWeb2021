@@ -7,200 +7,197 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
 		"Helvetica Neue", sans-serif;
 	overflow-x: hidden;
+	max-width: 100%;
 }
 
 li {
 	list-style-type: none;
 }
 
-.visuallyHidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-}
-
 main {
 	max-width: 1200px;
 	margin: auto;
-	margin-top: 1em;
+	margin-top: 5em;
 	padding: 0em 1em;
 }
 
 header {
-	display: block;
-	background-color: rgba(40, 40, 40, 1);
-
-	width: 100%;
-	color: white;
-	height: 5em;
-}
-
-header > div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0em 1em;
+	width: 100%;
+	height: 5em;
+
+	background-color: rgba(20, 20, 20, 0.95);
+	color: white;
+
+	position: fixed;
+	top: 0px;
 }
 
-header div h1 {
-	flex-grow: 1;
-	padding-bottom: 3px;
+#heading {
+	padding-left: 1em;
 }
 
-#mainNavigation ul {
+#heading h1 {
+	flex-basis: content;
+}
+
+#menuButton {
+	display: none;
+}
+
+#mainNavigation {
+	padding-left: 1.5em;
+	margin-bottom: 0.7em;
+}
+
+#mainNavigation > h2 {
+	display: none;
+}
+
+#mainNavigation > ul {
 	display: flex;
 }
 
 #mainNavigation ul li {
-	padding-right: 0.6em;
+	padding-right: 0.8em;
 }
 
-nav a {
+#mainNavigation a {
 	color: white;
 	text-decoration: none;
+	font-weight: bold;
 }
 
-#userNavigation > ul {
-	display: flex;
-}
-
-#userNavigation h2 {
+.flyOutMenu > h2 {
 	font-size: 1em;
+	cursor: pointer;
 }
 
-header #mainNavigationButton,
-header #userNavigationButton {
+.flyOutMenu > ul {
+	display: none;
+	position: absolute;
+	background-color: rgba(20, 20, 20, 0.95);
+	border-radius: 5px;
+	padding: 0.5em 1em;
+}
+
+#mainNavigation .flyOutMenu > ul > li a {
+	font-weight: normal;
+}
+
+.flyOutMenu:hover > ul {
+	display: block;
+}
+
+.iconButton {
+	background-color: transparent;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.iconButton > span {
 	display: none;
 }
 
-header #loginLink {
+.userStatus {
 	background-image: url("../img/icons/login_icon.svg");
 	background-repeat: no-repeat;
 	background-size: 2.4em;
+	background-position: 100%;
 	height: 2.4em;
 	line-height: 2.3em;
 
-	padding-left: 2.6em;
+	padding-right: 2.6em;
+	margin-bottom: 0.2em;
 
 	color: white;
 	font-weight: bold;
+	text-decoration: underline;
 	font-size: 1.1em;
+	margin-right: 0.3em;
 }
 
-@media (max-width: 641px) {
-	header {
-		height: 3.5em;
-	}
-
-	header h1 {
-		display: none;
-	}
-
-	header > div {
-		height: 100%;
-		padding: 0em 0.5em;
-	}
-
-	nav {
-		width: 200px;
-
-		background-color: black;
-		position: absolute;
-		z-index: 999;
-		height: 100%;
-
-		-webkit-transition: all 0.2s linear;
-		-moz-transition: all 0.2s linear;
-		-o-transition: all 0.2s linear;
-		transition: all 0.2s linear;
-	}
-
-	nav a,
-	nav {
-		color: white;
-	}
-
-	nav#mainNavigation {
-		left: -200px;
-	}
-	nav#userNavigation {
-		right: -200px;
-	}
-	nav#mainNavigation.menuActive {
-		left: 0;
-	}
-	nav#userNavigation.menuActive {
-		right: 0;
-	}
-
-	header button {
-		background-color: transparent;
-		background-repeat: no-repeat;
-		border: none;
-	}
-
-	header button > span {
-		display: none;
-	}
-
-	header #userNavigationButton {
-		display: block;
-		background-image: url("../img/icons/account_icon.svg");
-		background-size: 3.6em;
-		height: 3.6em;
-		width: 3.6em;
-	}
-
-	header #loginLink {
-		flex-basis: auto;
-		background-size: 2.7em;
-		height: 2.7em;
-		width: 2.7em;
-		padding: 0px;
-		line-height: unset;
-	}
-
-	header #loginLink span {
-		display: none;
-	}
-
-	header #mainNavigationButton {
-		display: block;
-		background-image: url("../img/icons/menu_icon.svg");
-		background-size: 3.6em;
-		height: 3.6em;
-		width: 3.6em;
-	}
+.userStatus.logoutLink {
+	background-image: url("../img/icons/account_icon.svg");
 }
 
-#movieSelect {
+#heading > .userStatus {
+	display: none;
+}
+
+header #movieSelectContainer {
+	flex-grow: 1;
+	margin: 0em 0.5em;
+}
+
+header #movieSelectContainer #movieSelect {
+	margin: auto;
 	position: relative;
 	height: 100%;
-	flex-grow: 2;
-	flex-shrink: 1;
-	max-width: 300px;
+	max-width: 450px;
 	z-index: 999;
 }
 
-#movieSuggestionList {
+header #movieSelect #movieSelectInput {
+	position: relative;
+	background-color: white;
+	height: 1.9em;
+	border-radius: 5px;
+	border: none;
+}
+
+header #movieSelect #movieSelectInput input {
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+	border-radius: 5px;
+	border: none;
+
+	font-size: 1.1em;
+
+	padding-left: 0.4em;
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box;
+}
+
+header #movieSelect #movieSelectInput input::placeholder {
+	font-style: italic;
+	color: rgb(151, 151, 151);
+}
+
+header #movieSelect #movieSelectInput button {
 	position: absolute;
-	background-color: black;
+	top: 0px;
+	right: 0px;
+	height: 100%;
+	width: 2.3em;
+	background-image: url("../img/icons/clear_icon.svg");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	border: none;
+	background-size: 100%;
+	z-index: 10;
+	cursor: pointer;
+}
+
+header #movieSelect #movieSuggestionList {
+	position: absolute;
+	background-color: rgba(20, 20, 20, 0.95);
 	width: 100%;
 }
 
-#movieSuggestionList > li a {
+header #movieSelect #movieSuggestionList > li a {
 	height: 60px;
 	display: flex;
 	align-items: center;
 	color: white;
 }
 
-#movieSuggestionList > li a img {
+header #movieSelect #movieSuggestionList > li a img {
 	width: 40px;
 	height: 50px;
 }
@@ -212,9 +209,120 @@ header #loginLink {
 
 #actorSuggestionList {
 	position: absolute;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(20, 20, 20, 0.95);
 	z-index: 10;
 	width: 100%;
+}
+
+@media (max-width: 641px) {
+	header {
+		height: 3.7em;
+	}
+
+	header > .userStatus {
+		display: none;
+	}
+
+	main {
+		margin-top: 3.7em;
+	}
+
+	#heading {
+		display: block;
+		left: -250px;
+		padding: 0px;
+		width: 250px;
+		height: calc(100vh - 3.7em);
+		background-color: rgba(20, 20, 20, 0.95);
+		position: absolute;
+		top: 3.7em;
+		z-index: 999;
+
+		-webkit-transition: left 0.2s linear;
+		-moz-transition: left 0.2s linear;
+		-o-transition: left 0.2s linear;
+		transition: left 0.2s linear;
+	}
+
+	#heading.menuActive {
+		left: 0;
+	}
+
+	#heading h1 {
+		font-size: 1.5em;
+		text-align: center;
+		margin-bottom: 0.1em;
+	}
+
+	#heading > .userStatus {
+		display: block;
+		background-size: 1.6em;
+		background-position: 0;
+		padding-left: 2.1em;
+		font-size: 1em;
+		font-weight: normal;
+		width: fit-content;
+		margin: auto;
+		margin-bottom: 0.3em;
+	}
+
+	nav#mainNavigation {
+		border-top: 2px solid white;
+		margin: 0em 0.5em;
+		padding-top: 0.6em;
+		padding-left: 0.5em;
+	}
+
+	nav#mainNavigation > ul > li a {
+		font-weight: normal;
+	}
+
+	nav#mainNavigation h2 {
+		display: block;
+		font-size: 1.1em;
+	}
+
+	nav ul li {
+		padding-left: 0.5em;
+	}
+
+	#userMenu,
+	#adminMenu {
+		padding-left: 0em;
+		padding-top: 0.6em;
+	}
+
+	#userMenu > ul,
+	#adminMenu > ul {
+		position: inherit;
+		display: block;
+		background-color: transparent;
+		padding: 0;
+	}
+
+	nav#mainNavigation ul {
+		display: block;
+	}
+
+	header #menuButton {
+		display: block;
+		background-image: url("../img/icons/menu_icon.svg");
+		background-size: 3.6em;
+		height: 3.6em;
+		width: 3.6em;
+		margin-bottom: 0.2em;
+		margin-right: 0em;
+		margin-left: 0.4em;
+		transition: all 100ms linear;
+		flex-basis: 3.6em;
+	}
+
+	#topbar #movieSelect {
+		transition: all 100ms linear;
+	}
+	#topbar.searching #menuButton {
+		flex: 0.00001;
+	}
 }
 
 .slidecontainer {
@@ -253,4 +361,15 @@ header #loginLink {
 	border: 0;
 	/*background: url('contrasticon.png');*/
 	cursor: pointer;
+}
+
+.visuallyHidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 }

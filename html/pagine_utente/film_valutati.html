@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
-	<title>Film Visti</title>
-	<link rel="stylesheet" href="../../css/main.css" media="screen"/>
-	<script src="../componenti/main.js"></script>
-</head>
-<script type="text/javascript" src="../../script/tool.js"></script>
-<body>
-<commonPageElements/>
-<h2>Numero film valutati: #NUMERO_FILM_VALUTATI#</h2>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Film Visti</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+		<script src="../componenti/main.js"></script>
+	</head>
+	<script type="text/javascript" src="../../script/tool.js"></script>
+	<body>
+		<commonPageElements />
+		<h2>Numero film valutati: #NUMERO_FILM_VALUTATI#</h2>
 
-<form method="post" action="film_valutati.php">
-	<filterFilm />
-	<button type="submit">Filtra</button>
-</form>
+		<form method="post" action="film_valutati.php">
+			<filterFilm />
+			<button type="submit">Filtra</button>
+		</form>
 
-<div id="content">
-	<h1 id="page_title">Ultimi Film valutati</h1>
-	#LIST#
-</div>
-</body>
+		<div id="content">
+			<h1 id="page_title">Ultimi Film valutati</h1>
+			#LIST#
+		</div>
+	</body>
 </html>

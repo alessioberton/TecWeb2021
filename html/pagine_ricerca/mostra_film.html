@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    <title>#TITOLO_PAGINA#</title>
-    <link rel="stylesheet" href="../../css/main.css" media="screen" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>#TITOLO_PAGINA#</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+	</head>
+	<body>
+		<commonPageElements />
 
-</head>
-<body>
-    <commonPageElements />
+		<div id="content">
+			#ERROR_MESSAGE#
+			<h1 id="page_title" lang="#LINGUA_TITOLO#">#TITOLO#</h1>
+			<img class="img_film" id="img_film-view" src="#URL_IMG_FILM#" alt="#ALT_IMG_FILM#" />
 
-<div id="content">
-    #ERROR_MESSAGE#
-    <h1 id="page_title" lang="#LINGUA_TITOLO#">#TITOLO#</h1>
-    <img class="img_film" id="img_film-view" src="#URL_IMG_FILM#" alt="#ALT_IMG_FILM#"/>
+			<div id="film-view">
+				<dl class="list_film">
+					<dt>REGISTA:</dt>
+					<dd>#REGISTA#</dd>
+					<dt>ANNO:</dt>
+					<dd>#ANNO#</dd>
+					<dt>PAESE:</dt>
+					<dd>#PAESE#</dd>
+					<dt>DURATA:</dt>
+					<dd>#DURATA#</dd>
+				</dl>
 
-    <div id="film-view">
-        <dl class="list_film">
-            <dt>REGISTA:</dt>
-            <dd>#REGISTA#</dd>
-            <dt>ANNO:</dt>
-            <dd>#ANNO#</dd>
-            <dt>PAESE:</dt>
-            <dd>#PAESE#</dd>
-            <dt>DURATA:</dt>
-            <dd>#DURATA#</dd>
-        </dl>
+				<dl class="list_piattaforme">#PIATTAFORME#</dl>
 
-        <dl class="list_piattaforme">
-            #PIATTAFORME#
-        </dl>
+				<p class="link_utili">
+					<a href="lista_attori.php?id=#ID_FILM#"> Lista attori </a><br />
+					<a href="../pagine_utente/commenti.php?id=#ID_FILM#">Commenti</a>
+				</p>
 
-        <p class="link_utili">
-            <a href="lista_attori.php?id=#ID_FILM#"> Lista attori </a><br>
-            <a href="../pagine_utente/commenti.php?id=#ID_FILM#">Commenti</a>
-        </p>
-
-        <p>
-            #VISTO#<br>
-            #SALVATO#<br>
-        </p>
-    </div>
-
-</div>
-
-</body>
+				<p>
+					#VISTO#<br />
+					#SALVATO#<br />
+				</p>
+			</div>
+		</div>
+	</body>
 </html>

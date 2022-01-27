@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    <title>#NOME# #COGNOME# - Attore</title>
-    <link rel="stylesheet" href="../../css/main.css" media="screen" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>#NOME# #COGNOME# - Attore</title>
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+	</head>
+	<body>
+		<commonPageElements />
 
-</head>
-<body>
-    <commonPageElements />
+		<div id="content">
+			#ERROR_MESSAGE#
+			<h1 id="page_title">#NOME# #COGNOME#</h1>
 
-<div id="content">
-    #ERROR_MESSAGE#
-    <h1 id="page_title">#NOME# #COGNOME#</h1>
+			<img class="img_attore" src="#URL_IMG_ATTORE#" alt="#ALT_IMG_ATTORE#" />
 
-    <img class="img_attore" src="#URL_IMG_ATTORE#" alt="#ALT_IMG_ATTORE#"/>
+			<div id="profile-view">
+				<dl class="list_attore">
+					<dt>Data di nascita:</dt>
+					<dd>#DATA_NASCITA#</dd>
+				</dl>
+			</div>
 
+			<p class="link_utili">
+				<a href="mostra_attore.php"> Note sulla carriera</a>
+				<a href="mostra_attore.php"> Elenco film</a>
+			</p>
 
-    <div id="profile-view">
-        <dl class="list_attore">
-            <dt>Data di nascita: </dt>
-                <dd>#DATA_NASCITA#</dd>
-        </dl>
-    </div>
+			<h2>Statistiche dell' attore</h2>
 
-    <p class="link_utili">
-        <a href="mostra_attore.php"> Note sulla carriera</a>
-        <a href="mostra_attore.php"> Elenco film</a>
-    </p>
-
-    <h2> Statistiche dell' attore </h2>
-
-    <dl class="list_attore">
-        <dt>Numero film totali:</dt>
-            <dd>#NUMERO_FILM_TOTALI#</dd>
-        <dt>Numero con ruolo da protaggonista:</dt>
-            <dd>#NUMERO_FILM_PROTAGONISTA#</dd>
-        <dt>Numero film come attore non protagonisti:</dt>
-            <dd>#DIFFERENZA_NUMERO#</dd>
-    </dl>
-</div>
-
-</body>
+			<dl class="list_attore">
+				<dt>Numero film totali:</dt>
+				<dd>#NUMERO_FILM_TOTALI#</dd>
+				<dt>Numero con ruolo da protaggonista:</dt>
+				<dd>#NUMERO_FILM_PROTAGONISTA#</dd>
+				<dt>Numero film come attore non protagonisti:</dt>
+				<dd>#DIFFERENZA_NUMERO#</dd>
+			</dl>
+		</div>
+	</body>
 </html>

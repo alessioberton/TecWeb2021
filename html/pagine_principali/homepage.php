@@ -39,10 +39,5 @@ try {
 
 }
 
-$searchBar = file_get_contents(__DIR__.'/../../html/componenti/searchbar_film.html');
-$page = str_replace("<searchbarFilm />", $searchBar, $page);
-$searchBarAttore = file_get_contents(__DIR__.'/../../html/componenti/searchbar_attore.html');
-$page = str_replace("<searchbarAttore />", $searchBarAttore, $page);
-
 echo $page;
 ?>

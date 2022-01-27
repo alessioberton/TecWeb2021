@@ -1,13 +1,20 @@
-<header>
-	<div>
-		<button id="mainNavigationButton" type="button" ontouchstart="toggleMenu(event, 'mainNavigation')">
-			<span>Menu Principale</span>
-		</button>
+<header id="topbar">
+	<button
+		id="menuButton"
+		class="iconButton"
+		type="button"
+		ontouchstart="toggleMenu(event, 'mainNavigation')"
+		aria-hidden="true"
+	>
+		<span>Menu Principale</span>
+	</button>
+	<div id="heading">
 		<h1>Cosa Guardi Stasera?</h1>
-
-		<searchbarFilm />
-
 		<userButton />
+		<mainMenu />
 	</div>
-	<mainMenu />
+	<div id="movieSelectContainer">
+		<searchbarFilm />
+	</div>
+	<userButton />
 </header>

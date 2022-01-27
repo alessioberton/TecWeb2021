@@ -1,25 +1,24 @@
 <?php
 	require_once(__DIR__.'/../../php/logic/error_reporting.php');
 	require_once(__DIR__.'/../../php/config.php');
-	require_once(__DIR__.'/../../html/componenti/menu_utente.php');
+	require_once(__DIR__.'/../../html/componenti/menu.php');
 
 	class Header {
-		public $userButton = <<<HTML
-			<button id="userNavigationButton" type="button" ontouchstart="toggleMenu(event, 'userNavigation')">
-				<span>Menu Utente</span>
-			</button>
-		HTML;	
-
 		public $loginLinkButton= <<<HTML
-			<a id='loginLink' href='../pagine_altre/login.php'>
+			<a class="userStatus loginLink" href='../pagine_altre/login.php'>
 				<span lang="en">Login</span>
+			</a>
+		HTML;
+
+		public $logoutLinkButton= <<<HTML
+			<a class="userStatus logoutLink" href="../../php/logic/logout.php">
+				<span lang="en">Logout</span>
 			</a>
 		HTML;
 
 		function render(){
 			$html = file_get_contents(__DIR__.'/../../html/componenti/header.html');
-			$mainMenu = file_get_contents(__DIR__.'/../../html/componenti/menu.html');
-			$userMenu = new MenuUtente();
+			$menu = new Menu();
 
 			if(__FILE__ == "homepage.php"){
 				$html = str_replace("<searchbarFilm />", "", $html);	
@@ -27,11 +26,11 @@
 				$html = str_replace("<searchbarFilm />", file_get_contents(__DIR__.'/../../html/componenti/searchbar_film.html'), $html);	
 			}
 			if ($_SESSION['logged']) {
-				$html = str_replace("<userButton />", $this-> userButton, $html);	
+				$html = str_replace("<userButton />", $this -> logoutLinkButton, $html);	
 			} else {
 				$html = str_replace("<userButton />", $this-> loginLinkButton, $html);	
 			}
-			$html = str_replace("<mainMenu />", $mainMenu . $userMenu->render(), $html);	
+			$html = str_replace("<mainMenu />", $menu->render(), $html);	
 
 			return $html;
 		}
