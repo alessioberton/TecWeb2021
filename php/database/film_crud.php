@@ -17,6 +17,13 @@ class Film_crud extends Connectable{
         return $result[0] ?? null;
     }
 
+    function count_all(): int {
+        $query = "SELECT * FROM Film";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return mysqli_num_rows($stmt->get_result());
+    }
+
     function find($titolo){
 		$query = "SELECT * FROM film WHERE Titolo = ?";
         $stmt = $this->connection->prepare($query);
