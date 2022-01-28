@@ -28,8 +28,9 @@ function crea_lista($titolo) {
             $film = new Film($lista_film[$i]);
             $info_img_film = $img_crud->find($film->locandina);
             $immagine_film = "../../img/".$info_img_film["Percorso"];
-            $html = $html.suggestion($immagine_film, $info_img_film["Descrizione"], $film->titolo);
+            $html =  $html.suggestion($immagine_film, $info_img_film["Descrizione"], $film->titolo);
         }
+		$html = "<ul>" . $html . "</ul>";
     }
     return $html;
 

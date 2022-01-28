@@ -1,7 +1,7 @@
 (function () {
-	document.addEventListener("touchstart", closeMenus);
-	document.addEventListener("touchstart", clearMovieSearchResults);
-	document.addEventListener("click", clearMovieSearchResults);
+	document.addEventListener("touchstart", closeMenus, { passive: true });
+	document.addEventListener("touchstart", clearMovieSearchResults, { passive: true });
+	document.addEventListener("click", clearMovieSearchResults, { passive: true });
 })();
 
 function toggleMenu(event) {

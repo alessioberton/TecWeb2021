@@ -16,8 +16,7 @@ $searchbar_attore_component = file_get_contents(__DIR__.'/../../html/componenti/
 $esito_inserimento = "";
 
 if(!empty($_GET["inserted"])) $esito_inserimento = "Film inserito con successo";
-
-if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
+if(!empty($_POST) && !empty($_POST["titolo"] && empty($_GET["inserted"])))
 {   
     $_POST = array_map('empty_to_null', $_POST);
 
