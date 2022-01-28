@@ -393,6 +393,7 @@ header #movieSelect #movieSuggestionList > li a img {
 		margin-left: 0.4em;
 		transition: all 100ms linear;
 		flex-basis: 3.6em;
+		cursor: pointer;
 	}
 
 	header #movieSelectContainer #movieSelect {

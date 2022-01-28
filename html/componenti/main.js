@@ -1,11 +1,10 @@
 (function () {
-	document.addEventListener("touchstart", closeMenus, { passive: true });
 	document.addEventListener("click", closeMenus, { passive: true });
-	document.addEventListener("touchstart", clearMovieSearchResults, { passive: true });
 	document.addEventListener("click", clearMovieSearchResults, { passive: true });
 })();
 
 function toggleMenu(event) {
+	console.log(event);
 	var node = document.getElementById("heading");
 	if (node.className == "menuActive") {
 		node.className = "";
