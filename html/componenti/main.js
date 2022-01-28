@@ -27,6 +27,7 @@ function stopPropagation(domEvent) {
 function getMovieSearchResults(string) {
 	var suggestionList = document.getElementById("movieSuggestionList");
 	var headerFlexbox = document.getElementById("topbar");
+	closeMenus();
 	headerFlexbox.className = "searching";
 	if (string.length < 2) {
 		suggestionList.innerHTML = "";
