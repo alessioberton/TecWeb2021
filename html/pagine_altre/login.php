@@ -6,7 +6,7 @@ function getAbs_path(): void {
     require_once(__DIR__.'/../../php/logic/functions.php');
     require_once(__DIR__.'/../../php/database/utente.php');
     require_once(__DIR__.'/../../php/database/immagine.php');
-	require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+	require_once(__DIR__.'/../../html/componenti/header.php');
     if ($_SESSION['logged'] == true) {
         header('location: ../pagine_utente/profilo.php');
         exit();
@@ -44,8 +44,8 @@ if(isset($_POST['mail'])) {
 }
 
 $page = file_get_contents(__DIR__.'/login.html');
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 echo $page;
 
 ?>

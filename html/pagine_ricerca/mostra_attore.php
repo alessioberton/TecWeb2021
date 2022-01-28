@@ -6,7 +6,7 @@ function getAbs_path(): void {
     require_once(__DIR__.'/../../php/logic/functions.php');
     require_once(__DIR__.'/../../php/database/attore.php');
     require_once(__DIR__.'/../../php/database/immagine.php');
-    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+    require_once(__DIR__.'/../../html/componenti/header.php');
 
     $_POST = array_map('empty_to_null', $_POST);
 }
@@ -43,7 +43,7 @@ try {
 
 $page = str_replace("#ERROR_MESSAGE#", $errore, $page);
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 
 echo $page;

@@ -8,92 +8,94 @@
 		<script src="../componenti/main.js"></script>
 	</head>
 	<body>
-		<commonPageElements />
-		Cerca film
+		<customHeader />
+		<main>
+			Cerca film
 
-		<h3>Disponibilità</h3>
-		<form action="ricerca.php" method="get">
-			<input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix" />
-			<label for="netflix">Netflix</label>
+			<h3>Disponibilità</h3>
+			<form action="ricerca.php" method="get">
+				<input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix" />
+				<label for="netflix">Netflix</label>
 
-			<input type="checkbox" name="piattaforma[]" value="Amazon prime" id="amazon_prime" />
-			<label for="amazon_prime">Amazon prime</label>
+				<input type="checkbox" name="piattaforma[]" value="Amazon prime" id="amazon_prime" />
+				<label for="amazon_prime">Amazon prime</label>
 
-			<input type="checkbox" name="piattaforma[]" value="Tim vision" id="tim_vision" />
-			<label for="tim_vision">Tim vision</label>
+				<input type="checkbox" name="piattaforma[]" value="Tim vision" id="tim_vision" />
+				<label for="tim_vision">Tim vision</label>
 
-			<input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+" />
-			<label for="disney+">Disney+</label>
+				<input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+" />
+				<label for="disney+">Disney+</label>
 
-			<input type="checkbox" name="piattaforma[]" value="Discovery+" id="discovery+" />
-			<label for="discovery+">Discovery+</label>
+				<input type="checkbox" name="piattaforma[]" value="Discovery+" id="discovery+" />
+				<label for="discovery+">Discovery+</label>
 
-			<input type="checkbox" name="piattaforma[]" value="Crunchyroll" id="crunchyroll" />
-			<label for="crunchyroll">Crunchyroll</label>
+				<input type="checkbox" name="piattaforma[]" value="Crunchyroll" id="crunchyroll" />
+				<label for="crunchyroll">Crunchyroll</label>
 
-			<br />
-			<br />
+				<br />
+				<br />
 
-			<input type="checkbox" name="opzione[]" value="CC" id="cc" />
-			<label for="netflix">CC</label>
+				<input type="checkbox" name="opzione[]" value="CC" id="cc" />
+				<label for="netflix">CC</label>
 
-			<input type="checkbox" name="opzione[]" value="SDH" id="sdh" />
-			<label for="amazon_prime">SDH</label>
+				<input type="checkbox" name="opzione[]" value="SDH" id="sdh" />
+				<label for="amazon_prime">SDH</label>
 
-			<input type="checkbox" name="opzione[]" value="AD" id="ad" />
-			<label for="tim_vision">AD</label>
+				<input type="checkbox" name="opzione[]" value="AD" id="ad" />
+				<label for="tim_vision">AD</label>
 
-			<br />
-			<br />
-			<p>"Stasera mi voglio guardare un film che sia..."</p>
+				<br />
+				<br />
+				<p>"Stasera mi voglio guardare un film che sia..."</p>
 
-			<input type="checkbox" name="genere[]" value="Anime" id="anime" />
-			<label for="anime">Anime</label>
+				<input type="checkbox" name="genere[]" value="Anime" id="anime" />
+				<label for="anime">Anime</label>
 
-			<input type="checkbox" name="genere[]" value="Animazione" id="animazione" />
-			<label for="animazione">Animazione</label>
+				<input type="checkbox" name="genere[]" value="Animazione" id="animazione" />
+				<label for="animazione">Animazione</label>
 
-			<input type="checkbox" name="genere[]" value="Avventura" id="avventura" />
-			<label for="avventura">Avventura</label>
+				<input type="checkbox" name="genere[]" value="Avventura" id="avventura" />
+				<label for="avventura">Avventura</label>
 
-			<input type="checkbox" name="genere[]" value="Azione" id="azione" />
-			<label for="azione">Azione</label>
+				<input type="checkbox" name="genere[]" value="Azione" id="azione" />
+				<label for="azione">Azione</label>
 
-			<input type="checkbox" name="genere[]" value="Biografico" id="biografico" />
-			<label for="biografico">Biografico</label>
+				<input type="checkbox" name="genere[]" value="Biografico" id="biografico" />
+				<label for="biografico">Biografico</label>
 
-			<input type="checkbox" name="genere[]" value="Commedia" id="commedia" />
-			<label for="commedia">Commedia</label>
+				<input type="checkbox" name="genere[]" value="Commedia" id="commedia" />
+				<label for="commedia">Commedia</label>
 
-			<input type="checkbox" name="genere[]" value="Documentario" id="documentario" />
-			<label for="documentario">Documentario</label>
+				<input type="checkbox" name="genere[]" value="Documentario" id="documentario" />
+				<label for="documentario">Documentario</label>
 
-			<input type="checkbox" name="genere[]" value="Drammatico" id="drammatico" />
-			<label for="drammatico">Drammatico</label>
+				<input type="checkbox" name="genere[]" value="Drammatico" id="drammatico" />
+				<label for="drammatico">Drammatico</label>
 
-			<br />
-			<br />
-			<p>Livello impegno</p>
-			<div class="slidecontainer">
-				<input type="range" min="1" max="4" value="1" class="slider" id="myRange" />
-				<p>Value: <span id="demo"></span></p>
-			</div>
+				<br />
+				<br />
+				<p>Livello impegno</p>
+				<div class="slidecontainer">
+					<input type="range" min="1" max="4" value="1" class="slider" id="myRange" />
+					<p>Value: <span id="demo"></span></p>
+				</div>
 
-			<br />
-			Altre informazioni
+				<br />
+				Altre informazioni
 
-			<p>Valutazione</p>
+				<p>Valutazione</p>
 
-			<input type="checkbox" name="eta[]" value="T" id="t" />
-			<label for="t">T</label>
+				<input type="checkbox" name="eta[]" value="T" id="t" />
+				<label for="t">T</label>
 
-			<input type="checkbox" name="eta[]" value="VM14" id="vm14" />
-			<label for="vm14">VM14</label>
+				<input type="checkbox" name="eta[]" value="VM14" id="vm14" />
+				<label for="vm14">VM14</label>
 
-			<input type="checkbox" name="eta[]" value="VM18" id="vm18" />
-			<label for="vm18">VM18</label>
+				<input type="checkbox" name="eta[]" value="VM18" id="vm18" />
+				<label for="vm18">VM18</label>
 
-			<button>Cerca</button>
-		</form>
+				<button>Cerca</button>
+			</form>
+		</main>
 	</body>
 </html>

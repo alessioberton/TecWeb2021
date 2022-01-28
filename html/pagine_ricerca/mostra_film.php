@@ -7,7 +7,7 @@ function getAbs_path(): void
     require_once(__DIR__.'/../../php/logic/functions.php');
     require_once(__DIR__.'/../../php/database/immagine.php');
     require_once(__DIR__.'/../../php/database/scheda_utente.php');
-    require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+    require_once(__DIR__.'/../../html/componenti/header.php');
 
     $_POST = array_map('empty_to_null', $_POST);
 }
@@ -85,7 +85,7 @@ if (isset($_GET["titolo"])) {
 $page = str_replace("#VISTO#", "", $page);
 $page = str_replace("#SALVATO#", "", $page);
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 
 echo $page;

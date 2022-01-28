@@ -9,17 +9,19 @@
 	</head>
 	<script type="text/javascript" src="../../script/tool.js"></script>
 	<body>
-		<commonPageElements />
-		<h2>Numero film salvati: #NUMERO_FILM_SALVATI#</h2>
+		<customHeader />
+		<main>
+			<h2>Numero film salvati: #NUMERO_FILM_SALVATI#</h2>
 
-		<form method="post" action="film_salvati.php">
-			<filterFilm />
-			<button type="submit">Filtra</button>
-		</form>
+			<form method="post" action="film_salvati.php">
+				<filterFilm />
+				<button type="submit">Filtra</button>
+			</form>
 
-		<div id="content">
-			<h1 id="page_title">Ultimi Film salvati</h1>
-			#LIST#
-		</div>
+			<div id="content">
+				<h1 id="page_title">Ultimi Film salvati</h1>
+				#LIST#
+			</div>
+		</main>
 	</body>
 </html>

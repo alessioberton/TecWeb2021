@@ -9,7 +9,7 @@ require_once(__DIR__.'/../../php/database/genereFilm.php');
 require_once(__DIR__.'/../../php/database/disponibilita.php');
 require_once(__DIR__.'/../../php/database/cast_film.php');
 require_once(__DIR__.'/../../php/logic/functions.php');
-require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+require_once(__DIR__.'/../../html/componenti/header.php');
 
 $page = file_get_contents(__DIR__.'/inserisci_film.html');
 $searchbar_attore_component = file_get_contents(__DIR__.'/../../html/componenti/searchbar_attore.html');
@@ -100,8 +100,8 @@ if(!empty($_POST["titolo"] &&  empty($_GET["inserted"])))
     }
 }
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
 $page = str_replace("#INSERISCI_ATTORI#", $searchbar_attore_component, $page);
 echo $page;

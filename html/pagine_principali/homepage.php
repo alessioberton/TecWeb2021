@@ -8,15 +8,15 @@ function getAbs_path(): void {
     require_once(__DIR__.'/../../php/database/disponibilita.php');
     require_once(__DIR__.'/../../php/database/film.php');
     require_once(__DIR__.'/../../php/logic/functions.php');
-	require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+	require_once(__DIR__.'/../../html/componenti/header.php');
     $_POST = array_map('empty_to_null', $_POST);
 }
 getAbs_path();
 
 $page = file_get_contents(__DIR__."/homepage.html");
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 $film_crud = new Film_crud();
 $disponibilita = new Disponibilita();
 $img_crud = new Immagine();

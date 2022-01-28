@@ -3,7 +3,7 @@ require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
 
 function getAbs_path(): void {
-	require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+	require_once(__DIR__.'/../../html/componenti/header.php');
     require_once(__DIR__.'/../../php/logic/functions.php');
     require_once(__DIR__.'/../../php/database/utente.php');
     require_once(__DIR__.'/../../php/database/immagine.php');
@@ -132,7 +132,7 @@ try {
     echo $pagina_errore;
 }
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 echo $page;
 ?>

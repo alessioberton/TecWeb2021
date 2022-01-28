@@ -1,10 +1,10 @@
 <?php
 require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
-require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+require_once(__DIR__.'/../../html/componenti/header.php');
 
 $page = file_get_contents(__DIR__.'/storia.html');
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 echo $page;
 ?>

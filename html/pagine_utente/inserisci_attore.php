@@ -5,7 +5,7 @@ require_once(__DIR__.'/../../php/config.php');
 require_once(__DIR__.'/../../php/database/attore.php');
 require_once(__DIR__.'/../../php/database/immagine.php');
 require_once(__DIR__.'/../../php/logic/functions.php');
-require_once(__DIR__.'/../../html/componenti/commonPageElements.php');
+require_once(__DIR__.'/../../html/componenti/header.php');
 
 $_POST = array_map('empty_to_null', $_POST);
 
@@ -48,8 +48,8 @@ if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
     }
 }
 
-$commonPageElements = new CommonPageElements();
-$page = str_replace("<commonPageElements />", $commonPageElements->render(), $page);
+$header = new Header();
+$page = str_replace("<customHeader />", $header->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
 echo $page;
 ?>

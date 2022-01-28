@@ -9,17 +9,19 @@
 	</head>
 	<script type="text/javascript" src="../../script/tool.js"></script>
 	<body>
-		<commonPageElements />
-		<h2>Numero film valutati: #NUMERO_FILM_VALUTATI#</h2>
+		<customHeader />
+		<main>
+			<h2>Numero film valutati: #NUMERO_FILM_VALUTATI#</h2>
 
-		<form method="post" action="film_valutati.php">
-			<filterFilm />
-			<button type="submit">Filtra</button>
-		</form>
+			<form method="post" action="film_valutati.php">
+				<filterFilm />
+				<button type="submit">Filtra</button>
+			</form>
 
-		<div id="content">
-			<h1 id="page_title">Ultimi Film valutati</h1>
-			#LIST#
-		</div>
+			<div id="content">
+				<h1 id="page_title">Ultimi Film valutati</h1>
+				#LIST#
+			</div>
+		</main>
 	</body>
 </html>
