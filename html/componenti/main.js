@@ -1,5 +1,6 @@
 (function () {
 	document.addEventListener("touchstart", closeMenus, { passive: true });
+	document.addEventListener("click", closeMenus, { passive: true });
 	document.addEventListener("touchstart", clearMovieSearchResults, { passive: true });
 	document.addEventListener("click", clearMovieSearchResults, { passive: true });
 })();

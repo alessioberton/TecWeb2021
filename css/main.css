@@ -291,7 +291,7 @@ header #movieSelect #movieSuggestionList > li a img {
 	width: 100%;
 }
 
-@media (max-width: 641px) {
+@media (max-width: 800px) {
 	header {
 		height: 3.7em;
 	}
@@ -395,7 +395,8 @@ header #movieSelect #movieSuggestionList > li a img {
 		flex-basis: 3.6em;
 	}
 
-	#topbar #movieSelect {
+	header #movieSelectContainer #movieSelect {
+		max-width: 100%;
 		transition: all 100ms linear;
 	}
 	#topbar.searching #menuButton {
