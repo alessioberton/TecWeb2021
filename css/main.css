@@ -97,7 +97,7 @@ header {
 	color: lightblue;
 }
 
-#mainNavigation a {
+nav ul li a {
 	color: white;
 	text-decoration: none;
 	font-weight: bold;
@@ -108,12 +108,12 @@ header {
 	text-decoration: underline;
 }
 
-.flyOutMenu > h2 {
+.has-submenu > a {
 	font-size: 1em;
 	cursor: pointer;
 }
 
-.flyOutMenu > ul {
+.has-submenu > ul {
 	z-index: 999;
 	display: none;
 	position: absolute;
@@ -122,7 +122,8 @@ header {
 	padding: 0.5em 1em;
 }
 
-.flyOutMenu:hover > ul {
+.has-submenu.open > ul,
+.has-submenu:hover > ul {
 	display: block;
 }
 
@@ -350,14 +351,15 @@ header #movieSelect #movieSuggestionList > li a img {
 		padding-top: 0.6em;
 		padding-left: 0.5em;
 	}
-
-	nav#mainNavigation > ul > li a {
+	nav > ul > li a {
 		font-weight: normal;
 	}
 
-	nav#mainNavigation h2 {
+	nav#mainNavigation h2,
+	.has-submenu > a {
 		display: block;
 		font-size: 1.1em;
+		font-weight: bold;
 	}
 
 	nav ul li {

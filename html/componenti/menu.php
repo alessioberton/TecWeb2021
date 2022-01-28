@@ -4,8 +4,8 @@
 	
 	class Menu {
 		public $adminMenu = <<<HTML
-			<li id="adminMenu" class="flyOutMenu" tabindex="0" >
-				<h2>Amministratore</h2>
+			<li id="adminMenu" class="has-submenu" aria-labelledby="adminMenuHeading">
+				<a href="…" id="adminMenuHeading"aria-haspopup="true" aria-expanded="false">Amministratore</a>
 				<ul>
 					<li><a href="../pagine_utente/inserisci_film.php">Inserisci Film</a></li>
 					<li><a href="../pagine_utente/inserisci_attore.php">Inserisci Attore</a></li>
@@ -14,8 +14,8 @@
 		HTML;
 
 		public $userMenu = <<<HTML
-			<li id="userMenu" class="flyOutMenu" tabindex="0">
-				<h2>Utente</h2>
+			<li id="userMenu" class="has-submenu" aria-labelledby="userMenuHeading"> 
+				<a href="…" id="userMenuHeading" aria-haspopup="true" aria-expanded="false">Utente</a>
 				<ul>
 					<li><a href="../pagine_utente/profilo.php">Profilo</a></li>
 					<li><a href="../pagine_utente/film_visti.php">Film Visti</a></li>
