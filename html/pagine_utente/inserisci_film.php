@@ -98,6 +98,10 @@ if(!empty($_POST) && !empty($_POST["titolo"] && empty($_GET["inserted"])))
         $esito_inserimento = $e;
     }
 }
+$page = str_replace("#ERRORE_TITOLO#", "", $page);
+$page = str_replace("#ERRORE_TRAMA#", "", $page);
+$page = str_replace("#ERRORE_ANNO#", "", $page);
+$page = str_replace("#ESITO_INSERIMENTO#", "", $page);
 
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);

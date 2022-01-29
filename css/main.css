@@ -346,6 +346,8 @@ header #movieSelect #movieSuggestionList img {
 	main {
 		min-height: calc(100vh - 3.7em);
 		max-height: calc(100vh - 3.7em);
+		padding-left: 1em;
+		padding-right: 1em;
 	}
 
 	#heading {
@@ -491,7 +493,9 @@ header #movieSelect #movieSuggestionList img {
 	font-size: 0.9em;
 }
 
-.text-input input {
+.text-input input,
+.text-input select,
+.text-input textarea {
 	background: #fff;
 	border-radius: 3px;
 	border: 1px solid rgb(182, 182, 182);
@@ -500,6 +504,11 @@ header #movieSelect #movieSuggestionList img {
 	width: 100%;
 	box-sizing: border-box;
 	font-family: inherit;
+}
+.text-input textarea {
+	height: unset;
+	padding-top: 0.2em;
+	resize: vertical;
 }
 
 .text-input input::placeholder {
@@ -519,6 +528,11 @@ header #movieSelect #movieSuggestionList img {
 	min-width: 12em;
 	font-family: inherit;
 	font-size: 1em;
+}
+
+form:invalid .submit-btn {
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 #login-form {
@@ -595,4 +609,54 @@ header #movieSelect #movieSuggestionList img {
 	padding: 0;
 	position: absolute;
 	width: 1px;
+}
+
+.tabs {
+	margin-top: 0.5em;
+}
+
+[role="tab"] {
+	position: relative;
+	flex: 1 1 0px;
+
+	font-family: inherit;
+	font-size: 1.1em;
+
+	border: none;
+
+	cursor: pointer;
+	background-color: transparent;
+	border-radius: 3px 3px 0px 0px;
+	border: 1px solid transparent;
+	border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+[role="tab"][aria-selected="true"] {
+	border: 1px solid rgba(34, 36, 38, 0.15);
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+
+	border-bottom: 1px solid white;
+	background-color: white;
+	font-weight: bold;
+}
+
+[role="tab"]:hover {
+	font-weight: bold;
+}
+
+[role="tablist"] {
+	display: flex;
+}
+
+[role="tabpanel"] {
+	background-color: white;
+	border: 1px solid rgba(34, 36, 38, 0.15);
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+	border-top: 0px;
+	border-radius: 0px 0px 3px 3px;
+	position: relative;
+	padding: 0.5em 1em;
+}
+[role="tabpanel"].is-hidden {
+	display: none;
 }
