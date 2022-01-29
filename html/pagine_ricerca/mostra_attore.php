@@ -27,6 +27,7 @@ try {
         $page = str_replace("#NOME#", $attore_data["Nome"], $page);
         $page = str_replace("#COGNOME#", $attore_data["Cognome"], $page);
         $page = str_replace("#DATA_NASCITA#", dateUsaToEur($attore_data["Data_nascita"]), $page);
+        $page = str_replace("#NOTE_CARRIERA#", $attore_data["Note_carriera"], $page);
         $id_immagine = $attore_data["ID_foto"];
         $percorso_immagine = '../../img/'.$immagine->find($id_immagine)["Percorso"];
         $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
