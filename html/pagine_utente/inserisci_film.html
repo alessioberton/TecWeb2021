@@ -124,61 +124,83 @@
 						</div>
 
 						<!-- TODO: prendere dati dinamicamente -->
-						<fieldset>
+						<fieldset class="checkbox-group" id="genre-checkboxes">
 							<legend>Genere:</legend>
-							<input type="checkbox" id="genere_anime" name="genere[anime]" />
-							<label for="genere_anime">Anime</label><br />
-
-							<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
-							<label for="genere_animazione">Animazione</label><br />
-
-							<input type="checkbox" id="genere_avventura" name="genere[avventura]" />
-							<label for="genere_avventura">Avventura</label><br />
-
-							<input type="checkbox" id="genere_azione" name="genere[azione]" />
-							<label for="genere_azione">Azione</label><br />
-
-							<input type="checkbox" id="genere_biografico" name="genere[biografico]" />
-							<label for="genere_biografico">Biografico</label><br />
-
-							<input type="checkbox" id="genere_commedia" name="genere[commedia]" />
-							<label for="genere_commedia">Commedia</label><br />
-
-							<input type="checkbox" id="genere_documentario" name="genere[documentario]" />
-							<label for="genere_documentario">Documentario</label><br />
-
-							<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
-							<label for="genere_drammatico">Drammatico</label><br />
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_anime" name="genere[anime]" />
+								<label for="genere_anime">Anime</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
+								<label for="genere_animazione">Animazione</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_avventura" name="genere[avventura]" />
+								<label for="genere_avventura">Avventura</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_azione" name="genere[azione]" />
+								<label for="genere_azione">Azione</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_biografico" name="genere[biografico]" />
+								<label for="genere_biografico">Biografico</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_commedia" name="genere[commedia]" />
+								<label for="genere_commedia">Commedia</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_documentario" name="genere[documentario]" />
+								<label for="genere_documentario">Documentario</label>
+							</div>
+							<div class="checkbox-field">
+								<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
+								<label for="genere_drammatico">Drammatico</label>
+							</div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="checkbox-group" id="platform-checkboxes">
 							<legend>Piattaforma:</legend>
 
-							<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" />
-							<label for="piattaforma_netflix">Netflix</label>
+							<div class="checkbox-field">
+								<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" />
+								<label for="piattaforma_netflix">Netflix</label>
+							</div>
 							<fieldset>
-								<legend>Sottotitoli</legend>
-								<input type="checkbox" id="cc_netflix" name="cc[netflix]" />
-								<label for="cc_netflix">CC</label>
+								<legend class="visuallyHidden">Sottotitoli</legend>
+								<div class="checkbox-field">
+									<input type="checkbox" id="cc_netflix" name="cc[netflix]" />
+									<label for="cc_netflix">CC</label>
+								</div>
 
-								<input type="checkbox" id="sdh_netflix" name="sdh[netflix]" />
-								<label for="sdh_netflix">SDH</label>
+								<div class="checkbox-field">
+									<input type="checkbox" id="sdh_netflix" name="sdh[netflix]" />
+									<label for="sdh_netflix">SDH</label>
+								</div>
 
-								<input type="checkbox" id="ad_netflix" name="ad[netflix]" />
-								<label for="ad_netflix">AD</label>
+								<div class="checkbox-field">
+									<input type="checkbox" id="ad_netflix" name="ad[netflix]" />
+									<label for="ad_netflix">AD</label>
+								</div>
 							</fieldset>
-
-							<input type="checkbox" id="piattaforma_prime" name="piattaforma[prime_video]" />
-							<label for="piattaforma_prime">Prime Video</label>
+							<div class="checkbox-field">
+								<input type="checkbox" id="piattaforma_prime" name="piattaforma[prime_video]" />
+								<label for="piattaforma_prime">Prime Video</label>
+							</div>
 							<fieldset>
-								<legend>Sottotitoli</legend>
-								<input type="checkbox" id="cc_prime" name="cc[prime_video]" />
-								<label for="cc_prime">CC</label>
-
-								<input type="checkbox" id="sdh_prime" name="sdh[prime_video]" />
-								<label for="sdh_prime">SDH</label>
-
-								<input type="checkbox" id="ad_prime" name="ad[prime_video]" />
-								<label for="ad_prime">AD</label>
+								<legend class="visuallyHidden">Sottotitoli</legend>
+								<div class="checkbox-field">
+									<input type="checkbox" id="cc_prime" name="cc[prime_video]" />
+									<label for="cc_prime">CC</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="sdh_prime" name="sdh[prime_video]" />
+									<label for="sdh_prime">SDH</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="ad_prime" name="ad[prime_video]" />
+									<label for="ad_prime">AD</label>
+								</div>
 							</fieldset>
 						</fieldset>
 					</div>

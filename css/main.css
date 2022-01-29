@@ -511,6 +511,44 @@ header #movieSelect #movieSuggestionList img {
 	resize: vertical;
 }
 
+#genre-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto;
+	max-width: 20em;
+}
+
+#platform-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto;
+	max-width: 20em;
+}
+
+#platform-checkboxes > fieldset {
+	border: none;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.checkbox-group {
+	border: 1px solid rgb(182, 182, 182);
+	margin: 0.4em 0em;
+	padding: 0.2em 0.6em;
+	border-radius: 3px;
+}
+
+.checkbox-group > legend {
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.checkbox-field {
+	font-size: 0.9em;
+}
+
+.checkbox-field label {
+	padding-left: 0.3em;
+}
+
 .text-input input::placeholder {
 	font-style: italic;
 }
