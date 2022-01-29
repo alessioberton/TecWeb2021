@@ -11,19 +11,22 @@
 		<customHeader />
 		<main>
 			<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Login</div>
-			<h2>Login</h2>
-			<form method="post" action="login.php">
-				<div>
-					<label for="mail">Email/Username</label>
-					<input type="text" id="mail" placeholder="Inserisci l'email/username" name="mail" required />
+
+			<form method="post" action="login.php" id="login-form">
+				<h2>Login</h2>
+				<p>Non hai un account? <a href="logon.php">Registrati</a></p>
+				<div class="field text-input#ERRORE_USERNAME#">
+					<label for="mail">Username</label>
+					<span id="maildesc" class="hint">Username o password errate</span>
+					<input type="text" id="mail" placeholder="username" name="mail" required />
 				</div>
-				<div>
+				<div class="field text-input#ERRORE_PASSWORD#">
 					<label for="pwd">Password</label>
-					<input type="password" id="pwd" placeholder="Inserisci la password" name="pwd" maxlength="12" required />
+					<span id="pwddesc" class="hint">Username o password errate</span>
+					<input type="password" id="pwd" name="pwd" maxlength="12" required />
 				</div>
-				<button type="submit">Login</button>
+				<button type="submit" class="submit-btn">Login</button>
 			</form>
-			<p>Non hai un account? <a href="logon.php">Registrati</a></p>
 		</main>
 	</body>
 </html>

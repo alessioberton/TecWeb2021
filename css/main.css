@@ -111,6 +111,16 @@ nav ul li a {
 .has-submenu > a {
 	font-size: 1em;
 	cursor: pointer;
+	background-image: url("../img/icons/arrow_down_icon.svg");
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-position-y: bottom;
+	background-size: 1.3em;
+	padding-right: 1.3em;
+}
+
+#mainNavigation .has-submenu > a:hover {
+	text-decoration: none;
 }
 
 .has-submenu > ul {
@@ -389,9 +399,15 @@ header #movieSelect #movieSuggestionList img {
 
 	nav#mainNavigation h2,
 	.has-submenu > a {
+		background-image: none;
 		display: block;
 		font-size: 1.1em;
 		font-weight: bold;
+	}
+
+	nav#mainNavigation .has-submenu > a:hover {
+		color: white;
+		pointer-events: none;
 	}
 
 	nav ul li {
@@ -437,6 +453,99 @@ header #movieSelect #movieSuggestionList img {
 	#topbar.searching #menuButton {
 		flex: 0.00001;
 	}
+}
+
+.text-input {
+	position: relative;
+	margin: 0.4em 0em;
+}
+
+.text-input.error label {
+	color: #9f3a38;
+}
+
+.text-input.error input {
+	color: #9f3a38;
+	border-color: #9f3a38;
+	background-color: #fff6f6;
+}
+.text-input.error input::placeholder {
+	color: #9f3a38;
+}
+
+.text-input.error .hint {
+	display: initial;
+}
+
+.text-input .hint {
+	display: none;
+	font-size: 0.9em;
+	color: #9f3a38;
+	right: 0px;
+	top: 0.1em;
+	position: absolute;
+}
+
+.text-input label {
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.text-input input {
+	background: #fff;
+	border-radius: 3px;
+	border: 1px solid rgb(182, 182, 182);
+	height: 2.4em;
+	padding: 0em 0.4em;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
+.text-input input::placeholder {
+	font-style: italic;
+}
+
+.submit-btn {
+	display: block;
+
+	color: white;
+	background-color: #0d6efd;
+	margin: 0.4em auto;
+	padding: 0.3em;
+	border-radius: 5px;
+	border: 1px solid #0d6efd;
+	cursor: pointer;
+	min-width: 12em;
+	font-family: inherit;
+	font-size: 1em;
+}
+
+#login-form {
+	margin: auto;
+	margin-top: 2em;
+	max-width: 19em;
+}
+
+#login-form .submit-btn {
+	margin-top: 1em;
+	width: 100%;
+}
+
+#login-form p {
+	text-align: center;
+	font-size: 0.9em;
+	padding-bottom: 0.5em;
+	border-bottom: 2px solid rgb(224, 224, 224);
+}
+
+#login-form h2 {
+	text-align: center;
+	font-size: 2em;
+}
+
+#login-form div {
+	width: 100%;
 }
 
 .slidecontainer {
