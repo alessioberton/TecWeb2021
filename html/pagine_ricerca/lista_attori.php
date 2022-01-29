@@ -37,6 +37,7 @@ try {
             $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
             $lista_attori_section = str_replace("#URL_IMG_ATTORE#", $percorso_immagine, $lista_attori_section);
             $lista_attori_section = str_replace("#ALT_IMG_ATTORE#", $descrizione_immagine, $lista_attori_section);
+            $lista_attori_section = str_replace("#ID_ATTORE#", $attore_film["ID"], $lista_attori_section);
         }
 
         $page = str_replace("#ATTORI#", $lista_attori_section, $page);
