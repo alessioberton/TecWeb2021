@@ -263,21 +263,53 @@ header #movieSelect #movieSuggestionList {
 	top: 0px;
 }
 
+header #movieSelect #movieSuggestionList > p {
+	padding-top: 2.5em;
+	padding-bottom: 0.5em;
+	text-align: center;
+}
+
 header #movieSelect #movieSuggestionList ul {
 	padding-top: 2.5em;
 }
 
-header #movieSelect #movieSuggestionList ul li a {
-	height: 60px;
-	display: flex;
-	align-items: center;
-	color: white;
-	padding-left: 1em;
+header #movieSelect #movieSuggestionList li {
+	margin: 0.3em 0.3em;
 }
 
-header #movieSelect #movieSuggestionList > li a img {
-	width: 40px;
-	height: 50px;
+header #movieSelect #movieSuggestionList a {
+	display: flex;
+	border-radius: 3px;
+	align-items: center;
+}
+
+header #movieSelect #movieSuggestionList a:hover {
+	background-color: black;
+	text-decoration: none;
+}
+
+header #movieSelect #movieSuggestionList a div {
+	padding-bottom: 0.2em;
+}
+
+header #movieSelect #movieSuggestionList a div h2 {
+	font-size: 1.1em;
+	color: white;
+	font-weight: bold;
+}
+
+header #movieSelect #movieSuggestionList a div p {
+	font-size: 0.9em;
+	color: white;
+}
+
+header #movieSelect #movieSuggestionList img {
+	float: left;
+	width: 50px;
+	height: 75px;
+	border-radius: 3px;
+	margin-right: 0.8em;
+	object-fit: cover;
 }
 
 #actorSelect {
