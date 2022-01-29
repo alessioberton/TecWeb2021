@@ -39,7 +39,23 @@ class SchedaUtente extends Connectable{
         $query = "INSERT INTO scheda_utente(utente, ID_film, Visto, Salvato, Suggerito) VALUES(?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("siiii", $username, $film_id, $visto, $salvato, $suggerito);
+        $stmt->bind_param("iiiii", $username, $film_id, $visto, $salvato, $suggerito);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if($result < 0){
+            throw new Exception($this->connection->error);
+        }
+    }
+
+    function modifica($username, $film_id, $visto, $salvato, $suggerito){
+        $query = "UPDATE scheda_utente SET
+                  Visto = ?,
+                  Salvato = ?,
+                  Suggerito = ?
+                  WHERE utente = ? AND ID_film = ?
+                  ";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("iiiii", $visto, $salvato, $suggerito, $username, $film_id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){

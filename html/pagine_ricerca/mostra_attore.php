@@ -33,8 +33,11 @@ try {
         $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
         $page = str_replace("#URL_IMG_ATTORE#", $percorso_immagine, $page);
         $page = str_replace("#ALT_IMG_ATTORE#", $descrizione_immagine, $page);
-        $num_film = $attore->numeroFilm($id_attore);
-        $page = str_replace("#NUMERO_FILM_TOTALI#", $num_film, $page);
+        $num_film_attore = $attore->numeroFilmAttore($id_attore);
+        $num_film_regista = $attore->numeroFilmRegista($id_attore);
+        $page = str_replace("#NUMERO_FILM_TOTALI#", $num_film_attore + $num_film_regista, $page);
+        $page = str_replace("#NUMERO_FILM_ATTORE#", $num_film_attore, $page);
+        $page = str_replace("#NUMERO_FILM_REGISTA#", $num_film_regista, $page);
     } else {
         $errore = 'Parametro id non passato';
     }
