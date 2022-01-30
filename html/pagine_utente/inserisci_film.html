@@ -43,52 +43,52 @@
 						<div class="field text-input#ERRORE_TITOLO#">
 							<label for="titolo">Titolo</label>
 							<span id="titolo-desc" class="hint">Titolo già esistente</span>
-							<input type="text" id="titolo" name="titolo" required />
+							<input type="text" id="titolo" name="titolo" required value="#TITOLO_INITIAL#" />
 						</div>
 
 						<div class="field text-input">
 							<label for="lingua_titolo">Lingua titolo</label>
 							<select id="lingua_titolo" name="lingua_titolo">
-								<option value="it">Italiano</option>
-								<option value="en">Inglese</option>
+								<option value="it" #SELECTED_lingua_titolo_it#>Italiano</option>
+								<option value="en" #SELECTED_lingua_titolo_en#>Inglese</option>
 							</select>
 						</div>
 
 						<div class="field text-input#ERRORE_TRAMA#">
 							<label for="trama">Trama</label>
-							<textarea id="trama" name="trama" maxlength="500" required></textarea>
+							<textarea id="trama" name="trama" maxlength="500" required>#TRAMA_INITIAL#</textarea>
 							<span id="trama-desc" class="hint">Lunghezza superiore ai 500 caratteri</span>
 						</div>
 						<div class="field file-input">
 							<label for="immagine" class="visuallyHidden">Inserisci immagine</label>
-							<input type="file" id="immagine" name="immagine" />
+							<input type="file" id="immagine" name="immagine" accept=".jpg,.jpeg,.png" />
 						</div>
 
 						<div class="field text-input">
 							<label for="descrizione_immagine">Descrizione immagine</label>
-							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100"></textarea>
+							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100">#DECRIZIONE_IMMAGINE_INITIAL#</textarea>
 							<span id="descrizione_immagine-desc" class="hint">Lunghezza superiore ai 100 caratteri</span>
 						</div>
 						<div class="field text-input">
 							<label for="paese">Paese</label>
 							<select id="paese" name="paese">
-								<option value="it">Italia</option>
-								<option value="us">Stati Uniti</option>
-								<option value="en">Inghilterra</option>
-								<option value="de">Germania</option>
-								<option value="fr">Francia</option>
+								<option value="it" #SELECTED_paese_it#>Italia</option>
+								<option value="us" #SELECTED_paese_us#>Stati Uniti</option>
+								<option value="en" #SELECTED_paese_en#>Inghilterra</option>
+								<option value="de" #SELECTED_paese_de#>Germania</option>
+								<option value="fr" #SELECTED_paese_fr#>Francia</option>
 							</select>
 						</div>
 
 						<div class="field text-input">
 							<label for="anno">Anno</label>
-							<input type="number" id="anno" name="anno" min="1800" max="2023" required placeholder="1999" />
+							<input type="number" id="anno" name="anno" min="1800" max="2023" required placeholder="1999" value="#ANNO_INITIAL#" />
 							<span id="anno-desc" class="hint">Anno successivo a 1800</span>
 						</div>
 
 						<div class="field text-input">
 							<label for="durata">Durata</label>
-							<input type="text" id="durata" name="durata" pattern="^[0-9]h[0-5][0-9]m$" required placeholder="1h30m" />
+							<input type="text" id="durata" name="durata" pattern="^[0-9]h[0-5][0-9]m$" required placeholder="1h30m" value="#DURATA_INITIAL#" />
 							<span id="durata-desc" class="hint">Formato deve essere 0h00m</span>
 						</div>
 					</div>
@@ -96,64 +96,64 @@
 						<div class="field text-input">
 							<label for="livello">Livello:</label>
 							<select id="livello" name="livello">
-								<option value="demenziale">Demenziale</option>
-								<option value="basso">Basso</option>
-								<option value="medio">Medio</option>
-								<option value="alto">Alto</option>
+								<option value="demenziale" #SELECTEDdemenziale#>Demenziale</option>
+								<option value="basso" #SELECTEDbasso#>Basso</option>
+								<option value="medio" #SELECTEDmedio#>Medio</option>
+								<option value="alto" #SELECTEDalto#>Alto</option>
 							</select>
 						</div>
 						<div class="field text-input">
 							<label for="mood">Mood:</label><br />
 							<select id="mood" name="mood">
-								<option value="suspence">Suspence</option>
-								<option value="protesta">Protesta</option>
-								<option value="commovente">Commovente</option>
-								<option value="comico">Comico</option>
-								<option value="sentimentale">Sentimentale</option>
-								<option value="sorprendente">Sorprendente</option>
+								<option value="suspence" #SELECTEDsuspence#>Suspence</option>
+								<option value="protesta" #SELECTEDprotesta#>Protesta</option>
+								<option value="commovente" #SELECTEDcommovente#>Commovente</option>
+								<option value="comico" #SELECTEDcomico#>Comico</option>
+								<option value="sentimentale" #SELECTEDsentimentale#>Sentimentale</option>
+								<option value="sorprendente" #SELECTEDsorprendente#>Sorprendente</option>
 							</select>
 						</div>
 						<div class="field text-input">
 							<label for="eta_pubblico">Eta pubblico</label>
 							<select id="eta_pubblico" name="eta_pubblico">
-								<option value="T">Tutti</option>
-								<option value="VM14">VM 14</option>
-								<option value="VM18">VM 18</option>
+								<option value="T" #SELECTEDT#>Tutti</option>
+								<option value="VM14" #SELECTEDVM14#>VM 14</option>
+								<option value="VM18" #SELECTEDVM18#>VM 18</option>
 							</select>
 						</div>
 						<!-- TODO: prendere dati dinamicamente -->
 						<fieldset class="checkbox-group" id="genre-checkboxes" required>
 							<legend>Genere:</legend>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_anime" name="genere[anime]" />
+								<input type="checkbox" id="genere_anime" name="genere[anime]" #CHECKED_genere_anime# />
 								<label for="genere_anime">Anime</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
+								<input type="checkbox" id="genere_animazione" name="genere[animazione]" #CHECKED_genere_animazione# />
 								<label for="genere_animazione">Animazione</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_avventura" name="genere[avventura]" />
+								<input type="checkbox" id="genere_avventura" name="genere[avventura]" #CHECKED_genere_avventura# />
 								<label for="genere_avventura">Avventura</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_azione" name="genere[azione]" />
+								<input type="checkbox" id="genere_azione" name="genere[azione]" #CHECKED_genere_azione# />
 								<label for="genere_azione">Azione</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_biografico" name="genere[biografico]" />
+								<input type="checkbox" id="genere_biografico" name="genere[biografico]" #CHECKED_genere_biografico# />
 								<label for="genere_biografico">Biografico</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_commedia" name="genere[commedia]" />
+								<input type="checkbox" id="genere_commedia" name="genere[commedia]" #CHECKED_genere_commedia# />
 								<label for="genere_commedia">Commedia</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_documentario" name="genere[documentario]" />
+								<input type="checkbox" id="genere_documentario" name="genere[documentario]" #CHECKED_genere_documentario# />
 								<label for="genere_documentario">Documentario</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
+								<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" #CHECKED_genere_drammatico# />
 								<label for="genere_drammatico">Drammatico</label>
 							</div>
 						</fieldset>
@@ -161,42 +161,42 @@
 							<legend>Piattaforma:</legend>
 
 							<div class="checkbox-field">
-								<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" />
+								<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" #CHECKEDnetflix# />
 								<label for="piattaforma_netflix">Netflix</label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Sottotitoli</legend>
 								<div class="checkbox-field">
-									<input type="checkbox" id="cc_netflix" name="cc[netflix]" />
+									<input type="checkbox" id="cc_netflix" name="cc[netflix]" #CHECKED_netflix_cc# />
 									<label for="cc_netflix">CC</label>
 								</div>
 
 								<div class="checkbox-field">
-									<input type="checkbox" id="sdh_netflix" name="sdh[netflix]" />
+									<input type="checkbox" id="sdh_netflix" name="sdh[netflix]" #CHECKED_netflix_sdh# />
 									<label for="sdh_netflix">SDH</label>
 								</div>
 
 								<div class="checkbox-field">
-									<input type="checkbox" id="ad_netflix" name="ad[netflix]" />
+									<input type="checkbox" id="ad_netflix" name="ad[netflix]" #CHECKED_netflix_ad# />
 									<label for="ad_netflix">AD</label>
 								</div>
 							</fieldset>
 							<div class="checkbox-field">
-								<input type="checkbox" id="piattaforma_prime" name="piattaforma[prime_video]" />
+								<input type="checkbox" id="piattaforma_prime" name="piattaforma[prime_video]" #CHECKEDprime_video# />
 								<label for="piattaforma_prime">Prime Video</label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Sottotitoli</legend>
 								<div class="checkbox-field">
-									<input type="checkbox" id="cc_prime" name="cc[prime_video]" />
+									<input type="checkbox" id="cc_prime" name="cc[prime_video]" #CHECKED_prime_video_cc# />
 									<label for="cc_prime">CC</label>
 								</div>
 								<div class="checkbox-field">
-									<input type="checkbox" id="sdh_prime" name="sdh[prime_video]" />
+									<input type="checkbox" id="sdh_prime" name="sdh[prime_video]" #CHECKED_prime_video_sdh# />
 									<label for="sdh_prime">SDH</label>
 								</div>
 								<div class="checkbox-field">
-									<input type="checkbox" id="ad_prime" name="ad[prime_video]" />
+									<input type="checkbox" id="ad_prime" name="ad[prime_video]" #CHECKED_prime_video_ad# />
 									<label for="ad_prime">AD</label>
 								</div>
 							</fieldset>
