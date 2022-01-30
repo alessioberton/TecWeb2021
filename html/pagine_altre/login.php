@@ -13,9 +13,9 @@ function getAbs_path(): void {
     }
     $_POST = array_map('empty_to_null', $_POST);
 }
-
 getAbs_path();
 
+$page = file_get_contents(__DIR__.'/login.html');
 
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['mail'])) {
@@ -28,13 +28,11 @@ if(isset($_POST['mail'])) {
             $_SESSION['logged'] = true;
 			$_SESSION['user'] = $query_array;
 			
-        header('location: ../pagine_utente/profilo.php');
-        exit();
+			header('location: ../pagine_utente/profilo.php');
+			exit();
         } else {
-            $error="[Mail o password errate]";
-            $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
-            $pagina_errore = str_replace("#ERROR_MESSAGE#", $error, $pagina_errore);
-            echo $pagina_errore;
+			$page = str_replace("#ERRORE_USERNAME#", " error", $page);
+			$page = str_replace("#ERRORE_PASSWORD#", " error", $page);
         }
     } catch (Exception $e) {
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
@@ -42,8 +40,8 @@ if(isset($_POST['mail'])) {
         echo $pagina_errore;
     }
 }
-
-$page = file_get_contents(__DIR__.'/login.html');
+$page = str_replace("#ERRORE_USERNAME#", "", $page);
+$page = str_replace("#ERRORE_PASSWORD#", "", $page);
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 echo $page;

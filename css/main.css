@@ -111,6 +111,16 @@ nav ul li a {
 .has-submenu > a {
 	font-size: 1em;
 	cursor: pointer;
+	background-image: url("../img/icons/arrow_down_icon.svg");
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-position-y: bottom;
+	background-size: 1.3em;
+	padding-right: 1.3em;
+}
+
+#mainNavigation .has-submenu > a:hover {
+	text-decoration: none;
 }
 
 .has-submenu > ul {
@@ -336,10 +346,11 @@ header #movieSelect #movieSuggestionList img {
 	main {
 		min-height: calc(100vh - 3.7em);
 		max-height: calc(100vh - 3.7em);
+		padding-left: 1em;
+		padding-right: 1em;
 	}
 
 	#heading {
-		display: block;
 		left: -250px;
 		padding: 0px;
 		width: 250px;
@@ -389,9 +400,15 @@ header #movieSelect #movieSuggestionList img {
 
 	nav#mainNavigation h2,
 	.has-submenu > a {
+		background-image: none;
 		display: block;
 		font-size: 1.1em;
 		font-weight: bold;
+	}
+
+	nav#mainNavigation .has-submenu > a:hover {
+		color: white;
+		pointer-events: none;
 	}
 
 	nav ul li {
@@ -437,6 +454,161 @@ header #movieSelect #movieSuggestionList img {
 	#topbar.searching #menuButton {
 		flex: 0.00001;
 	}
+}
+
+.text-input {
+	position: relative;
+	margin: 0.4em 0em;
+}
+
+.text-input.error label {
+	color: #9f3a38;
+}
+
+.text-input.error input {
+	color: #9f3a38;
+	border-color: #9f3a38;
+	background-color: #fff6f6;
+}
+.text-input.error input::placeholder {
+	color: #9f3a38;
+}
+
+.text-input.error .hint {
+	display: initial;
+}
+
+.text-input .hint {
+	display: none;
+	font-size: 0.9em;
+	color: #9f3a38;
+	right: 0px;
+	top: 0.1em;
+	position: absolute;
+}
+
+.text-input label {
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.text-input input,
+.text-input select,
+.text-input textarea {
+	background: #fff;
+	border-radius: 3px;
+	border: 1px solid rgb(182, 182, 182);
+	height: 2.4em;
+	padding: 0em 0.4em;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+.text-input textarea {
+	height: unset;
+	padding-top: 0.2em;
+	resize: vertical;
+}
+
+#genre-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto;
+	max-width: 20em;
+}
+
+#platform-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto;
+	max-width: 20em;
+}
+
+#platform-checkboxes > fieldset {
+	border: none;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+#rating-checkboxes,
+#subtitle-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	max-width: 20em;
+}
+
+#livello-select,
+#mood-select {
+	max-width: 21.3em;
+}
+
+.checkbox-group {
+	border: 1px solid rgb(182, 182, 182);
+	margin: 0.4em 0em;
+	padding: 0.2em 0.6em;
+	border-radius: 3px;
+}
+
+.checkbox-group > legend {
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.checkbox-field {
+	font-size: 0.9em;
+}
+
+.checkbox-field label {
+	padding-left: 0.3em;
+}
+
+.text-input input::placeholder {
+	font-style: italic;
+}
+
+.submit-btn {
+	display: block;
+
+	color: white;
+	background-color: #0d6efd;
+	margin: 0.4em auto;
+	padding: 0.3em;
+	border-radius: 5px;
+	border: 1px solid #0d6efd;
+	cursor: pointer;
+	min-width: 12em;
+	font-family: inherit;
+	font-size: 1em;
+}
+
+form:invalid .submit-btn {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+#login-form {
+	margin: auto;
+	margin-top: 2em;
+	max-width: 19em;
+}
+
+#login-form .submit-btn {
+	margin-top: 1em;
+	width: 100%;
+}
+
+#login-form p {
+	text-align: center;
+	font-size: 0.9em;
+	padding-bottom: 0.5em;
+	border-bottom: 2px solid rgb(224, 224, 224);
+}
+
+#login-form h2 {
+	text-align: center;
+	font-size: 2em;
+}
+
+#login-form div {
+	width: 100%;
 }
 
 .slidecontainer {
@@ -486,4 +658,54 @@ header #movieSelect #movieSuggestionList img {
 	padding: 0;
 	position: absolute;
 	width: 1px;
+}
+
+.tabs {
+	margin-top: 0.5em;
+}
+
+[role="tab"] {
+	position: relative;
+	flex: 1 1 0px;
+
+	font-family: inherit;
+	font-size: 1.1em;
+
+	border: none;
+
+	cursor: pointer;
+	background-color: transparent;
+	border-radius: 3px 3px 0px 0px;
+	border: 1px solid transparent;
+	border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+[role="tab"][aria-selected="true"] {
+	border: 1px solid rgba(34, 36, 38, 0.15);
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+
+	border-bottom: 1px solid white;
+	background-color: white;
+	font-weight: bold;
+}
+
+[role="tab"]:hover {
+	font-weight: bold;
+}
+
+[role="tablist"] {
+	display: flex;
+}
+
+[role="tabpanel"] {
+	background-color: white;
+	border: 1px solid rgba(34, 36, 38, 0.15);
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+	border-top: 0px;
+	border-radius: 0px 0px 3px 3px;
+	position: relative;
+	padding: 0.5em 1em;
+}
+[role="tabpanel"].is-hidden {
+	display: none;
 }

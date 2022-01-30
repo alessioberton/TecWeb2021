@@ -26,6 +26,7 @@
 			return false;
 		});
 	});
+	handleFormErrorA11y();
 	handleResizeChanges();
 	window.addEventListener("resize", handleResizeChanges);
 })();
@@ -49,6 +50,15 @@ function handleResizeChanges(event) {
 			node.setAttribute("aria-expanded", "false");
 		});
 	}
+}
+
+function handleFormErrorA11y() {
+	var menuItems = document.querySelectorAll("div.field.error");
+	Array.prototype.forEach.call(menuItems, function (el, i) {
+		var input = el.querySelector("input");
+		var span = el.querySelector("span");
+		input.setAttribute("aria-describedby", span.id);
+	});
 }
 
 function toggleMenu(event) {

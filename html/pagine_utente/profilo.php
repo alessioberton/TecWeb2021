@@ -30,6 +30,7 @@ $page = str_replace("#DATA_NASCITA#", $_SESSION['user']['Data_nascita'], $page);
 
 $img = new Immagine();
 $utente = new Utente();
+
 try {
     $query_array = $img->find($_SESSION['user']['foto_profilo']);
     if ($query_array != null) {
@@ -39,7 +40,7 @@ try {
         $percorso_immagine = $nuovo_percorso_immagine;
     } else {
         $id_user_img = $img->inserisci('Foto profilo', 'utenti/imgnotfound.jpg');
-        $utente->associa_immagine($_SESSION['user']['username'], $id_user_img);
+        $utente->associa_immagine($_SESSION['user']['Username'], $id_user_img);
        	$_SESSION['user']['foto_profilo'] = $id_user_img;
         $errore = 'Immagine inserita';
     }
@@ -59,7 +60,7 @@ if (isset($_POST['cambia_foto'])) {
 if (!empty($nome_nuova_immagine)) {
     try {
         upload_image(__DIR__.'/../../img/utenti/', "nuova_immagine", $_SESSION['max_dim_img']);
-        $img->update($_SESSION['foto_profilo'], 'utenti/'.$nome_nuova_immagine);
+        $img->update($_SESSION['user']['foto_profilo'], 'utenti/'.$nome_nuova_immagine);
         $page = str_replace($percorso_immagine, '../../img/utenti/'.$nome_nuova_immagine, $page);
         deleteImage(__DIR__.'/../../img/'.$nome_immagine_presente);
         echo $nome_immagine_presente;
