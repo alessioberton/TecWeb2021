@@ -108,3 +108,21 @@ function sortArrayByKey(&$array,$key,$string = false,$asc = true){
 function siglaToPaese($sigla){
     return $_SESSION['sigle_paesi'][strtoupper($sigla)] ?? "";
 }
+
+function stringToTime($string){
+    $hours = substr($string, 0, strpos($string, 'h'));
+    $minutes = substr($string, strpos($string, 'h')+1, strlen($string) - (strpos($string, 'h')+2));
+    
+    $myDateTime = DateTime::createFromFormat('H:i:s', $hours.':'.$minutes.':00');
+    $newDateTime = $myDateTime->format('H:i:s');
+    
+    return $newDateTime;
+}
+
+function timeToString($time){
+    $myDateTime = DateTime::createFromFormat('H:i:s', $time);
+    $hours = (int)($myDateTime->format('H'));
+    $minutes = (int)($myDateTime->format('i'));
+
+    return $hours.'h'.$minutes.'m';
+}

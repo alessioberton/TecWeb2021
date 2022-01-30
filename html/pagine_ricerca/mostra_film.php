@@ -18,7 +18,13 @@ getAbs_path();
 
 $page = file_get_contents("mostra_film.html");
 $piattaforma_section = "";
+$genere_section = "";
+$attore_section = "";
+$regista_section = "";
 $piattaforma_component = file_get_contents(__DIR__.'/../../html/componenti/view_piattaforme.html');
+$genere_component = file_get_contents(__DIR__.'/../../html/componenti/view_generi.html');
+$attore_component = file_get_contents(__DIR__.'/../../html/componenti/view_attori.html');
+$regista_component = file_get_contents(__DIR__.'/../../html/componenti/view_registi.html');
 $pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/pulsanti_film.html');
 $errore = '';
 $percorso_film = '';
@@ -59,8 +65,36 @@ if (isset($_GET["titolo"])) {
                             $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "CC" : "", $piattaforma_section);
                             $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "AD" : "", $piattaforma_section);
                         }
-
                         $page = str_replace("#PIATTAFORME#", $piattaforma_section, $page);
+
+                        $generi_data = $film_crud->getGeneri($id_film);
+                        foreach($generi_data as $generi_item){
+                            $genere_section .= $genere_component;
+                            $genere_section = str_replace("#NOME_GENERE#", $generi_item["Nome_genere"], $genere_section);
+                        }
+                        $page = str_replace("#GENERI#", $genere_section, $page);
+
+                        $attori_data = $film_crud->getAttori($id_film);
+                        foreach($attori_data as $attori_item){
+                            $attore_section .= $attore_component;
+                            $attore_section = str_replace("#NOME_ATTORE#", $attori_item["Nome"]." ".$attori_item["Cognome"], $attore_section);
+                        }
+                        $page = str_replace("#ATTORI#", $attore_section, $page);
+
+                        $registi_data = $film_crud->getRegisti($id_film);
+                        foreach($registi_data as $registi_item){
+                            $regista_section .= $regista_component;
+                            $regista_section = str_replace("#NOME_REGISTA#", $registi_item["Nome"]." ".$registi_item["Cognome"], $regista_section);
+                        }
+                        $page = str_replace("#REGISTI#", $regista_section, $page);
+
+                        $page = str_replace("#STELLE#", number_format($film_crud->mediaStelle($id_film),2)." / 5", $page);
+
+                        $categorizzazione = $film_crud->getCategorizzazione($id_film);
+                        $page = str_replace("#LIVELLO_IMPEGNO#", $categorizzazione["Livello"], $page);
+                        $page = str_replace("#ETA#", $categorizzazione["Eta_pubblico"], $page);
+                        $page = str_replace("#MOOD#", $categorizzazione["Mood"], $page);
+                        
                         if($_SESSION["logged"]){
 							
 
