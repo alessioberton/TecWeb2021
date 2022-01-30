@@ -27,7 +27,6 @@ class Categorizzazione extends Connectable{
         $query = "SELECT * FROM categorizzazione";
         $query .= ' WHERE ' . implode(' OR ', $sql);
         $stmt = $this->connection->prepare($query);
-//        $stmt->bind_param("s",$query);
         $stmt->execute();
         return convertQuery($stmt->get_result());
     }

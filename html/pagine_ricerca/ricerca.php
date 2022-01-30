@@ -1,21 +1,21 @@
 <?php
-require_once(__DIR__.'/../../php/logic/error_reporting.php');
-require_once(__DIR__.'/../../php/config.php');
-require_once(__DIR__.'/../../html/componenti/header.php');
-require_once(__DIR__.'/../../php/database/categorizzazione.php');
-require_once(__DIR__.'/../../php/logic/functions.php');
-require_once(__DIR__.'/../../php/database/utente.php');
-require_once(__DIR__.'/../../php/database/immagine.php');
-require_once(__DIR__.'/../../php/database/disponibilita.php');
-require_once(__DIR__.'/../../php/database/genereFilm.php');
-require_once(__DIR__.'/../../php/database/film_search.php');
-require_once(__DIR__.'/../../php/database/film_crud.php');
-require_once(__DIR__.'/../../php/database/film.php');
-require_once(__DIR__.'/../../php/database/valutazione.php');
+require_once(__DIR__ . '/../../php/logic/error_reporting.php');
+require_once(__DIR__ . '/../../php/config.php');
+require_once(__DIR__ . '/../../html/componenti/header.php');
+require_once(__DIR__ . '/../../php/database/categorizzazione.php');
+require_once(__DIR__ . '/../../php/logic/functions.php');
+require_once(__DIR__ . '/../../php/database/utente.php');
+require_once(__DIR__ . '/../../php/database/immagine.php');
+require_once(__DIR__ . '/../../php/database/disponibilita.php');
+require_once(__DIR__ . '/../../php/database/genereFilm.php');
+require_once(__DIR__ . '/../../php/database/film_search.php');
+require_once(__DIR__ . '/../../php/database/film_crud.php');
+require_once(__DIR__ . '/../../php/database/film.php');
+require_once(__DIR__ . '/../../php/database/valutazione.php');
 
 $_POST = array_map('empty_to_null', $_GET);
 
-$page = file_get_contents(__DIR__.'/ricerca.html');
+$page = file_get_contents(__DIR__ . '/ricerca.html');
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 
@@ -37,7 +37,7 @@ $filtro_disponibilita = [];
 
 $sto_cercando = false;
 
-$componente_lista_risultati = file_get_contents(__DIR__.'/../'."componenti/search_view_info.html");
+$componente_lista_risultati = file_get_contents(__DIR__ . '/../' . "componenti/search_view_info.html");
 $sezione_risultati = "";
 
 
@@ -61,14 +61,27 @@ if (isset($_GET["genere"])) {
 }
 
 if (isset($_GET["livello"])) {
-    for ($i = 0; $i < count($_GET["livello"]); $i++) $categorizzazione_sql[] = " Livello = '" . $_GET["livello"][$i] . "'";
-    $sto_cercando = true;
+    if ($_GET["livello"] != "tutti") {
+        $categorizzazione_sql[] = " Livello = '" . $_GET["livello"] . "'";
+        $sto_cercando = true;
+    }
 }
 
-if (isset($_GET["eta"])) {
-    for ($i = 0; $i < count($_GET["eta"]); $i++) $categorizzazione_sql[] = " Eta_pubblico = '" . $_GET["eta"][$i] . "'";
-    $sto_cercando = true;
+if (isset($_GET["eta_pubblico"])) {
+    if ($_GET["eta_pubblico"] != "tutti") {
+        $categorizzazione_sql[] = " Eta_pubblico = '" . $_GET["eta_pubblico"] . "'";
+        $sto_cercando = true;
+    }
 }
+
+if (isset($_GET["mood"])) {
+    if ($_GET["mood"] != "tutti") {
+        $categorizzazione_sql[] = " Mood = '" . $_GET["mood"] . "'";
+        $sto_cercando = true;
+    }
+}
+
+print_r($categorizzazione_sql);
 
 if (!isset ($_GET['page'])) {
     $numero_pagina = 1;
@@ -155,7 +168,7 @@ if ($sto_cercando) {
                 $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
                 $id_immagine = $lista_film[$i]->locandina;
                 $percorso_immagine =
-                    $immagine->find($id_immagine) ? '../../img/'.$immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+                    $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
                 $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
                 $sezione_risultati = str_replace("#LOCANDINA#", $percorso_immagine, $sezione_risultati);
                 $sezione_risultati = str_replace("#DESCRIZONE#", $descrizione_immagine, $sezione_risultati);
@@ -166,7 +179,7 @@ if ($sto_cercando) {
         $s = explode("&", $query_string);
         $number_of_page = ceil(count($lista_film) / $results_per_page);
 
-        if($ho_elenti) {
+        if ($ho_elenti) {
             for ($i = 1; $i <= $number_of_page; $i++) {
                 if ($query_string) {
                     $new_query_string = $query_string;
