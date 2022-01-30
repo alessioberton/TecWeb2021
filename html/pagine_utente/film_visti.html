@@ -11,18 +11,18 @@
 	<body>
 		<customHeader />
 		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Film Visti</div>
-		<main>
-			<h2>Numero film visti: #NUMERO_FILM_VISTI#</h2>
 
-			<form method="post" action="film_visti.php">
-				<filterFilm />
-				<button type="submit">Filtra</button>
-			</form>
-
-			<div id="content">
-				<h1 id="page_title">Ultimi Film visti</h1>
-				#LIST#
+		<main class="user-list-container">
+			<div class="user-list-header card">
+				<h2>Film visti: #NUMERO_FILM_VISTI#</h2>
+				<form method="post" action="film_visti.php">
+					<filterFilm />
+					<button type="submit">Filtra</button>
+				</form>
 			</div>
+			<ul class="user-movie-list">
+				#LIST#
+			</ul>
 		</main>
 	</body>
 </html>

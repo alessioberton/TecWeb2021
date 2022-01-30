@@ -63,12 +63,10 @@ main {
 	border: 1px solid rgb(240, 240, 240);
 	border-width: 0px 1px;
 }
-
 .breadcrumb a {
 	color: black;
 	text-decoration: underline;
 }
-
 .breadcrumb a:hover {
 	color: lightblue;
 }
@@ -339,6 +337,112 @@ header #movieSelect #movieSuggestionList img {
 	width: 100%;
 }
 
+#genre-checkboxes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 20em;
+}
+
+#platform-checkboxes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 20em;
+}
+
+#platform-checkboxes > fieldset {
+	border: none;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+#rating-checkboxes,
+#subtitle-checkboxes {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	max-width: 20em;
+}
+
+#livello-select,
+#mood-select {
+	max-width: 21.3em;
+}
+
+/*PAGINA LOGIN*/
+
+#login-form {
+	margin: auto;
+	margin-top: 2em;
+	max-width: 19em;
+}
+
+#login-form .submit-btn {
+	margin-top: 1em;
+	width: 100%;
+}
+
+#login-form p {
+	text-align: center;
+	font-size: 0.9em;
+	padding-bottom: 0.5em;
+	border-bottom: 2px solid rgb(224, 224, 224);
+}
+
+#login-form h2 {
+	text-align: center;
+	font-size: 2em;
+}
+
+#login-form div {
+	width: 100%;
+}
+
+/* COMPONENTI */
+
+.visuallyHidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.file-input input::-webkit-file-upload-button {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.card {
+	background-color: white;
+	border: 1px solid rgba(34, 36, 38, 0.15);
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+	border-radius: 5px;
+	padding: 0.2em 0.9em;
+	padding-bottom: 0.4em;
+}
+
+.file-input input::before {
+	content: "Inserisci Immagine";
+	display: inline-block;
+	background: #e0e1e2;
+	border: 1px solid #e0e1e2;
+	color: rgba(0, 0, 0, 0.6);
+	border-radius: 3px;
+	padding: 0.5em 1em;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
 .text-input {
 	position: relative;
 	margin: 0.4em 0em;
@@ -394,36 +498,6 @@ header #movieSelect #movieSuggestionList img {
 	resize: vertical;
 }
 
-#genre-checkboxes {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	max-width: 20em;
-}
-
-#platform-checkboxes {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	max-width: 20em;
-}
-
-#platform-checkboxes > fieldset {
-	border: none;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-}
-
-#rating-checkboxes,
-#subtitle-checkboxes {
-	display: grid;
-	grid-template-columns: auto auto auto;
-	max-width: 20em;
-}
-
-#livello-select,
-#mood-select {
-	max-width: 21.3em;
-}
-
 .checkbox-group {
 	border: 1px solid rgb(182, 182, 182);
 	margin: 0.4em 0em;
@@ -468,84 +542,10 @@ form:invalid .submit-btn {
 	opacity: 0.5;
 }
 
-#login-form {
-	margin: auto;
-	margin-top: 2em;
-	max-width: 19em;
-}
-
-#login-form .submit-btn {
-	margin-top: 1em;
-	width: 100%;
-}
-
-#login-form p {
-	text-align: center;
-	font-size: 0.9em;
-	padding-bottom: 0.5em;
-	border-bottom: 2px solid rgb(224, 224, 224);
-}
-
-#login-form h2 {
-	text-align: center;
-	font-size: 2em;
-}
-
-#login-form div {
-	width: 100%;
-}
-
-.slidecontainer {
-	width: 100%;
-}
-
-.slider {
-	-webkit-appearance: none;
-	width: 100%;
-	height: 10px;
-	border-radius: 5px;
-	background: #d3d3d3;
-	outline: none;
-	opacity: 0.7;
-	-webkit-transition: 0.2s;
-	transition: opacity 0.2s;
-}
-
-.slider:hover {
-	opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 23px;
-	height: 24px;
-	border: 0;
-	/*background: url('');*/
-	cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-	width: 23px;
-	height: 24px;
-	border: 0;
-	/*background: url('contrasticon.png');*/
-	cursor: pointer;
-}
-
-.visuallyHidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-}
+/*TAB PAGINA INSERISCI FILM */
 
 .tabs {
-	margin-top: 0.5em;
+	margin: 0.5em 0.9em;
 }
 
 [role="tab"] {
@@ -594,39 +594,13 @@ form:invalid .submit-btn {
 	display: none;
 }
 
-.file-input input::-webkit-file-upload-button {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
+/*INSERISCI ATTORE*/
+
+#attore-form {
+	margin: 0.5em 1em;
 }
 
-.file-input input::before {
-	content: "Inserisci Immagine";
-	display: inline-block;
-	background: #e0e1e2;
-	border: 1px solid #e0e1e2;
-	color: rgba(0, 0, 0, 0.6);
-	border-radius: 3px;
-	padding: 0.5em 1em;
-	cursor: pointer;
-	font-size: 1em;
-	font-weight: bold;
-	margin-right: 0.5em;
-}
-
-.card {
-	background-color: white;
-	border: 1px solid rgba(34, 36, 38, 0.15);
-	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
-	border-radius: 5px;
-	padding: 0.2em 0.9em;
-	padding-bottom: 0.4em;
-}
+/*PAGINA RICERCA*/
 
 #adv-search-dropdown {
 	margin: 0.4em 1em;
@@ -776,6 +750,85 @@ form:invalid .submit-btn {
 	grid-area: d;
 }
 
+/* PROFILO */
+
+#profile-details {
+	margin: 0.4em 0.9em;
+	margin-top: 0.6em;
+	padding: 0.5em 1em;
+}
+
+#profile-details h2 {
+	font-size: 1.8em;
+	text-align: center;
+}
+
+#profile-details h3 {
+	margin-top: 0.4em;
+	padding-left: 0.4em;
+	padding-top: 0.2em;
+	border-top: 2px solid rgba(34, 36, 38, 0.15);
+}
+
+#profile-details dl {
+	padding-left: 0.9em;
+	margin-bottom: 0.3em;
+}
+
+#profile-details dl dd {
+	padding-left: 0.3em;
+}
+
+#profile-details dl dt {
+	font-weight: bold;
+}
+
+#profile-details .submit-btn {
+	max-width: 15em;
+	text-align: center;
+}
+
+/* PAGINE LISTA FILM UTENTE*/
+
+.user-list-header {
+	margin: 0.4em 0.5em;
+	margin-bottom: 0.7em;
+}
+
+.user-movie-list {
+	margin: 0.7em 1.3em;
+}
+
+.user-movie-list li {
+	display: flex;
+	margin: 0.3em 0em;
+}
+
+.user-movie-list li img {
+	border-radius: 3px;
+	height: 9em;
+	width: 6.8em;
+	object-fit: cover;
+	margin: 0px;
+}
+
+.user-movie-list li dl {
+	margin-left: 0.5em;
+}
+
+.user-movie-list li dl dd:first-of-type {
+	font-weight: bold;
+}
+
+.user-movie-list li dl .view-movie-title {
+	font-weight: bold;
+	padding-left: 0px;
+}
+
+.user-movie-list li dl dd {
+	padding-left: 0.2em;
+}
+
 /*MOBILE*/
 
 @media (max-width: 800px) {
@@ -914,5 +967,12 @@ form:invalid .submit-btn {
 			"b b b"
 			"c c c"
 			"g g g" / 22% 1fr 1fr;
+	}
+
+	#attore-form,
+	#profile-details,
+	.tabs,
+	.user-list-header {
+		margin: 0.4em 0em;
 	}
 }

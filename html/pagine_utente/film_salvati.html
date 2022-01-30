@@ -11,18 +11,17 @@
 	<body>
 		<customHeader />
 		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Film Salvati</div>
-		<main>
-			<h2>Numero film salvati: #NUMERO_FILM_SALVATI#</h2>
-
-			<form method="post" action="film_salvati.php">
-				<filterFilm />
-				<button type="submit">Filtra</button>
-			</form>
-
-			<div id="content">
-				<h1 id="page_title">Ultimi Film salvati</h1>
-				#LIST#
+		<main class="user-list-container">
+			<div class="user-list-header card">
+				<h2>Film salvati: #NUMERO_FILM_SALVATI#</h2>
+				<form method="post" action="film_salvati.php">
+					<filterFilm />
+					<button type="submit">Filtra</button>
+				</form>
 			</div>
+			<ul class="user-movie-list">
+				#LIST#
+			</ul>
 		</main>
 	</body>
 </html>
