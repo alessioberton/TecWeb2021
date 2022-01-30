@@ -776,6 +776,44 @@ form:invalid .submit-btn {
 	grid-area: d;
 }
 
+/* PROFILO */
+
+#profile-details {
+	margin: 0.4em 0.9em;
+	margin-top: 0.6em;
+	padding: 0.5em 1em;
+}
+
+#profile-details h2 {
+	font-size: 1.8em;
+	text-align: center;
+}
+
+#profile-details h3 {
+	margin-top: 0.4em;
+	padding-left: 0.4em;
+	padding-top: 0.2em;
+	border-top: 2px solid rgba(34, 36, 38, 0.15);
+}
+
+#profile-details dl {
+	padding-left: 0.9em;
+	margin-bottom: 0.3em;
+}
+
+#profile-details dl dd {
+	padding-left: 0.3em;
+}
+
+#profile-details dl dt {
+	font-weight: bold;
+}
+
+#profile-details .submit-btn {
+	max-width: 15em;
+	text-align: center;
+}
+
 /*MOBILE*/
 
 @media (max-width: 800px) {
