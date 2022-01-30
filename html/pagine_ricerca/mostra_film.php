@@ -33,7 +33,7 @@ $lista_film = $film_crud->find_all();
 if (isset($_GET["titolo"])) {
         if (isset($lista_film)) {
             foreach ($lista_film as $value) {
-                if ($_GET["titolo"] == $value["Titolo"]) {
+                if (strtolower($_GET["titolo"]) == strtolower($value["Titolo"])) {
                     $id_film = $value["ID"];
                     inserisciModificaValutazione($scheda_utente,$valutazione,$id_film);
                     $id_immagine = $value["Locandina"];
