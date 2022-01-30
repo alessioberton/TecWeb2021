@@ -192,4 +192,47 @@ class Film_crud extends Connectable{
         $result = convertQuery($stmt->get_result());
         return $result ?? null;
     }
+
+    function getGeneri($film_id){
+        $query = "SELECT *
+                  FROM genere_film
+                  WHERE genere_film.ID_film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);           
+        $stmt->execute();
+        return convertQuery($stmt->get_result());
+    }
+
+    function mediaStelle($film_id){
+        $query = "SELECT AVG(Stelle) as media_stelle
+                  FROM valutazione
+                  WHERE valutazione.ID_film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);           
+        $stmt->execute();
+        
+        return convertQuery($stmt->get_result())[0]["media_stelle"];
+    }
+
+    function getCategorizzazione($film_id){
+        $query = "SELECT *
+                  FROM categorizzazione
+                  WHERE categorizzazione.Film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);           
+        $stmt->execute();
+        return convertQuery($stmt->get_result())[0];
+    }
+
+    function getRegisti($film_id){
+        $query = "SELECT *
+                  FROM regia 
+                  JOIN attore ON attore.id = regia.Regista
+                  WHERE regia.Film = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i", $film_id);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result ?? null;
+    }
 }
