@@ -11,6 +11,7 @@
 		<customHeader />
 		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Inserisci Attore</div>
 		<main>
+			<p>#ESITO_INSERIMENTO#</p>
 			<form method="post" action="inserisci_attore.php" enctype="multipart/form-data" class="card">
 				<h2>Inserisci Attore</h2>
 				<div class="field text-input#ERRORE_NOME#">
@@ -44,7 +45,7 @@
 				</div>
 				<div class="field text-input">
 					<label for="descrizione_immagine">Descrizione immagine</label>
-					<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100"></textarea>
+					<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100" required></textarea>
 					<span id="note_carriera-desc" class="hint">Errore</span>
 				</div>
 				<input type="submit" value="Inserisci" class="submit-btn" />
