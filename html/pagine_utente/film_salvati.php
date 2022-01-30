@@ -25,24 +25,37 @@ $page = file_get_contents(__DIR__."/film_salvati.html");
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 
-$array_salvato = $_SESSION["array_salvato"];
+$array_salvato = array();
 $list = '';
-
-$page = str_replace("#NUMERO_FILM_SALVATI#", count($array_salvato), $page);
 
 $film_crud = new Film_crud();
 $immagine = new Immagine();
 $valutazione_model = new Valutazione();
+$scheda_utente = new SchedaUtente();
 $link_valutazione = "";
 $titolo_selezionato = "";
 $anno_selezionato = "";
 $voto_selezionato = "";
 
 $lista_film = [];
-foreach ($_SESSION["array_salvato"] as $value) {
-    $film = new Film($film_crud->findById($value["ID_Film"]));
-    $film->voto = $valutazione_model->find_avg_by_film_id($value["ID_Film"])["VALUTAZIONE_MEDIA"];
-    $lista_film[] = $film;
+
+try {
+    $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['user']['Username']);
+    foreach($query_array_scheda_utente as $value) {
+        if ($value["Salvato"] == true) {
+            $array_salvato[] = $value;
+        }
+    }
+    foreach ($array_salvato as $value) {
+        $film = new Film($film_crud->findById($value["ID_Film"]));
+        $film->voto = $valutazione_model->find_avg_by_film_id($value["ID_Film"])["VALUTAZIONE_MEDIA"];
+        $lista_film[] = $film;
+    }
+    $page = str_replace("#NUMERO_FILM_SALVATI#", count($array_salvato), $page);
+} catch (Exception $e) {
+    $pagina_errore = file_get_contents(__DIR__."/../../html/pagine_altre/errore.html");
+    $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
+    echo $pagina_errore;
 }
 
 if (isset($_POST["option_film_salvati"])) {

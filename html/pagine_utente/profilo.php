@@ -101,29 +101,20 @@ $scheda_utente = new SchedaUtente();
 $conta_visto = 0;
 $conta_salvati = 0;
 $conta_valutati = 0;
-$array_visto = array();
-$array_salvato = array();
-$array_valutato = array();
 
 try {
     $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['user']['Username']);
     foreach($query_array_scheda_utente as $value) {
         if ($value["Visto"] == true) {
             $conta_visto += 1;
-            $array_visto[] = $value;
         }
         if ($value["Salvato"] == true){
             $conta_salvati += 1;
-            $array_salvato[] = $value;
         }
         if ($value["Suggerito"] == true) {
             $conta_valutati += 1;
-            $array_valutato[] = $value;
         }
     }
-    $_SESSION["array_visto"] = $array_visto;
-    $_SESSION["array_salvato"] = $array_salvato;
-    $_SESSION["array_valutato"] = $array_valutato;
     $page = str_replace("#FILM_VISTI#", $conta_visto, $page);
     $page = str_replace("#FILM_SALVATI#", $conta_salvati, $page);
     $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);
@@ -136,4 +127,3 @@ try {
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 echo $page;
-?>

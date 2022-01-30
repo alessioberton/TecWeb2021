@@ -25,25 +25,38 @@ $page = file_get_contents(__DIR__.'/film_visti.html');
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 
-$array_visto = $_SESSION["array_visto"];
+$array_visto = array();
 $list = '';
-
-$page = str_replace("#NUMERO_FILM_VISTI#", count($array_visto), $page);
 
 $film_crud = new Film_crud();
 $immagine = new Immagine();
 $valutazione_model = new Valutazione();
+$scheda_utente = new SchedaUtente();
 $link_valutazione = "";
 $titolo_selezionato = "";
 $anno_selezionato = "";
 $voto_selezionato = "";
-
 $lista_film = [];
-foreach ($_SESSION["array_visto"] as $value) {
-    $film = new Film($film_crud->findById($value["ID_Film"]));
-    $film->voto = $valutazione_model->find_avg_by_film_id($value["ID_Film"])["VALUTAZIONE_MEDIA"];
-    $lista_film[] = $film;
+
+try {
+    $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['user']['Username']);
+    foreach($query_array_scheda_utente as $value) {
+        if ($value["Visto"] == true) {
+            $array_visto[] = $value;
+        }
+    }
+    foreach ($array_visto as $value) {
+        $film = new Film($film_crud->findById($value["ID_Film"]));
+        $film->voto = $valutazione_model->find_avg_by_film_id($value["ID_Film"])["VALUTAZIONE_MEDIA"];
+        $lista_film[] = $film;
+    }
+    $page = str_replace("#NUMERO_FILM_VISTI#", count($array_visto), $page);
+} catch (Exception $e) {
+    $pagina_errore = file_get_contents(__DIR__."/../../html/pagine_altre/errore.html");
+    $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
+    echo $pagina_errore;
 }
+
 
 if (isset($_POST["option_film_visti"])) {
     if ($_POST["option_film_visti"] == "titolo") {
@@ -69,7 +82,6 @@ foreach ($lista_film as $value) {
     $view_film = str_replace("#ANNO#", $value->anno, $view_film);
     $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
     $view_film = str_replace("#VOTO#", $value->voto, $view_film);
-
     $view_film = str_replace("#VALUTAZIONE#", $link_valutazione, $view_film);
     $list = $list.$view_film;
 }

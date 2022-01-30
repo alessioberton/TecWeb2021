@@ -25,7 +25,8 @@
 					<div class="field text-input" id="rating-select">
 						<label for="eta_pubblico">Rating</label>
 						<select id="eta_pubblico" name="eta_pubblico">
-							<option value="T">Tutti</option>
+							<option selected value="tutti">Tutti</option>
+							<option value="T">T</option>
 							<option value="VM14">VM 14</option>
 							<option value="VM18">VM 18</option>
 						</select>
@@ -33,7 +34,7 @@
 					<div class="field text-input" id="livello-select">
 						<label for="livello">Livello Impegno</label>
 						<select id="livello" name="livello">
-							<option selected value="">--Nessuno--</option>
+							<option selected value="tutti">Tutti</option>
 							<option value="demenziale">Demenziale</option>
 							<option value="basso">Basso</option>
 							<option value="medio">Medio</option>
@@ -43,7 +44,7 @@
 					<div class="field text-input" id="mood-select">
 						<label for="mood">Mood</label><br />
 						<select id="mood" name="mood">
-							<option selected value="">--Nessuno--</option>
+							<option selected value="tutti">Tutti</option>
 							<option value="suspence">Suspence</option>
 							<option value="protesta">Protesta</option>
 							<option value="commovente">Commovente</option>
@@ -54,10 +55,6 @@
 					</div>
 					<fieldset class="checkbox-group" id="genre-checkboxes">
 						<legend>Genere</legend>
-						<div class="checkbox-field">
-							<input type="checkbox" id="genere_anime" name="genere[anime]" />
-							<label for="genere_anime">Anime</label>
-						</div>
 						<div class="checkbox-field">
 							<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
 							<label for="genere_animazione">Animazione</label>
@@ -85,6 +82,14 @@
 						<div class="checkbox-field">
 							<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
 							<label for="genere_drammatico">Drammatico</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_fantascienza" name="genere[fantascienza]" />
+							<label for="genere_fantascienza">Fantascienza</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_horror" name="genere[horror]" />
+							<label for="genere_horror">Horror</label>
 						</div>
 					</fieldset>
 					<fieldset class="checkbox-group" id="platform-checkboxes">
@@ -123,13 +128,6 @@
 							<label for="AD">AD</label>
 						</div>
 					</fieldset>
-
-					<!-- <div class="slidecontainer">
-					<label>Livello Impegno</label>
-					<input type="range" min="1" max="4" value="1" class="slider" id="myRange" />
-					<p>Value: <span id="demo"></span></p>
-				</div> -->
-
 					<button type="submit" class="submit-btn">Cerca</button>
 				</form>
 			</div>
