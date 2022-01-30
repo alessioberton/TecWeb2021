@@ -9,128 +9,130 @@
 	</head>
 	<body>
 		<customHeader />
+		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Ricerca</div>
 		<main>
-			<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Ricerca</div>
-			<h2>Ricerca Avanzata</h2>
-			<form action="ricerca.php" method="get" id="adv-search-form">
-				<fieldset class="checkbox-group" id="genre-checkboxes">
-					<legend>Genere</legend>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_anime" name="genere[anime]" />
-						<label for="genere_anime">Anime</label>
+			<div class="card open" id="adv-search-dropdown">
+				<button
+					type="button"
+					onclick="toggleSearchFilters(event, this)"
+					id="adv-search-btn"
+					aria-haspopup="true"
+					aria-expanded="true"
+				>
+					Ricerca Avanzata
+				</button>
+				<form action="ricerca.php" method="get" id="adv-search-form">
+					<div class="field text-input" id="rating-select">
+						<label for="eta_pubblico">Rating</label>
+						<select id="eta_pubblico" name="eta_pubblico">
+							<option value="T">Tutti</option>
+							<option value="VM14">VM 14</option>
+							<option value="VM18">VM 18</option>
+						</select>
 					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
-						<label for="genere_animazione">Animazione</label>
+					<div class="field text-input" id="livello-select">
+						<label for="livello">Livello Impegno</label>
+						<select id="livello" name="livello">
+							<option selected value="">--Nessuno--</option>
+							<option value="demenziale">Demenziale</option>
+							<option value="basso">Basso</option>
+							<option value="medio">Medio</option>
+							<option value="alto">Alto</option>
+						</select>
 					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_avventura" name="genere[avventura]" />
-						<label for="genere_avventura">Avventura</label>
+					<div class="field text-input" id="mood-select">
+						<label for="mood">Mood</label><br />
+						<select id="mood" name="mood">
+							<option selected value="">--Nessuno--</option>
+							<option value="suspence">Suspence</option>
+							<option value="protesta">Protesta</option>
+							<option value="commovente">Commovente</option>
+							<option value="comico">Comico</option>
+							<option value="sentimentale">Sentimentale</option>
+							<option value="sorprendente">Sorprendente</option>
+						</select>
 					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_azione" name="genere[azione]" />
-						<label for="genere_azione">Azione</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_biografico" name="genere[biografico]" />
-						<label for="genere_biografico">Biografico</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_commedia" name="genere[commedia]" />
-						<label for="genere_commedia">Commedia</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_documentario" name="genere[documentario]" />
-						<label for="genere_documentario">Documentario</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
-						<label for="genere_drammatico">Drammatico</label>
-					</div>
-				</fieldset>
-				<fieldset class="checkbox-group" id="platform-checkboxes">
-					<legend>Piattaforma</legend>
-					<div class="checkbox-field">
-						<input type="checkbox" name="Netflix" value="Netflix" id="netflix" />
-						<label for="netflix">Netflix</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" name="AmazonPrime" value="Amazon Prime" id="amazon_prime" />
-						<label for="amazon_prime">Amazon prime</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" name="Disney+" value="Disney+" id="disney+" />
-						<label for="disney+">Disney+</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" name="Discovery+" value="Discovery+" id="discovery+" />
-						<label for="discovery+">Discovery+</label>
-					</div>
-				</fieldset>
-				<fieldset class="checkbox-group" id="subtitle-checkboxes">
-					<legend>Sottotitoli</legend>
-					<div class="checkbox-field">
-						<input type="checkbox" value="CC" id="cc" name="opzione[]" />
-						<label for="CC">CC</label>
-					</div>
+					<fieldset class="checkbox-group" id="genre-checkboxes">
+						<legend>Genere</legend>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_anime" name="genere[anime]" />
+							<label for="genere_anime">Anime</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_animazione" name="genere[animazione]" />
+							<label for="genere_animazione">Animazione</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_avventura" name="genere[avventura]" />
+							<label for="genere_avventura">Avventura</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_azione" name="genere[azione]" />
+							<label for="genere_azione">Azione</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_biografico" name="genere[biografico]" />
+							<label for="genere_biografico">Biografico</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_commedia" name="genere[commedia]" />
+							<label for="genere_commedia">Commedia</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_documentario" name="genere[documentario]" />
+							<label for="genere_documentario">Documentario</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" id="genere_drammatico" name="genere[drammatico]" />
+							<label for="genere_drammatico">Drammatico</label>
+						</div>
+					</fieldset>
+					<fieldset class="checkbox-group" id="platform-checkboxes">
+						<legend>Piattaforma</legend>
+						<div class="checkbox-field">
+							<input type="checkbox" name="Netflix" value="Netflix" id="netflix" />
+							<label for="netflix">Netflix</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="AmazonPrime" value="Amazon Prime" id="amazon_prime" />
+							<label for="amazon_prime">Amazon prime</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="Disney+" value="Disney+" id="disney+" />
+							<label for="disney+">Disney+</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="Discovery+" value="Discovery+" id="discovery+" />
+							<label for="discovery+">Discovery+</label>
+						</div>
+					</fieldset>
+					<fieldset class="checkbox-group" id="subtitle-checkboxes">
+						<legend>Sottotitoli</legend>
+						<div class="checkbox-field">
+							<input type="checkbox" value="CC" id="cc" name="opzione[]" />
+							<label for="CC">CC</label>
+						</div>
 
-					<div class="checkbox-field">
-						<input type="checkbox" value="SDH" id="sdh" name="opzione[]" />
-						<label for="SDH">SDH</label>
-					</div>
+						<div class="checkbox-field">
+							<input type="checkbox" value="SDH" id="sdh" name="opzione[]" />
+							<label for="SDH">SDH</label>
+						</div>
 
-					<div class="checkbox-field">
-						<input type="checkbox" value="AD" id="ad" name="opzione[]" />
-						<label for="AD">AD</label>
-					</div>
-				</fieldset>
+						<div class="checkbox-field">
+							<input type="checkbox" value="AD" id="ad" name="opzione[]" />
+							<label for="AD">AD</label>
+						</div>
+					</fieldset>
 
-				<fieldset class="checkbox-group" id="rating-checkboxes">
-					<legend>Rating</legend>
-					<div class="checkbox-field">
-						<input type="checkbox" name="eta[]" value="T" id="t" />
-						<label for="t">T</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" name="eta[]" value="VM14" id="vm14" />
-						<label for="vm14">VM14</label>
-					</div>
-					<div class="checkbox-field">
-						<input type="checkbox" name="eta[]" value="VM18" id="vm18" />
-						<label for="vm18">VM18</label>
-					</div>
-				</fieldset>
-				<div class="field text-input" id="livello-select">
-					<label for="livello">Livello Impegno</label>
-					<select id="livello" name="livello">
-						<option selected value="">--Nessuno--</option>
-						<option value="demenziale">Demenziale</option>
-						<option value="basso">Basso</option>
-						<option value="medio">Medio</option>
-						<option value="alto">Alto</option>
-					</select>
-				</div>
-				<div class="field text-input" id="mood-select">
-					<label for="mood">Mood</label><br />
-					<select id="mood" name="mood">
-						<option selected value="">--Nessuno--</option>
-						<option value="suspence">Suspence</option>
-						<option value="protesta">Protesta</option>
-						<option value="commovente">Commovente</option>
-						<option value="comico">Comico</option>
-						<option value="sentimentale">Sentimentale</option>
-						<option value="sorprendente">Sorprendente</option>
-					</select>
-				</div>
-				<div class="slidecontainer">
+					<!-- <div class="slidecontainer">
 					<label>Livello Impegno</label>
 					<input type="range" min="1" max="4" value="1" class="slider" id="myRange" />
 					<p>Value: <span id="demo"></span></p>
-				</div>
+				</div> -->
 
-				<button type="submit" class="submit-btn">Cerca</button>
-			</form>
-
+					<button type="submit" class="submit-btn">Cerca</button>
+				</form>
+			</div>
 			#RISULTATI#
 		</main>
 	</body>
