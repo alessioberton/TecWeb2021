@@ -13,31 +13,67 @@
 			<a href="../pagine_principali/homepage.php">Home</a> &gt; <a href="../pagine_ricerca/ricerca.php">Ricerca</a> &gt;
 			#TITOLO#
 		</div>
-		#ERROR_MESSAGE#
 		<main>
-			<h2 id="movie-title" lang="#LINGUA_TITOLO#">#TITOLO#</h1>
-			<img class="img_film" id="img_film-view" src="#URL_IMG_FILM#" alt="#ALT_IMG_FILM#" />
+			<div id="movie-details" class="card">
+				<div class="movie-cover-container">
+					<img class="img_film" id="img_film-view" src="#URL_IMG_FILM#" alt="#ALT_IMG_FILM#" />
+					#VALUTAZIONE#
+				</div>
+				<div class="movie-header">
+					<h2 class="movie-title" lang="#LINGUA_TITOLO#">#TITOLO#</h2>
+					<p class="movie-plot">#TRAMA#</p>
+				</div>
+				<dl class="movie-info-list">
+					<div id="genres-item">
+						<dt class="movie-info-title">Generi</dt>
+						<dd class="movie-info">#GENERI#</dd>
+					</div>
+					<div id="star-item">
+						<dt class="movie-info-title">Valutazione</dt>
+						<dd class="movie-info">#STELLE#</dd>
+					</div>
+					<div id="regista-item">
+						<dt class="movie-info-title">Regista</dt>
+						<dd class="movie-info">#REGISTA#</dd>
+					</div>
+					<div id="actors-item">
+						<dt class="movie-info-title">Attori</dt>
+						<ul class="movie-platform-list">
+							#ATTORI#
+						</ul>
+					</div>
+					<div id="anno-item">
+						<dt class="movie-info-title">Anno</dt>
+						<dd class="movie-info">#ANNO#</dd>
+					</div>
+					<div id="paese-item">
+						<dt class="movie-info-title">Paese</dt>
+						<dd class="movie-info">#PAESE#</dd>
+					</div>
+					<div id="durata-item">
+						<dt class="movie-info-title">Durata</dt>
+						<dd class="movie-info">#DURATA#</dd>
+					</div>
+					<div id="eta-item">
+						<dt class="movie-info-title">Rating</dt>
+						<dd class="movie-info">#ETA#</dd>
+					</div>
 
-			<div id="film-view">
-				<dl class="list_film">
-					<dt>REGISTA:</dt>
-					<dd>#REGISTA#</dd>
-					<dt>ANNO:</dt>
-					<dd>#ANNO#</dd>
-					<dt>PAESE:</dt>
-					<dd>#PAESE#</dd>
-					<dt>DURATA:</dt>
-					<dd>#DURATA#</dd>
+					<div id="mood-item">
+						<dt class="movie-info-title">Mood</dt>
+						<dd class="movie-info">#MOOD#</dd>
+					</div>
+					<div id="impegno-item">
+						<dt class="movie-info-title">Livello Impegno</dt>
+						<dd class="movie-info">#LIVELLO_IMPEGNO#</dd>
+					</div>
 				</dl>
-
-				<dl class="list_piattaforme">#PIATTAFORME#</dl>
-
-				<p class="link_utili">
-					<a href="lista_attori.php?id=#ID_FILM#"> Lista attori </a><br />
-					<!-- TODO: Togliere questo commento <a href="../pagine_utente/commenti.php?id=#ID_FILM#">Commenti</a>-->
-				</p>
-
-				#VALUTAZIONE#
+				<div class="movie-platform-list">
+					<p>Piattaforme</p>
+					<ul>
+						#PIATTAFORME#
+					</ul>
+				</div>
 			</div>
 		</main>
 	</body>

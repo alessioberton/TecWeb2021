@@ -1,22 +1,21 @@
-<div>
-    <form action="mostra_film.php?titolo=#TITOLO_FILM#" method="POST"> 
-        <select id="visto" name="visto">
-            <option value="0" #SELECTED_NON_VISTO#>Non Visto</option>
-            <option value="1" #SELECTED_VISTO#>Visto</option>
-        </select><br />
-        <select id="salvato" name="salvato">
-            <option value="0" #SELECTED_NON_SALVATO#>Non Salvato</option>
-            <option value="1" #SELECTED_SALVATO#>Salvato</option>
-        </select><br />
-        <select id="valutazione_stelle" name="valutazione_stelle">
-            <option value="1" #SELECTED1#>1</option>
-            <option value="2" #SELECTED2#>2</option>
-            <option value="3" #SELECTED3#>3</option>
-            <option value="4" #SELECTED4#>4</option>
-            <option value="5" #SELECTED5#>5</option>
-        </select>
-        <input type="hidden" name="modifica_scheda" value="#MODIFICA_SCHEDA#" />
-        <input type="hidden" name="modifica_valutazione" value="#MODIFICA_VALUTAZIONE#" />
-        <input type="submit" value="Invia" />
-    </form>
-</div>
+<form action="mostra_film.php?titolo=#TITOLO_FILM#" method="POST" class="movie-val-form">
+	<div class="vote-btn" id="visto-btn">
+		<input type="checkbox" id="visto-checkbox" #VISTO# value="visto" name="visto" />
+		<label for="visto-checkbox">Visto</label>
+	</div>
+	<div class="vote-btn" id="salvato-btn">
+		<input type="checkbox" id="salvato-checkbox" #SALVATO# value="salvato" name="salvato" />
+		<label for="salvato-checkbox">Salvato</label>
+	</div>
+	<div class="vote-stars" id="stars-btn">
+		<label for="valutazione_stelle-checkbox">Stelle</label>
+		<select id="valutazione_stelle" name="valutazione_stelle">
+			<option value="1" #SELECTED1#>1</option>
+			<option value="2" #SELECTED2#>2</option>
+			<option value="3" #SELECTED3#>3</option>
+			<option value="4" #SELECTED4#>4</option>
+			<option value="5" #SELECTED5#>5</option>
+		</select>
+	</div>
+	<button type="submit" id="val-submit-btn">Aggiorna</button>
+</form>

@@ -35,10 +35,10 @@ if (isset($_GET["titolo"])) {
             foreach ($lista_film as $value) {
                 if ($_GET["titolo"] == $value["Titolo"]) {
                     $id_film = $value["ID"];
-                    inserisciModificaValutazione($scheda_utente,$valutazione,$id_film);
                     $id_immagine = $value["Locandina"];
                     $page = str_replace("#TITOLO_PAGINA#", $value['Titolo'], $page);
                     $page = str_replace("#TITOLO#", $value['Titolo'], $page);
+					$page = str_replace("#TRAMA#", $value['Trama'], $page);
                     $page = str_replace("#LINGUA_TITOLO#", $value['Lingua_titolo'], $page);
                     $page = str_replace("#ANNO#", $value['Anno'], $page);
                     $page = str_replace("#PAESE#", siglaToPaese($value['Paese']), $page);
@@ -55,38 +55,34 @@ if (isset($_GET["titolo"])) {
                         {
                             $piattaforma_section .= $piattaforma_component;
                             $piattaforma_section = str_replace("#NOME_PIATTAFORMA#", $piattaforma["Nome"], $piattaforma_section);
-                            $piattaforma_section = str_replace("#GIORNO_USCITA#", 
-                                                !empty($piattaforma["Giorno_uscita"])? " disponibile fino a ".dateUsaToEur($piattaforma["Giorno_uscita"]):"", 
-                                                $piattaforma_section);
+							$piattaforma_section = str_replace("#SDH#", $piattaforma["SDH"] ? "SDH" : "", $piattaforma_section);
                             $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "CC" : "", $piattaforma_section);
                             $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "AD" : "", $piattaforma_section);
                         }
 
                         $page = str_replace("#PIATTAFORME#", $piattaforma_section, $page);
                         if($_SESSION["logged"]){
+							
+
                             $page = str_replace("#VALUTAZIONE#", $pulsanti_component, $page);
                             $page = str_replace("#TITOLO_FILM#", $_GET["titolo"], $page);
+
                             $scheda_result = $scheda_utente->findByFilmUser($id_film,$_SESSION["user"]["Username"]);
-                            $page = empty($scheda_result) ? str_replace("#MODIFICA_SCHEDA#", "0", $page) : str_replace("#MODIFICA_SCHEDA#", "1", $page);
-                            if($scheda_result[0]["Visto"]){               
-                                $page = str_replace("#SELECTED_NON_VISTO#", "", $page);
-                                $page = str_replace("#SELECTED_VISTO#", "selected", $page);
+							$valutazione_item = $valutazione->find($_SESSION["user"]["Username"],$id_film);
+
+							if(isset($scheda_result[0]) && $scheda_result[0]["Visto"]){               
+                                $page = str_replace("#VISTO#", "checked", $page);
                             } else{
-                                $page = str_replace("#SELECTED_NON_VISTO#", "selected", $page);
-                                $page = str_replace("#SELECTED_VISTO#", "", $page);
+                                $page = str_replace("#VISTO#", "", $page);
                             }
-
-                            if($scheda_result[0]["Salvato"]){
-                                $page = str_replace("#SELECTED_NON_SALVATO#", "", $page);
-                                $page = str_replace("#SELECTED_SALVATO#", "selected", $page);
-                            }else{
-                                $page = str_replace("#SELECTED_NON_SALVATO#", "selected", $page);
-                                $page = str_replace("#SELECTED_SALVATO#", "", $page);
+							if(isset($scheda_result[0]) && $scheda_result[0]["Salvato"]){               
+                                $page = str_replace("#SALVATO#", "checked", $page);
+                            } else{
+                                $page = str_replace("#SALVATO#", "", $page);
                             }
+							 $page = str_replace("#SELECTED".$valutazione_item["Stelle"]."#", "selected", $page);
 
-                            $valutazione_item = $valutazione->find($_SESSION["user"]["Username"],$id_film);
-                            $page = empty($valutazione_item) ? str_replace("#MODIFICA_VALUTAZIONE#", "0", $page) : str_replace("#MODIFICA_VALUTAZIONE#", "1", $page);
-                            $page = str_replace("#SELECTED".$valutazione_item["Stelle"]."#", "selected", $page);
+							if(isset($_POST)) inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $scheda_result, $valutazione_item);
                         }else{
                             $page = str_replace("#VALUTAZIONE#", "", $page);
                         }
@@ -113,7 +109,6 @@ if (isset($_GET["titolo"])) {
         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Link non corretto", $pagina_errore);
         echo $pagina_errore;
     }
-
 $page = str_replace("#VISTO#", "", $page);
 $page = str_replace("#SALVATO#", "", $page);
 
@@ -122,19 +117,21 @@ $page = str_replace("<customHeader />", $header->render(), $page);
 
 echo $page;
 
-function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film){
+function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $scheda_result, $valutazione_item){
     global $errore;
-    
-    if($_POST["valutazione_stelle"] && $_SESSION["logged"]){
-        try{
-            if(empty($_POST["modifica_scheda"])){
-                $scheda_utente->inserisci($_SESSION["user"]["Username"],$id_film,$_POST["visto"],$_POST["salvato"],0);
+
+    if(isset($_POST["valutazione_stelle"]) && $_SESSION["logged"]){
+		$visto = $_POST["visto"] ? 1 : 0;
+		$salvato = $_POST["salvato"] ? 1 : 0;
+		try{
+            if(!$scheda_result){
+                $scheda_utente->inserisci($_SESSION["user"]["Username"], $id_film, $visto, $salvato, 0);
             }
             else{
-                $scheda_utente->modifica($_SESSION["user"]["Username"],$id_film,$_POST["visto"],$_POST["salvato"],0);
+                $scheda_utente->modifica($_SESSION["user"]["Username"],$id_film,$visto,$salvato,0);
             }
 
-            if(empty($_POST["modifica_valutazione"])){
+            if(!$valutazione_item){
                 $valutazione->inserisci($_SESSION["user"]["Username"],$id_film,"",0,date("Y-m-d H:i:s"),$_POST["valutazione_stelle"]);
             }
             else{

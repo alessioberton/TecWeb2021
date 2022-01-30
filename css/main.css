@@ -712,6 +712,72 @@ form:invalid .submit-btn {
 	opacity: 0.7;
 }
 
+/*MOSTRA FILM*/
+
+#movie-details {
+	display: grid;
+	grid-template:
+		"a b"
+		"a c"
+		"a d" / max-content auto;
+	column-gap: 1em;
+	padding: 0.8em 1em;
+	margin: 0.3em 2em;
+}
+
+.movie-header {
+	grid-area: b;
+	border-top: 2px solid rgba(34, 36, 38, 0.15);
+	border-bottom: 2px solid rgba(34, 36, 38, 0.15);
+}
+
+.movie-title {
+	margin-top: 0.4em;
+	padding: 0.1em 0em;
+}
+
+.movie-cover-container {
+	width: max-content;
+	grid-area: a;
+}
+.movie-cover-container img {
+	height: 24em;
+	width: 16em;
+	border-radius: 3px;
+}
+
+.movie-val-form {
+	width: 100%;
+}
+
+.movie-val-form > div {
+	display: inline-block;
+}
+
+.movie-val-form > button {
+	display: block;
+}
+
+.movie-info-list {
+	grid-area: c;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	padding: 0.5em;
+}
+
+.movie-info-list dt {
+	font-weight: bold;
+}
+.movie-info-list dd {
+	padding-left: 0.5em;
+}
+
+.movie-platform-list {
+	grid-area: d;
+}
+
+/*MOBILE*/
+
 @media (max-width: 800px) {
 	header {
 		height: 3.7em;
