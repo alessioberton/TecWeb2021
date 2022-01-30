@@ -1,12 +1,14 @@
-<dd>
-    <a href="../pagine_ricerca/mostra_film.php?titolo=#TITOLO#">
-        <img class="img_film" src="#LOCANDINA#" height="100px" width="100px" alt="locandina #TITOLO#"/>
-    </a>
-
-    <div class="film_dett">
-        <h5>Titolo Film: #TITOLO#</h5>
-        <h5>Anno: #ANNO#</h5>
-        <h5>Voto: #VOTO#/5</h5>
-        #VALUTAZIONE#
-    </div>
-</dd>
+<li>
+	<a href="../pagine_ricerca/mostra_film.php?titolo=#TITOLO#">
+		<span class="visuallyHidden">#TITOLO#</span>
+		<img class="img_film" src="#LOCANDINA#" height="100px" width="100px" alt="locandina #TITOLO#" />
+	</a>
+	<dl>
+		<dt class="visuallyHidden">Titolo</dt>
+		<dd class="view-movie-title">#TITOLO#</dd>
+		<dt class="visuallyHidden">Anno</dt>
+		<dd>#ANNO#</dd>
+		<dt class="visuallyHidden">Voto</dt>
+		<dd>#VOTO#/5</dd>
+	</dl>
+</li>

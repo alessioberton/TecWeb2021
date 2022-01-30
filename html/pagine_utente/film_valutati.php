@@ -26,7 +26,7 @@ $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 
 $array_valutato = $_SESSION["array_valutato"];
-$list = '<dl >';
+$list = '';
 
 $page = str_replace("#NUMERO_FILM_VALUTATI#", count($array_valutato), $page);
 
@@ -69,17 +69,9 @@ foreach ($lista_film as $value) {
     $view_film = str_replace("#ANNO#", $value->anno, $view_film);
     $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
     $view_film = str_replace("#VOTO#", $value->voto, $view_film);
-    foreach ($valutazione_obj as $value_single) {
-        if (in_array($value->id, $value_single))
-            $link_valutazione = "<a href='../pagine_altre/login.php' class='tnn'>Modifica valutazione</a>";
-        else
-            $link_valutazione = "<a href='../pagine_altre/login.php' class='tnn'>Valuta</a>";
-    }
-    $view_film = str_replace("#VALUTAZIONE#", $link_valutazione, $view_film);
     $list = $list.$view_film;
 }
 
-$list .= "</dl>";
 
 $page = str_replace("#LIST#", $list, $page);
 
