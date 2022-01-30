@@ -19,7 +19,7 @@
 				<ul>
 					<li><a href="../pagine_utente/profilo.php">Profilo</a></li>
 					<li><a href="../pagine_utente/film_visti.php">Film Visti</a></li>
-					<li><a href="../pagine_utente/film_visti.php">Film Salvati</a></li>
+					<li><a href="../pagine_utente/film_salvati.php">Film Salvati</a></li>
 					<li><a href="../pagine_utente/film_valutati.php">Film Valutati</a></li>
 				</ul>
 			</li>

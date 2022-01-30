@@ -106,11 +106,26 @@ class Attore extends Connectable{
         }
     }
 
-    function numeroFilm($id_attore){
+    function numeroFilmAttore($id_attore){
         if ($this->find($id_attore)){
             $query = "SELECT COUNT(*) AS num_film 
                       FROM cast_film 
                       WHERE Attore = ?";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param("i" ,$id_attore);
+            $stmt->execute();
+            $result = convertQuery($stmt->get_result());
+            return $result[0]["num_film"] ?? null;
+        } else{
+            throw new Exception("id_attore non trovato");
+        }
+    }
+
+    function numeroFilmRegista($id_attore){
+        if ($this->find($id_attore)){
+            $query = "SELECT COUNT(*) AS num_film 
+                      FROM regia 
+                      WHERE Regista = ?";
             $stmt = $this->connection->prepare($query);
             $stmt->bind_param("i" ,$id_attore);
             $stmt->execute();

@@ -41,9 +41,6 @@ if(!empty($_POST) && !empty($_POST["titolo"] && empty($_GET["inserted"])))
     $cc = $_POST["cc"];
     $sdh = $_POST["sdh"];
     $ad = $_POST["ad"];
-    $costo_aggiuntivo = $_POST["costo_aggiuntivo"];
-    $giorno_entrata = array_map('empty_to_null',$_POST["giorno_entrata"]);
-    $giorno_uscita = array_map('empty_to_null',$_POST["giorno_uscita"]);
 
     $attori = $_POST["actors"];
 
@@ -80,11 +77,8 @@ if(!empty($_POST) && !empty($_POST["titolo"] && empty($_GET["inserted"])))
             $cc_piattaforma = filter_var($cc[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
             $sdh_piattaforma = filter_var($sdh[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
             $ad_piattaforma = filter_var($ad[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
-            $costo_aggiuntivo_piattaforma = filter_var($costo_aggiuntivo[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
-            $giorno_entrata_piattaforma = $giorno_entrata[$nome_piattaforma];
-            $giorno_uscita_piattaforma = $giorno_uscita[$nome_piattaforma];
             
-            $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,$costo_aggiuntivo_piattaforma,$giorno_entrata_piattaforma,$giorno_uscita_piattaforma);
+            $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,0,date("Y-m-d"),NULL);
         }
 
         $cast_film = new Cast_film();
@@ -107,5 +101,5 @@ $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
 $page = str_replace("#INSERISCI_ATTORI#", $searchbar_attore_component, $page);
+
 echo $page;
-?>
