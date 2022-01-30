@@ -44,10 +44,14 @@ if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
 
         header("location: inserisci_attore.php?inserted=1");
     } catch (Exception $e) {
+		$page = str_replace("#ERRORE_NOME#", " error", $page);
+        $page = str_replace("#ERRORE_NOME#", " error", $page);
         $esito_inserimento = $e;
     }
 }
 
+$page = str_replace("#ERRORE_NOME#", "", $page);
+$page = str_replace("#ERRORE_NOME#", "", $page);
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);

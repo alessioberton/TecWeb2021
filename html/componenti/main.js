@@ -13,7 +13,6 @@
 		el.querySelector("a").addEventListener("click", function (event) {
 			var mediaQuery = window.matchMedia("(max-width: 800px)");
 			if (!mediaQuery.matches) {
-				console.log("HELLO");
 				if (this.parentNode.className == "has-submenu") {
 					this.parentNode.className = "has-submenu open";
 					this.setAttribute("aria-expanded", "true");
@@ -27,6 +26,7 @@
 		});
 	});
 	handleFormErrorA11y();
+	handleFormErrors();
 	handleResizeChanges();
 	window.addEventListener("resize", handleResizeChanges);
 })();
@@ -50,6 +50,29 @@ function handleResizeChanges(event) {
 			node.setAttribute("aria-expanded", "false");
 		});
 	}
+}
+
+function handleFormErrors() {
+	var menuItems = document.querySelectorAll("div.field");
+	Array.prototype.forEach.call(menuItems, function (el, i) {
+		var node = el.querySelector("input");
+		var otherNode = el.querySelector("textarea");
+		if (!node) node = otherNode;
+		if (node) {
+			node.addEventListener("keyup", function (ell, i) {
+				if (!this.checkValidity()) {
+					this.parentNode.classList.add("error");
+					el.querySelector("span.hint").innerHTML = this.validationMessage;
+				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+			});
+			node.addEventListener("blur", function (ell, i) {
+				if (!this.checkValidity()) {
+					this.parentNode.classList.add("error");
+					el.querySelector("span.hint").innerHTML = this.validationMessage;
+				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+			});
+		}
+	});
 }
 
 function handleFormErrorA11y() {
@@ -159,4 +182,14 @@ function removeActor(id_attore) {
 	var cipsetItem = document.getElementById(id_attore);
 	checkbox.parentNode.removeChild(checkbox);
 	cipsetItem.parentNode.removeChild(cipsetItem);
+}
+
+function toggleSearchFilters(event, el) {
+	if (el.parentNode.className == "card") {
+		el.parentNode.className = "card open";
+		el.setAttribute("aria-expanded", "true");
+	} else {
+		el.parentNode.className = "card";
+		el.setAttribute("aria-expanded", "false");
+	}
 }
