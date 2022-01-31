@@ -126,3 +126,7 @@ function timeToString($time){
 
     return $hours.'h'.$minutes.'m';
 }
+
+function isUserAdmin(){
+    return strtolower($_SESSION["user"]["Permessi"]) == "admin";
+}
