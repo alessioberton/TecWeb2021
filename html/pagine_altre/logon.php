@@ -32,7 +32,12 @@ if(isset($_POST['mail'])) {
         exit;
     } catch (Exception $e) {
 		$page = str_replace("#ERRORE_USERNAME#", " error", $page);
+		$page = str_replace("#USERNAME_INITIAL#", $mail, $page);
+		$page = str_replace("#DATA_NASCITA_INITIAL#", $data_nascita, $page);
     }
+}else{
+    $page = str_replace("#USERNAME_INITIAL#", "", $page);
+    $page = str_replace("#DATA_NASCITA_INITIAL#", "", $page);
 }
 
 $page = str_replace("#ERRORE_USERNAME#", "", $page);

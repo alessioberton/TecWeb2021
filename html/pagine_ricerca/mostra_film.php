@@ -40,6 +40,7 @@ if(isUserAdmin() && isset($_POST["elimina"])){
         $film_crud->elimina($_POST["id_film"]);
         header("Location: ricerca.php");
     }catch(Exception $e){
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $errore = $e;
     }
 
@@ -145,6 +146,7 @@ if (isset($_GET["titolo"])) {
                         
                         break;
                     } catch (Exception $e) {
+                        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
                         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
                         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Errore server...", $pagina_errore);
                         echo $pagina_errore;
@@ -191,6 +193,7 @@ function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $s
             }
             header("location: mostra_film.php?titolo=".$_GET["titolo"]);
         }catch(Exception $e){
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
             $errore = $e;
         }
     }

@@ -22,7 +22,7 @@ if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
     $note_carriera = validate_input($_POST["note_carriera"]);
     $descrizione_immagine = validate_input($_POST["descrizione_immagine"]);
     $immagine = $_FILES["immagine"]["name"];
-
+    
     $error_check = validateFields();
 
     if(!$error_check)
@@ -80,12 +80,11 @@ function validateFields(){
     global $page;
     global $nome;
     global $cognome;
-    global $data_nascita;
 
     $attore = new Attore();
     $error = false;
 
-    if(empty($attore->find_nome_cognome_nascita($nome, $cognome, $data_nascita))) $page = str_replace("#ERRORE_NOME#", "", $page);
+    if(empty($attore->find_nome_cognome($nome, $cognome))) $page = str_replace("#ERRORE_NOME#", "", $page);
     else { $page = str_replace("#ERRORE_NOME#", " error", $page); $error = true; }
 
     return $error;

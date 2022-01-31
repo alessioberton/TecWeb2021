@@ -33,13 +33,18 @@ if(isset($_POST['mail'])) {
         } else {
 			$page = str_replace("#ERRORE_USERNAME#", " error", $page);
 			$page = str_replace("#ERRORE_PASSWORD#", " error", $page);
+            $page = str_replace("#USERNAME_INITIAL#", $mail, $page);
         }
     } catch (Exception $e) {
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
     }
+}else{
+    $page = str_replace("#USERNAME_INITIAL#", "", $page);
 }
+
 $page = str_replace("#ERRORE_USERNAME#", "", $page);
 $page = str_replace("#ERRORE_PASSWORD#", "", $page);
 $header = new Header();

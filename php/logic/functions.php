@@ -137,4 +137,8 @@ function validate_input($data) {
     $data = htmlspecialchars($data);
 
     return $data;
-  }
+}
+
+function isStageWebsite(){
+    return $_SERVER["SERVER_NAME"] == "localhost";
+}
