@@ -150,6 +150,8 @@ ALTER TABLE scheda_utente
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11,99 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
+VALUES ('Amazon Prime', '7 euro al mese');
+INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('prime_video', '7 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Rakuten', '14,59 euro al mese');
@@ -656,8 +658,8 @@ VALUES (1, 77),
        (17, 94);
 
 INSERT INTO `utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
-VALUES (1, 'admin', 'admin', '19/05/1995', 112, 'Admin'),
-       (2, 'user', 'user', '19/05/2005', 113, 'Utente');
+VALUES (1, "admin", "admin", "1995/05/19", 112, "Admin"),
+       (2, "user", "user", "1998/05/05", 113, "Utente");
 
 INSERT INTO `scheda_utente` (`Utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
 VALUES (1, 1, true, true, true),

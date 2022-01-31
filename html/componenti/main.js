@@ -189,7 +189,7 @@ function getActorSearchResults(string) {
 			list.innerHTML = this.responseText;
 		}
 	};
-	xmlHttp.open("GET", "../../php/database/suggerimenti_attore.php?q=" + string, true);
+	xmlHttp.open("GET", "../../php/database/suggerimenti_attore.php?q=" + encodeURIComponent(string), true);
 	xmlHttp.send();
 }
 
