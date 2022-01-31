@@ -73,7 +73,7 @@ if (!empty($nome_nuova_immagine)) {
 }
 
 if (isset($_POST['modifica_pwd_btn'])) {
-    $nuova_password = $_POST["ripeti_nuova_pwd"];
+    $nuova_password = validate_input($_POST["ripeti_nuova_pwd"]);
     try {
         if ($_POST["nuova_pwd"] == $nuova_password) $utente->aggiorna_password($_SESSION['username'], $nuova_password);
     } catch (Exception $e) {
@@ -84,12 +84,12 @@ if (isset($_POST['modifica_pwd_btn'])) {
 }
 
 if (isset($_POST['modifica_mail_btn'])) {
-    $nuova_mail = $_POST["nuova_mail"];
+    $nuova_mail = validate_input($_POST["nuova_mail"]);
     try {
-        $utente->aggiorna_mail($_SESSION['username'], $_POST["nuova_mail"]);
-        $page = str_replace($_SESSION['email'], $_POST['nuova_mail'], $page);
-        $page = str_replace($_SESSION['email'], $_POST['nuova_mail'], $page);
-        $_SESSION['email'] = $_POST["nuova_mail"];
+        $utente->aggiorna_mail($_SESSION['username'], $nuova_mail);
+        $page = str_replace($_SESSION['email'], $nuova_mail, $page);
+        $page = str_replace($_SESSION['email'], $nuova_mail, $page);
+        $_SESSION['email'] = $nuova_mail;
     } catch (Exception $e) {
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);

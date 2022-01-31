@@ -15,12 +15,12 @@ $esito_inserimento = "";
 if(!empty($_GET["inserted"])) $esito_inserimento = "Attore inserito con successo";
 
 if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
-    $nome = $_POST["nome"];
-    $cognome = $_POST["cognome"];
-    $data_nascita = $_POST["data_nascita"];
-    $data_morte = $_POST["data_morte"];
-    $note_carriera = $_POST["note_carriera"];
-    $descrizione_immagine = $_POST["descrizione_immagine"];
+    $nome = validate_input($_POST["nome"]);
+    $cognome = validate_input($_POST["cognome"]);
+    $data_nascita = validate_input($_POST["data_nascita"]);
+    $data_morte = validate_input($_POST["data_morte"]);
+    $note_carriera = validate_input($_POST["note_carriera"]);
+    $descrizione_immagine = validate_input($_POST["descrizione_immagine"]);
     $immagine = $_FILES["immagine"]["name"];
 
     $attore = new Attore();

@@ -130,3 +130,11 @@ function timeToString($time){
 function isUserAdmin(){
     return strtolower($_SESSION["user"]["Permessi"]) == "admin";
 }
+
+function validate_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+
+    return $data;
+  }

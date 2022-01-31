@@ -20,19 +20,19 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
 {   
     $_POST = array_map('empty_to_null', $_POST);
 
-    $titolo = $_POST["titolo"];
-    $lingua_titolo = $_POST["lingua_titolo"];
-    $trama = $_POST["trama"];
-    $anno = $_POST["anno"];
-    $paese = $_POST["paese"];
-    $durata = timeToSeconds(stringToTime($_POST["durata"]));
-    $descrizione_immagine = $_POST["descrizione_immagine"];
+    $titolo = validate_input($_POST["titolo"]);
+    $lingua_titolo = validate_input($_POST["lingua_titolo"]);
+    $trama = validate_input($_POST["trama"]);
+    $anno = validate_input($_POST["anno"]);
+    $paese = validate_input($_POST["paese"]);
+    $durata = timeToSeconds(stringToTime(validate_input($_POST["durata"])));
+    $descrizione_immagine = validate_input($_POST["descrizione_immagine"]);
     $immagine = $_FILES["immagine"]["name"];
 
-    $eta_publico = $_POST["eta_pubblico"];
-    $livello = $_POST["livello"];
-    $mood = $_POST["mood"];
-    $riconoscimenti = filter_var($_POST["riconoscimenti"],FILTER_VALIDATE_BOOLEAN);
+    $eta_publico = validate_input($_POST["eta_pubblico"]);
+    $livello = validate_input($_POST["livello"]);
+    $mood = validate_input($_POST["mood"]);
+    $riconoscimenti = filter_var(validate_input($_POST["riconoscimenti"]),FILTER_VALIDATE_BOOLEAN);
 
     $genere = $_POST["genere"];
 
@@ -71,21 +71,23 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
 
             $genereFilm = new GenereFilm();
             foreach($genere as $nome_genere => $val_genere){
+                $nome_genere = validate_input($nome_genere);
                 $genereFilm->inserisci($id_film,$nome_genere);
             }
 
             $disponibilita = new Disponibilita();
             foreach($piattaforma as $nome_piattaforma => $val_piattaforma){
-                $nome_piattaforma;
-                $cc_piattaforma = filter_var($cc[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
-                $sdh_piattaforma = filter_var($sdh[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
-                $ad_piattaforma = filter_var($ad[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
+                $nome_piattaforma = validate_input($nome_piattaforma);
+                $cc_piattaforma = filter_var(validate_input($cc[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
+                $sdh_piattaforma = filter_var(validate_input($sdh[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
+                $ad_piattaforma = filter_var(validate_input($ad[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 
                 $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,0,date("Y-m-d"),NULL);
             }
 
             $cast_film = new Cast_film();
             foreach($attori as $attore_id){
+                $attore_id = validate_input($attore_id);
                 $cast_film->inserisci($id_film,$attore_id);
             }
 

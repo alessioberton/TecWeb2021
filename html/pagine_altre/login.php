@@ -19,8 +19,8 @@ $page = file_get_contents(__DIR__.'/login.html');
 
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['mail'])) {
-    $mail = trim($_POST["mail"]);
-    $pwd = trim($_POST["pwd"]);
+    $mail = validate_input(trim($_POST["mail"]));
+    $pwd = validate_input(trim($_POST["pwd"]));
     $utente = new Utente();
     try {
         $query_array = $utente->find($mail, $pwd);
