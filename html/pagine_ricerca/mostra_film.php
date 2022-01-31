@@ -47,7 +47,7 @@ if (isset($_GET["titolo"])) {
 					$page = str_replace("#TRAMA#", $value['Trama'], $page);
                     $page = str_replace("#LINGUA_TITOLO#", $value['Lingua_titolo'], $page);
                     $page = str_replace("#ANNO#", $value['Anno'], $page);
-                    $page = str_replace("#PAESE#", siglaToPaese($value['Paese']), $page);
+                    $page = str_replace("#PAESE#", ($value['Paese']), $page);
                     $page = str_replace("#DURATA#", timeToString(secondsToTime($value['Durata'])), $page);
 
                     try{
