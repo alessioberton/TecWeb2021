@@ -46,6 +46,7 @@ try {
     }
     $page = str_replace("ERRORE", $errore, $page);
 } catch (Exception $e) {
+    if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
     $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
     $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;
@@ -66,6 +67,7 @@ if (!empty($nome_nuova_immagine)) {
         echo $nome_immagine_presente;
         $nome_immagine_presente = $nome_nuova_immagine;
     } catch (Exception $e) {
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
@@ -77,6 +79,7 @@ if (isset($_POST['modifica_pwd_btn'])) {
     try {
         if ($_POST["nuova_pwd"] == $nuova_password) $utente->aggiorna_password($_SESSION['username'], $nuova_password);
     } catch (Exception $e) {
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
@@ -91,6 +94,7 @@ if (isset($_POST['modifica_mail_btn'])) {
         $page = str_replace($_SESSION['email'], $nuova_mail, $page);
         $_SESSION['email'] = $nuova_mail;
     } catch (Exception $e) {
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
         echo $pagina_errore;
@@ -119,6 +123,7 @@ try {
     $page = str_replace("#FILM_SALVATI#", $conta_salvati, $page);
     $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);
 } catch (Exception $e) {
+    if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
     $pagina_errore = file_get_contents(__DIR__."/../../html/pagine_altre/errore.html");
     $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;

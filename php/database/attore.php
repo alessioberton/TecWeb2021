@@ -28,6 +28,15 @@ class Attore extends Connectable{
         return $result[0] ?? null;
     }
 
+    function find_nome_cognome($nome, $cognome){
+        $query = "SELECT * FROM attore WHERE Nome = ? AND Cognome = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("ss" ,$nome, $cognome);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result[0] ?? null;
+    }
+
     function inserisci($nome,$cognome,$data_nascita,$data_morte=NULL,$note_carriera=NULL){
         $query = "INSERT INTO attore(Nome,Cognome,Data_nascita,Data_morte,Note_carriera) VALUES(?,?,?,?,?)";
         $stmt = $this->connection->prepare($query);

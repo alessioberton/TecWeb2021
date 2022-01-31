@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__.'/../../php/logic/error_reporting.php');
+require_once(__DIR__.'/../../php/logic/functions.php');
 require_once(__DIR__.'/../../php/config.php');
 
 require_once(__DIR__.'/../../php/database/dbconnection.php');
@@ -13,6 +14,7 @@ class Connectable{
             $this->connection->openDBConnection();
         }
         catch(Exception $e){
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
             echo $e;
             exit();
         }

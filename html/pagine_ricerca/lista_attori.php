@@ -45,6 +45,7 @@ try {
         $errore = 'Parametro id non passato';
     }
 } catch (Exception $e) {
+    if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
     $errore = $e;
 }
 
