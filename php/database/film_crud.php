@@ -71,18 +71,6 @@ class Film_crud extends Connectable{
         }
     }
 
-	function inserisci($film_id, $tema, $eta_pubblico, $livello, $riconoscimenti){
-        $query = "INSERT INTO categorizzazione(Film, Tema, Eta_pubblico, Livello, Mood, Riconoscimenti) VALUES(?,?,?,?,?,?)";
-
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("isssi", $film_id, $tema, $eta_pubblico, $livello, $riconoscimenti);
-        $stmt->execute();
-        $result = $stmt->affected_rows;
-        if($result < 0){
-            throw new Exception($this->connection->error);
-        }
-    }
-
     function associa_immagine($id_film, $id_immagine){
         $immagine = new Immagine();
         if($this->findById($id_film) && $immagine->find($id_immagine))
