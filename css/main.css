@@ -955,8 +955,18 @@ a.skip-to-content:active {
 		transition: left 0.2s linear;
 	}
 
-	#heading.menuActive,
-	#heading:focus-within {
+	#heading nav#mainNavigation,
+	#heading h1 {
+		display: none;
+	}
+
+	#heading.menuActive nav#mainNavigation,
+	#heading.menuActive .userStatus,
+	#heading.menuActive h1 {
+		display: block;
+	}
+
+	#heading.menuActive {
 		left: 0;
 	}
 
@@ -967,7 +977,7 @@ a.skip-to-content:active {
 	}
 
 	#heading > .userStatus {
-		display: block;
+		display: none;
 		background-size: 1.6em;
 		background-position: 0;
 		padding-left: 2.1em;

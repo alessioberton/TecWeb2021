@@ -6,7 +6,7 @@
 		"keyup",
 		function (event) {
 			if (!isFocusWithin(event, "movieSelect")) clearMovieSearchResults();
-			if (!isFocusWithin(event, "heading")) closeMenu();
+			if (event.target.id !== "menuButton" && !isFocusWithin(event, "heading")) closeMenu();
 		},
 		{ passive: true }
 	);
@@ -106,9 +106,11 @@ function toggleMenu(event) {
 		node.className = "";
 		button.setAttribute("aria-expanded", "false");
 		node.removeAttribute("class");
+		node.setAttribute("aria-hidden", "true");
 	} else {
 		button.setAttribute("aria-expanded", "true");
 		node.className = "menuActive";
+		node.setAttribute("aria-hidden", "false");
 	}
 	event.stopPropagation();
 }
@@ -117,7 +119,17 @@ function closeMenu() {
 	var mainMenu = document.getElementById("heading");
 	var button = document.getElementById("menuButton");
 	mainMenu.className = "";
+	mainMenu.removeAttribute("class");
+	mainMenu.setAttribute("aria-hidden", "true");
 	button.setAttribute("aria-expanded", "false");
+}
+
+function openMenu() {
+	var mainMenu = document.getElementById("heading");
+	var button = document.getElementById("menuButton");
+	mainMenu.className = "menuActive";
+	mainMenu.setAttribute("aria-hidden", "false");
+	button.setAttribute("aria-expanded", "true");
 }
 
 function getMovieSearchResults(event, string) {
