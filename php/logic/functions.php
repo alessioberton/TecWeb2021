@@ -142,3 +142,8 @@ function validate_input($data) {
 function isStageWebsite(){
     return $_SERVER["SERVER_NAME"] == "localhost";
 }
+
+function renameImage($image){
+    
+    return substr_replace($image, "_".date("YmdHis"), strripos($image, '.'), 0);
+}

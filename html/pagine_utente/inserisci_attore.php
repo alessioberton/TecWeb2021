@@ -34,8 +34,9 @@ if (!empty($_POST['nome']) && empty($_GET["inserted"])) {
             $id_attore = $attore->getLastInsertedAttore()["ID"];
 
             if (!empty($immagine)) {
+                $_FILES["immagine"]["name"] = renameImage($_FILES["immagine"]["name"]);
                 upload_image(__DIR__."/../../img/attori/", "immagine", $_SESSION["max_dim_img"]);
-
+                
                 $percorso_immagine = "attori/". basename($_FILES["immagine"]["name"]);
 
                 $immagine = new Immagine();

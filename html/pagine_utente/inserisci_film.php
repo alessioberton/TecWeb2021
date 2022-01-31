@@ -54,6 +54,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
             $id_film = $film_crud->getLastInsertedFilm()["ID"];
 
             if(!empty($immagine)){
+                $_FILES["immagine"]["name"] = renameImage($_FILES["immagine"]["name"]);
                 upload_image(__DIR__.'/../../img/film/',"immagine",$_SESSION['max_dim_img']);
 
                 $percorso_immagine = "film/" . basename($_FILES["immagine"]["name"]);
