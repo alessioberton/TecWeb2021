@@ -109,7 +109,6 @@ if ($sto_cercando) {
         foreach ($filtro_categoria as $value) {
             $film = new Film_search([]);
             $film->id = $value["Film"];
-            $film->tema = $value["Tema"];
             $film->eta = $value["Eta_pubblico"];
             $film->livello = $value["Livello"];
             $film->mood = $value["Mood"];

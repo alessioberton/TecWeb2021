@@ -32,16 +32,16 @@ class Categorizzazione extends Connectable{
     }
 
 
-    function inserisci($id_film,$tema,$eta_pubblico,$livello,$mood,$riconoscimenti){
+    function inserisci($id_film,$eta_pubblico,$livello,$mood,$riconoscimenti){
         if($this->find($id_film)){
             throw new Exception("id_film gia' presente");
         }
 
-        $query = "INSERT INTO categorizzazione(Film,Tema,Eta_pubblico,Livello,Mood,Riconoscimenti)
+        $query = "INSERT INTO categorizzazione(Film,Eta_pubblico,Livello,Mood,Riconoscimenti)
                   VALUES(?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("issssi",$id_film,$tema,$eta_pubblico,$livello,$mood,$riconoscimenti);
+        $stmt->bind_param("isssi",$id_film,$eta_pubblico,$livello,$mood,$riconoscimenti);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){

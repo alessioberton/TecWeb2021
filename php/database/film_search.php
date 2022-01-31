@@ -19,7 +19,6 @@ class Film_search {
     public $ad;
     public $livello;
     public $eta;
-    public $tema;
     public $mood;
     public $riconoscimenti;
     public $costo_aggiuntivo;
@@ -44,7 +43,6 @@ class Film_search {
             $this->ad = $array["AD"];
             $this->livello = $array["Livello"];
             $this->eta = $array["Eta"];
-            $this->tema = $array["Tema"];
             $this->mood = $array["Mood"];
             $this->riconoscimenti = $array["Riconoscimenti"];
             $this->costo_aggiuntivo = $array["costo_aggiuntivo"];
