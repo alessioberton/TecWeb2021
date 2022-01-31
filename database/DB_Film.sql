@@ -151,7 +151,7 @@ ALTER TABLE scheda_utente
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11,99 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Amazon Prime', '7 euro al mese');
+VALUES ('prime_video', '7 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Rakuten', '14,59 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
