@@ -786,25 +786,7 @@ a.skip-to-content:active {
 /*MOSTRA FILM*/
 
 #movie-details {
-	display: grid;
-	grid-template:
-		"a b"
-		"a c"
-		"a d" / max-content auto;
-	column-gap: 1em;
-	padding: 0.8em 1em;
-	margin: 0.3em 2em;
-}
-
-.movie-header {
-	grid-area: b;
-	border-top: 2px solid rgba(34, 36, 38, 0.15);
-	border-bottom: 2px solid rgba(34, 36, 38, 0.15);
-}
-
-.movie-title {
-	margin-top: 0.4em;
-	padding: 0.1em 0em;
+	display: flex;
 }
 
 .movie-cover-container {
@@ -830,21 +812,59 @@ a.skip-to-content:active {
 }
 
 .movie-info-list {
-	grid-area: c;
-	display: grid;
-	grid-template-columns: auto auto auto;
-	padding: 0.5em;
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.movie-info-list dt {
+#title-item {
+	flex: 1 1 content;
+}
+#title-item dd {
+	font-size: 1.2em;
 	font-weight: bold;
 }
-.movie-info-list dd {
-	padding-left: 0.5em;
+
+#anno-item {
+	flex: 1 1 90%;
 }
 
-.movie-platform-list {
-	grid-area: d;
+#star-item {
+	grid-area: star;
+	flex: 1 1 100%;
+}
+
+#plot-item {
+	flex: 1 1 100%;
+}
+
+#regista-item {
+	flex: 1 1 100%;
+}
+#actors-item {
+	flex: 1 1 100%;
+}
+
+#genres-item {
+	flex: 1 1 33%;
+}
+
+#mood-item {
+	flex: 1 1 33%;
+}
+#impegno-item {
+	flex: 1 1 33%;
+}
+
+#eta-item {
+	flex: 1 1 content;
+}
+
+#durata-item {
+	flex: 1 1 100%;
+}
+
+#platform-item {
+	flex: 1 1 100%;
 }
 
 /* PROFILO */
