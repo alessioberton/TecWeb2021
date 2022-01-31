@@ -19,9 +19,7 @@
 					<img class="img_film" id="img_film-view" src="#URL_IMG_FILM#" alt="#ALT_IMG_FILM#" />
 					#VALUTAZIONE#
 				</div>
-				<div>
-					#AREA_ADMIN#
-				</div>
+				<div>#AREA_ADMIN#</div>
 				<div class="movie-header">
 					<h2 class="movie-title" lang="#LINGUA_TITOLO#">#TITOLO#</h2>
 					<p class="movie-plot">#TRAMA#</p>
@@ -33,7 +31,11 @@
 					</div>
 					<div id="star-item">
 						<dt class="movie-info-title">Valutazione</dt>
-						<dd class="movie-info">#STELLE#</dd>
+						<dd>
+							<span class="stars" data-stars="#STELLE#" title="#STELLE#/5" style="--stars: #STELLE#" aria-hidden="true">
+							</span
+							><span class="visuallyHidden">#STELLE#/5</span>
+						</dd>
 					</div>
 					<div id="regista-item">
 						<dt class="movie-info-title">Regista</dt>

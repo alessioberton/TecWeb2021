@@ -1,7 +1,7 @@
 <li>
 	<a href="../pagine_ricerca/mostra_film.php?titolo=#TITOLO#">
 		<span class="visuallyHidden">#TITOLO#</span>
-		<img class="img_film" src="#LOCANDINA#" height="100px" width="100px" alt="locandina #TITOLO#" />
+		<img class="img_film" src="#LOCANDINA#" alt="locandina #TITOLO#" />
 	</a>
 	<dl>
 		<dt class="visuallyHidden">Titolo</dt>
@@ -9,6 +9,9 @@
 		<dt class="visuallyHidden">Anno</dt>
 		<dd>#ANNO#</dd>
 		<dt class="visuallyHidden">Voto</dt>
-		<dd>#VOTO#/5</dd>
+		<dd>
+			<span class="stars" data-stars="#VOTO#" title="#VOTO#/5" style="--stars: #VOTO#" aria-hidden="true"> </span
+			><span class="visuallyHidden">#VOTO#/5</span>
+		</dd>
 	</dl>
 </li>

@@ -81,7 +81,7 @@ if (isset($_GET["mood"])) {
     }
 }
 
-print_r($categorizzazione_sql);
+//print_r($categorizzazione_sql);
 
 if (!isset ($_GET['page'])) {
     $numero_pagina = 1;
@@ -93,6 +93,9 @@ $results_per_page = 2;
 $page_first_result = ($numero_pagina - 1) * $results_per_page;
 
 if ($sto_cercando) {
+	$page = str_replace("#INITIAL_OPEN#", "", $page);
+	$page = str_replace("#INITIAL_ARIA_EXP#", "false", $page);
+
     if ($categorizzazione_sql) $filtro_categoria = $categorizizzazione->dynamic_find($categorizzazione_sql);
     else $filtro_categoria = $categorizizzazione->find_all();
     if ($genere_sql) $filtro_genere = $genere_film->dynamic_find_by_genere($genere_sql);
@@ -101,7 +104,7 @@ if ($sto_cercando) {
     else $filtro_disponibilita = $disponibilia->find_all();
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
-        print "Nessun film trovato";
+		$page = str_replace("#RISULTATI#", "Nessun Film Trovato", $page);
     } else {
         foreach ($filtro_categoria as $value) {
             $film = new Film_search([]);
@@ -158,14 +161,17 @@ if ($sto_cercando) {
             $lista_film[$i]->anno = $film_obj->anno;
             $lista_film[$i]->locandina = $film_obj->locandina;
         }
-
+		
         $ho_elenti = false;
-        for ($i = $page_first_result; $i < $page_first_result + $results_per_page; $i++) {
+        for ($i = 0; $i < count($lista_film); $i++) {
             if ($i < count($lista_film) && $lista_film[$i]) {
+				
                 $ho_elenti = true;
                 $sezione_risultati .= $componente_lista_risultati;
                 $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
-                $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
+				$sezione_risultati = str_replace("#ANNO#", $lista_film[$i]->anno, $sezione_risultati);
+				if(!isset($lista_film[$i]->voto)) $sezione_risultati = str_replace("#VOTO#", "0", $sezione_risultati);
+                else $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
                 $id_immagine = $lista_film[$i]->locandina;
                 $percorso_immagine =
                     $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
@@ -175,7 +181,7 @@ if ($sto_cercando) {
             }
         }
 
-        $query_string = $_SERVER["QUERY_STRING"];
+       /* $query_string = $_SERVER["QUERY_STRING"];
         $s = explode("&", $query_string);
         $number_of_page = ceil(count($lista_film) / $results_per_page);
 
@@ -197,11 +203,15 @@ if ($sto_cercando) {
             }
         } else {
             print "non giocare con la barra come un bambino";
-        }
+        }*/
 
 
         $page = str_replace("#RISULTATI#", $sezione_risultati, $page);
     }
+} else {
+	$page = str_replace("#INITIAL_OPEN#", " open", $page);
+	$page = str_replace("#INITIAL_ARIA_EXP#", "true", $page);
+	$page = str_replace("#RISULTATI#", "", $page);
 }
 
 
