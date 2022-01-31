@@ -579,7 +579,7 @@ VALUES (1, 77),
 
 INSERT INTO `utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
 VALUES (1, "admin", "admin", "19/05/1995", 112, "Admin"),
-       (2, "user@user.com", "userrr", "19/05/2005", 113, "Utente");
+       (2, "user", "user", "19/05/2005", 113, "Utente");
 
 INSERT INTO `scheda_utente` (`Utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
 VALUES (1, 1, true, false, true),
