@@ -543,6 +543,33 @@ form:invalid .submit-btn {
 	opacity: 0.5;
 }
 
+a.skip-to-content {
+	left: -999px;
+	position: absolute;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	z-index: -999;
+}
+
+a.skip-to-content:focus,
+a.skip-to-content:active {
+	color: #fff;
+	background-color: rgba(20, 20, 20, 0.95);
+	left: auto;
+	top: auto;
+	width: 30%;
+	height: auto;
+	overflow: auto;
+
+	padding: 0.1em;
+	border-radius: 3px;
+	text-align: center;
+	font-size: 1.2em;
+	z-index: 2000;
+}
+
 /*TAB PAGINA INSERISCI FILM */
 
 .tabs {
@@ -928,7 +955,8 @@ form:invalid .submit-btn {
 		transition: left 0.2s linear;
 	}
 
-	#heading.menuActive {
+	#heading.menuActive,
+	#heading:focus-within {
 		left: 0;
 	}
 

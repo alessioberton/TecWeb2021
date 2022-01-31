@@ -1,7 +1,31 @@
 (function () {
-	document.addEventListener("click", closeMenus, { passive: true });
-	document.addEventListener("click", clearMovieSearchResults, { passive: true });
+	document.getElementById("heading").addEventListener("click", function (event) {
+		event.stopPropagation(event);
+	});
+	document.addEventListener(
+		"keyup",
+		function (event) {
+			if (!isFocusWithin(event, "movieSelect")) clearMovieSearchResults();
+			if (!isFocusWithin(event, "heading")) closeMenu();
+		},
+		{ passive: true }
+	);
+	document.addEventListener(
+		"click",
+		function (event) {
+			closeMenu();
+			if (!isFocusWithin(event, "movieSelect")) clearMovieSearchResults();
+		},
+		{ passive: true }
+	);
 
+	handleMenu();
+	handleFormErrors();
+	handleResizeChanges();
+	window.addEventListener("resize", handleResizeChanges);
+})();
+
+function handleMenu() {
 	var menuItems = document.querySelectorAll("li.has-submenu");
 	Array.prototype.forEach.call(menuItems, function (el, i) {
 		el.addEventListener("mouseover", function (event) {
@@ -25,11 +49,34 @@
 			return false;
 		});
 	});
-	handleFormErrorA11y();
-	handleFormErrors();
-	handleResizeChanges();
-	window.addEventListener("resize", handleResizeChanges);
-})();
+}
+
+function handleFormErrors() {
+	var menuItems = document.querySelectorAll("div.field");
+	Array.prototype.forEach.call(menuItems, function (el, i) {
+		var node = el.querySelector("input");
+		var otherNode = el.querySelector("textarea");
+		if (!node) node = otherNode;
+		if (node) {
+			node.addEventListener("keyup", function (ell, i) {
+				if (!this.checkValidity()) {
+					var span = el.querySelector("span");
+					this.parentNode.classList.add("error");
+					span.innerHTML = this.validationMessage;
+					node.setAttribute("aria-describedby", span.id);
+				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+			});
+			node.addEventListener("blur", function (ell, i) {
+				if (!this.checkValidity()) {
+					var span = el.querySelector("span");
+					this.parentNode.classList.add("error");
+					span.innerHTML = this.validationMessage;
+					node.setAttribute("aria-describedby", span.id);
+				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+			});
+		}
+	});
+}
 
 function handleResizeChanges(event) {
 	var mediaQuery = window.matchMedia("(max-width: 800px)");
@@ -52,38 +99,6 @@ function handleResizeChanges(event) {
 	}
 }
 
-function handleFormErrors() {
-	var menuItems = document.querySelectorAll("div.field");
-	Array.prototype.forEach.call(menuItems, function (el, i) {
-		var node = el.querySelector("input");
-		var otherNode = el.querySelector("textarea");
-		if (!node) node = otherNode;
-		if (node) {
-			node.addEventListener("keyup", function (ell, i) {
-				if (!this.checkValidity()) {
-					this.parentNode.classList.add("error");
-					el.querySelector("span.hint").innerHTML = this.validationMessage;
-				} else this.parentNode.className = this.parentNode.className.replace("error", "");
-			});
-			node.addEventListener("blur", function (ell, i) {
-				if (!this.checkValidity()) {
-					this.parentNode.classList.add("error");
-					el.querySelector("span.hint").innerHTML = this.validationMessage;
-				} else this.parentNode.className = this.parentNode.className.replace("error", "");
-			});
-		}
-	});
-}
-
-function handleFormErrorA11y() {
-	var menuItems = document.querySelectorAll("div.field.error");
-	Array.prototype.forEach.call(menuItems, function (el, i) {
-		var input = el.querySelector("input");
-		var span = el.querySelector("span");
-		input.setAttribute("aria-describedby", span.id);
-	});
-}
-
 function toggleMenu(event) {
 	var node = document.getElementById("heading");
 	var button = document.getElementById("menuButton");
@@ -98,33 +113,42 @@ function toggleMenu(event) {
 	event.stopPropagation();
 }
 
-function closeMenus() {
+function closeMenu() {
 	var mainMenu = document.getElementById("heading");
-	if (mainMenu) mainMenu.className = "";
+	var button = document.getElementById("menuButton");
+	mainMenu.className = "";
+	button.setAttribute("aria-expanded", "false");
 }
 
-function stopPropagation(domEvent) {
-	domEvent.stopPropagation();
-}
-
-function getMovieSearchResults(string) {
+function getMovieSearchResults(event, string) {
 	var suggestionList = document.getElementById("movieSuggestionList");
-	var headerFlexbox = document.getElementById("topbar");
-	closeMenus();
-	headerFlexbox.className = "searching";
-	if (string.length < 2) {
-		suggestionList.innerHTML = "";
-		return;
-	}
 
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function () {
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			suggestionList.innerHTML = this.responseText;
+	var headerFlexbox = document.getElementById("topbar");
+	headerFlexbox.className = "searching";
+
+	if (string.length > 1) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				suggestionList.innerHTML = this.responseText;
+			}
+		};
+		xmlHttp.open("GET", "../../php/database/ricerca.php?q=" + string, true);
+		xmlHttp.send();
+	} else {
+		suggestionList.innerHTML = "";
+	}
+}
+
+function isFocusWithin(event, id) {
+	var x = document.activeElement;
+	while (x) {
+		if (x.id == id || x == id) {
+			return true;
 		}
-	};
-	xmlHttp.open("GET", "../../php/database/ricerca.php?q=" + string, true);
-	xmlHttp.send();
+		x = x.parentElement;
+	}
+	return false;
 }
 
 function clearMovieSearchResultsAndBar(event) {
