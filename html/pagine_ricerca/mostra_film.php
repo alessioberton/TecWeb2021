@@ -111,7 +111,7 @@ if (isset($_GET["titolo"])) {
 							
 
                             $page = str_replace("#VALUTAZIONE#", $pulsanti_component, $page);
-                            $page = str_replace("#TITOLO_FILM#", $_GET["titolo"], $page);
+                            $page = str_replace("#TITOLO_FILM#", rawurlencode($_GET["titolo"]), $page);
 
                             $scheda_result = $scheda_utente->findByFilmUser($id_film,$_SESSION["user"]["Username"]);
 							$valutazione_item = $valutazione->find($_SESSION["user"]["Username"],$id_film);
@@ -191,7 +191,7 @@ function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $s
             else{
                 $valutazione->modifica($_SESSION["user"]["Username"],$id_film,"",0,validate_input($_POST["valutazione_stelle"]));
             }
-            header("location: mostra_film.php?titolo=".$_GET["titolo"]);
+            header("location: mostra_film.php?titolo=".rawurlencode($_GET["titolo"]));
         }catch(Exception $e){
             if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
             $errore = $e;

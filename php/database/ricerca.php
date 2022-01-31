@@ -8,9 +8,10 @@ require_once(__DIR__.'/../../php/database/immagine.php');
 $query = $_GET["q"];
 
 function suggestion($immagine_film, $descrizione_immagine_film, $titolo_film, $anno) {
+    $titolo_film_url = rawurlencode($titolo_film);
     return <<<HTML
 		<li>
-			<a href="../pagine_ricerca/mostra_film.php?titolo=$titolo_film">
+			<a href="../pagine_ricerca/mostra_film.php?titolo=$titolo_film_url">
 				<img src="$immagine_film" alt='$descrizione_immagine_film'/>
 				<div>
 					<h2>$titolo_film</h2>

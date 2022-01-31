@@ -82,6 +82,7 @@ foreach ($lista_film as $value) {
     $percorso_film = "../../img/" . $percorso_film;
     $view_film = str_replace("#LOCANDINA#", $percorso_film, $view_film);
     $view_film = str_replace("#TITOLO#", $value->titolo, $view_film);
+    $view_film = str_replace("#TITOLOURL#", rawurlencode($value->titolo), $view_film);
     $view_film = str_replace("#ANNO#", $value->anno, $view_film);
     $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
     $view_film = str_replace("#VOTO#", $value->voto, $view_film);

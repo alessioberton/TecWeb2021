@@ -81,8 +81,6 @@ if (isset($_GET["mood"])) {
     }
 }
 
-//print_r($categorizzazione_sql);
-
 if (!isset ($_GET['page'])) {
     $numero_pagina = 1;
 } else {
@@ -169,6 +167,7 @@ if ($sto_cercando) {
                 $ho_elenti = true;
                 $sezione_risultati .= $componente_lista_risultati;
                 $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
+                $sezione_risultati = str_replace("#TITOLOURL#", rawurlencode($lista_film[$i]->titolo), $sezione_risultati);
 				$sezione_risultati = str_replace("#ANNO#", $lista_film[$i]->anno, $sezione_risultati);
 				if(!isset($lista_film[$i]->voto)) $sezione_risultati = str_replace("#VOTO#", "0", $sezione_risultati);
                 else $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
@@ -180,32 +179,6 @@ if ($sto_cercando) {
                 $sezione_risultati = str_replace("#DESCRIZONE#", $descrizione_immagine, $sezione_risultati);
             }
         }
-
-       /* $query_string = $_SERVER["QUERY_STRING"];
-        $s = explode("&", $query_string);
-        $number_of_page = ceil(count($lista_film) / $results_per_page);
-
-        if ($ho_elenti) {
-            for ($i = 1; $i <= $number_of_page; $i++) {
-                if ($query_string) {
-                    $new_query_string = $query_string;
-                    if (strpos($new_query_string, "page")) {
-                        $new_query_string = str_replace($s[count($s) - 1], "", $new_query_string);
-                    }
-                    if ($numero_pagina == $i) {
-                        $sezione_risultati .= " $i ";
-                    } else {
-                        $sezione_risultati .= '<a href = "ricerca.php?' . $new_query_string . '&page=' . $i . '">' . $i . ' </a>';
-                    }
-                } else {
-                    $sezione_risultati .= '<a href = "ricerca.php?page=' . $i . '">' . $i . ' </a>';
-                }
-            }
-        } else {
-            print "non giocare con la barra come un bambino";
-        }*/
-
-
         $page = str_replace("#RISULTATI#", $sezione_risultati, $page);
     }
 } else {
