@@ -26,6 +26,7 @@ $genere_component = file_get_contents(__DIR__.'/../../html/componenti/view_gener
 $attore_component = file_get_contents(__DIR__.'/../../html/componenti/view_attori.html');
 $regista_component = file_get_contents(__DIR__.'/../../html/componenti/view_registi.html');
 $pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/pulsanti_film.html');
+$admin_component = file_get_contents(__DIR__.'/../../html/componenti/view_admin.html');
 $errore = '';
 $percorso_film = '';
 
@@ -33,6 +34,16 @@ $immagine = new Immagine();
 $scheda_utente = new SchedaUtente();
 $valutazione = new Valutazione();
 $film_crud = new Film_crud();
+
+if(isUserAdmin() && isset($_POST["elimina"])){
+    try{
+        $film_crud->elimina($_POST["id_film"]);
+        header("Location: ricerca.php");
+    }catch(Exception $e){
+        $errore = $e;
+    }
+
+}
 
 $lista_film = $film_crud->find_all();
 
@@ -123,8 +134,15 @@ if (isset($_GET["titolo"])) {
 
                         for($i = 1; $i <= 5; $i++)
                             $page = str_replace("#SELECTED".$i."#", "", $page);
-                        $page = str_replace("#ID_FILM#", $id_film, $page);
+                        
+                        if(isUserAdmin()){
+                            $page = str_replace("#AREA_ADMIN#", $admin_component, $page);
+                        }else{
+                            $page = str_replace("#AREA_ADMIN#", "", $page);
+                        }
 
+                        $page = str_replace("#ID_FILM#", $id_film, $page);
+                        
                         break;
                     } catch (Exception $e) {
                         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
