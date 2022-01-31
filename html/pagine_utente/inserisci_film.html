@@ -11,7 +11,7 @@
 	<body>
 		<customHeader />
 		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Inserisci Film</div>
-		<main>
+		<main id="content">
 			<p>#ESITO_INSERIMENTO#</p>
 			<form method="post" action="inserisci_film.php" enctype="multipart/form-data" id="insert-film-form">
 				<div class="tabs">
@@ -66,7 +66,9 @@
 
 						<div class="field text-input">
 							<label for="descrizione_immagine">Descrizione immagine</label>
-							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100">#DECRIZIONE_IMMAGINE_INITIAL#</textarea>
+							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100">
+#DECRIZIONE_IMMAGINE_INITIAL#</textarea
+							>
 							<span id="descrizione_immagine-desc" class="hint">Lunghezza superiore ai 100 caratteri</span>
 						</div>
 						<div class="field text-input">
@@ -82,13 +84,30 @@
 
 						<div class="field text-input">
 							<label for="anno">Anno</label>
-							<input type="number" id="anno" name="anno" min="1800" max="2023" required placeholder="1999" value="#ANNO_INITIAL#" />
+							<input
+								type="number"
+								id="anno"
+								name="anno"
+								min="1800"
+								max="2023"
+								required
+								placeholder="1999"
+								value="#ANNO_INITIAL#"
+							/>
 							<span id="anno-desc" class="hint">Anno successivo a 1800</span>
 						</div>
 
 						<div class="field text-input">
 							<label for="durata">Durata</label>
-							<input type="text" id="durata" name="durata" pattern="^[0-9]h[0-5][0-9]m$" required placeholder="1h30m" value="#DURATA_INITIAL#" />
+							<input
+								type="text"
+								id="durata"
+								name="durata"
+								pattern="^[0-9]h[0-5][0-9]m$"
+								required
+								placeholder="1h30m"
+								value="#DURATA_INITIAL#"
+							/>
 							<span id="durata-desc" class="hint">Formato deve essere 0h00m</span>
 						</div>
 					</div>
@@ -149,7 +168,12 @@
 								<label for="genere_commedia">Commedia</label>
 							</div>
 							<div class="checkbox-field">
-								<input type="checkbox" id="genere_documentario" name="genere[documentario]" #CHECKED_genere_documentario# />
+								<input
+									type="checkbox"
+									id="genere_documentario"
+									name="genere[documentario]"
+									#CHECKED_genere_documentario#
+								/>
 								<label for="genere_documentario">Documentario</label>
 							</div>
 							<div class="checkbox-field">

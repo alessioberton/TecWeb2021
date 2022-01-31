@@ -13,7 +13,7 @@ require_once(__DIR__ . '/../../php/database/film_crud.php');
 require_once(__DIR__ . '/../../php/database/film.php');
 require_once(__DIR__ . '/../../php/database/valutazione.php');
 
-$_POST = array_map('empty_to_null', $_GET);
+$_GET = array_map('empty_to_null', $_GET);
 
 $page = file_get_contents(__DIR__ . '/ricerca.html');
 $header = new Header();
@@ -63,22 +63,22 @@ if (isset($_GET["genere"])) {
 if (isset($_GET["livello"])) {
     if ($_GET["livello"] != "tutti") {
         $categorizzazione_sql[] = " Livello = '" . $_GET["livello"] . "'";
-        $sto_cercando = true;
     }
+    $sto_cercando = true;
 }
 
 if (isset($_GET["eta_pubblico"])) {
     if ($_GET["eta_pubblico"] != "tutti") {
         $categorizzazione_sql[] = " Eta_pubblico = '" . $_GET["eta_pubblico"] . "'";
-        $sto_cercando = true;
     }
+    $sto_cercando = true;
 }
 
 if (isset($_GET["mood"])) {
     if ($_GET["mood"] != "tutti") {
         $categorizzazione_sql[] = " Mood = '" . $_GET["mood"] . "'";
-        $sto_cercando = true;
     }
+    $sto_cercando = true;
 }
 
 if (!isset ($_GET['page'])) {
@@ -91,8 +91,8 @@ $results_per_page = 2;
 $page_first_result = ($numero_pagina - 1) * $results_per_page;
 
 if ($sto_cercando) {
-	$page = str_replace("#INITIAL_OPEN#", "", $page);
-	$page = str_replace("#INITIAL_ARIA_EXP#", "false", $page);
+    $page = str_replace("#INITIAL_OPEN#", "", $page);
+    $page = str_replace("#INITIAL_ARIA_EXP#", "false", $page);
 
     if ($categorizzazione_sql) $filtro_categoria = $categorizizzazione->dynamic_find($categorizzazione_sql);
     else $filtro_categoria = $categorizizzazione->find_all();
@@ -102,12 +102,11 @@ if ($sto_cercando) {
     else $filtro_disponibilita = $disponibilia->find_all();
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
-		$page = str_replace("#RISULTATI#", "Nessun Film Trovato", $page);
+        $page = str_replace("#RISULTATI#", "Nessun Film Trovato", $page);
     } else {
         foreach ($filtro_categoria as $value) {
             $film = new Film_search([]);
             $film->id = $value["Film"];
-            $film->tema = $value["Tema"];
             $film->eta = $value["Eta_pubblico"];
             $film->livello = $value["Livello"];
             $film->mood = $value["Mood"];
@@ -159,11 +158,10 @@ if ($sto_cercando) {
             $lista_film[$i]->anno = $film_obj->anno;
             $lista_film[$i]->locandina = $film_obj->locandina;
         }
-		
+
         $ho_elenti = false;
         for ($i = 0; $i < count($lista_film); $i++) {
-            if ($i < count($lista_film) && $lista_film[$i]) {
-				
+            if ($lista_film[$i]) {
                 $ho_elenti = true;
                 $sezione_risultati .= $componente_lista_risultati;
                 $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
@@ -182,9 +180,9 @@ if ($sto_cercando) {
         $page = str_replace("#RISULTATI#", $sezione_risultati, $page);
     }
 } else {
-	$page = str_replace("#INITIAL_OPEN#", " open", $page);
-	$page = str_replace("#INITIAL_ARIA_EXP#", "true", $page);
-	$page = str_replace("#RISULTATI#", "", $page);
+    $page = str_replace("#INITIAL_OPEN#", " open", $page);
+    $page = str_replace("#INITIAL_ARIA_EXP#", "true", $page);
+    $page = str_replace("#RISULTATI#", "", $page);
 }
 
 

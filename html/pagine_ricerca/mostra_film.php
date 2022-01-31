@@ -100,7 +100,7 @@ if (isset($_GET["titolo"])) {
                         }
                         $page = str_replace("#REGISTI#", $regista_section, $page);
 
-                        $page = str_replace("#STELLE#", number_format($film_crud->mediaStelle($id_film),1)."/5", $page);
+                        $page = str_replace("#STELLE#", number_format($film_crud->mediaStelle($id_film),1), $page);
 
                         $categorizzazione = $film_crud->getCategorizzazione($id_film);
                         $page = str_replace("#LIVELLO_IMPEGNO#", $categorizzazione["Livello"], $page);
