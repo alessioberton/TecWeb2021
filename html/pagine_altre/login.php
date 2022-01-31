@@ -44,6 +44,7 @@ if(isset($_POST['mail'])) {
 }else{
     $page = str_replace("#USERNAME_INITIAL#", "", $page);
 }
+
 $page = str_replace("#ERRORE_USERNAME#", "", $page);
 $page = str_replace("#ERRORE_PASSWORD#", "", $page);
 $header = new Header();
