@@ -109,11 +109,9 @@ CREATE TABLE utente
     Email        VARCHAR(40) NOT NULL,
     Password     VARCHAR(32) NOT NULL,
     Data_nascita DATE        NOT NULL,
-    foto_profilo INT DEFAULT NULL,
-    Permessi     ENUM ('Admin', 'Moderatore', 'Utente') DEFAULT NULL,
+    Permessi     ENUM ('Admin', 'Utente') DEFAULT NULL,
     PRIMARY KEY (Username),
-    CONSTRAINT Email_unique UNIQUE (Email),
-    FOREIGN KEY (foto_profilo) REFERENCES immagini (ID) ON DELETE SET NULL
+    CONSTRAINT Email_unique UNIQUE (Email)
 );
 
 CREATE TABLE valutazione
@@ -150,18 +148,11 @@ ALTER TABLE scheda_utente
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11,99 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Amazon Prime', '7 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('prime_video', '7 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Rakuten', '14,59 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Disney+', '9 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('NowTV', '6 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('TimVision', '7.99 euro al mese');
-
 
 INSERT INTO `lista_generi` (Nome)
 VALUES ('Animazione');
@@ -169,8 +160,6 @@ INSERT INTO `lista_generi` (Nome)
 VALUES ('Avventura');
 INSERT INTO `lista_generi` (Nome)
 VALUES ('Azione');
-INSERT INTO `lista_generi` (Nome)
-VALUES ('Biografico');
 INSERT INTO `lista_generi` (Nome)
 VALUES ('Commedia');
 INSERT INTO `lista_generi` (Nome)
@@ -291,9 +280,7 @@ VALUES (1, 'Foto 1', 'film/Avengers endgame.jpg'),
        (108, 'Christopher Nolan', 'attori/Christopher Nolan.jpg'),
        (109, 'Todd Phillips', 'attori/Todd Phillips.jpg'),
        (110, 'Martin Scorsese', 'attori/Martin Scorsese.jpg'),
-       (111, 'Denis Villeneuve', 'attori/Denis Villeneuve.jpg'),
-       (112, 'utente', 'utenti/imgnotfound.jpg'),
-       (113, 'utente', 'utenti/imgnotfound.jpg');
+       (111, 'Denis Villeneuve', 'attori/Denis Villeneuve.jpg');
 
 
 INSERT INTO attore(`ID`, `Nome`, `Cognome`, `Data_nascita`, `Data_morte`, `ID_foto`, `Note_carriera`)
@@ -445,7 +432,6 @@ VALUES (1, 'Avengers endgame', 'EN', '2019', 'us', 181,
         'Adattamento cinematografico del romanzo fantascientifico di Frank Herbert. Il figlio di una famiglia nobile cerca di vendicare la morte del padre mentre è alle prese con l''incarico di proteggere e salvare un pianeta che contiene un''importante spezia.',
         17);
 
-
 INSERT INTO genere_film(ID_film, Nome_genere)
 VALUES (1, 'Azione'),
        (1, 'Avventura'),
@@ -472,7 +458,7 @@ VALUES (1, 'Azione'),
        (11, 'Avventura'),
        (11, 'Drammatico'),
        (12, 'Drammatico'),
-       (13, 'Biografico'),
+       (13, 'Azione'),
        (13, 'Drammatico'),
        (14, 'Avventura'),
        (14, 'Drammatico'),
@@ -491,24 +477,24 @@ VALUES ('Netflix', 1, true, true, true, false, '2022-10-02', null),
        ('prime_video', 2, false, true, false, true, '2022-07-12', null),
        ('TimVision', 2, false, true, false, false, '2022-06-21', 2022-09-22),
        ('prime_video', 3, false, true, false, true, '2022-04-28', null),
-       ('Rakuten', 3, false, true, false, true, '2022-04-20', null),
-       ('NowTV', 3, false, true, false, true, '2022-05-24', null),
+       ('Netflix', 3, false, true, false, true, '2022-04-20', null),
+       ('Disney+', 3, false, true, false, true, '2022-05-24', null),
        ('Disney+', 4, true, true, false, false, '2022-05-12', 2023-10-15),
        ('TimVision', 4, true, true, false, false, '2022-02-15', null),
-       ('Netflix', 5, true, true, false, false, '2022-03-18', 2022-06-12),
-       ('TimVision', 5, true, true, false, false, '2022-04-16', 2022-12-16),
+       ('TimVision', 5, true, true, false, false, '2022-03-18', 2022-06-12),
+       ('Netflix', 5, true, true, false, false, '2022-04-16', 2022-12-16),
        ('Netflix', 6, true, true, false, false, '2022-05-20', null),
-       ('Rakuten', 6, true, true, false, false, '2022-03-15', 2022-11-19),
+       ('Disney+', 6, true, true, false, false, '2022-03-15', 2022-11-19),
        ('prime_video', 6, true, true, false, false, '2022-02-27', null),
        ('Netflix', 7, true, true, false, false, '2022-03-01', null),
        ('Netflix', 8, true, true, false, false, '2022-04-11', 2022-07-11),
-       ('NowTV', 9, true, true, false, false, '2022-06-02', null),
+       ('TimVision', 9, true, true, false, false, '2022-06-02', null),
        ('Disney+', 10, true, true, false, false, '2022-02-25', 2022-03-06),
-       ('Rakuten', 11, true, true, false, false, '2022-04-27', null),
+       ('Disney+', 11, true, true, false, false, '2022-04-27', null),
        ('Netflix', 11, true, true, false, false, '2022-01-30', null),
        ('prime_video', 12, true, true, false, false, '2022-06-02', null),
-       ('Rakuten', 12, true, true, false, false, '2022-02-02', 2022-04-09),
-       ('NowTV', 13, true, true, false, false, '2022-06-02', null),
+       ('Disney+', 12, true, true, false, false, '2022-02-02', 2022-04-09),
+       ('TimVision', 13, true, true, false, false, '2022-06-02', null),
        ('Disney+', 13, true, true, false, false, '2022-02-19', 2022-03-14),
        ('TimVision', 14, true, true, false, false, '2022-06-10', null),
        ('Netflix', 15, true, true, false, false, '2022-06-17', null),
@@ -657,9 +643,9 @@ VALUES (1, 77),
        (16, 93),
        (17, 94);
 
-INSERT INTO `utente` (`Username`, `Email`, `Password`, `Data_nascita`, `foto_profilo`, `Permessi`)
-VALUES (1, "admin", "admin", "1995/05/19", 112, "Admin"),
-       (2, "user", "user", "1998/05/05", 113, "Utente");
+INSERT INTO `utente` (`Username`, `Email`, `Password`, `Data_nascita`, `Permessi`)
+VALUES (1, 'admin','admin', '1995/05/19', 'Admin'),
+       (2, 'user', 'user', '1998/05/05', 'Utente');
 
 INSERT INTO `scheda_utente` (`Utente`, `ID_Film`, `Visto`, `Salvato`, `Suggerito`)
 VALUES (1, 1, true, true, true),

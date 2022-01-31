@@ -52,15 +52,4 @@ class Utente extends Connectable {
         }
     }
 
-    function associa_immagine($username, $id_immagine) {
-        $query = "UPDATE utente SET foto_profilo = ? WHERE Username = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("is", $id_immagine, $username);
-        $stmt->execute();
-        $result = $stmt->affected_rows;
-        if ($result < 0) {
-            throw new Exception($this->connection->error);
-        }
-    }
-
 }
