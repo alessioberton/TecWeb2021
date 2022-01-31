@@ -16,27 +16,27 @@
 				<h2>Inserisci Attore</h2>
 				<div class="field text-input#ERRORE_NOME#">
 					<label for="nome">Nome</label>
-					<input type="text" id="nome" name="nome" required />
+					<input type="text" id="nome" name="nome" required value="#NOME_INITIAL#" />
 					<span id="nome-desc" class="hint">Attore già esistente</span>
 				</div>
 				<div class="field text-input#ERRORE_NOME#">
 					<label for="cognome">Cognome</label>
-					<input type="text" id="cognome" name="cognome" required />
+					<input type="text" id="cognome" name="cognome" required value="#COGNOME_INITIAL#" />
 					<span id="cognome-desc" class="hint">Attore già esistente</span>
 				</div>
 				<div class="field text-input">
 					<label for="data_nascita">Data nascita</label>
-					<input type="date" id="data_nascita" name="data_nascita" required />
+					<input type="date" id="data_nascita" name="data_nascita" required value="#DATA_NASCITA_INITIAL#" />
 					<span id="data_nascita-desc" class="hint">Errore</span>
 				</div>
 				<div class="field text-input">
 					<label for="data_morte">Data morte</label>
-					<input type="date" id="data_morte" name="data_morte" />
+					<input type="date" id="data_morte" name="data_morte" value="#DATA_MORTE_INITIAL#" />
 					<span id="data_morte-desc" class="hint">Errore</span>
 				</div>
 				<div class="field text-input">
 					<label for="note_carriera">Note carriera</label>
-					<textarea id="note_carriera" name="note_carriera" maxlength="500"></textarea>
+					<textarea id="note_carriera" name="note_carriera" maxlength="500">#NOTE_CARRIERA_INITIAL#</textarea>
 					<span id="note_carriera-desc" class="hint">Errore</span>
 				</div>
 				<div class="field file-input">
@@ -45,7 +45,7 @@
 				</div>
 				<div class="field text-input">
 					<label for="descrizione_immagine">Descrizione immagine</label>
-					<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100" required></textarea>
+					<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100" required>#DESCRIZIONE_IMMAGINE_INITIAL#</textarea>
 					<span id="note_carriera-desc" class="hint">Errore</span>
 				</div>
 				<input type="submit" value="Inserisci" class="submit-btn" />
