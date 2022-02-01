@@ -125,7 +125,7 @@ if (isset($_GET["titolo"])) {
                             } else{
                                 $page = str_replace("#SALVATO#", "", $page);
                             }
-							 $page = str_replace("#SELECTED".$valutazione_item["Stelle"]."#", "selected", $page);
+							 $page = !empty($valutazione_item) ? str_replace("#SELECTED".$valutazione_item["Stelle"]."#", "selected", $page) : $page;
 
 							if(isset($_POST)) inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $scheda_result, $valutazione_item);
                         }else{
