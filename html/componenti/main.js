@@ -160,10 +160,12 @@ function handleFormErrors() {
 	}
 
 	var checkboxes = document.querySelectorAll("#insert-film-form #genre-checkboxes input");
-	Array.prototype.forEach.call(checkboxes, function (el, i) {
-		el.addEventListener("change", checkboxGroupError);
-	});
-	checkboxGroupError();
+	if (checkboxes.length) {
+		Array.prototype.forEach.call(checkboxes, function (el, i) {
+			el.addEventListener("change", checkboxGroupError);
+		});
+		checkboxGroupError();
+	}
 }
 
 function handleResizeChanges(event) {
