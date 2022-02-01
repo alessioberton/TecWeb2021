@@ -52,9 +52,15 @@ if (isset($_GET["titolo"])) {
                     $id_film = $value["ID"];
                     $id_immagine = $value["Locandina"];
                     $page = str_replace("#TITOLO_PAGINA#", $value['Titolo'], $page);
-                    $page = str_replace("#TITOLO#", $value['Titolo'], $page);
+
+                    $lingua = $value['Lingua_titolo'];
+                    if ($lingua != 'IT')
+                        $page = str_replace("#TITOLO#", "<span lang='".$lingua."'>".$value['Titolo']. "</span", $page);
+                    else
+                     $page = str_replace("#TITOLO#", $value['Titolo'], $page);
+
 					$page = str_replace("#TRAMA#", $value['Trama'], $page);
-                    $page = str_replace("#LINGUA_TITOLO#", $value['Lingua_titolo'], $page);
+                    $page = str_replace("#LINGUA_TITOLO#", $lingua, $page);
                     $page = str_replace("#ANNO#", $value['Anno'], $page);
                     $page = str_replace("#PAESE#", siglaToPaese($value['Paese']), $page);
                     $page = str_replace("#DURATA#", timeToString(minutesToTime($value['Durata'])), $page);

@@ -160,6 +160,10 @@ if ($sto_cercando) {
             if ($lista_film[$i]) {
                 $ho_elenti = true;
                 $sezione_risultati .= $componente_lista_risultati;
+                if ($lista_film[$i]->lingua_titolo != 'IT')
+                    $sezione_risultati = str_replace("#TITOLO_FILM#", "<span lang='".$lista_film[$i]->lingua_titolo."'>".$lista_film[$i]->titolo. "</span", $sezione_risultati);
+                else
+                    $sezione_risultati = str_replace("#TITOLO_FILM#", $lista_film[$i]->titolo, $sezione_risultati);
                 $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
                 $sezione_risultati = str_replace("#TITOLOURL#", rawurlencode($lista_film[$i]->titolo), $sezione_risultati);
 				$sezione_risultati = str_replace("#ANNO#", $lista_film[$i]->anno, $sezione_risultati);
