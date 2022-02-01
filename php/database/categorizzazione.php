@@ -25,7 +25,7 @@ class Categorizzazione extends Connectable{
 
     function dynamic_find($sql){
         $query = "SELECT * FROM categorizzazione";
-        $query .= ' WHERE ' . implode(' OR ', $sql);
+        $query .= ' WHERE ' . implode(' AND ', $sql);
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return convertQuery($stmt->get_result());

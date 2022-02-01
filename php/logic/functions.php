@@ -62,14 +62,6 @@ function convertQuery($query_res): array {
     return $arr;
 }
 
-function debug_to_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
-
 function timeToMinutes($time){
     
     $dt = new DateTime("1970-01-01 $time", new DateTimeZone('UTC'));

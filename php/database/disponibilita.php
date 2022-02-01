@@ -23,11 +23,8 @@ class Disponibilita extends Connectable{
     }
 
     function dynamic_find($sql): array {
-        $query = "SELECT * FROM disponibilità";
-        $query .= ' WHERE ' . implode(' OR ', $sql);
-       
+        $query = "SELECT * FROM disponibilità ";
         $stmt = $this->connection->prepare($query);
-//        $stmt->bind_param("s",$query);
         $stmt->execute();
         return convertQuery($stmt->get_result());
     }
