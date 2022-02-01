@@ -121,14 +121,14 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         foreach($genere as $nome_genere => $val_genere){
             $page = str_replace("#CHECKED_genere_$nome_genere#", "checked", $page);
         }
-        $page = str_replace("#CHECKED_genere_anime#", "", $page);
         $page = str_replace("#CHECKED_genere_animazione#", "", $page);
         $page = str_replace("#CHECKED_genere_avventura#", "", $page);
         $page = str_replace("#CHECKED_genere_azione#", "", $page);
-        $page = str_replace("#CHECKED_genere_biografico#", "", $page);
         $page = str_replace("#CHECKED_genere_commedia#", "", $page);
         $page = str_replace("#CHECKED_genere_documentario#", "", $page);
         $page = str_replace("#CHECKED_genere_drammatico#", "", $page);
+        $page = str_replace("#CHECKED_genere_fantascienza#", "", $page);
+        $page = str_replace("#CHECKED_genere_horror#", "", $page);
         foreach($piattaforma as $nome_piattaforma => $val_piattaforma){
             $cc_piattaforma = filter_var($cc[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
             $sdh_piattaforma = filter_var($sdh[$nome_piattaforma],FILTER_VALIDATE_BOOLEAN);
@@ -163,14 +163,14 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#SELECTEDT#", "", $page);
     $page = str_replace("#SELECTEDVM14#", "", $page);
     $page = str_replace("#SELECTEDVM18#", "", $page);
-    $page = str_replace("#CHECKED_genere_anime#", "", $page);
     $page = str_replace("#CHECKED_genere_animazione#", "", $page);
     $page = str_replace("#CHECKED_genere_avventura#", "", $page);
     $page = str_replace("#CHECKED_genere_azione#", "", $page);
-    $page = str_replace("#CHECKED_genere_biografico#", "", $page);
     $page = str_replace("#CHECKED_genere_commedia#", "", $page);
     $page = str_replace("#CHECKED_genere_documentario#", "", $page);
     $page = str_replace("#CHECKED_genere_drammatico#", "", $page);
+    $page = str_replace("#CHECKED_genere_fantascienza#", "", $page);
+    $page = str_replace("#CHECKED_genere_horror#", "", $page);
     $page = str_replace("#CHECKEDnetflix#", "", $page);
     $page = str_replace("#CHECKED_netflix_cc#", "", $page);
     $page = str_replace("#CHECKED_netflix_sdh#", "", $page);
@@ -194,6 +194,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#ERRORE_ATTORI#", "", $page);
     $page = str_replace("#ERRORE_REGISTI#", "", $page);
 	$page = str_replace("#ERRORE_IMMAGINE#", "", $page);
+	$page = str_replace("#ERRORE_IMMAGINE_DESC#", "", $page);
 }
 
 $header = new Header();
