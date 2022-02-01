@@ -67,23 +67,29 @@ if (isset($_POST["option_film_salvati"])) {
         $voto_selezionato = "selected";
     }
 }
-
-foreach ($lista_film as $value) {
-    $view_film = file_get_contents(__DIR__.'/../componenti/view_film_user.html');
-    $percorso_film = $immagine->find($value->locandina)["Percorso"];
-    $percorso_film = "../../img/" . $percorso_film;
-    $view_film = str_replace("#LOCANDINA#", $percorso_film, $view_film);
-    $view_film = str_replace("#TITOLO#", $value->titolo, $view_film);
-    $view_film = str_replace("#TITOLOURL#", rawurlencode($value->titolo), $view_film);
-    $view_film = str_replace("#ANNO#", $value->anno, $view_film);
-    $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
-    $view_film = str_replace("#VOTO#", $value->voto, $view_film);
-    $view_film = str_replace("#VALUTAZIONE#", $link_valutazione, $view_film);
-    if ($value->lingua_titolo != 'IT')
-        $view_film = str_replace("#TITOLO_FILM#", "<span lang='".$value->lingua_titolo."'>".$value->titolo. "</span", $view_film);
-    else
-        $view_film = str_replace("#TITOLO_FILM#", $value->titolo, $view_film);
-    $list = $list.$view_film;
+if (!$lista_film){
+    $percorso_mancanza_film_img = '../../img/film/no_image.png';
+    $page = str_replace("#LIST#", "", $page);
+    $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
+    $page = str_replace("#IMG_ERRORE#", $img_non_trovata, $page);
+}else {
+    foreach ($lista_film as $value) {
+        $view_film = file_get_contents(__DIR__ . '/../componenti/view_film_user.html');
+        $percorso_film = $immagine->find($value->locandina)["Percorso"];
+        $percorso_film = "../../img/" . $percorso_film;
+        $view_film = str_replace("#LOCANDINA#", $percorso_film, $view_film);
+        $view_film = str_replace("#TITOLO#", $value->titolo, $view_film);
+        $view_film = str_replace("#TITOLOURL#", rawurlencode($value->titolo), $view_film);
+        $view_film = str_replace("#ANNO#", $value->anno, $view_film);
+        $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
+        $view_film = str_replace("#VOTO#", $value->voto, $view_film);
+        $view_film = str_replace("#VALUTAZIONE#", $link_valutazione, $view_film);
+        if ($value->lingua_titolo != 'IT')
+            $view_film = str_replace("#TITOLO_FILM#", "<span lang='" . $value->lingua_titolo . "'>" . $value->titolo . "</span", $view_film);
+        else
+            $view_film = str_replace("#TITOLO_FILM#", $value->titolo, $view_film);
+        $list = $list . $view_film;
+    }
 }
 
 $page = str_replace("#LIST#", $list, $page);
