@@ -90,9 +90,9 @@ if (isset($_GET["titolo"])) {
                         }
                         $page = str_replace("#GENERI#", $genere_section, $page);
 
-                        //$attori_data = $film_crud->getAttori($id_film);
                         $attori_data = explode(',',$value["Attori"]);
                         foreach($attori_data as $attori_item){
+                            $attori_item = trim($attori_item);
                             $attore_section .= $attore_component;
                             $attore_section = str_replace("#NOME_ATTORE#", $attori_item, $attore_section);
                         }
@@ -100,6 +100,7 @@ if (isset($_GET["titolo"])) {
 
                         $registi_data = explode(',',$value["Registi"]);
                         foreach($registi_data as $registi_item){
+                            $registi_item = trim($registi_item);
                             $regista_section .= $regista_component;
                             $regista_section = str_replace("#NOME_REGISTA#", $registi_item, $regista_section);
                         }
