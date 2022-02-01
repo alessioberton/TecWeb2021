@@ -1,15 +1,15 @@
 <form action="mostra_film.php?titolo=#TITOLO_FILM#" method="POST" class="movie-val-form">
 	<div class="vote-btn" id="visto-btn">
-		<input type="checkbox" id="visto-checkbox" #VISTO# value="visto" name="visto" />
-		<label for="visto-checkbox">Visto</label>
+		<label for="visto-checkbox"><span class="visuallyHidden">Film Visto</span></label>
+		<input type="checkbox" id="visto-checkbox" #VISTO# value="visto" name="visto" title="Film Visto" />
 	</div>
 	<div class="vote-btn" id="salvato-btn">
-		<input type="checkbox" id="salvato-checkbox" #SALVATO# value="salvato" name="salvato" />
-		<label for="salvato-checkbox">Salvato</label>
+		<label for="salvato-checkbox"><span class="visuallyHidden">Salva Film</span></label>
+		<input type="checkbox" id="salvato-checkbox" #SALVATO# value="salvato" name="salvato" title="Salva Film" />
 	</div>
 	<div class="vote-stars" id="stars-btn">
 		<label for="valutazione_stelle-checkbox">Stelle</label>
-		<select id="valutazione_stelle" name="valutazione_stelle">
+		<select id="valutazione_stelle" name="valutazione_stelle" title="Valuta Film">
 			<option value="1" #SELECTED1#>1</option>
 			<option value="2" #SELECTED2#>2</option>
 			<option value="3" #SELECTED3#>3</option>
@@ -17,5 +17,5 @@
 			<option value="5" #SELECTED5#>5</option>
 		</select>
 	</div>
-	<button type="submit" id="val-submit-btn">Aggiorna</button>
+	<button type="submit" id="val-submit-btn">Vota</button>
 </form>
