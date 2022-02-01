@@ -166,7 +166,7 @@ INSERT INTO immagini(ID, Descrizione, Percorso)
 VALUES (1, 'Foto 1', 'film/Avengers_endgame.jpg'),
        (2, 'Foto 2', 'film/Freaks_out.jpg'),
        (3, 'Foto 3', 'film/Il_re_leone.jpg'),
-       (4, 'Foto 4', 'film/Matrix_reloaded.jpg'),
+       (4, 'Foto 4', 'film/Matrix_Reloaded.jpg'),
        (5, 'Foto 5', 'film/Nomadland.jpg'),
        (6, 'Foto 6', 'film/Spider-Man_No_Way_Home.jpg'),
        (7, 'Foto 7', 'film/Alien.jpg'),

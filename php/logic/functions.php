@@ -144,7 +144,7 @@ function validate_input($data) {
 }
 
 function isStageWebsite(){
-    return $_SERVER["SERVER_NAME"] == "localhost";
+    return $_SERVER["REMOTE_ADDR"] != "147.162.84.191";
 }
 
 function renameImage($image){
