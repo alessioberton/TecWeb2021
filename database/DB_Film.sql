@@ -142,9 +142,6 @@ CREATE TABLE scheda_utente
     FOREIGN KEY (ID_film) REFERENCES film (ID)
 );
 
-ALTER TABLE scheda_utente
-    ADD CHECK (Visto or salvato or suggerito = true);
-
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11,99 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
