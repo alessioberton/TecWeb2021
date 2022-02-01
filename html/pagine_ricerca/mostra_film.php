@@ -23,8 +23,8 @@ $piattaforma_component = file_get_contents(__DIR__.'/../../html/componenti/view_
 $genere_component = "<li>#NOME_GENERE#</li>";
 $attore_component = "<li>#NOME_ATTORE#</li>";
 $regista_component = "<li>#NOME_REGISTA#</li>";
-$pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/pulsanti_film.html');
-$admin_component = file_get_contents(__DIR__.'/../../html/componenti/view_admin.html');
+$pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/view_film_vote_buttons.html');
+$admin_component = file_get_contents(__DIR__.'/../../html/componenti/view_film_admin_buttons.html');
 $errore = '';
 $percorso_film = '';
 
@@ -72,6 +72,7 @@ if (isset($_GET["titolo"])) {
                         $page = str_replace("#ALT_IMG_FILM#", $descrizione_immagine, $page);
                         $page = str_replace("#ERROR_MESSAGE#", $errore, $page);
                         
+						if(empty($value["Piattaforme"]))  $page = str_replace("#PIATTAFORME#","<p>Nessuna piattaforma</p>", $page);
                         foreach($value["Piattaforme"] as $piattaforma)
                         {
                             $piattaforma_section .= $piattaforma_component;
@@ -203,3 +204,4 @@ function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $s
         }
     }
 }
+?>

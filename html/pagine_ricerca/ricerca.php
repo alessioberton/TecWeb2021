@@ -37,7 +37,7 @@ $filtro_disponibilita = [];
 
 $sto_cercando = false;
 
-$componente_lista_risultati = file_get_contents(__DIR__ . '/../' . "componenti/search_view_info.html");
+$componente_lista_risultati = file_get_contents(__DIR__ . '/../' . "componenti/view_film_search.html");
 $sezione_risultati = "";
 
 
@@ -234,5 +234,5 @@ function populateFilters(){
     $page = str_replace("#CHECKED_opzione_CC#", "", $page);
     $page = str_replace("#CHECKED_opzione_SDH#", "", $page);
     $page = str_replace("#CHECKED_opzione_AD#", "", $page);
-
 }
+?>

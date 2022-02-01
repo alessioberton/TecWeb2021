@@ -1,38 +1,32 @@
 <?php
 require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
-
-function getAbs_path(): void {
-    require_once(__DIR__.'/../../php/logic/functions.php');
-    require_once(__DIR__.'/../../php/database/utente.php');
-    require_once(__DIR__.'/../../php/database/immagine.php');	
-	require_once(__DIR__.'/../../html/componenti/header.php');
-    if ($_SESSION['logged'] == true) {
-        header('location: ../profilo.php');
-        exit();
-    }
-    $_POST = array_map('empty_to_null', $_POST);
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../php/database/utente.php');
+require_once(__DIR__.'/../../html/componenti/header.php');
+if ($_SESSION['logged'] == true) {
+	header('location: ../profilo.php');
+	exit();
 }
+$_POST = array_map('empty_to_null', $_POST);
 
-getAbs_path();
-
-$page = file_get_contents(__DIR__.'/logon.html');
+$page = file_get_contents(__DIR__.'/registrazione.html');
 
 //Controllo di venire da logon.html e non tramite giri strani
-if(isset($_POST['mail'])) {
-    $mail = validate_input(trim($_POST["mail"]));
+if(isset($_POST['user'])) {
+    $user = validate_input(trim($_POST["user"]));
     $pwd = validate_input($_POST["pwd"]);
     $repeat_pwd = validate_input($_POST["repeat_pwd"]);
     $data_nascita = validate_input($_POST["data_nascita"]);
     $utente = new Utente();
     try {
-        $utente->inserisci($mail, $pwd, $data_nascita, "Utente");
+        $utente->inserisci($user, $pwd, $data_nascita, "Utente");
 		
         header('location: login.php');
         exit;
     } catch (Exception $e) {
 		$page = str_replace("#ERRORE_USERNAME#", " error", $page);
-		$page = str_replace("#USERNAME_INITIAL#", $mail, $page);
+		$page = str_replace("#USERNAME_INITIAL#", $user, $page);
 		$page = str_replace("#DATA_NASCITA_INITIAL#", $data_nascita, $page);
     }
 }else{

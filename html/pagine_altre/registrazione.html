@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Logon</title>
+		<title>Registrazione</title>
 		<link rel="stylesheet" href="../../css/main.css" media="screen" />
 		<script src="../componenti/main.js" defer></script>
 	</head>
@@ -11,17 +11,17 @@
 		<customHeader />
 		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Registrazione</div>
 		<main id="content">
-			<form method="post" action="logon.php" id="login-form" class="card">
+			<form method="post" action="registrazione.php" id="login-form" class="card">
 				<h2>Registrazione</h2>
-				<p>Hai già un account? <a href="login.php">Login</a></p>
+				<p>Hai già un account? <a href="registrazione.php">Login</a></p>
 				<div class="field text-input#ERRORE_USERNAME#">
-					<label for="mail">Username</label>
-					<span id="maildesc" class="hint">Username già esistente</span>
+					<label for="user">Username</label>
+					<span id="userdesc" class="hint">Username già esistente</span>
 					<input
 						type="text"
-						id="mail"
+						id="user"
 						placeholder="username"
-						name="mail"
+						name="user"
 						required
 						minlength="4"
 						maxlength="12"
