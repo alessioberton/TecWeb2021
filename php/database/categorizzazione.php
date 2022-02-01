@@ -41,7 +41,7 @@ class Categorizzazione extends Connectable{
                   VALUES(?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("isssi",$id_film,$eta_pubblico,$livello,$mood);
+        $stmt->bind_param("isss",$id_film,$eta_pubblico,$livello,$mood);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
