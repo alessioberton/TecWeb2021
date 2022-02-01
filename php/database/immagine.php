@@ -24,8 +24,6 @@ class Immagine extends Connectable{
         if ($result < 1){
             throw new Exception($this->connection->error);
         }
-        echo "<script>console.log('Debug Objects: " . $this->connection->insert_id . "' );</script>";
-
         return $this->connection->insert_id;
     }
 

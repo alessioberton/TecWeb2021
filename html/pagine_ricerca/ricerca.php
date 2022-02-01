@@ -29,6 +29,8 @@ $film_crud = new Film_crud();
 $valutazione_model = new Valutazione();
 $immagine = new Immagine();
 
+$disponibilia_merge = "";
+
 $lista_film = [];
 
 $filtro_categoria = [];
@@ -46,12 +48,19 @@ if (isset($_GET["piattaforma"])) {
     $sto_cercando = true;
 }
 
+if (count($disponibilita_sql)){
+    $disponibilia_merge = '('.implode(' OR ', $disponibilita_sql).')';
+    $disponibilita_sql = array();
+}
+
 if (isset($_GET["opzione"])) {
+    if ($disponibilia_merge) $disponibilia_merge.=' AND ';
     for ($i = 0; $i < count($_GET["opzione"]); $i++) {
         if ($_GET["opzione"][$i] == "CC") $disponibilita_sql[] = " CC = true";
         if ($_GET["opzione"][$i] == "SDH") $disponibilita_sql[] = " SDH = true";
         if ($_GET["opzione"][$i] == "AD") $disponibilita_sql[] = " AD = true";
     }
+    $disponibilia_merge.= '('.implode(' OR ', $disponibilita_sql).')';
     $sto_cercando = true;
 }
 
@@ -98,7 +107,7 @@ if ($sto_cercando) {
     else $filtro_categoria = $categorizizzazione->find_all();
     if ($genere_sql) $filtro_genere = $genere_film->dynamic_find_by_genere($genere_sql);
     else $filtro_genere = $genere_film->find_all();
-    if ($disponibilita_sql) $filtro_disponibilita = $disponibilia->dynamic_find($disponibilita_sql);
+    if ($disponibilia_merge) $filtro_disponibilita = $disponibilia->dynamic_find($disponibilia_merge);
     else $filtro_disponibilita = $disponibilia->find_all();
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
