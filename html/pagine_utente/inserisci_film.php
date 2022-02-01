@@ -222,6 +222,11 @@ function validateFields(){
 
     if($anno >= 1900 && $anno <= 2023) $page = str_replace("#ERRORE_ANNO#", "", $page);
     else{str_replace("#ERRORE_ANNO#", " error", $page); $error = true; }
+    
+    if($_FILES["immagine"]["size"] > $_SESSION['max_dim_img']){
+        $page = str_replace("#ERRORE_IMMAGINE_DESC#", "Immagine troppo grande, max dim: ".($_SESSION['max_dim_img'] / 1024)." Kib", $page); 
+        $error = true;
+    }
 
 	if($error) {
 		$page = str_replace("#ERRORE_IMMAGINE#", " error", $page);
