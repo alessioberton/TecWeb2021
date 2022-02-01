@@ -81,6 +81,10 @@ foreach ($lista_film as $value) {
     $view_film = str_replace("#ANNO#", $value->anno, $view_film);
     $valutazione_obj = $valutazione_model->findByUser($_SESSION['user']['Username']);
     $view_film = str_replace("#VOTO#", $value->voto, $view_film);
+    if ($value->lingua_titolo != 'IT')
+        $view_film = str_replace("#TITOLO_FILM#", "<span lang='".$value->lingua_titolo."'>".$value->titolo. "</span", $view_film);
+    else
+        $view_film = str_replace("#TITOLO_FILM#", $value->titolo, $view_film);
     $list = $list.$view_film;
 }
 

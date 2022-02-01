@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<customHeader />
-		<div class="breadcrumb"><a href="../pagine_principali/homepage.php">Home</a> &gt; Inserisci Film</div>
+		<div class="breadcrumb"><a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Inserisci Film</div>
 		<main id="content">
 			<p>#ESITO_INSERIMENTO#</p>
 			<form method="post" action="inserisci_film.php" enctype="multipart/form-data" id="insert-film-form">
@@ -67,7 +67,8 @@
 						<div class="field text-input">
 							<label for="descrizione_immagine">Descrizione immagine</label>
 							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100">
-#DECRIZIONE_IMMAGINE_INITIAL#</textarea
+							#DECRIZIONE_IMMAGINE_INITIAL#
+							</textarea
 							>
 							<span id="descrizione_immagine-desc" class="hint">Lunghezza superiore ai 100 caratteri</span>
 						</div>
@@ -112,9 +113,9 @@
 							</select>
 						</div>
 						<div class="field text-input">
-							<label for="mood">Mood:</label><br />
+							<label for="mood"><span lang="en">Mood</span>:</label><br />
 							<select id="mood" name="mood">
-								<option value="suspense" #SELECTEDsuspense#>Suspense</option>
+								<option value="suspense" #SELECTEDsuspense#><span lang="en">Suspense</span></option>
 								<option value="protesta" #SELECTEDprotesta#>Protesta</option>
 								<option value="commovente" #SELECTEDcommovente#>Commovente</option>
 								<option value="divertente" #SELECTEDdivertente#>Divertente</option>
@@ -176,7 +177,7 @@
 
 							<div class="checkbox-field">
 								<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" #CHECKEDnetflix# />
-								<label for="piattaforma_netflix">Netflix</label>
+								<label for="piattaforma_netflix"><span lang="en">Netflix</span></label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Audiodescrizione e Sottotitoli</legend>
@@ -197,7 +198,7 @@
 							</fieldset>
 							<div class="checkbox-field">
 								<input type="checkbox" id="piattaforma_prime" name="piattaforma[prime video]" #CHECKEDprime video# />
-								<label for="piattaforma_prime">Prime Video</label>
+								<label for="piattaforma_prime"><span lang="en">Prime Video</span></label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Audiodescrizione e Sottotitoli</legend>
@@ -216,12 +217,12 @@
 							</fieldset>
 							<div class="checkbox-field">
 								<input type="checkbox" id="piattaforma_disney" name="piattaforma[disney+]" #CHECKEDdisney+# />
-								<label for="piattaforma_disney">Disney+</label>
+								<label for="piattaforma_disney"><span lang="en">Disney+</span></label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Audiodescrizione e Sottotitoli</legend>
 								<div class="checkbox-field">
-									<input type="checkbox" id="cc_prime" name="cc[disney+]" #CHECKED_disney+_cc# />
+									<input type="checkbox" id="cc_disney" name="cc[disney+]" #CHECKED_disney+_cc# />
 									<label for="cc_disney">CC</label>
 								</div>
 								<div class="checkbox-field">
@@ -235,7 +236,7 @@
 							</fieldset>
 							<div class="checkbox-field">
 								<input type="checkbox" id="piattaforma_discovery" name="piattaforma[discovery+]" #CHECKEDdiscovery+# />
-								<label for="piattaforma_discovery">Discovery+</label>
+								<label for="piattaforma_discovery"><span lang="en">Discovery+</span></label>
 							</div>
 							<fieldset>
 								<legend class="visuallyHidden">Audiodescrizione e Sottotitoli</legend>
