@@ -209,7 +209,7 @@ VALUES (1, 'Foto 1', 'film/Avengers_endgame.jpg'),
        (38, 'Emilia Fox', 'attori/Emilia_Fox.jpg'),
        (39, 'Frances Conroy', 'attori/Frances_Conroy.jpg'),
        (40, 'Frank Finlay', 'attori/Frank_Finlay.jpg'),
-       (41, 'Giancarlo Martini', 'attori/No_image.jpg'),
+       (41, '', 'attori/No_image.jpg'),
        (42, 'Giorgio Cantarini', 'attori/Giorgio_Cantarini.jpg'),
        (43, 'Hugo Weaving', 'attori/Hugo_Weaving.jpg'),
        (44, 'Jack Nicholson', 'attori/Jack_Nicholson.jpg'),
@@ -279,7 +279,8 @@ VALUES (1, 'Foto 1', 'film/Avengers_endgame.jpg'),
        (108, 'Christopher Nolan', 'attori/Christopher_Nolan.jpg'),
        (109, 'Todd Phillips', 'attori/Todd_Phillips.jpg'),
        (110, 'Martin Scorsese', 'attori/Martin_Scorsese.jpg'),
-       (111, 'Denis Villeneuve', 'attori/Denis_Villeneuve.jpg');
+       (111, 'Denis Villeneuve', 'attori/Denis_Villeneuve.jpg'),
+       (112, '', 'film/no_image.png');
 
 
 INSERT INTO attore(`ID`, `Nome`, `Cognome`, `Data_nascita`, `Data_morte`, `ID_foto`, `Note_carriera`)
