@@ -5,7 +5,7 @@
 	class Menu {
 		public $adminMenu = <<<HTML
 			<li id="adminMenu" class="has-submenu" aria-labelledby="adminMenuHeading">
-				<a href="…" id="adminMenuHeading"aria-haspopup="true" aria-expanded="false">Amministratore</a>
+				<a href="…" id="adminMenuHeading" aria-haspopup="true" aria-expanded="false">Amministratore</a>
 				<ul>
 					<li><a href="../pagine_utente/inserisci_film.php">Inserisci Film</a></li>
 					<li><a href="../pagine_utente/inserisci_attore.php">Inserisci Attore</a></li>
