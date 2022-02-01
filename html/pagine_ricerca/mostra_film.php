@@ -91,7 +91,7 @@ if (isset($_GET["titolo"])) {
                         }
                         $page = str_replace("#ATTORI#", $attore_section, $page);
 
-                        $registi_data = $value["Registi"];
+                        $registi_data = explode(',',$value["Registi"]);
                         foreach($registi_data as $registi_item){
                             $regista_section .= $regista_component;
                             $regista_section = str_replace("#NOME_REGISTA#", $registi_item, $regista_section);
