@@ -142,6 +142,28 @@ function handleFormErrors() {
 			});
 		}
 	});
+
+	function checkboxGroupError() {
+		var check = document.querySelector("#insert-film-form #genre-checkboxes");
+		var checkboxes = check.querySelectorAll("input");
+		var oneChecked = false;
+		Array.prototype.forEach.call(checkboxes, function (el, i) {
+			if (el.checked) oneChecked = true;
+		});
+		if (oneChecked) {
+			check.className = check.className.replace("error", "");
+			checkboxes[0].setCustomValidity("");
+		} else {
+			check.classList.add("error");
+			checkboxes[0].setCustomValidity("No");
+		}
+	}
+
+	var checkboxes = document.querySelectorAll("#insert-film-form #genre-checkboxes input");
+	Array.prototype.forEach.call(checkboxes, function (el, i) {
+		el.addEventListener("change", checkboxGroupError);
+	});
+	checkboxGroupError();
 }
 
 function handleResizeChanges(event) {
