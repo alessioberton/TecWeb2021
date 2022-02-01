@@ -25,7 +25,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $trama = validate_input($_POST["trama"]);
     $anno = validate_input($_POST["anno"]);
     $paese = validate_input($_POST["paese"]);
-    $durata = timeToSeconds(stringToTime(validate_input($_POST["durata"])));
+    $durata = timeToMinutes(stringToTime(validate_input($_POST["durata"])));
     $descrizione_immagine = validate_input($_POST["descrizione_immagine"]);
     $immagine = $_FILES["immagine"]["name"];
 
@@ -68,7 +68,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
             }
 
             $categorizzazione = new Categorizzazione();
-            $categorizzazione->inserisci($id_film,"",$eta_publico,$livello,$mood,$riconoscimenti);
+            $categorizzazione->inserisci($id_film,$eta_publico,$livello,$mood,$riconoscimenti);
 
             $genereFilm = new GenereFilm();
             foreach($genere as $nome_genere => $val_genere){
@@ -113,7 +113,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $page = str_replace("#SELECTED_paese_de#", "", $page);
         $page = str_replace("#SELECTED_paese_fr#", "", $page);
         $page = str_replace("#ANNO_INITIAL#", $anno, $page);
-        $page = str_replace("#DURATA_INITIAL#", timeToString(secondsToTime($durata)), $page);
+        $page = str_replace("#DURATA_INITIAL#", timeToString(minutesToTime($durata)), $page);
         $page = str_replace("#SELECTED$livello#", "selected", $page);
         $page = str_replace("#SELECTEDdemenziale#", "", $page);
         $page = str_replace("#SELECTEDbasso#", "", $page);

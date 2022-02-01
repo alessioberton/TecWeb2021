@@ -38,7 +38,7 @@ class Categorizzazione extends Connectable{
         }
 
         $query = "INSERT INTO categorizzazione(Film,Eta_pubblico,Livello,Mood,Riconoscimenti)
-                  VALUES(?,?,?,?,?,?)";
+                  VALUES(?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->bind_param("isssi",$id_film,$eta_pubblico,$livello,$mood,$riconoscimenti);
