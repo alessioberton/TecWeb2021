@@ -224,11 +224,59 @@
 									<label for="ad_prime">AD</label>
 								</div>
 							</fieldset>
+							<div class="checkbox-field">
+								<input type="checkbox" id="piattaforma_disney" name="piattaforma[disney+]" #CHECKEDdisney+# />
+								<label for="piattaforma_disney">Disney+</label>
+							</div>
+							<fieldset>
+								<legend class="visuallyHidden">Sottotitoli</legend>
+								<div class="checkbox-field">
+									<input type="checkbox" id="cc_prime" name="cc[disney+]" #CHECKED_disney+_cc# />
+									<label for="cc_disney">CC</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="sdh_disney" name="sdh[disney+]" #CHECKED_disney+_sdh# />
+									<label for="sdh_disney">SDH</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="ad_disney" name="ad[disney+]" #CHECKED_disney+_ad# />
+									<label for="ad_disney">AD</label>
+								</div>
+							</fieldset>
+							<div class="checkbox-field">
+								<input type="checkbox" id="piattaforma_discovery" name="piattaforma[discovery+]" #CHECKEDdiscovery+# />
+								<label for="piattaforma_discovery">Discovery+</label>
+							</div>
+							<fieldset>
+								<legend class="visuallyHidden">Sottotitoli</legend>
+								<div class="checkbox-field">
+									<input type="checkbox" id="cc_discovery" name="cc[discovery+]" #CHECKED_discovery+_cc# />
+									<label for="cc_discovery">CC</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="sdh_discovery" name="sdh[discovery+]" #CHECKED_discovery+_sdh# />
+									<label for="sdh_discovery">SDH</label>
+								</div>
+								<div class="checkbox-field">
+									<input type="checkbox" id="ad_discovery" name="ad[discovery+]" #CHECKED_discovery+_ad# />
+									<label for="ad_discovery">AD</label>
+								</div>
+							</fieldset>
 						</fieldset>
 					</div>
 					<div tabindex="0" role="tabpanel" id="actors-tab" aria-labelledby="actors" class="is-hidden">
-						<label for="actorSelect">Attori:</label><br />
-						#INSERISCI_ATTORI#
+						<!-- <label for="actorSelect">Attori:</label><br />
+						#INSERISCI_ATTORI# -->
+						<div class="field text-input#ERRORE_ATTORI#">
+							<label for="attori">Attori</label>
+							<span id="attori-desc" class="hint">Errore attori</span>
+							<input type="text" id="attori" name="attori" required value="#ATTORI_INITIAL#" />
+						</div>
+						<div class="field text-input#ERRORE_REGISTI#">
+							<label for="registi">Registi</label>
+							<span id="registi-desc" class="hint">Errore registi</span>
+							<input type="text" id="registi" name="registi" required value="#REGISTI_INITIAL#" />
+						</div>
 					</div>
 				</div>
 
