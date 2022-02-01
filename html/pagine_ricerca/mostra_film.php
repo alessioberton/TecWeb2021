@@ -21,8 +21,8 @@ $attore_section = "";
 $regista_section = "";
 $piattaforma_component = file_get_contents(__DIR__.'/../../html/componenti/view_piattaforme.html');
 $genere_component = "<li>#NOME_GENERE#</li>";
-$attore_component = "<li><a href='#URL_ATTORE#'>#NOME_ATTORE#</a></li>";
-$regista_component = "<li><a href='#URL_REGISTA#'>#NOME_REGISTA#</a></li>";
+$attore_component = "<li>#NOME_ATTORE#</li>";
+$regista_component = "<li>#NOME_REGISTA#</li>";
 $pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/pulsanti_film.html');
 $admin_component = file_get_contents(__DIR__.'/../../html/componenti/view_admin.html');
 $errore = '';
@@ -83,19 +83,18 @@ if (isset($_GET["titolo"])) {
                         }
                         $page = str_replace("#GENERI#", $genere_section, $page);
 
-                        $attori_data = $film_crud->getAttori($id_film);
+                        //$attori_data = $film_crud->getAttori($id_film);
+                        $attori_data = explode(',',$value["Attori"]);
                         foreach($attori_data as $attori_item){
                             $attore_section .= $attore_component;
-                            $attore_section = str_replace("#NOME_ATTORE#", $attori_item["Nome"]." ".$attori_item["Cognome"], $attore_section);
-                            $attore_section = str_replace("#URL_ATTORE#", "mostra_attore.php?id=".$attori_item["ID"], $attore_section);
+                            $attore_section = str_replace("#NOME_ATTORE#", $attori_item, $attore_section);
                         }
                         $page = str_replace("#ATTORI#", $attore_section, $page);
 
-                        $registi_data = $film_crud->getRegisti($id_film);
+                        $registi_data = $value["Registi"];
                         foreach($registi_data as $registi_item){
                             $regista_section .= $regista_component;
-                            $regista_section = str_replace("#NOME_REGISTA#", $registi_item["Nome"]." ".$registi_item["Cognome"], $regista_section);
-                            $regista_section = str_replace("#URL_REGISTA#", "mostra_attore.php?id=".$registi_item["ID"], $regista_section);
+                            $regista_section = str_replace("#NOME_REGISTA#", $registi_item, $regista_section);
                         }
                         $page = str_replace("#REGISTI#", $regista_section, $page);
 

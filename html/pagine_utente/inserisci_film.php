@@ -12,7 +12,6 @@ require_once(__DIR__.'/../../php/logic/functions.php');
 require_once(__DIR__.'/../../html/componenti/header.php');
 
 $page = file_get_contents(__DIR__.'/inserisci_film.html');
-$searchbar_attore_component = file_get_contents(__DIR__.'/../../html/componenti/searchbar_attore.html');
 $esito_inserimento = "";
 
 if(!empty($_GET["inserted"])) $esito_inserimento = "Film inserito con successo";
@@ -41,7 +40,8 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $sdh = $_POST["sdh"];
     $ad = $_POST["ad"];
     
-    $attori = $_POST["actors"];
+    $attori = validate_input($_POST["attori"]);
+    $registi = validate_input($_POST["registi"]);
 
     $error_check = validateFields();
     
@@ -50,7 +50,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $film_crud = new Film_crud();
 
         try{
-            $film_crud->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
+            $film_crud->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama,$attori,$registi);
             $id_film = $film_crud->getLastInsertedFilm()["ID"];
 
             if(!empty($immagine)){
@@ -82,14 +82,8 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
                 $cc_piattaforma = filter_var(validate_input($cc[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 $sdh_piattaforma = filter_var(validate_input($sdh[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 $ad_piattaforma = filter_var(validate_input($ad[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
-                
+                var_dump($nome_piattaforma);
                 $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,0,date("Y-m-d"),NULL);
-            }
-
-            $cast_film = new Cast_film();
-            foreach($attori as $attore_id){
-                $attore_id = validate_input($attore_id);
-                $cast_film->inserisci($id_film,$attore_id);
             }
 
             header("Location: ../pagine_ricerca/mostra_film.php?titolo=".rawurlencode($titolo));
@@ -113,6 +107,8 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $page = str_replace("#SELECTED_paese_de#", "", $page);
         $page = str_replace("#SELECTED_paese_fr#", "", $page);
         $page = str_replace("#ANNO_INITIAL#", $anno, $page);
+        $page = str_replace("#ATTORI_INITIAL#", $attori, $page);
+        $page = str_replace("#REGISTI_INITIAL#", $registi, $page);
         $page = str_replace("#DURATA_INITIAL#", timeToString(minutesToTime($durata)), $page);
         $page = str_replace("#SELECTED$livello#", "selected", $page);
         $page = str_replace("#SELECTEDdemenziale#", "", $page);
@@ -164,8 +160,9 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#SELECTED_paese_de#", "", $page);
     $page = str_replace("#SELECTED_paese_fr#", "", $page);
     $page = str_replace("#ANNO_INITIAL#", "", $page);
+    $page = str_replace("#ATTORI_INITIAL#", "", $page);
+    $page = str_replace("#REGISTI_INITIAL#", "", $page);
     $page = str_replace("#DURATA_INITIAL#", "", $page);
-    $page = str_replace("#ANNO_INITIAL#", "", $page);
     $page = str_replace("#SELECTEDdemenziale#", "", $page);
     $page = str_replace("#SELECTEDbasso#", "", $page);
     $page = str_replace("#SELECTEDmedio#", "", $page);
@@ -191,21 +188,29 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#CHECKED_netflix_cc#", "", $page);
     $page = str_replace("#CHECKED_netflix_sdh#", "", $page);
     $page = str_replace("#CHECKED_netflix_ad#", "", $page);
-    $page = str_replace("#CHECKEDprime_video#", "", $page);
-    $page = str_replace("#CHECKED_prime_video_cc#", "", $page);
-    $page = str_replace("#CHECKED_prime_video_sdh#", "", $page);
-    $page = str_replace("#CHECKED_prime_video_ad#", "", $page);
-    
+    $page = str_replace("#CHECKEDprime video#", "", $page);
+    $page = str_replace("#CHECKED_prime video_cc#", "", $page);
+    $page = str_replace("#CHECKED_prime video_sdh#", "", $page);
+    $page = str_replace("#CHECKED_prime video_ad#", "", $page);
+    $page = str_replace("#CHECKEDdisney+#", "", $page);
+    $page = str_replace("#CHECKED_disney+_cc#", "", $page);
+    $page = str_replace("#CHECKED_disney+_sdh#", "", $page);
+    $page = str_replace("#CHECKED_disney+_ad#", "", $page);
+    $page = str_replace("#CHECKEDdiscovery+#", "", $page);
+    $page = str_replace("#CHECKED_discovery+_cc#", "", $page);
+    $page = str_replace("#CHECKED_discovery+_sdh#", "", $page);
+    $page = str_replace("#CHECKED_discovery+_ad#", "", $page);
 
     $page = str_replace("#ERRORE_TITOLO#", "", $page);
     $page = str_replace("#ERRORE_TRAMA#", "", $page);
     $page = str_replace("#ERRORE_ANNO#", "", $page);
+    $page = str_replace("#ERRORE_ATTORI#", "", $page);
+    $page = str_replace("#ERRORE_REGISTI#", "", $page);
 }
 
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 $page = str_replace("#ESITO_INSERIMENTO#", $esito_inserimento, $page);
-$page = str_replace("#INSERISCI_ATTORI#", $searchbar_attore_component, $page);
 
 echo $page;
 
@@ -214,6 +219,8 @@ function validateFields(){
     global $titolo;
     global $trama;
     global $anno;
+    global $attori;
+    global $registi;
 
     $film_crud = new Film_crud();
     $error = false;
@@ -226,6 +233,12 @@ function validateFields(){
 
     if($anno >= 1900 && $anno <= 2023) $page = str_replace("#ERRORE_ANNO#", "", $page);
     else{str_replace("#ERRORE_ANNO#", " error", $page); $error = true; }
+
+   // if(preg_match("/[^,\s][^\,]*[^,\s]*/g", $attori)) $page = str_replace("#ERRORE_ATTORI#", "", $page);
+   // else{$page = str_replace("#ERRORE_ATTORI#", " error", $page); $error = true;}
+
+   // if(preg_match("/[^,\s][^\,]*[^,\s]*/g", $registi)) $page = str_replace("#ERRORE_REGISTI#", "", $page);
+   // else{$page = str_replace("#ERRORE_REGISTI#", " error", $page); $error = true;}
 
     return $error;
 }

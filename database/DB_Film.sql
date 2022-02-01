@@ -29,6 +29,8 @@ CREATE TABLE film
     Paese         VARCHAR(35)  NOT NULL,
     Durata        INT          NOT NULL,
     Trama         VARCHAR(500) NOT NULL,
+    Attori         VARCHAR(500) NOT NULL,
+    Registi         VARCHAR(500) NOT NULL,
     Locandina     int,
     PRIMARY KEY (ID),
     FOREIGN KEY (Locandina) REFERENCES immagini (ID) ON DELETE SET NULL
@@ -145,11 +147,11 @@ CREATE TABLE scheda_utente
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Netflix', '11,99 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('prime_video', '7 euro al mese');
+VALUES ('Prime Video', '7 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
 VALUES ('Disney+', '9 euro al mese');
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('TimVision', '7.99 euro al mese');
+VALUES ('Discovery+', '7.99 euro al mese');
 
 INSERT INTO `lista_generi` (Nome)
 VALUES ('Animazione');
@@ -471,34 +473,34 @@ VALUES (1, 'Azione'),
 
 INSERT INTO disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
 VALUES ('Netflix', 1, true, true, true, false, '2022-10-02', null),
-       ('prime_video', 2, false, true, false, true, '2022-07-12', null),
-       ('TimVision', 2, false, true, false, false, '2022-06-21', 2022-09-22),
-       ('prime_video', 3, false, true, false, true, '2022-04-28', null),
+       ('Prime Video', 2, false, true, false, true, '2022-07-12', null),
+       ('Discovery+', 2, false, true, false, false, '2022-06-21', 2022-09-22),
+       ('Prime Video', 3, false, true, false, true, '2022-04-28', null),
        ('Netflix', 3, false, true, false, true, '2022-04-20', null),
        ('Disney+', 3, false, true, false, true, '2022-05-24', null),
        ('Disney+', 4, true, true, false, false, '2022-05-12', 2023-10-15),
-       ('TimVision', 4, true, true, false, false, '2022-02-15', null),
-       ('TimVision', 5, true, true, false, false, '2022-03-18', 2022-06-12),
+       ('Discovery+', 4, true, true, false, false, '2022-02-15', null),
+       ('Discovery+', 5, true, true, false, false, '2022-03-18', 2022-06-12),
        ('Netflix', 5, true, true, false, false, '2022-04-16', 2022-12-16),
        ('Netflix', 6, true, true, false, false, '2022-05-20', null),
        ('Disney+', 6, true, true, false, false, '2022-03-15', 2022-11-19),
-       ('prime_video', 6, true, true, false, false, '2022-02-27', null),
+       ('Prime Video', 6, true, true, false, false, '2022-02-27', null),
        ('Netflix', 7, true, true, false, false, '2022-03-01', null),
        ('Netflix', 8, true, true, false, false, '2022-04-11', 2022-07-11),
-       ('TimVision', 9, true, true, false, false, '2022-06-02', null),
+       ('Discovery+', 9, true, true, false, false, '2022-06-02', null),
        ('Disney+', 10, true, true, false, false, '2022-02-25', 2022-03-06),
        ('Disney+', 11, true, true, false, false, '2022-04-27', null),
        ('Netflix', 11, true, true, false, false, '2022-01-30', null),
-       ('prime_video', 12, true, true, false, false, '2022-06-02', null),
+       ('Prime Video', 12, true, true, false, false, '2022-06-02', null),
        ('Disney+', 12, true, true, false, false, '2022-02-02', 2022-04-09),
-       ('TimVision', 13, true, true, false, false, '2022-06-02', null),
+       ('Discovery+', 13, true, true, false, false, '2022-06-02', null),
        ('Disney+', 13, true, true, false, false, '2022-02-19', 2022-03-14),
-       ('TimVision', 14, true, true, false, false, '2022-06-10', null),
+       ('Discovery+', 14, true, true, false, false, '2022-06-10', null),
        ('Netflix', 15, true, true, false, false, '2022-06-17', null),
        ('Disney+', 16, true, true, false, false, '2022-06-02', 2022-04-29),
-       ('prime_video', 17, true, true, false, false, '2022-02-20', 2022-07-26),
+       ('Prime Video', 17, true, true, false, false, '2022-02-20', 2022-07-26),
        ('Netflix', 17, true, true, false, false, '2022-04-12', null),
-       ('TimVision', 17, true, true, false, false, '2022-01-18', null);
+       ('Discovery+', 17, true, true, false, false, '2022-01-18', null);
 
 INSERT INTO categorizzazione(Film, Eta_pubblico, Livello, Mood, Riconoscimenti)
 VALUES (1, 'T', 'demenziale', 'suspence', true),

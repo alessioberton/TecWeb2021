@@ -58,12 +58,12 @@ class Film_crud extends Connectable{
         return $result;
     }
 
-    function inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama){
-        $query = "INSERT INTO film(Titolo,lingua_titolo,Anno,Paese,Durata,Trama)
-                  VALUES(?,?,?,?,?,?)";
+    function inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama,$attori,$registi){
+        $query = "INSERT INTO film(Titolo,lingua_titolo,Anno,Paese,Durata,Trama,Attori,Registi)
+                  VALUES(?,?,?,?,?,?,?,?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("ssssss",$titolo,$lingua_titolo,$anno,$paese,$durata,$trama);
+        $stmt->bind_param("ssssssss",$titolo,$lingua_titolo,$anno,$paese,$durata,$trama,$attori,$registi);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
