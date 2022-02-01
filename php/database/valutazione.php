@@ -83,15 +83,14 @@ class Valutazione extends Connectable {
         }
     }
 
-    function modifica($username, $film_id, $commento, $in_moderazione, $Stelle){
+    function modifica($username, $film_id, $commento, $Stelle){
         $query = "UPDATE valutazione SET
                   Commento = ?,
-                  In_moderazione = ?,
                   Stelle = ?
                   WHERE utente = ? AND id_film = ?
                   ";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("siiii", $commento, $in_moderazione, $Stelle, $username, $film_id);
+        $stmt->bind_param("siii", $commento, $Stelle, $username, $film_id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
