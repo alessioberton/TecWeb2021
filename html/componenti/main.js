@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
 	document.getElementById("heading").addEventListener("click", function (event) {
 		event.stopPropagation(event);

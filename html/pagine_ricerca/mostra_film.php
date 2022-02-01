@@ -20,9 +20,9 @@ $genere_section = "";
 $attore_section = "";
 $regista_section = "";
 $piattaforma_component = file_get_contents(__DIR__.'/../../html/componenti/view_piattaforme.html');
-$genere_component = file_get_contents(__DIR__.'/../../html/componenti/view_generi.html');
-$attore_component = file_get_contents(__DIR__.'/../../html/componenti/view_attori.html');
-$regista_component = file_get_contents(__DIR__.'/../../html/componenti/view_registi.html');
+$genere_component = "<li>#NOME_GENERE#</li>";
+$attore_component = "<li><a href='#URL_ATTORE#'>#NOME_ATTORE#</a></li>";
+$regista_component = "<li><a href='#URL_REGISTA#'>#NOME_REGISTA#</a></li>";
 $pulsanti_component = file_get_contents(__DIR__.'/../../html/componenti/pulsanti_film.html');
 $admin_component = file_get_contents(__DIR__.'/../../html/componenti/view_admin.html');
 $errore = '';
@@ -41,7 +41,6 @@ if(isUserAdmin() && isset($_POST["elimina"])){
         if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
         $errore = $e;
     }
-
 }
 
 $lista_film = $film_crud->find_all();
@@ -71,9 +70,9 @@ if (isset($_GET["titolo"])) {
                         {
                             $piattaforma_section .= $piattaforma_component;
                             $piattaforma_section = str_replace("#NOME_PIATTAFORMA#", $piattaforma["Nome"], $piattaforma_section);
-							$piattaforma_section = str_replace("#SDH#", $piattaforma["SDH"] ? "SDH" : "", $piattaforma_section);
-                            $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "CC" : "", $piattaforma_section);
-                            $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "AD" : "", $piattaforma_section);
+							$piattaforma_section = str_replace("#SDH#", $piattaforma["SDH"] ? "<li>SDH</li>" : "", $piattaforma_section);
+                            $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "<li>CC</li>" : "", $piattaforma_section);
+                            $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "<li>AD</li>" : "", $piattaforma_section);
                         }
                         $page = str_replace("#PIATTAFORME#", $piattaforma_section, $page);
 
