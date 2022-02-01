@@ -7,8 +7,6 @@ require_once(__DIR__.'/../../php/database/connectable.php');
 class Cast_film extends Connectable{
 
     function inserisci($film_id,$attore_id){
-        var_dump($film_id);
-        var_dump($attore_id);
         $query = "INSERT INTO cast_film(Film,Attore)
                   VALUES(?,?)";
 

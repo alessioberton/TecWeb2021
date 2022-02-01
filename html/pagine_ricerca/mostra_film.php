@@ -10,8 +10,6 @@ function getAbs_path(): void
     require_once(__DIR__.'/../../php/database/valutazione.php');
     require_once(__DIR__.'/../../php/database/film_crud.php');
     require_once(__DIR__.'/../../html/componenti/header.php');
-
-    //$_POST = array_map('empty_to_null', $_POST);
 }
 
 getAbs_path();
@@ -173,8 +171,9 @@ echo $page;
 
 function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $scheda_result, $valutazione_item){
     global $errore;
-
+    
     if(isset($_POST["valutazione_stelle"]) && $_SESSION["logged"]){
+        
 		$visto = $_POST["visto"] ? 1 : 0;
 		$salvato = $_POST["salvato"] ? 1 : 0;
 		try{
