@@ -10,7 +10,9 @@
 	</head>
 	<body>
 		<customHeader />
-		<div class="breadcrumb"><a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Inserisci Film</div>
+		<div class="breadcrumb">
+			<a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Inserisci Film
+		</div>
 		<main id="content">
 			<p>#ESITO_INSERIMENTO#</p>
 			<form method="post" action="inserisci_film.php" enctype="multipart/form-data" id="insert-film-form">
@@ -27,27 +29,19 @@
 						>
 							Categorie
 						</button>
-						<button
-							type="button"
-							role="tab"
-							aria-selected="false"
-							aria-controls="actors-tab"
-							id="actors"
-							tabindex="-1"
-							data-deletable=""
-						>
+						<button type="button" role="tab" aria-selected="false" aria-controls="actors-tab" id="actors" tabindex="-1">
 							Attori
 						</button>
 					</div>
 					<div tabindex="0" role="tabpanel" id="main-tab" aria-labelledby="main">
 						<div class="field text-input#ERRORE_TITOLO#">
-							<label for="titolo">Titolo</label>
+							<label for="titolo" class="required">Titolo</label>
 							<input type="text" id="titolo" name="titolo" required value="#TITOLO_INITIAL#" />
 							<span id="titolo-desc" class="hint">Titolo già esistente</span>
 						</div>
 
 						<div class="field text-input">
-							<label for="lingua_titolo">Lingua titolo</label>
+							<label for="lingua_titolo" class="required">Lingua titolo</label>
 							<select id="lingua_titolo" name="lingua_titolo">
 								<option value="it" #SELECTED_lingua_titolo_it#>Italiano</option>
 								<option value="en" #SELECTED_lingua_titolo_en#>Inglese</option>
@@ -55,26 +49,30 @@
 						</div>
 
 						<div class="field text-input#ERRORE_TRAMA#">
-							<label for="trama">Trama</label>
+							<label for="trama" class="required">Trama</label>
 							<textarea id="trama" name="trama" maxlength="500" required>#TRAMA_INITIAL#</textarea>
 							<span id="trama-desc" class="hint">Lunghezza superiore ai 500 caratteri</span>
 						</div>
-						<div class="field file-input">
-							<label for="immagine" class="visuallyHidden">Inserisci immagine</label>
+
+						<div class="field text-input file-input#ERRORE_IMMAGINE#">
+							<label for="immagine" class="required">Locandina</label>
 							<input type="file" id="immagine" name="immagine" accept=".jpg,.jpeg,.png" required />
+							<span id="immagine-desc" class="hint">#ERRORE_IMMAGINE_DESC#</span>
 						</div>
 
 						<div class="field text-input">
 							<label for="descrizione_immagine">Descrizione immagine</label>
-							<textarea id="descrizione_immagine" name="descrizione_immagine" maxlength="100">
-							#DECRIZIONE_IMMAGINE_INITIAL#
-							</textarea
-							>
+							<textarea
+								id="descrizione_immagine"
+								name="descrizione_immagine"
+								maxlength="100"
+								#DECRIZIONE_IMMAGINE_INITIAL#
+							></textarea>
 							<span id="descrizione_immagine-desc" class="hint">Lunghezza superiore ai 100 caratteri</span>
 						</div>
 
 						<div class="field text-input">
-							<label for="anno">Anno</label>
+							<label for="anno" class="required">Anno</label>
 							<input
 								type="number"
 								id="anno"
@@ -89,7 +87,7 @@
 						</div>
 
 						<div class="field text-input">
-							<label for="durata">Durata</label>
+							<label for="durata" class="required">Durata</label>
 							<input
 								type="text"
 								id="durata"
@@ -104,7 +102,7 @@
 					</div>
 					<div tabindex="0" role="tabpanel" id="details-tab" aria-labelledby="details" class="is-hidden">
 						<div class="field text-input">
-							<label for="livello">Livello:</label>
+							<label for="livello" class="required">Livello</label>
 							<select id="livello" name="livello">
 								<option value="demenziale" #SELECTEDdemenziale#>Demenziale</option>
 								<option value="basso" #SELECTEDbasso#>Basso</option>
@@ -113,7 +111,7 @@
 							</select>
 						</div>
 						<div class="field text-input">
-							<label for="mood"><span lang="en">Mood</span>:</label><br />
+							<label for="mood" class="required"><span lang="en">Mood</span></label>
 							<select id="mood" name="mood">
 								<option value="suspense" #SELECTEDsuspense#><span lang="en">Suspense</span></option>
 								<option value="protesta" #SELECTEDprotesta#>Protesta</option>
@@ -124,16 +122,15 @@
 							</select>
 						</div>
 						<div class="field text-input">
-							<label for="eta_pubblico">Eta pubblico</label>
+							<label for="eta_pubblico" class="required">Eta pubblico</label>
 							<select id="eta_pubblico" name="eta_pubblico">
 								<option value="T" #SELECTEDT#>Tutti</option>
 								<option value="VM14" #SELECTEDVM14#>VM 14</option>
 								<option value="VM18" #SELECTEDVM18#>VM 18</option>
 							</select>
 						</div>
-						<!-- TODO: prendere dati dinamicamente -->
 						<fieldset class="checkbox-group" id="genre-checkboxes">
-							<legend>Genere:</legend>
+							<legend class="required">Genere</legend>
 							<div class="checkbox-field">
 								<input type="checkbox" id="genere_anime" name="genere[anime]" #CHECKED_genere_anime# />
 								<label for="genere_anime">Anime</label>
@@ -173,7 +170,7 @@
 							</div>
 						</fieldset>
 						<fieldset class="checkbox-group" id="platform-checkboxes">
-							<legend>Piattaforma:</legend>
+							<legend>Piattaforma</legend>
 
 							<div class="checkbox-field">
 								<input type="checkbox" id="piattaforma_netflix" name="piattaforma[netflix]" #CHECKEDnetflix# />
@@ -256,13 +253,13 @@
 						</fieldset>
 					</div>
 					<div tabindex="0" role="tabpanel" id="actors-tab" aria-labelledby="actors" class="is-hidden">
-						<div class="field text-input#ERRORE_ATTORI#">
-							<label for="attori">Attori</label>
+						<div class="field text-input">
+							<label for="attori" class="required">Attori</label>
 							<span id="attori-desc" class="hint">Errore usare il formato: nome cognome, nome cognome</span>
 							<input type="text" id="attori" name="attori" required value="#ATTORI_INITIAL#" />
 						</div>
-						<div class="field text-input#ERRORE_REGISTI#">
-							<label for="registi">Registi</label>
+						<div class="field text-input">
+							<label for="registi" class="required">Registi</label>
 							<span id="registi-desc" class="hint">Errore usare il formato: nome cognome, nome cognome</span>
 							<input type="text" id="registi" name="registi" required value="#REGISTI_INITIAL#" />
 						</div>

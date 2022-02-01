@@ -193,6 +193,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#ERRORE_ANNO#", "", $page);
     $page = str_replace("#ERRORE_ATTORI#", "", $page);
     $page = str_replace("#ERRORE_REGISTI#", "", $page);
+	$page = str_replace("#ERRORE_IMMAGINE#", "", $page);
 }
 
 $header = new Header();
@@ -221,6 +222,11 @@ function validateFields(){
     if($anno >= 1900 && $anno <= 2023) $page = str_replace("#ERRORE_ANNO#", "", $page);
     else{str_replace("#ERRORE_ANNO#", " error", $page); $error = true; }
 
+	if($error=true) {
+		$page = str_replace("#ERRORE_IMMAGINE#", " error", $page);
+		$page = str_replace("#ERRORE_IMMAGINE_DESC#", "Re-inserire immagine", $page);
+	}
+	else $page = str_replace("#ERRORE_IMMAGINE#", "", $page);
    /* 	if(preg_match_all("/[^,\s][^\,]*[^,\s]*", $attori)) $page = str_replace("#ERRORE_ATTORI#", "", $page);
    	else{$page = str_replace("#ERRORE_ATTORI#", " error", $page); $error = true;}
 
