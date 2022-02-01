@@ -54,27 +54,91 @@ function handleMenu() {
 }
 
 function handleFormErrors() {
+	function checkCommaSeparatedInput(event) {
+		var value = event.target.value;
+		var node = this;
+		this.setCustomValidity("");
+		if (!this.checkValidity()) return;
+
+		Array.prototype.forEach.call(value.split(","), function (el, i) {
+			if (!el || el === " ") node.setCustomValidity("Nomi separati da virgola richiesto");
+			else if (!/^[a-zA-Z\s]+$/.test(el)) node.setCustomValidity("Caratteri non permessi presenti");
+		});
+	}
+
+	function findInput(el) {
+		var node = el.querySelector("input");
+		var otherNode = el.querySelector("textarea");
+		if (!node) node = otherNode;
+		return node;
+	}
+
+	function toggleError(el) {
+		var node = findInput(el);
+		if (!node.checkValidity()) {
+			var span = el.querySelector("span");
+			span.innerHTML = node.validationMessage;
+			span.setAttribute("title", node.validationMessage);
+			el.classList.add("error");
+			el.setAttribute("aria-describedby", span.id);
+		} else {
+			el.className = el.className.replace("error", "");
+			el.removeAttribute("aria-describedby");
+		}
+	}
+
+	function showError(el) {
+		var node = findInput(el);
+		var span = el.querySelector("span");
+		span.innerHTML = node.validationMessage;
+		span.setAttribute("title", node.validationMessage);
+		el.classList.add("error");
+		el.setAttribute("aria-describedby", span.id);
+	}
+
+	function hideError(el) {
+		el.className = el.className.replace("error", "");
+		el.removeAttribute("aria-describedby");
+	}
+
+	if (document.getElementById("registi")) {
+		document.getElementById("registi").addEventListener("input", checkCommaSeparatedInput);
+		document.getElementById("attori").addEventListener("input", checkCommaSeparatedInput);
+	}
+
+	var repeatPwd = document.getElementById("repeat-pwd");
+	if (repeatPwd) {
+		repeatPwd.addEventListener("input", function (event) {
+			this.setCustomValidity("");
+			if (!this.checkValidity()) return;
+			if (document.getElementById("pwd").value !== event.target.value) {
+				this.setCustomValidity("Password non uguale");
+			}
+		});
+		document.getElementById("pwd").addEventListener("input", function (event) {
+			var repeatPwd = document.getElementById("repeat-pwd");
+			repeatPwd.setCustomValidity("");
+			if (!repeatPwd.checkValidity()) return;
+			if (repeatPwd.value !== event.target.value) {
+				repeatPwd.setCustomValidity("Password non uguale");
+				showError(repeatPwd.parentNode);
+			} else {
+				toggleError(repeatPwd.parentNode);
+			}
+		});
+	}
+
 	var menuItems = document.querySelectorAll("div.field");
 	Array.prototype.forEach.call(menuItems, function (el, i) {
 		var node = el.querySelector("input");
 		var otherNode = el.querySelector("textarea");
 		if (!node) node = otherNode;
 		if (node) {
-			node.addEventListener("keyup", function (ell, i) {
-				if (!this.checkValidity()) {
-					var span = el.querySelector("span");
-					this.parentNode.classList.add("error");
-					span.innerHTML = this.validationMessage;
-					node.setAttribute("aria-describedby", span.id);
-				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+			node.addEventListener("input", function (ell, i) {
+				toggleError(el);
 			});
 			node.addEventListener("blur", function (ell, i) {
-				if (!this.checkValidity()) {
-					var span = el.querySelector("span");
-					this.parentNode.classList.add("error");
-					span.innerHTML = this.validationMessage;
-					node.setAttribute("aria-describedby", span.id);
-				} else this.parentNode.className = this.parentNode.className.replace("error", "");
+				toggleError(el);
 			});
 		}
 	});
@@ -176,50 +240,6 @@ function clearMovieSearchResults(event) {
 	var headerFlexbox = document.getElementById("topbar");
 	headerFlexbox.className = "";
 	document.getElementById("movieSuggestionList").innerHTML = "";
-}
-
-function getActorSearchResults(string) {
-	var list = document.getElementById("actorSuggestionList");
-	if (string.length < 2) {
-		list.innerHTML = "";
-		return;
-	}
-
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function () {
-		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-			list.innerHTML = this.responseText;
-		}
-	};
-	xmlHttp.open("GET", "../../php/database/suggerimenti_attore.php?q=" + encodeURIComponent(string), true);
-	xmlHttp.send();
-}
-
-function clearActorSearchResults() {
-	document.getElementById("actorSuggestionList").innerHTML = "";
-	document.getElementById("actorSearch").value = "";
-}
-
-function insertActor(nome_attore, id_attore) {
-	if (document.getElementById(id_attore)) return;
-	document.getElementById("hiddenActorList").innerHTML +=
-		'<input id="' + id_attore + "box" + '" type="checkbox" hidden checked name="actors[]" value="' + id_attore + '" />';
-
-	document.getElementById("actorList").innerHTML +=
-		"<li id=" +
-		id_attore +
-		">" +
-		nome_attore +
-		"<button onclick='removeActor(\"" +
-		id_attore +
-		'")\' type="button">X</button></li>';
-}
-
-function removeActor(id_attore) {
-	var checkbox = document.getElementById(id_attore + "box");
-	var cipsetItem = document.getElementById(id_attore);
-	checkbox.parentNode.removeChild(checkbox);
-	cipsetItem.parentNode.removeChild(cipsetItem);
 }
 
 function toggleSearchFilters(event, el) {

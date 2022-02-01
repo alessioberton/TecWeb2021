@@ -1,25 +1,19 @@
 <?php
 require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
-
-function getAbs_path(): void
-{
-    require_once(__DIR__.'/../../php/logic/functions.php');
-    require_once(__DIR__.'/../../php/database/utente.php');
-    require_once(__DIR__.'/../../php/database/immagine.php');
-    require_once(__DIR__.'/../../php/database/scheda_utente.php');
-    require_once(__DIR__.'/../../php/database/film.php');
-    require_once(__DIR__.'/../../php/database/film_crud.php');
-    require_once(__DIR__.'/../../php/database/valutazione.php');
-    require_once(__DIR__.'/../../html/componenti/header.php');
-    if ($_SESSION['logged'] == false) {
-        header('location: ../pagine_altre/accesso_negato.php');
-        exit();
-    }
-    $_POST = array_map('empty_to_null', $_POST);
+require_once(__DIR__.'/../../php/logic/functions.php');
+require_once(__DIR__.'/../../php/database/utente.php');
+require_once(__DIR__.'/../../php/database/immagine.php');
+require_once(__DIR__.'/../../php/database/scheda_utente.php');
+require_once(__DIR__.'/../../php/database/film.php');
+require_once(__DIR__.'/../../php/database/film_crud.php');
+require_once(__DIR__.'/../../php/database/valutazione.php');
+require_once(__DIR__.'/../../html/componenti/header.php');
+if ($_SESSION['logged'] == false) {
+	header('location: ../pagine_altre/accesso_negato.php');
+	exit();
 }
-
-getAbs_path();
+$_POST = array_map('empty_to_null', $_POST);
 
 $page = file_get_contents(__DIR__."/film_salvati.html");
 $header = new Header();
@@ -75,7 +69,7 @@ if (isset($_POST["option_film_salvati"])) {
 }
 
 foreach ($lista_film as $value) {
-    $view_film = file_get_contents(__DIR__.'/../componenti/view_film.html');
+    $view_film = file_get_contents(__DIR__.'/../componenti/view_film_user.html');
     $percorso_film = $immagine->find($value->locandina)["Percorso"];
     $percorso_film = "../../img/" . $percorso_film;
     $view_film = str_replace("#LOCANDINA#", $percorso_film, $view_film);

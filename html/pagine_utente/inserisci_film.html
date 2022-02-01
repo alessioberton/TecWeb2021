@@ -61,7 +61,7 @@
 						</div>
 						<div class="field file-input">
 							<label for="immagine" class="visuallyHidden">Inserisci immagine</label>
-							<input type="file" id="immagine" name="immagine" accept=".jpg,.jpeg,.png" />
+							<input type="file" id="immagine" name="immagine" accept=".jpg,.jpeg,.png" required />
 						</div>
 
 						<div class="field text-input">
@@ -70,16 +70,6 @@
 #DECRIZIONE_IMMAGINE_INITIAL#</textarea
 							>
 							<span id="descrizione_immagine-desc" class="hint">Lunghezza superiore ai 100 caratteri</span>
-						</div>
-						<div class="field text-input">
-							<label for="paese">Paese</label>
-							<select id="paese" name="paese">
-								<option value="it" #SELECTED_paese_it#>Italia</option>
-								<option value="us" #SELECTED_paese_us#>Stati Uniti</option>
-								<option value="en" #SELECTED_paese_en#>Inghilterra</option>
-								<option value="de" #SELECTED_paese_de#>Germania</option>
-								<option value="fr" #SELECTED_paese_fr#>Francia</option>
-							</select>
 						</div>
 
 						<div class="field text-input">
@@ -265,8 +255,6 @@
 						</fieldset>
 					</div>
 					<div tabindex="0" role="tabpanel" id="actors-tab" aria-labelledby="actors" class="is-hidden">
-						<!-- <label for="actorSelect">Attori:</label><br />
-						#INSERISCI_ATTORI# -->
 						<div class="field text-input#ERRORE_ATTORI#">
 							<label for="attori">Attori</label>
 							<span id="attori-desc" class="hint">Errore usare il formato: nome cognome, nome cognome</span>

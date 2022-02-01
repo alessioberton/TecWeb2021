@@ -465,7 +465,13 @@ header #movieSelect #movieSuggestionList img {
 }
 
 .text-input.error .hint {
+	max-width: 70%;
 	display: initial;
+	text-overflow: ellipsis;
+
+	/* Required for text-overflow to do anything */
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .text-input .hint {
@@ -621,12 +627,6 @@ a.skip-to-content:active {
 }
 [role="tabpanel"].is-hidden {
 	display: none;
-}
-
-/*INSERISCI ATTORE*/
-
-#attore-form {
-	margin: 0.5em 1em;
 }
 
 /*PAGINA RICERCA*/
@@ -971,6 +971,7 @@ a.skip-to-content:active {
 
 #genres-item {
 	padding: 0.2em 0.4em;
+	text-transform: capitalize;
 }
 
 #mood-item {
