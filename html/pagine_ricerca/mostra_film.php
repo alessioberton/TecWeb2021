@@ -55,7 +55,7 @@ if (isset($_GET["titolo"])) {
 
                     $lingua = $value['Lingua_titolo'];
                     if ($lingua != 'IT')
-                        $page = str_replace("#TITOLO#", "<span lang='".$lingua."'>".$value['Titolo']. "</span", $page);
+                        $page = str_replace("#TITOLO#", "<span lang='".$lingua."'>".$value['Titolo']. "</span>", $page);
                     else
                      $page = str_replace("#TITOLO#", $value['Titolo'], $page);
 
