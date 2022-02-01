@@ -191,7 +191,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#CHECKED_netflix_cc#", "", $page);
     $page = str_replace("#CHECKED_netflix_sdh#", "", $page);
     $page = str_replace("#CHECKED_netflix_ad#", "", $page);
-    $page = str_replace("#CHECKED_prime_video#", "", $page);
+    $page = str_replace("#CHECKEDprime_video#", "", $page);
     $page = str_replace("#CHECKED_prime_video_cc#", "", $page);
     $page = str_replace("#CHECKED_prime_video_sdh#", "", $page);
     $page = str_replace("#CHECKED_prime_video_ad#", "", $page);
