@@ -37,7 +37,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $cc = $_POST["cc"];
     $sdh = $_POST["sdh"];
     $ad = $_POST["ad"];
-    
+
     $attori = validate_input($_POST["attori"]);
     $registi = validate_input($_POST["registi"]);
 
@@ -222,7 +222,7 @@ function validateFields(){
     if($anno >= 1900 && $anno <= 2023) $page = str_replace("#ERRORE_ANNO#", "", $page);
     else{str_replace("#ERRORE_ANNO#", " error", $page); $error = true; }
 
-	if($error=true) {
+	if($error) {
 		$page = str_replace("#ERRORE_IMMAGINE#", " error", $page);
 		$page = str_replace("#ERRORE_IMMAGINE_DESC#", "Re-inserire immagine", $page);
 	}
