@@ -180,7 +180,7 @@ if ($sto_cercando) {
                 else $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
                 $id_immagine = $lista_film[$i]->locandina;
                 $percorso_immagine =
-                    $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+                    $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : '../../img/'.$immagine->getNotFoundImage("film")["Percorso"];
                 $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
                 $sezione_risultati = str_replace("#LOCANDINA#", $percorso_immagine, $sezione_risultati);
                 $sezione_risultati = str_replace("#DESCRIZONE#", $descrizione_immagine, $sezione_risultati);
