@@ -28,8 +28,8 @@ CREATE TABLE film
     Paese         VARCHAR(35)  NOT NULL,
     Durata        INT          NOT NULL,
     Trama         VARCHAR(500) NOT NULL,
-    Attori         VARCHAR(500) NOT NULL,
-    Registi         VARCHAR(500) NOT NULL,
+    Attori         VARCHAR(500) NOT NULL DEFAULT '',
+    Registi         VARCHAR(500) NOT NULL DEFAULT '',
     Locandina     int,
     PRIMARY KEY (ID),
     FOREIGN KEY (Locandina) REFERENCES immagini (ID) ON DELETE SET NULL
