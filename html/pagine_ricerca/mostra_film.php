@@ -186,10 +186,10 @@ function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $s
             }
 
             if(!$valutazione_item){
-                $valutazione->inserisci($_SESSION["user"]["Username"],$id_film,"",0,date("Y-m-d H:i:s"),validate_input($_POST["valutazione_stelle"]));
+                $valutazione->inserisci($_SESSION["user"]["Username"],$id_film,"",date("Y-m-d H:i:s"),validate_input($_POST["valutazione_stelle"]));
             }
             else{
-                $valutazione->modifica($_SESSION["user"]["Username"],$id_film,"",0,validate_input($_POST["valutazione_stelle"]));
+                $valutazione->modifica($_SESSION["user"]["Username"],$id_film,"",validate_input($_POST["valutazione_stelle"]));
             }
             header("location: mostra_film.php?titolo=".rawurlencode($_GET["titolo"]));
         }catch(Exception $e){
