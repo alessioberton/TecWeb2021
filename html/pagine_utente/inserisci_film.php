@@ -23,7 +23,6 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $lingua_titolo = validate_input($_POST["lingua_titolo"]);
     $trama = validate_input($_POST["trama"]);
     $anno = validate_input($_POST["anno"]);
-    $paese = validate_input($_POST["paese"]);
     $durata = timeToMinutes(stringToTime(validate_input($_POST["durata"])));
     $descrizione_immagine = validate_input($_POST["descrizione_immagine"]);
     $immagine = $_FILES["immagine"]["name"];
@@ -31,7 +30,6 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $eta_publico = validate_input($_POST["eta_pubblico"]);
     $livello = validate_input($_POST["livello"]);
     $mood = validate_input($_POST["mood"]);
-    $riconoscimenti = filter_var(validate_input($_POST["riconoscimenti"]),FILTER_VALIDATE_BOOLEAN);
 
     $genere = $_POST["genere"];
 
@@ -50,7 +48,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $film_crud = new Film_crud();
 
         try{
-            $film_crud->inserisciFilm($titolo,$lingua_titolo,$anno,$paese,$durata,$trama,$attori,$registi);
+            $film_crud->inserisciFilm($titolo,$lingua_titolo,$anno,"IT",$durata,$trama,$attori,$registi);
             $id_film = $film_crud->getLastInsertedFilm()["ID"];
 
             if(!empty($immagine)){
@@ -68,7 +66,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
             }
 
             $categorizzazione = new Categorizzazione();
-            $categorizzazione->inserisci($id_film,$eta_publico,$livello,$mood,$riconoscimenti);
+            $categorizzazione->inserisci($id_film,$eta_publico,$livello,$mood, true);
 
             $genereFilm = new GenereFilm();
             foreach($genere as $nome_genere => $val_genere){
@@ -83,7 +81,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
                 $sdh_piattaforma = filter_var(validate_input($sdh[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 $ad_piattaforma = filter_var(validate_input($ad[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 var_dump($nome_piattaforma);
-                $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,0,date("Y-m-d"),NULL);
+                $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma);
             }
 
             header("Location: ../pagine_ricerca/mostra_film.php?titolo=".rawurlencode($titolo));
@@ -100,12 +98,6 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $page = str_replace("#SELECTED_lingua_titolo_en#", "", $page);
         $page = str_replace("#TRAMA_INITIAL#", $trama, $page);
         $page = str_replace("#DECRIZIONE_IMMAGINE_INITIAL#", $descrizione_immagine, $page);
-        $page = str_replace("#SELECTED_paese_$paese#", "selected", $page);
-        $page = str_replace("#SELECTED_paese_it#", "", $page);
-        $page = str_replace("#SELECTED_paese_us#", "", $page);
-        $page = str_replace("#SELECTED_paese_en#", "", $page);
-        $page = str_replace("#SELECTED_paese_de#", "", $page);
-        $page = str_replace("#SELECTED_paese_fr#", "", $page);
         $page = str_replace("#ANNO_INITIAL#", $anno, $page);
         $page = str_replace("#ATTORI_INITIAL#", $attori, $page);
         $page = str_replace("#REGISTI_INITIAL#", $registi, $page);
@@ -116,11 +108,11 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $page = str_replace("#SELECTEDmedio#", "", $page);
         $page = str_replace("#SELECTEDalto#", "", $page);
         $page = str_replace("#SELECTED$mood#", "selected", $page);
-        $page = str_replace("#SELECTEDsuspence#", "", $page);
+        $page = str_replace("#SELECTEDsuspense#", "", $page);
         $page = str_replace("#SELECTEDprotesta#", "", $page);
         $page = str_replace("#SELECTEDcommovente#", "", $page);
-        $page = str_replace("#SELECTEDcomico#", "", $page);
-        $page = str_replace("#SELECTEDsentimentale#", "", $page);
+        $page = str_replace("#SELECTEDdivertente#", "", $page);
+        $page = str_replace("#SELECTEDottimista#", "", $page);
         $page = str_replace("#SELECTEDsorprendente#", "", $page);
         $page = str_replace("#SELECTED$eta_publico#", "selected", $page);
         $page = str_replace("#SELECTEDT#", "", $page);
@@ -154,11 +146,6 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#SELECTED_lingua_titolo_en#", "", $page);
     $page = str_replace("#TRAMA_INITIAL#", "", $page);
     $page = str_replace("#DECRIZIONE_IMMAGINE_INITIAL#", "", $page);
-    $page = str_replace("#SELECTED_paese_it#", "", $page);
-    $page = str_replace("#SELECTED_paese_us#", "", $page);
-    $page = str_replace("#SELECTED_paese_en#", "", $page);
-    $page = str_replace("#SELECTED_paese_de#", "", $page);
-    $page = str_replace("#SELECTED_paese_fr#", "", $page);
     $page = str_replace("#ANNO_INITIAL#", "", $page);
     $page = str_replace("#ATTORI_INITIAL#", "", $page);
     $page = str_replace("#REGISTI_INITIAL#", "", $page);
@@ -167,11 +154,11 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#SELECTEDbasso#", "", $page);
     $page = str_replace("#SELECTEDmedio#", "", $page);
     $page = str_replace("#SELECTEDalto#", "", $page);
-    $page = str_replace("#SELECTEDsuspence#", "", $page);
+    $page = str_replace("#SELECTEDsuspense#", "", $page);
     $page = str_replace("#SELECTEDprotesta#", "", $page);
     $page = str_replace("#SELECTEDcommovente#", "", $page);
-    $page = str_replace("#SELECTEDcomico#", "", $page);
-    $page = str_replace("#SELECTEDsentimentale#", "", $page);
+    $page = str_replace("#SELECTEDdivertente#", "", $page);
+    $page = str_replace("#SELECTEDottimista#", "", $page);
     $page = str_replace("#SELECTEDsorprendente#", "", $page);
     $page = str_replace("#SELECTEDT#", "", $page);
     $page = str_replace("#SELECTEDVM14#", "", $page);
@@ -234,11 +221,13 @@ function validateFields(){
     if($anno >= 1900 && $anno <= 2023) $page = str_replace("#ERRORE_ANNO#", "", $page);
     else{str_replace("#ERRORE_ANNO#", " error", $page); $error = true; }
 
-   // if(preg_match("/[^,\s][^\,]*[^,\s]*/g", $attori)) $page = str_replace("#ERRORE_ATTORI#", "", $page);
-   // else{$page = str_replace("#ERRORE_ATTORI#", " error", $page); $error = true;}
+   /* 	if(preg_match_all("/[^,\s][^\,]*[^,\s]*", $attori)) $page = str_replace("#ERRORE_ATTORI#", "", $page);
+   	else{$page = str_replace("#ERRORE_ATTORI#", " error", $page); $error = true;}
 
-   // if(preg_match("/[^,\s][^\,]*[^,\s]*/g", $registi)) $page = str_replace("#ERRORE_REGISTI#", "", $page);
-   // else{$page = str_replace("#ERRORE_REGISTI#", " error", $page); $error = true;}
+   	if(preg_match_all("/[^,\s][^\,]*[^,\s]*", $registi)) $page = str_replace("#ERRORE_REGISTI#", "", $page);
+	else{$page = str_replace("#ERRORE_REGISTI#", " error", $page); $error = true;} 
+	*/
 
     return $error;
 }
+?>

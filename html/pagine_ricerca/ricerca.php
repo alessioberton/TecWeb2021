@@ -37,7 +37,7 @@ $filtro_disponibilita = [];
 
 $sto_cercando = false;
 
-$componente_lista_risultati = file_get_contents(__DIR__ . '/../' . "componenti/search_view_info.html");
+$componente_lista_risultati = file_get_contents(__DIR__ . '/../' . "componenti/view_film_search.html");
 $sezione_risultati = "";
 
 
@@ -110,7 +110,6 @@ if ($sto_cercando) {
             $film->eta = $value["Eta_pubblico"];
             $film->livello = $value["Livello"];
             $film->mood = $value["Mood"];
-            $film->riconoscimenti = $value["Riconoscimenti"];
             $lista_film[] = $film;
         }
 
@@ -134,9 +133,6 @@ if ($sto_cercando) {
                     $lista_film[$i]->cc = $filtro_disponibilita[$j]["CC"];
                     $lista_film[$i]->SDH = $filtro_disponibilita[$j]["SDH"];
                     $lista_film[$i]->AD = $filtro_disponibilita[$j]["AD"];
-                    $lista_film[$i]->costo_aggiuntivo = $filtro_disponibilita[$j]["CostoAggiuntivo"];
-                    $lista_film[$i]->giorno_entrata = $filtro_disponibilita[$j]["Giorno_entrata"];
-                    $lista_film[$i]->giorno_uscita = $filtro_disponibilita[$j]["Giorno_uscita"];
                     break;
                 } else if (count($filtro_disponibilita) <= $j + 1) {
                     $lista_film[$i] = [];
@@ -213,11 +209,11 @@ function populateFilters(){
     $page = str_replace("#SELECTED_livello_medio#", "", $page);
     $page = str_replace("#SELECTED_livello_alto#", "", $page);
     $page = str_replace("#SELECTED_mood_tutti#", "", $page);
-    $page = str_replace("#SELECTED_mood_suspence#", "", $page);
+    $page = str_replace("#SELECTED_mood_suspense#", "", $page);
     $page = str_replace("#SELECTED_mood_protesta#", "", $page);
     $page = str_replace("#SELECTED_mood_commovente#", "", $page);
-    $page = str_replace("#SELECTED_mood_comico#", "", $page);
-    $page = str_replace("#SELECTED_mood_sentimentale#", "", $page);
+    $page = str_replace("#SELECTED_mood_divertente#", "", $page);
+    $page = str_replace("#SELECTED_mood_ottimista#", "", $page);
     $page = str_replace("#SELECTED_mood_sorprendente#", "", $page);
     $page = str_replace("#CHECKED_genere_Animazione#", "", $page);
     $page = str_replace("#CHECKED_genere_Avventura#", "", $page);
@@ -230,9 +226,9 @@ function populateFilters(){
     $page = str_replace("#CHECKED_piattaforma_Netflix#", "", $page);
     $page = str_replace("#CHECKED_piattaforma_Amazon Prime#", "", $page);
     $page = str_replace("#CHECKED_piattaforma_Disney+#", "", $page);
-    $page = str_replace("#CHECKED_piattaforma_TimVision#", "", $page);
+    $page = str_replace("#CHECKED_piattaforma_Discovery+#", "", $page);
     $page = str_replace("#CHECKED_opzione_CC#", "", $page);
     $page = str_replace("#CHECKED_opzione_SDH#", "", $page);
     $page = str_replace("#CHECKED_opzione_AD#", "", $page);
-
 }
+?>

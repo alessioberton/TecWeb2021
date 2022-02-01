@@ -15,7 +15,6 @@ CREATE TABLE immagini
 CREATE TABLE piattaforma
 (
     Nome             VARCHAR(20)  NOT NULL,
-    Info_abbonamento VARCHAR(150) NOT NULL,
     PRIMARY KEY (Nome)
 );
 
@@ -43,9 +42,6 @@ CREATE TABLE disponibilità
     CC              bool        NOT NULL,
     SDH             bool        NOT NULL,
     AD              bool        NOT NULL,
-    CostoAggiuntivo bool DEFAULT FALSE,
-    Giorno_entrata  date        NOT NULL,
-    Giorno_uscita   date,
     PRIMARY KEY (Piattaforma, Film),
     FOREIGN KEY (Piattaforma) REFERENCES piattaforma (Nome) ON DELETE CASCADE,
     FOREIGN KEY (Film) REFERENCES film (ID) ON DELETE CASCADE
@@ -56,8 +52,7 @@ CREATE TABLE categorizzazione
     Film           INT          NOT NULL,
     Eta_pubblico   ENUM ('T', 'VM14', 'VM18') NOT NULL,
     Livello        ENUM ('demenziale','basso','medio', 'alto') NOT NULL,
-    Mood           ENUM ('suspence', 'protesta', 'commovente', 'trash','comico','sentimentale', 'sorprendente') NOT NULL,
-    Riconoscimenti BOOL         NOT NULL DEFAULT false,
+    Mood           ENUM ('suspense', 'protesta', 'commovente', 'trash','divertente','ottimista', 'sorprendente') NOT NULL,
     PRIMARY KEY (Film),
     FOREIGN KEY (Film) REFERENCES film (ID) ON DELETE CASCADE
 );
@@ -121,7 +116,6 @@ CREATE TABLE valutazione
     Utente           INT          NOT NULL,
     ID_film          INT          NOT NULL,
     Commento         VARCHAR(512) NOT NULL,
-    In_moderazione   BOOL         NOT NULL,
     Data_inserimento TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Stelle           INT          NOT NULL,
     PRIMARY KEY (Utente, ID_Film),
@@ -144,14 +138,14 @@ CREATE TABLE scheda_utente
     FOREIGN KEY (ID_film) REFERENCES film (ID) ON DELETE CASCADE
 );
 
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Netflix', '11,99 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Prime Video', '7 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Disney+', '9 euro al mese');
-INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
-VALUES ('Discovery+', '7.99 euro al mese');
+INSERT INTO `piattaforma` (`Nome`)
+VALUES ('Netflix');
+INSERT INTO `piattaforma` (`Nome`)
+VALUES ('Prime Video');
+INSERT INTO `piattaforma` (`Nome`)
+VALUES ('Disney+');
+INSERT INTO `piattaforma` (`Nome`)
+VALUES ('Discovery+');
 
 INSERT INTO `lista_generi` (Nome)
 VALUES ('Animazione');
@@ -472,55 +466,55 @@ VALUES (1, 'Azione'),
        (17, 'Drammatico'),
        (17, 'Fantascienza');
 
-INSERT INTO disponibilità(Piattaforma, Film, CC, SDH, AD, CostoAggiuntivo, Giorno_entrata, Giorno_uscita)
-VALUES ('Netflix', 1, true, true, true, false, '2022-10-02', null),
-       ('Prime Video', 2, false, true, false, true, '2022-07-12', null),
-       ('Discovery+', 2, false, true, false, false, '2022-06-21', 2022-09-22),
-       ('Prime Video', 3, false, true, false, true, '2022-04-28', null),
-       ('Netflix', 3, false, true, false, true, '2022-04-20', null),
-       ('Disney+', 3, false, true, false, true, '2022-05-24', null),
-       ('Disney+', 4, true, true, false, false, '2022-05-12', 2023-10-15),
-       ('Discovery+', 4, true, true, false, false, '2022-02-15', null),
-       ('Discovery+', 5, true, true, false, false, '2022-03-18', 2022-06-12),
-       ('Netflix', 5, true, true, false, false, '2022-04-16', 2022-12-16),
-       ('Netflix', 6, true, true, false, false, '2022-05-20', null),
-       ('Disney+', 6, true, true, false, false, '2022-03-15', 2022-11-19),
-       ('Prime Video', 6, true, true, false, false, '2022-02-27', null),
-       ('Netflix', 7, true, true, false, false, '2022-03-01', null),
-       ('Netflix', 8, true, true, false, false, '2022-04-11', 2022-07-11),
-       ('Discovery+', 9, true, true, false, false, '2022-06-02', null),
-       ('Disney+', 10, true, true, false, false, '2022-02-25', 2022-03-06),
-       ('Disney+', 11, true, true, false, false, '2022-04-27', null),
-       ('Netflix', 11, true, true, false, false, '2022-01-30', null),
-       ('Prime Video', 12, true, true, false, false, '2022-06-02', null),
-       ('Disney+', 12, true, true, false, false, '2022-02-02', 2022-04-09),
-       ('Discovery+', 13, true, true, false, false, '2022-06-02', null),
-       ('Disney+', 13, true, true, false, false, '2022-02-19', 2022-03-14),
-       ('Discovery+', 14, true, true, false, false, '2022-06-10', null),
-       ('Netflix', 15, true, true, false, false, '2022-06-17', null),
-       ('Disney+', 16, true, true, false, false, '2022-06-02', 2022-04-29),
-       ('Prime Video', 17, true, true, false, false, '2022-02-20', 2022-07-26),
-       ('Netflix', 17, true, true, false, false, '2022-04-12', null),
-       ('Discovery+', 17, true, true, false, false, '2022-01-18', null);
+INSERT INTO disponibilità(Piattaforma, Film, CC, SDH, AD)
+VALUES ('Netflix', 1, true, true, true),
+       ('Prime Video', 2, false, true, false),
+       ('Discovery+', 2, false, true, false),
+       ('Prime Video', 3, false, true, false),
+       ('Netflix', 3, false, true, false),
+       ('Disney+', 3, false, true, false),
+       ('Disney+', 4, true, true, false),
+       ('Discovery+', 4, true, true, false),
+       ('Discovery+', 5, true, true, false),
+       ('Netflix', 5, true, true, false),
+       ('Netflix', 6, true, true, false),
+       ('Disney+', 6, true, true, false),
+       ('Prime Video', 6, true, true, false),
+       ('Netflix', 7, true, true, false),
+       ('Netflix', 8, true, true, false),
+       ('Discovery+', 9, true, true, false),
+       ('Disney+', 10, true, true, false),
+       ('Disney+', 11, true, true, false),
+       ('Netflix', 11, true, true, false),
+       ('Prime Video', 12, true, true, false),
+       ('Disney+', 12, true, true, false),
+       ('Discovery+', 13, true, true, false),
+       ('Disney+', 13, true, true, false),
+       ('Discovery+', 14, true, true, false),
+       ('Netflix', 15, true, true, false),
+       ('Disney+', 16, true, true, false),
+       ('Prime Video', 17, true, true, false),
+       ('Netflix', 17, true, true, false),
+       ('Discovery+', 17, true, true, false);
 
-INSERT INTO categorizzazione(Film, Eta_pubblico, Livello, Mood, Riconoscimenti)
-VALUES (1, 'T', 'demenziale', 'suspence', true),
-       (2, 'T', 'medio', 'suspence', true),
-       (3, 'VM14', 'medio', 'comico', false),
-       (4, 'VM18', 'basso', 'sorprendente', false),
-       (5, 'T', 'basso', 'sentimentale', true),
-       (6, 'VM18', 'basso', 'comico', false),
-       (7, 'T', 'alto', 'sentimentale', true),
-       (8, 'VM14', 'medio', 'commovente', false),
-       (9, 'T', 'demenziale', 'sentimentale', false),
-       (10, 'T', 'medio', 'protesta', true),
-       (11, 'VM18', 'demenziale', 'commovente', true),
-       (12, 'T', 'alto', 'sentimentale', true),
-       (13, 'VM18', 'basso', 'trash', true),
-       (14, 'T', 'demenziale', 'suspence', false),
-       (15, 'VM18', 'medio', 'sorprendente', false),
-       (16, 'T', 'medio', 'comico', true),
-       (17, 'VM14', 'alto', 'commovente', true);
+INSERT INTO categorizzazione(Film, Eta_pubblico, Livello, Mood)
+VALUES (1, 'T', 'demenziale', 'suspense'),
+       (2, 'T', 'medio', 'suspense'),
+       (3, 'VM14', 'medio', 'divertente'),
+       (4, 'VM18', 'basso', 'sorprendente'),
+       (5, 'T', 'basso', 'ottimista'),
+       (6, 'VM18', 'basso', 'divertente'),
+       (7, 'T', 'alto', 'ottimista'),
+       (8, 'VM14', 'medio', 'commovente'),
+       (9, 'T', 'demenziale', 'ottimista'),
+       (10, 'T', 'medio', 'protesta'),
+       (11, 'VM18', 'demenziale', 'commovente'),
+       (12, 'T', 'alto', 'ottimista'),
+       (13, 'VM18', 'basso', 'trash'),
+       (14, 'T', 'demenziale', 'suspense'),
+       (15, 'VM18', 'medio', 'sorprendente'),
+       (16, 'T', 'medio', 'divertente'),
+       (17, 'VM14', 'alto', 'commovente');
 
 
 INSERT INTO `cast_film` (`Film`, `Attore`)
@@ -655,10 +649,10 @@ VALUES (1, 1, true, true, true),
        (2, 4, true, true, true),
        (2, 7, true, true, true);
 
-INSERT INTO `valutazione` (`Utente`, `ID_film`, `Commento`, `In_moderazione`, `Data_inserimento`, `Stelle`)
-VALUES (1, 1, 'Film incredibile, gli avengers sono i miei supereroi preferiti :)', false, current_timestamp(), 5),
-       (1, 3, 'Cartone della mia infanzia, iper consigliato', false, current_timestamp(), 3),
-       (1, 14, 'Spettacolare film di fantascienza, regista come sempre superlativo', true, current_timestamp(), 2),
-       (1, 17, 'Cast stellare, film che vi lascera a bocca aperta, dal primo all ultimo minuto', false, current_timestamp(), 4),
-       (2, 4, 'Secondo episodio della trilogia. Che dire, non vi lascerà indifferenti', false, current_timestamp(), 1),
-       (2, 7, 'Horror non adatto ai deboli di cuore, consiglaito vederlo al buio :)))', false, current_timestamp(), 4);
+INSERT INTO `valutazione` (`Utente`, `ID_film`, `Commento`, `Data_inserimento`, `Stelle`)
+VALUES (1, 1, 'Film incredibile, gli avengers sono i miei supereroi preferiti :)', current_timestamp(), 5),
+       (1, 3, 'Cartone della mia infanzia, iper consigliato', current_timestamp(), 3),
+       (1, 14, 'Spettacolare film di fantascienza, regista come sempre superlativo', current_timestamp(), 2),
+       (1, 17, 'Cast stellare, film che vi lascera a bocca aperta, dal primo all ultimo minuto', current_timestamp(), 4),
+       (2, 4, 'Secondo episodio della trilogia. Che dire, non vi lascerà indifferenti', current_timestamp(), 1),
+       (2, 7, 'Horror non adatto ai deboli di cuore, consiglaito vederlo al buio :)))', current_timestamp(), 4);
