@@ -56,10 +56,10 @@ class Valutazione extends Connectable {
         return $result ?? null;
     }
 
-	function inserisci($username, $film_id, $commento, $in_moderazione=false, $Data_inserimento, $Stelle){
-        $query = "INSERT INTO valutazione(utente, ID_film, Commento, In_moderazione, Data_inserimento, Stelle) VALUES(?, ?, ? , ?, ?, ?)";
+	function inserisci($username, $film_id, $commento, $Data_inserimento, $Stelle){
+        $query = "INSERT INTO valutazione(utente, ID_film, Commento, Data_inserimento, Stelle) VALUES(?, ?, ? , ?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("iisssi", $username, $film_id, $commento, $in_moderazione, $Data_inserimento, $Stelle);
+        $stmt->bind_param("iissi", $username, $film_id, $commento, $Data_inserimento, $Stelle);
         $stmt->execute();
         $result = $stmt->affected_rows;
         if($result < 0){
