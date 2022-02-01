@@ -66,8 +66,8 @@ if (isset($_GET["titolo"])) {
                     $page = str_replace("#DURATA#", timeToString(minutesToTime($value['Durata'])), $page);
 
                     try{
-                        $percorso_immagine = '../../img/'.$immagine->find($id_immagine)["Percorso"];
-                        $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"];
+                        $percorso_immagine = !empty($id_immagine) ? '../../img/'.$immagine->find($id_immagine)["Percorso"] : '../../img/'.$immagine->getNotFoundImage("film")["Percorso"];
+                        $descrizione_immagine = !empty($id_immagine) ? $immagine->find($id_immagine)["Descrizione"] : $immagine->getNotFoundImage("film")["Descrizione"];
                         $page = str_replace("#URL_IMG_FILM#", $percorso_immagine, $page);
                         $page = str_replace("#ALT_IMG_FILM#", $descrizione_immagine, $page);
                         $page = str_replace("#ERROR_MESSAGE#", $errore, $page);

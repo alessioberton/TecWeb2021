@@ -67,4 +67,15 @@ class Immagine extends Connectable{
 
         return $result->fetch_array(MYSQLI_ASSOC);
     }
+
+    function getNotFoundImage($type){
+        $id_immagine = $type == "film" ? 112 : 41;
+
+        $query = "SELECT * FROM immagini WHERE ID = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("i",$id_immagine);
+        $stmt->execute();
+        $result = convertQuery($stmt->get_result());
+        return $result[0] ?? null;
+    }
 }
