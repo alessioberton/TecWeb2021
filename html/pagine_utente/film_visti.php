@@ -72,8 +72,8 @@ if (isset($_POST["option_film_visti"])) {
 if (!$lista_film){
     $percorso_mancanza_film_img = '../../img/film/no_image.png';
     $page = str_replace("#LIST#", "", $page);
-    $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
-    $page = str_replace("#IMG_ERRORE#", $img_non_trovata, $page);
+    $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' /> <p>Gurda un film amico..</p>";
+    $page = str_replace("#MSG_INFO#", $img_non_trovata, $page);
 }else {
     foreach ($lista_film as $value) {
         $view_film = file_get_contents(__DIR__ . '/../componenti/view_film_user.html');
