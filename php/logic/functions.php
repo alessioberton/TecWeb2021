@@ -156,6 +156,6 @@ function isStageWebsite(){
 }
 
 function renameImage($image){
-    
+    $image = str_replace(' ', '_', $image);
     return substr_replace($image, "_".date("YmdHis"), strripos($image, '.'), 0);
 }

@@ -87,6 +87,7 @@ if (isset($_GET["titolo"])) {
                         foreach($attori_data as $attori_item){
                             $attore_section .= $attore_component;
                             $attore_section = str_replace("#NOME_ATTORE#", $attori_item["Nome"]." ".$attori_item["Cognome"], $attore_section);
+                            $attore_section = str_replace("#URL_ATTORE#", "mostra_attore.php?id=".$attori_item["ID"], $attore_section);
                         }
                         $page = str_replace("#ATTORI#", $attore_section, $page);
 
@@ -94,6 +95,7 @@ if (isset($_GET["titolo"])) {
                         foreach($registi_data as $registi_item){
                             $regista_section .= $regista_component;
                             $regista_section = str_replace("#NOME_REGISTA#", $registi_item["Nome"]." ".$registi_item["Cognome"], $regista_section);
+                            $regista_section = str_replace("#URL_REGISTA#", "mostra_attore.php?id=".$registi_item["ID"], $regista_section);
                         }
                         $page = str_replace("#REGISTI#", $regista_section, $page);
 
@@ -123,7 +125,7 @@ if (isset($_GET["titolo"])) {
                             } else{
                                 $page = str_replace("#SALVATO#", "", $page);
                             }
-							 $page = str_replace("#SELECTED".!empty($valutazione_item["Stelle"]) ?? $valutazione_item["Stelle"]."#", "selected", $page);
+							 $page = str_replace("#SELECTED#".!empty($valutazione_item["Stelle"]) ?? $valutazione_item["Stelle"], "selected", $page);
 
 							if(isset($_POST)) inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $scheda_result, $valutazione_item);
                         }else{
