@@ -124,7 +124,7 @@ CREATE TABLE valutazione
     Stelle           INT          NOT NULL,
     PRIMARY KEY (Utente, ID_Film),
     FOREIGN KEY (Utente) REFERENCES utente (Username),
-    FOREIGN KEY (ID_film) REFERENCES film (ID)
+    FOREIGN KEY (ID_film) REFERENCES film (ID) ON DELETE CASCADE
 );
 
 ALTER TABLE valutazione
@@ -139,7 +139,7 @@ CREATE TABLE scheda_utente
     Suggerito BOOL NOT NULL DEFAULT FALSE,
     PRIMARY KEY (Utente, ID_Film),
     FOREIGN KEY (Utente) REFERENCES utente (Username),
-    FOREIGN KEY (ID_film) REFERENCES film (ID)
+    FOREIGN KEY (ID_film) REFERENCES film (ID) ON DELETE CASCADE
 );
 
 INSERT INTO `piattaforma` (`Nome`, `Info_abbonamento`)
