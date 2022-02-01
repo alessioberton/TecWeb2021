@@ -90,15 +90,6 @@ if (isset($_GET["mood"])) {
     $sto_cercando = true;
 }
 
-if (!isset ($_GET['page'])) {
-    $numero_pagina = 1;
-} else {
-    $numero_pagina = $_GET['page'];
-}
-
-$results_per_page = 2;
-$page_first_result = ($numero_pagina - 1) * $results_per_page;
-
 if ($sto_cercando) {
     $page = str_replace("#INITIAL_OPEN#", "", $page);
     $page = str_replace("#INITIAL_ARIA_EXP#", "false", $page);
@@ -109,9 +100,12 @@ if ($sto_cercando) {
     else $filtro_genere = $genere_film->find_all();
     if ($disponibilia_merge) $filtro_disponibilita = $disponibilia->dynamic_find($disponibilia_merge);
     else $filtro_disponibilita = $disponibilia->find_all();
+    $percorso_mancanza_film_img = '../../img/film/no_image.png';
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
         $page = str_replace("#RISULTATI#", "Nessun Film Trovato", $page);
+        $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
+        $page = str_replace("#IMG_ERRORE#", $img_non_trovata, $page);
     } else {
         foreach ($filtro_categoria as $value) {
             $film = new Film_search([]);
@@ -165,6 +159,12 @@ if ($sto_cercando) {
         }
 
         $ho_elenti = false;
+        if (!count($lista_film)){
+            $page = str_replace("#RISULTATI#", "Nessun Film Trovato", $page);
+            $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
+            $page = str_replace("#IMG_ERRORE#", $img_non_trovata, $page);
+        }
+
         for ($i = 0; $i < count($lista_film); $i++) {
             if ($lista_film[$i]) {
                 $ho_elenti = true;
