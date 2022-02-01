@@ -3,7 +3,7 @@ require_once(__DIR__.'/../../php/logic/error_reporting.php');
 require_once(__DIR__.'/../../php/config.php');
 require_once(__DIR__.'/../../html/componenti/header.php');
 
-$page = file_get_contents(__DIR__.'/storia.html');
+$page = file_get_contents(__DIR__.'/approfondimenti.html');
 
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
