@@ -185,6 +185,54 @@ if ($sto_cercando) {
     $page = str_replace("#RISULTATI#", "", $page);
 }
 
+populateFilters();
 
 echo $page;
 
+
+function populateFilters(){
+    global $page;
+
+    foreach($_GET as $key => $value){
+        if($key == "eta_pubblico" || $key == "livello" || $key == "mood"){
+            $page = str_replace("#SELECTED_".$key."_".$value."#", "selected", $page);
+        }elseif($key == "genere" || $key =="piattaforma" || $key == "opzione"){
+            foreach($value as $item){
+                $page = str_replace("#CHECKED_".$key."_".$item."#", "checked", $page);
+            }
+        }
+    }
+
+    $page = str_replace("#SELECTED_eta_pubblico_tutti#", "", $page);
+    $page = str_replace("#SELECTED_eta_pubblico_T#", "", $page);
+    $page = str_replace("#SELECTED_eta_pubblico_VM14#", "", $page);
+    $page = str_replace("#SELECTED_eta_pubblico_VM18#", "", $page);
+    $page = str_replace("#SELECTED_livello_tutti#", "", $page);
+    $page = str_replace("#SELECTED_livello_demenziale#", "", $page);
+    $page = str_replace("#SELECTED_livello_basso#", "", $page);
+    $page = str_replace("#SELECTED_livello_medio#", "", $page);
+    $page = str_replace("#SELECTED_livello_alto#", "", $page);
+    $page = str_replace("#SELECTED_mood_tutti#", "", $page);
+    $page = str_replace("#SELECTED_mood_suspence#", "", $page);
+    $page = str_replace("#SELECTED_mood_protesta#", "", $page);
+    $page = str_replace("#SELECTED_mood_commovente#", "", $page);
+    $page = str_replace("#SELECTED_mood_comico#", "", $page);
+    $page = str_replace("#SELECTED_mood_sentimentale#", "", $page);
+    $page = str_replace("#SELECTED_mood_sorprendente#", "", $page);
+    $page = str_replace("#CHECKED_genere_Animazione#", "", $page);
+    $page = str_replace("#CHECKED_genere_Avventura#", "", $page);
+    $page = str_replace("#CHECKED_genere_Azione#", "", $page);
+    $page = str_replace("#CHECKED_genere_Commedia#", "", $page);
+    $page = str_replace("#CHECKED_genere_Documentario#", "", $page);
+    $page = str_replace("#CHECKED_genere_Drammatico#", "", $page);
+    $page = str_replace("#CHECKED_genere_Fantascienza#", "", $page);
+    $page = str_replace("#CHECKED_genere_Horror#", "", $page);
+    $page = str_replace("#CHECKED_piattaforma_Netflix#", "", $page);
+    $page = str_replace("#CHECKED_piattaforma_Amazon Prime#", "", $page);
+    $page = str_replace("#CHECKED_piattaforma_Disney+#", "", $page);
+    $page = str_replace("#CHECKED_piattaforma_TimVision#", "", $page);
+    $page = str_replace("#CHECKED_opzione_CC#", "", $page);
+    $page = str_replace("#CHECKED_opzione_SDH#", "", $page);
+    $page = str_replace("#CHECKED_opzione_AD#", "", $page);
+
+}

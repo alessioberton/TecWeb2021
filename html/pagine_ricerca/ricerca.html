@@ -24,102 +24,102 @@
             <div class="field text-input" id="rating-select">
                 <label for="eta_pubblico">Rating</label>
                 <select id="eta_pubblico" name="eta_pubblico">
-                    <option selected value="tutti">Tutti</option>
-                    <option value="T">T</option>
-                    <option value="VM14">VM 14</option>
-                    <option value="VM18">VM 18</option>
+                    <option value="tutti" #SELECTED_eta_pubblico_tutti#>Tutti</option>
+                    <option value="T" #SELECTED_eta_pubblico_T#>T</option>
+                    <option value="VM14" #SELECTED_eta_pubblico_VM14#>VM 14</option>
+                    <option value="VM18" #SELECTED_eta_pubblico_VM18#>VM 18</option>
                 </select>
             </div>
             <div class="field text-input" id="livello-select">
                 <label for="livello">Livello Impegno</label>
                 <select id="livello" name="livello">
-                    <option selected value="tutti">Tutti</option>
-                    <option value="demenziale">Demenziale</option>
-                    <option value="basso">Basso</option>
-                    <option value="medio">Medio</option>
-                    <option value="alto">Alto</option>
+                    <option value="tutti" #SELECTED_livello_tutti#>Tutti</option>
+                    <option value="demenziale" #SELECTED_livello_demenziale#>Demenziale</option>
+                    <option value="basso" #SELECTED_livello_basso#>Basso</option>
+                    <option value="medio" #SELECTED_livello_medio#>Medio</option>
+                    <option value="alto" #SELECTED_livello_alto#>Alto</option>
                 </select>
             </div>
             <div class="field text-input" id="mood-select">
                 <label for="mood">Mood</label><br/>
                 <select id="mood" name="mood">
-                    <option selected value="tutti">Tutti</option>
-                    <option value="suspence">Suspence</option>
-                    <option value="protesta">Protesta</option>
-                    <option value="commovente">Commovente</option>
-                    <option value="comico">Comico</option>
-                    <option value="sentimentale">Sentimentale</option>
-                    <option value="sorprendente">Sorprendente</option>
+                    <option value="tutti" #SELECTED_mood_tutti#>Tutti</option>
+                    <option value="suspence" #SELECTED_mood_suspence#>Suspence</option>
+                    <option value="protesta" #SELECTED_mood_protesta#>Protesta</option>
+                    <option value="commovente" #SELECTED_mood_commovente#>Commovente</option>
+                    <option value="comico" #SELECTED_mood_comico#>Comico</option>
+                    <option value="sentimentale" #SELECTED_mood_sentimentale#>Sentimentale</option>
+                    <option value="sorprendente" #SELECTED_mood_sorprendente#>Sorprendente</option>
                 </select>
             </div>
             <fieldset class="checkbox-group" id="genre-checkboxes">
                 <legend>Genere</legend>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Animazione" id="genere_animazione"/>
+                    <input type="checkbox" name="genere[]" value="Animazione" id="genere_animazione" #CHECKED_genere_Animazione# />
                     <label for="genere_animazione">Animazione</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Avventura" id="genere_avventura"/>
+                    <input type="checkbox" name="genere[]" value="Avventura" id="genere_avventura" #CHECKED_genere_Avventura# />
                     <label for="genere_avventura">Avventura</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Azione" id="genere_azione"/>
+                    <input type="checkbox" name="genere[]" value="Azione" id="genere_azione" #CHECKED_genere_Azione# />
                     <label for="genere_azione">Azione</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Commedia" id="genere_commedia"/>
+                    <input type="checkbox" name="genere[]" value="Commedia" id="genere_commedia" #CHECKED_genere_Commedia# />
                     <label for="genere_commedia">Commedia</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Documentario" id="genere_documentario"/>
+                    <input type="checkbox" name="genere[]" value="Documentario" id="genere_documentario" #CHECKED_genere_Documentario# />
                     <label for="genere_documentario">Documentario</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Drammatico" id="genere_drammatico"/>
+                    <input type="checkbox" name="genere[]" value="Drammatico" id="genere_drammatico" #CHECKED_genere_Drammatico# />
                     <label for="genere_drammatico">Drammatico</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Fantascienza" id="genere_fantascienza"/>
+                    <input type="checkbox" name="genere[]" value="Fantascienza" id="genere_fantascienza" #CHECKED_genere_Fantascienza# />
                     <label for="genere_fantascienza">Fantascienza</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Horror" id="genere_horror"/>
+                    <input type="checkbox" name="genere[]" value="Horror" id="genere_horror" #CHECKED_genere_Horror# />
                     <label for="genere_horror">Horror</label>
                 </div>
             </fieldset>
             <fieldset class="checkbox-group" id="platform-checkboxes">
                 <legend>Piattaforma</legend>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix"/>
+                    <input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix" #CHECKED_piattaforma_Netflix#/>
                     <label for="netflix">Netflix</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Amazon Prime" id="amazon_prime"/>
+                    <input type="checkbox" name="piattaforma[]" value="Amazon Prime" id="amazon_prime" #CHECKED_piattaforma_Amazon Prime# />
                     <label for="amazon_prime">Prime video</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+"/>
+                    <input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+" #CHECKED_piattaforma_Disney+# />
                     <label for="disney+">Disney+</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="TimVision" id="timVision"/>
+                    <input type="checkbox" name="piattaforma[]" value="TimVision" id="timVision" #CHECKED_piattaforma_TimVision#/>
                     <label for="timVision">TimVision</label>
                 </div>
             </fieldset>
             <fieldset class="checkbox-group" id="subtitle-checkboxes">
                 <legend>Sottotitoli</legend>
                 <div class="checkbox-field">
-                    <input type="checkbox" value="CC" id="cc" name="opzione[]"/>
+                    <input type="checkbox" value="CC" id="cc" name="opzione[]" #CHECKED_opzione_CC# />
                     <label for="cc">CC</label>
                 </div>
 
                 <div class="checkbox-field">
-                    <input type="checkbox" value="SDH" id="sdh" name="opzione[]"/>
+                    <input type="checkbox" value="SDH" id="sdh" name="opzione[]" #CHECKED_opzione_SDH# />
                     <label for="sdh">SDH</label>
                 </div>
 
                 <div class="checkbox-field">
-                    <input type="checkbox" value="AD" id="ad" name="opzione[]"/>
+                    <input type="checkbox" value="AD" id="ad" name="opzione[]" #CHECKED_opzione_AD# />
                     <label for="ad">AD</label>
                 </div>
             </fieldset>
