@@ -31,7 +31,6 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $eta_publico = validate_input($_POST["eta_pubblico"]);
     $livello = validate_input($_POST["livello"]);
     $mood = validate_input($_POST["mood"]);
-    $riconoscimenti = filter_var(validate_input($_POST["riconoscimenti"]),FILTER_VALIDATE_BOOLEAN);
 
     $genere = $_POST["genere"];
 
@@ -83,7 +82,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
                 $sdh_piattaforma = filter_var(validate_input($sdh[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 $ad_piattaforma = filter_var(validate_input($ad[$nome_piattaforma]),FILTER_VALIDATE_BOOLEAN);
                 var_dump($nome_piattaforma);
-                $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma,0,date("Y-m-d"),NULL);
+                $disponibilita->inserisci($id_film,$nome_piattaforma,$cc_piattaforma,$sdh_piattaforma,$ad_piattaforma);
             }
 
             header("Location: ../pagine_ricerca/mostra_film.php?titolo=".rawurlencode($titolo));
@@ -116,11 +115,11 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
         $page = str_replace("#SELECTEDmedio#", "", $page);
         $page = str_replace("#SELECTEDalto#", "", $page);
         $page = str_replace("#SELECTED$mood#", "selected", $page);
-        $page = str_replace("#SELECTEDsuspence#", "", $page);
+        $page = str_replace("#SELECTEDsuspense#", "", $page);
         $page = str_replace("#SELECTEDprotesta#", "", $page);
         $page = str_replace("#SELECTEDcommovente#", "", $page);
-        $page = str_replace("#SELECTEDcomico#", "", $page);
-        $page = str_replace("#SELECTEDsentimentale#", "", $page);
+        $page = str_replace("#SELECTEDdivertente#", "", $page);
+        $page = str_replace("#SELECTEDottimista#", "", $page);
         $page = str_replace("#SELECTEDsorprendente#", "", $page);
         $page = str_replace("#SELECTED$eta_publico#", "selected", $page);
         $page = str_replace("#SELECTEDT#", "", $page);
@@ -167,11 +166,11 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
     $page = str_replace("#SELECTEDbasso#", "", $page);
     $page = str_replace("#SELECTEDmedio#", "", $page);
     $page = str_replace("#SELECTEDalto#", "", $page);
-    $page = str_replace("#SELECTEDsuspence#", "", $page);
+    $page = str_replace("#SELECTEDsuspense#", "", $page);
     $page = str_replace("#SELECTEDprotesta#", "", $page);
     $page = str_replace("#SELECTEDcommovente#", "", $page);
-    $page = str_replace("#SELECTEDcomico#", "", $page);
-    $page = str_replace("#SELECTEDsentimentale#", "", $page);
+    $page = str_replace("#SELECTEDdivertente#", "", $page);
+    $page = str_replace("#SELECTEDottimista#", "", $page);
     $page = str_replace("#SELECTEDsorprendente#", "", $page);
     $page = str_replace("#SELECTEDT#", "", $page);
     $page = str_replace("#SELECTEDVM14#", "", $page);

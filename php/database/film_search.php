@@ -20,10 +20,6 @@ class Film_search {
     public $livello;
     public $eta;
     public $mood;
-    public $riconoscimenti;
-    public $costo_aggiuntivo;
-    public $giorno_entrata;
-    public $giorno_uscita;
 
     public function __construct($array) {
         if ($array) {
@@ -44,10 +40,6 @@ class Film_search {
             $this->livello = $array["Livello"];
             $this->eta = $array["Eta"];
             $this->mood = $array["Mood"];
-            $this->riconoscimenti = $array["Riconoscimenti"];
-            $this->costo_aggiuntivo = $array["costo_aggiuntivo"];
-            $this->giorno_entrata = $array["giorno_entrata"];
-            $this->giorno_uscita = $array["giorno_uscita"];
 
         }
     }
