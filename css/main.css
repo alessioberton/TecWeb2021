@@ -407,7 +407,7 @@ header #movieSelect #movieSuggestionList img {
 
 .visuallyHidden {
 	border: 0;
-	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
 	height: 1px;
 	margin: -1px;
 	overflow: hidden;
@@ -418,7 +418,7 @@ header #movieSelect #movieSuggestionList img {
 
 .file-input input::-webkit-file-upload-button {
 	border: 0;
-	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
 	height: 1px;
 	margin: -1px;
 	overflow: hidden;
@@ -892,9 +892,6 @@ a.skip-to-content:active {
 	margin-bottom: 0.8em;
 }
 
-.movie-cover-container {
-	height: content;
-}
 .movie-cover-container img {
 	height: 24em;
 	width: 17em;
