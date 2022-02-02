@@ -1,139 +1,189 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ricerca</title>
-    <meta name="keywords" content="ricerca film, film su Netflix, film su Prime Video, film su Disney+, genere film" />
-    <meta name="description" content="Scegli tra una serie di criteri quali film potrebbero essere perfetti per la tua serata di relax davanti alla tv" />
-    <link rel="shortcut icon" type="image/png" href="../../img/varie/favicon.ico" />
-    <link rel="stylesheet" href="../../css/main.css" media="screen"/>
-    <script src="../componenti/main.js" defer></script>
-</head>
-<body>
-<customHeader />
-<div class="breadcrumb"><a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Ricerca</div>
-<main id="content">
-    <div class="card#INITIAL_OPEN#" id="adv-search-dropdown">
-        <button
-                type="button"
-                onclick="toggleSearchFilters(event, this)"
-                id="adv-search-btn"
-                aria-haspopup="true"
-                aria-expanded="#INITIAL_ARIA_EXP#">
-            Ricerca Avanzata
-        </button>
-        <form action="ricerca.php" method="get" id="adv-search-form">
-            <div class="field text-input" id="rating-select">
-                <label for="eta_pubblico">Età pubblico</label>
-                <select id="eta_pubblico" name="eta_pubblico">
-                    <option value="tutti" #SELECTED_eta_pubblico_tutti#>Tutti</option>
-                    <option value="T" #SELECTED_eta_pubblico_T#>T</option>
-                    <option value="VM14" #SELECTED_eta_pubblico_VM14#>VM 14</option>
-                    <option value="VM18" #SELECTED_eta_pubblico_VM18#>VM 18</option>
-                </select>
-            </div>
-            <div class="field text-input" id="livello-select">
-                <label for="livello">Livello Impegno</label>
-                <select id="livello" name="livello">
-                    <option value="tutti" #SELECTED_livello_tutti#>Tutti</option>
-                    <option value="demenziale" #SELECTED_livello_demenziale#>Demenziale</option>
-                    <option value="basso" #SELECTED_livello_basso#>Basso</option>
-                    <option value="medio" #SELECTED_livello_medio#>Medio</option>
-                    <option value="alto" #SELECTED_livello_alto#>Alto</option>
-                </select>
-            </div>
-            <div class="field text-input" id="mood-select">
-                <label for="mood"><span lang="en">Mood</span></label><br/>
-                <select id="mood" name="mood">
-                    <option value="tutti" #SELECTED_mood_tutti#>Tutti</option>
-                    <option value="suspense" #SELECTED_mood_suspence#><span lang="en"> Suspense </span></option>
-                    <option value="protesta" #SELECTED_mood_protesta#>Protesta</option>
-                    <option value="commovente" #SELECTED_mood_commovente#>Commovente</option>
-                    <option value="divertente" #SELECTED_mood_divertente#>Divertente</option>
-                    <option value="ottimista" #SELECTED_mood_ottimista#>Ottimista</option>
-                    <option value="sorprendente" #SELECTED_mood_sorprendente#>Sorprendente</option>
-                </select>
-            </div>
-            <fieldset class="checkbox-group" id="genre-checkboxes">
-                <legend>Genere</legend>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Animazione" id="genere_animazione" #CHECKED_genere_Animazione# />
-                    <label for="genere_animazione">Animazione</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Avventura" id="genere_avventura" #CHECKED_genere_Avventura# />
-                    <label for="genere_avventura">Avventura</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Azione" id="genere_azione" #CHECKED_genere_Azione# />
-                    <label for="genere_azione">Azione</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Commedia" id="genere_commedia" #CHECKED_genere_Commedia# />
-                    <label for="genere_commedia">Commedia</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Documentario" id="genere_documentario" #CHECKED_genere_Documentario# />
-                    <label for="genere_documentario">Documentario</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Drammatico" id="genere_drammatico" #CHECKED_genere_Drammatico# />
-                    <label for="genere_drammatico">Drammatico</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Fantascienza" id="genere_fantascienza" #CHECKED_genere_Fantascienza# />
-                    <label for="genere_fantascienza">Fantascienza</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="genere[]" value="Horror" id="genere_horror" #CHECKED_genere_Horror# />
-                    <label for="genere_horror"><span lang="en"> Horror </span></label>
-                </div>
-            </fieldset>
-            <fieldset class="checkbox-group" id="platform-checkboxes">
-                <legend>Piattaforma</legend>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix" #CHECKED_piattaforma_Netflix#/>
-                    <label for="netflix"><span lang="en"> Netflix </span></label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Prime video" id="prime_video" #CHECKED_piattaforma_Amazon Prime# />
-                    <label for="prime_video"><span lang="en"> Prime video </span></label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+" #CHECKED_piattaforma_Disney+# />
-                    <label for="disney+"><span lang="en"> Disney+ </span></label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="piattaforma[]" value="Discovery+" id="Discovery+" #CHECKED_piattaforma_Discovery+#/>
-                    <label for="Discovery+"><span lang="en"> Discovery+ </span></label>
-                </div>
-            </fieldset>
-            <fieldset class="checkbox-group" id="subtitle-checkboxes">
-                <legend>Audiodescrizione e Sottotitoli</legend>
-                <div class="checkbox-field">
-                    <input type="checkbox" value="CC" id="cc" name="opzione[]" #CHECKED_opzione_CC# />
-                    <label for="cc">CC</label>
-                </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ricerca</title>
+		<meta name="keywords" content="ricerca film, film su Netflix, film su Prime Video, film su Disney+, genere film" />
+		<meta
+			name="description"
+			content="Scegli tra una serie di criteri quali film potrebbero essere perfetti per la tua serata di relax davanti alla tv"
+		/>
+		<link rel="shortcut icon" type="image/png" href="../../img/varie/favicon.ico" />
+		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+		<link rel="stylesheet" href="../../css/print.css" media="print" />
+		<script src="../componenti/main.js" defer></script>
+	</head>
+	<body>
+		<customHeader />
+		<div class="breadcrumb">
+			<a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Ricerca
+		</div>
+		<main id="content">
+			<div class="card#INITIAL_OPEN#" id="adv-search-dropdown">
+				<button
+					type="button"
+					onclick="toggleSearchFilters(event, this)"
+					id="adv-search-btn"
+					aria-haspopup="true"
+					aria-expanded="#INITIAL_ARIA_EXP#"
+				>
+					Ricerca Avanzata
+				</button>
+				<form action="ricerca.php" method="get" id="adv-search-form">
+					<div class="field text-input" id="rating-select">
+						<label for="eta_pubblico">Età pubblico</label>
+						<select id="eta_pubblico" name="eta_pubblico">
+							<option value="tutti" #SELECTED_eta_pubblico_tutti#>Tutti</option>
+							<option value="T" #SELECTED_eta_pubblico_T#>T</option>
+							<option value="VM14" #SELECTED_eta_pubblico_VM14#>VM 14</option>
+							<option value="VM18" #SELECTED_eta_pubblico_VM18#>VM 18</option>
+						</select>
+					</div>
+					<div class="field text-input" id="livello-select">
+						<label for="livello">Livello Impegno</label>
+						<select id="livello" name="livello">
+							<option value="tutti" #SELECTED_livello_tutti#>Tutti</option>
+							<option value="demenziale" #SELECTED_livello_demenziale#>Demenziale</option>
+							<option value="basso" #SELECTED_livello_basso#>Basso</option>
+							<option value="medio" #SELECTED_livello_medio#>Medio</option>
+							<option value="alto" #SELECTED_livello_alto#>Alto</option>
+						</select>
+					</div>
+					<div class="field text-input" id="mood-select">
+						<label for="mood"><span lang="en">Mood</span></label
+						><br />
+						<select id="mood" name="mood">
+							<option value="tutti" #SELECTED_mood_tutti#>Tutti</option>
+							<option value="suspense" #SELECTED_mood_suspence#><span lang="en"> Suspense </span></option>
+							<option value="protesta" #SELECTED_mood_protesta#>Protesta</option>
+							<option value="commovente" #SELECTED_mood_commovente#>Commovente</option>
+							<option value="divertente" #SELECTED_mood_divertente#>Divertente</option>
+							<option value="ottimista" #SELECTED_mood_ottimista#>Ottimista</option>
+							<option value="sorprendente" #SELECTED_mood_sorprendente#>Sorprendente</option>
+						</select>
+					</div>
+					<fieldset class="checkbox-group" id="genre-checkboxes">
+						<legend>Genere</legend>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="genere[]"
+								value="Animazione"
+								id="genere_animazione"
+								#CHECKED_genere_Animazione#
+							/>
+							<label for="genere_animazione">Animazione</label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="genere[]"
+								value="Avventura"
+								id="genere_avventura"
+								#CHECKED_genere_Avventura#
+							/>
+							<label for="genere_avventura">Avventura</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="genere[]" value="Azione" id="genere_azione" #CHECKED_genere_Azione# />
+							<label for="genere_azione">Azione</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="genere[]" value="Commedia" id="genere_commedia" #CHECKED_genere_Commedia# />
+							<label for="genere_commedia">Commedia</label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="genere[]"
+								value="Documentario"
+								id="genere_documentario"
+								#CHECKED_genere_Documentario#
+							/>
+							<label for="genere_documentario">Documentario</label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="genere[]"
+								value="Drammatico"
+								id="genere_drammatico"
+								#CHECKED_genere_Drammatico#
+							/>
+							<label for="genere_drammatico">Drammatico</label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="genere[]"
+								value="Fantascienza"
+								id="genere_fantascienza"
+								#CHECKED_genere_Fantascienza#
+							/>
+							<label for="genere_fantascienza">Fantascienza</label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="genere[]" value="Horror" id="genere_horror" #CHECKED_genere_Horror# />
+							<label for="genere_horror"><span lang="en"> Horror </span></label>
+						</div>
+					</fieldset>
+					<fieldset class="checkbox-group" id="platform-checkboxes">
+						<legend>Piattaforma</legend>
+						<div class="checkbox-field">
+							<input type="checkbox" name="piattaforma[]" value="Netflix" id="netflix" #CHECKED_piattaforma_Netflix# />
+							<label for="netflix"><span lang="en"> Netflix </span></label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="piattaforma[]"
+								value="Prime video"
+								id="prime_video"
+								#CHECKED_piattaforma_Amazon
+								Prime#
+							/>
+							<label for="prime_video"><span lang="en"> Prime video </span></label>
+						</div>
+						<div class="checkbox-field">
+							<input type="checkbox" name="piattaforma[]" value="Disney+" id="disney+" #CHECKED_piattaforma_Disney+# />
+							<label for="disney+"><span lang="en"> Disney+ </span></label>
+						</div>
+						<div class="checkbox-field">
+							<input
+								type="checkbox"
+								name="piattaforma[]"
+								value="Discovery+"
+								id="Discovery+"
+								#CHECKED_piattaforma_Discovery+#
+							/>
+							<label for="Discovery+"><span lang="en"> Discovery+ </span></label>
+						</div>
+					</fieldset>
+					<fieldset class="checkbox-group" id="subtitle-checkboxes">
+						<legend>Audiodescrizione e Sottotitoli</legend>
+						<div class="checkbox-field">
+							<input type="checkbox" value="CC" id="cc" name="opzione[]" #CHECKED_opzione_CC# />
+							<label for="cc">CC</label>
+						</div>
 
-                <div class="checkbox-field">
-                    <input type="checkbox" value="SDH" id="sdh" name="opzione[]" #CHECKED_opzione_SDH# />
-                    <label for="sdh">SDH</label>
-                </div>
+						<div class="checkbox-field">
+							<input type="checkbox" value="SDH" id="sdh" name="opzione[]" #CHECKED_opzione_SDH# />
+							<label for="sdh">SDH</label>
+						</div>
 
-                <div class="checkbox-field">
-                    <input type="checkbox" value="AD" id="ad" name="opzione[]" #CHECKED_opzione_AD# />
-                    <label for="ad">AD</label>
-                </div>
-            </fieldset>
-            <button type="submit" class="submit-btn">Cerca</button>
-        </form>
-    </div>
-    <ul class="search-movie-list">
-        #RISULTATI#
-        #MSG_INFO#
-    </ul>
-    <a href="#adv-search-dropdown" class="go-back-up">Torna su</a>
-</main>
-</body>
+						<div class="checkbox-field">
+							<input type="checkbox" value="AD" id="ad" name="opzione[]" #CHECKED_opzione_AD# />
+							<label for="ad">AD</label>
+						</div>
+					</fieldset>
+					<button type="submit" class="submit-btn">Cerca</button>
+				</form>
+			</div>
+			<ul class="search-movie-list">
+				#RISULTATI# #MSG_INFO#
+			</ul>
+			<a href="#adv-search-dropdown" class="go-back-up">Torna su</a>
+		</main>
+	</body>
 </html>

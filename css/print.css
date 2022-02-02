@@ -1,0 +1,52 @@
+@font-face {
+	font-family: "Satisfy";
+	src: url("../img/font/Satisfy-Regular.ttf");
+	src: url("../img/font/Satisfy-Regular.ttf") format("truetype");
+	font-display: swap;
+}
+
+#heading h1 {
+	font-family: "Satisfy";
+	font-size: 50pt;
+	text-align: center;
+}
+
+nav {
+	display: none;
+}
+
+#movieSelectContainer {
+	display: none;
+}
+
+.userStatus {
+	display: none;
+}
+
+.skip-to-content {
+	display: none;
+}
+
+#menuButton {
+	display: none;
+}
+
+.breadcrumb {
+	display: none;
+}
+
+main {
+	font-size: 15pt;
+}
+
+main img {
+	height: 4cm;
+}
+
+#adv-search-dropdown {
+	display: none;
+}
+
+.go-back-up {
+	display: none;
+}

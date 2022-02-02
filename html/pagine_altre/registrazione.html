@@ -6,15 +6,20 @@
 		<title>Registrazione</title>
 		<link rel="shortcut icon" type="image/png" href="../../img/varie/favicon.ico" />
 		<link rel="stylesheet" href="../../css/main.css" media="screen" />
+		<link rel="stylesheet" href="../../css/print.css" media="print" />
 		<script src="../componenti/main.js" defer></script>
 	</head>
 	<body>
 		<customHeader />
-		<div class="breadcrumb"><a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Registrazione</div>
+		<div class="breadcrumb">
+			<a href="../pagine_principali/homepage.php"><span lang="en">Home</span></a> &gt; Registrazione
+		</div>
 		<main id="content">
 			<form method="post" action="registrazione.php" id="login-form" class="card">
 				<h2>Registrazione</h2>
-				<p>Hai già un <span lang="en">account</span>? <a href="login.php"><span lang="en">Login</span></a></p>
+				<p>
+					Hai già un <span lang="en">account</span>? <a href="login.php"><span lang="en">Login</span></a>
+				</p>
 				<div class="field text-input#ERRORE_USERNAME#">
 					<label for="user">Username</label>
 					<span id="userdesc" class="hint">Username già esistente</span>
