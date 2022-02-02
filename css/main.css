@@ -667,30 +667,47 @@ a.skip-to-content:active {
 /*HOMEPAGE*/
 
 .homepage {
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+	padding: 1em 1.5em;
+}
+
+.homepage h2 {
+	text-align: center;
+	font-size: 1.9em;
+	margin-bottom: 1em;
 }
 
 #zerocalcare {
-	margin-left: 15%;
-	padding: 0.5em;
-	width: 55%;
+	display: block;
+	text-align: 15%;
+	float: left;
+	width: 40%;
 	height: auto;
+	margin-right: 1em;
+
+	box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+	border-radius: 3px;
 }
 
 .homepage p {
-	margin: 0.5em;
-	text-align: justify;
+	padding: 0em 0.2em;
+
+	text-align: left;
+}
+
+.homepage h2:nth-of-type(2) {
+	margin-top: 1em;
+
+	text-align: center;
 }
 
 /*APPROFONDIMENTI*/
 
 .appr {
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+	padding: 0.5em 1.5em;
+	padding-bottom: 2em;
 }
 
-.appr h2 {
+.appr h3 {
 	margin: 1em 0em;
 }
 
@@ -707,6 +724,7 @@ a.skip-to-content:active {
 	float: left;
 	margin-left: 1em;
 	margin-right: 2.5em;
+	border-radius: 3px;
 }
 
 #emotions dt {
@@ -725,6 +743,7 @@ a.skip-to-content:active {
 	width: auto;
 	margin: 0.5em;
 	margin-left: 35%;
+	border-radius: 3px;
 }
 
 /*PAGINA RICERCA*/
@@ -1405,8 +1424,19 @@ a.skip-to-content:active {
 		grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
 	}
 
+	.homepage {
+		padding: 0em 1em;
+		padding-bottom: 1em;
+	}
+
 	.homepage h2 {
 		margin: 0.5em 0em;
+	}
+
+	.homepage #zerocalcare {
+		width: 90%;
+		margin: 1em auto;
+		float: none;
 	}
 
 	#emotions p {
@@ -1481,10 +1511,6 @@ a.skip-to-content:active {
 		flex-wrap: wrap;
 		margin-left: 0em;
 		align-content: flex-start;
-	}
-
-	.homepage h2 {
-		margin: 0.5em 0em;
 	}
 
 	#emotions p {
