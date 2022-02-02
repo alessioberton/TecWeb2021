@@ -9,10 +9,9 @@ require_once(__DIR__.'/../../php/database/film.php');
 require_once(__DIR__.'/../../php/database/film_crud.php');
 require_once(__DIR__.'/../../php/database/valutazione.php');
 require_once(__DIR__.'/../../html/componenti/header.php');
-if ($_SESSION['logged'] == false) {
-	header('location: ../pagine_altre/accesso_negato.php');
-	exit();
-}
+
+if (!isLogged()) header("Location: ../../html/pagine_altre/not_found.php");
+
 $_POST = array_map('empty_to_null', $_POST);
 
 
