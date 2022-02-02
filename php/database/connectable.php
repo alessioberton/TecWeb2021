@@ -14,7 +14,7 @@ class Connectable{
             $this->connection->openDBConnection();
         }
         catch(Exception $e){
-            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
             echo $e;
             exit();
         }
