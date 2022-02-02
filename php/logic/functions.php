@@ -135,6 +135,10 @@ function isUserAdmin(){
     return isset($_SESSION["user"]) && strtolower($_SESSION["user"]["Permessi"]) == "admin";
 }
 
+function isLogged(){
+    return isset($_SESSION["user"]);
+}
+
 function validate_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
