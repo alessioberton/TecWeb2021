@@ -195,7 +195,7 @@ if ($sto_cercando) {
     $page = str_replace("#INITIAL_OPEN#", " open", $page);
     $page = str_replace("#INITIAL_ARIA_EXP#", "true", $page);
     $page = str_replace("#RISULTATI#", "", $page);
-    $page = str_replace("#MSG_INFO#", "EH ZIO CERCA QUALCOSA PERò", $page);
+    $page = str_replace("#MSG_INFO#", "", $page);
 }
 
 populateFilters();

@@ -660,6 +660,11 @@ a.skip-to-content:active {
 
 /*HOMEPAGE*/
 
+.homepage {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
 #zerocalcare {
 	margin-left: 15%;
 	padding: 0.5em;
@@ -667,25 +672,30 @@ a.skip-to-content:active {
 	height: auto;
 }
 
-p {
+.homepage p {
 	margin: 0.5em;
 	text-align: justify;
 }
 
 /*APPROFONDIMENTI*/
 
-h2 {
+.appr {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+.appr h2 {
 	margin: 1em 0em;
 }
 
-#emotions dd{
+#emotions dd {
 	min-height: 210px;
 }
 #emotions p {
 	padding: 2em 5em;
 }
 
-#emotions img{
+#emotions img {
 	height: 160px;
 	width: auto;
 	float: left;
@@ -699,10 +709,8 @@ h2 {
 	margin-left: 1em;
 }
 
-
-#level dt{
+#level dt {
 	font-size: 1.1em;
-	color: ;
 	margin: 0.5em 0em;
 }
 
@@ -712,7 +720,6 @@ h2 {
 	margin: 0.5em;
 	margin-left: 35%;
 }
-
 
 /*PAGINA RICERCA*/
 
@@ -1203,10 +1210,27 @@ h2 {
 
 /*404*/
 
-#content.card.fourohfour {
-	max-width: 40em;
-	height: unset;
+#content.fourohfour {
+	max-width: 35em;
+	margin-top: 10em;
+
+	text-align: center;
 	min-height: unset;
+
+	background-color: white;
+	border: none;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#content.fourohfour h2 {
+	font-size: 9em;
+	font-weight: bold;
+	line-height: 1.2em;
+}
+
+#content.fourohfour p {
+	font-size: 2em;
 }
 
 /*MOBILE*/
@@ -1357,7 +1381,7 @@ h2 {
 			"a a a"
 			"b b b"
 			"c c c"
-			"g g g" / 22% 1fr 1fr;
+			"g g g" / 25% 1fr 1fr;
 	}
 
 	#attore-form,
@@ -1378,16 +1402,15 @@ h2 {
 		grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
 	}
 
-	h2 {
+	.homepage h2 {
 		margin: 0.5em 0em;
 	}
-
 
 	#emotions p {
 		padding: 0.5em 1em;
 	}
 
-	#emotions img{
+	#emotions img {
 		height: 130px;
 		width: auto;
 		float: none;
@@ -1400,9 +1423,9 @@ h2 {
 		margin-left: 1em;
 	}
 
-	#level dt{
+	#level dt {
 		font-size: 1.1em;
-		color: ;
+
 		margin: 0.5em 0em;
 	}
 
@@ -1457,16 +1480,15 @@ h2 {
 		align-content: flex-start;
 	}
 
-		h2 {
+	.homepage h2 {
 		margin: 0.5em 0em;
 	}
-
 
 	#emotions p {
 		padding: 0.5em 1em;
 	}
 
-	#emotions img{
+	#emotions img {
 		height: 130px;
 		width: auto;
 		float: none;
@@ -1479,9 +1501,8 @@ h2 {
 		margin-left: 1em;
 	}
 
-	#level dt{
+	#level dt {
 		font-size: 1.1em;
-		color: ;
 		margin: 0.5em 0em;
 	}
 
@@ -1490,5 +1511,9 @@ h2 {
 		width: auto;
 		margin: 0.5em;
 		margin-left: 10em;
+	}
+
+	#content.fourohfour {
+		margin-top: 5em;
 	}
 }
