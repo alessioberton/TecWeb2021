@@ -166,6 +166,23 @@ function handleFormErrors() {
 		});
 		checkboxGroupError();
 	}
+
+	var fileinput = document.getElementById("immagine");
+	if (fileinput) {
+		fileinput.addEventListener("change", function (event) {
+			if (fileinput.files[0]) {
+				const fileSize = fileinput.files[0].size;
+				if (fileSize > 1300000) {
+					fileinput.setCustomValidity("File troppo grande (1.3MB Max)");
+				} else {
+					fileinput.setCustomValidity("");
+				}
+				toggleError(fileinput.parentNode);
+			} else {
+				fileinput.setCustomValidity("");
+			}
+		});
+	}
 }
 
 function handleResizeChanges(event) {
