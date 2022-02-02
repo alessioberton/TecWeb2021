@@ -53,7 +53,7 @@ try {
     $page = str_replace("#FILM_SALVATI#", $conta_salvati, $page);
     $page = str_replace("#FILM_VALUTATI#", $conta_valutati, $page);
 } catch (Exception $e) {
-    if (!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+    if (!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
     $pagina_errore = file_get_contents(__DIR__ . "/../../html/pagine_altre/errore.html");
     $pagina_errore = str_replace("#ERROR_MESSAGE#", $e, $pagina_errore);
     echo $pagina_errore;

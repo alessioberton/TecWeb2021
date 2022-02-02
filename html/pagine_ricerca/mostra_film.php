@@ -40,17 +40,19 @@ if(isUserAdmin() && isset($_POST["elimina"])){
         $film_crud->elimina($_POST["id_film"]);
         header("Location: ricerca.php");
     }catch(Exception $e){
-        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
         $errore = $e;
     }
 }
 
 $lista_film = $film_crud->find_all();
+$film_found = false;
 
 if (isset($_GET["titolo"])) {
         if (isset($lista_film)) {
             foreach ($lista_film as $value) {
                 if (strtolower($_GET["titolo"]) == strtolower($value["Titolo"])) {
+                    $film_found = true;
                     $id_film = $value["ID"];
                     $id_immagine = $value["Locandina"];
                     $page = str_replace("#TITOLO_PAGINA#", $value['Titolo'], $page);
@@ -154,19 +156,23 @@ if (isset($_GET["titolo"])) {
                         
                         break;
                     } catch (Exception $e) {
-                        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+                        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
                         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
                         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Errore server...", $pagina_errore);
                         echo $pagina_errore;
                     }
                 }
             }
+            if(!$film_found)
+                if(!isStageWebsite()) header("Location: ../../html/pagine_altre/not_found.php");
         } else {
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
             $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
             $pagina_errore = str_replace("#ERROR_MESSAGE#", "Film non più esistente", $pagina_errore);
             echo $pagina_errore;
         } 
     } else {
+        if(!isStageWebsite()) header("Location: ../../html/pagine_altre/not_found.php");
         $pagina_errore = file_get_contents(__DIR__.'/../../html/pagine_altre/errore.html');
         $pagina_errore = str_replace("#ERROR_MESSAGE#", "Link non corretto", $pagina_errore);
         echo $pagina_errore;
@@ -202,7 +208,7 @@ function inserisciModificaValutazione($scheda_utente, $valutazione, $id_film, $s
             }
             header("location: mostra_film.php?titolo=".rawurlencode($_GET["titolo"]));
         }catch(Exception $e){
-            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
             $errore = $e;
         }
     }

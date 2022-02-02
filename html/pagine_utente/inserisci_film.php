@@ -89,7 +89,7 @@ if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"]))
             header("Location: ../pagine_ricerca/mostra_film.php?titolo=".rawurlencode($titolo));
         }
         catch(Exception $e){
-            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.html");
+            if(!isStageWebsite()) header("Location: ../../html/pagine_altre/error.php");
             $esito_inserimento = $e;
         }
     }
