@@ -105,7 +105,7 @@ if ($sto_cercando) {
     $percorso_mancanza_film_img = '../../img/varie/no_result.jpg';
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
-        $page = str_replace("#RISULTATI#", "Scritta da mettere, tipo cambia filtri fra", $page);
+        $page = str_replace("#RISULTATI#", "Nessun risultato trovato", $page);
         $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
         $page = str_replace("#MSG_INFO#", $img_non_trovata, $page);
     } else {
@@ -162,7 +162,7 @@ if ($sto_cercando) {
 
         $ho_elenti = false;
         if (!count($lista_film)){
-            $page = str_replace("#RISULTATI#", "Scritta da mettere, tipo cambia filtri fra", $page);
+            $page = str_replace("#RISULTATI#", "", $page);
             $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
             $page = str_replace("#MSG_INFO#", $img_non_trovata, $page);
         }else {

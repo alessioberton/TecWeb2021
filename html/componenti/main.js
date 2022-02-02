@@ -76,7 +76,7 @@ function handleFormErrors() {
 	function toggleError(el) {
 		var node = findInput(el);
 		if (!node.checkValidity()) {
-			var span = el.querySelector("span");
+			var span = el.querySelector("span.hint");
 			span.innerHTML = node.validationMessage;
 			span.setAttribute("title", node.validationMessage);
 			el.classList.add("error");
@@ -89,7 +89,7 @@ function handleFormErrors() {
 
 	function showError(el) {
 		var node = findInput(el);
-		var span = el.querySelector("span");
+		var span = el.querySelector("span.hint");
 		span.innerHTML = node.validationMessage;
 		span.setAttribute("title", node.validationMessage);
 		el.classList.add("error");
