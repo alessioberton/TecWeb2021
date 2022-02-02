@@ -5,6 +5,8 @@ if (!isset($_SESSION['logged'])) $_SESSION['logged'] = false;
 
 $_SESSION['max_dim_img'] = 1300000; // byte
 
+if (!isset($_SESSION['pagina_corrente'])) $_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 $_SESSION['sigle_paesi'] = array(
     'AF' => 'Afghanistan',
     'AL' => 'Albania',

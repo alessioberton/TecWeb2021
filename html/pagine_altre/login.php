@@ -13,6 +13,8 @@ $_POST = array_map('empty_to_null', $_POST);
 
 $page = file_get_contents(__DIR__.'/login.html');
 
+$_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 //Controllo di venire da pagina di login e non tramite giri strani
 if(isset($_POST['user'])) {
     $user = validate_input(trim($_POST["user"]));

@@ -13,6 +13,8 @@ $_POST = array_map('empty_to_null', $_POST);
 
 $page = file_get_contents(__DIR__ . '/profilo.html');
 
+$_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 $errore = '';
 $data_di_nascita = $_SESSION['user']['Data_nascita'];
 $today = date("Y-m-d");

@@ -14,6 +14,8 @@ require_once(__DIR__.'/../../html/componenti/header.php');
 $page = file_get_contents(__DIR__.'/inserisci_film.html');
 $esito_inserimento = "";
 
+$_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 if(!empty($_GET["inserted"])) $esito_inserimento = "Film inserito con successo";
 if(!empty($_POST) && !empty($_POST["lingua_titolo"] && empty($_GET["inserted"])))
 {   

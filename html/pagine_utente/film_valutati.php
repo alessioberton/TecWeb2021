@@ -35,6 +35,14 @@ $voto_selezionato = "";
 
 $lista_film = [];
 
+if (strpos($_SESSION['pagina_corrente'], "profilo.php") !== false){
+    $breadcrumb = "<div class='breadcrumb'><a href='../pagine_principali/homepage.php'><span lang='en'>Home</span></a> &gt; <a href='../pagine_utente/profilo.php'>Profilo </a> &gt; Film Valutati</div>";
+} else {
+    $breadcrumb = "<div class='breadcrumb'><a href='../pagine_principali/homepage.php'><span lang='en'>Home</span></a> &gt; Film Valutati</div>";
+}
+$page = str_replace("#BREADCRUMB#", $breadcrumb, $page);
+
+
 try {
     $query_array_scheda_utente = $scheda_utente->findByUser($_SESSION['user']['Username']);
     foreach($query_array_scheda_utente as $value) {
@@ -72,11 +80,12 @@ if (isset($_POST["option_film_valutati"])) {
 }
 
 if (!$lista_film){
-    $percorso_mancanza_film_img = '../../img/film/no_image.png';
+    $percorso_mancanza_film_img = '../../img/varie/coming_soon.jpg';
     $page = str_replace("#LIST#", "", $page);
     $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' /> <p>Gurda un film amico..</p>";
     $page = str_replace("#MSG_INFO#", $img_non_trovata, $page);
 }else {
+    $page = str_replace("#MSG_INFO#", "", $page);
     foreach ($lista_film as $value) {
         $view_film = file_get_contents(__DIR__ . '/../componenti/view_film_user.html');
         $percorso_film = $immagine->find($value->locandina)["Percorso"];

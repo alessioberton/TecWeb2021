@@ -19,6 +19,8 @@ $page = file_get_contents(__DIR__ . '/ricerca.html');
 $header = new Header();
 $page = str_replace("<customHeader />", $header->render(), $page);
 
+$_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 $categorizzazione_sql = [];
 $categorizizzazione = new Categorizzazione();
 $disponibilita_sql = [];
@@ -100,7 +102,7 @@ if ($sto_cercando) {
     else $filtro_genere = $genere_film->find_all();
     if ($disponibilia_merge) $filtro_disponibilita = $disponibilia->dynamic_find($disponibilia_merge);
     else $filtro_disponibilita = $disponibilia->find_all();
-    $percorso_mancanza_film_img = '../../img/film/no_image.png';
+    $percorso_mancanza_film_img = '../../img/varie/no_result.jpg';
 
     if (!$filtro_categoria || !$filtro_genere || !$filtro_disponibilita) {
         $page = str_replace("#RISULTATI#", "Scritta da mettere, tipo cambia filtri fra", $page);
@@ -163,30 +165,31 @@ if ($sto_cercando) {
             $page = str_replace("#RISULTATI#", "Scritta da mettere, tipo cambia filtri fra", $page);
             $img_non_trovata = "<img src=$percorso_mancanza_film_img alt='Indicazione mancanza risultati' />";
             $page = str_replace("#MSG_INFO#", $img_non_trovata, $page);
-        }
-
-        for ($i = 0; $i < count($lista_film); $i++) {
-            if ($lista_film[$i]) {
-                $ho_elenti = true;
-                $sezione_risultati .= $componente_lista_risultati;
-                if ($lista_film[$i]->lingua_titolo != 'IT')
-                    $sezione_risultati = str_replace("#TITOLO_FILM#", "<span lang='".$lista_film[$i]->lingua_titolo."'>".$lista_film[$i]->titolo. "</span", $sezione_risultati);
-                else
-                    $sezione_risultati = str_replace("#TITOLO_FILM#", $lista_film[$i]->titolo, $sezione_risultati);
-                $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
-                $sezione_risultati = str_replace("#TITOLOURL#", rawurlencode($lista_film[$i]->titolo), $sezione_risultati);
-				$sezione_risultati = str_replace("#ANNO#", $lista_film[$i]->anno, $sezione_risultati);
-				if(!isset($lista_film[$i]->voto)) $sezione_risultati = str_replace("#VOTO#", "0", $sezione_risultati);
-                else $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
-                $id_immagine = $lista_film[$i]->locandina;
-                $percorso_immagine =
-                    $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
-                $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
-                $sezione_risultati = str_replace("#LOCANDINA#", $percorso_immagine, $sezione_risultati);
-                $sezione_risultati = str_replace("#DESCRIZONE#", $descrizione_immagine, $sezione_risultati);
+        }else {
+            $page = str_replace("#MSG_INFO#", "", $page);
+            for ($i = 0; $i < count($lista_film); $i++) {
+                if ($lista_film[$i]) {
+                    $ho_elenti = true;
+                    $sezione_risultati .= $componente_lista_risultati;
+                    if ($lista_film[$i]->lingua_titolo != 'IT')
+                        $sezione_risultati = str_replace("#TITOLO_FILM#", "<span lang='" . $lista_film[$i]->lingua_titolo . "'>" . $lista_film[$i]->titolo . "</span", $sezione_risultati);
+                    else
+                        $sezione_risultati = str_replace("#TITOLO_FILM#", $lista_film[$i]->titolo, $sezione_risultati);
+                    $sezione_risultati = str_replace("#TITOLO#", $lista_film[$i]->titolo, $sezione_risultati);
+                    $sezione_risultati = str_replace("#TITOLOURL#", rawurlencode($lista_film[$i]->titolo), $sezione_risultati);
+                    $sezione_risultati = str_replace("#ANNO#", $lista_film[$i]->anno, $sezione_risultati);
+                    if (!isset($lista_film[$i]->voto)) $sezione_risultati = str_replace("#VOTO#", "0", $sezione_risultati);
+                    else $sezione_risultati = str_replace("#VOTO#", $lista_film[$i]->voto, $sezione_risultati);
+                    $id_immagine = $lista_film[$i]->locandina;
+                    $percorso_immagine =
+                        $immagine->find($id_immagine) ? '../../img/' . $immagine->find($id_immagine)["Percorso"] : $_SESSION['$img_not_found_url'];
+                    $descrizione_immagine = $immagine->find($id_immagine)["Descrizione"] ?? "";
+                    $sezione_risultati = str_replace("#LOCANDINA#", $percorso_immagine, $sezione_risultati);
+                    $sezione_risultati = str_replace("#DESCRIZONE#", $descrizione_immagine, $sezione_risultati);
+                }
             }
+            $page = str_replace("#RISULTATI#", $sezione_risultati, $page);
         }
-        $page = str_replace("#RISULTATI#", $sezione_risultati, $page);
     }
 } else {
     $page = str_replace("#INITIAL_OPEN#", " open", $page);

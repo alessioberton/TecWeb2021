@@ -14,6 +14,8 @@ function getAbs_path(): void
 
 getAbs_path();
 
+$_SESSION['pagina_corrente'] = basename($_SERVER["REQUEST_URI"]);
+
 $page = file_get_contents("mostra_film.html");
 $piattaforma_section = "";
 $genere_section = "";
