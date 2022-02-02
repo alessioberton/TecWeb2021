@@ -11,6 +11,8 @@ require_once(__DIR__.'/../../php/database/cast_film.php');
 require_once(__DIR__.'/../../php/logic/functions.php');
 require_once(__DIR__.'/../../html/componenti/header.php');
 
+if(!isUserAdmin()) header("Location: ../../html/pagine_altre/not_found.php");
+
 $page = file_get_contents(__DIR__.'/inserisci_film.html');
 $esito_inserimento = "";
 
