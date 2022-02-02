@@ -81,9 +81,9 @@ if (isset($_GET["titolo"])) {
                         {
                             $piattaforma_section .= $piattaforma_component;
                             $piattaforma_section = str_replace("#NOME_PIATTAFORMA#", $piattaforma["Nome"], $piattaforma_section);
-							$piattaforma_section = str_replace("#SDH#", $piattaforma["SDH"] ? "<li lang="en"><abbr title="Subtitles for the Deaf and Hard Hearing">SDH</abbr></li>" : "", $piattaforma_section);
-                            $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "<li lang="en"><abbr title="Closed Captions">CC</abbr></li>" : "", $piattaforma_section);
-                            $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "<li lang="en"><abbr title="Audio Description">AD</abbr></li>" : "", $piattaforma_section);
+							$piattaforma_section = str_replace("#SDH#", $piattaforma["SDH"] ? "<li>SDH</li>" : "", $piattaforma_section);
+                            $piattaforma_section = str_replace("#CC#", $piattaforma["CC"] ? "<li>CC</li>" : "", $piattaforma_section);
+                            $piattaforma_section = str_replace("#AD#", $piattaforma["AD"] ? "<li>AD</li>" : "", $piattaforma_section);
                         }
                         $page = str_replace("#PIATTAFORME#", $piattaforma_section, $page);
 
