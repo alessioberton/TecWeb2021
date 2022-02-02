@@ -136,7 +136,7 @@ function isUserAdmin(){
 }
 
 function isLogged(){
-    return isset($_SESSION["user"]);
+    return isset($_SESSION["logged"]);
 }
 
 function validate_input($data) {
