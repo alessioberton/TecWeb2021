@@ -10,7 +10,7 @@ require_once(__DIR__.'/../../php/database/film_crud.php');
 require_once(__DIR__.'/../../php/database/valutazione.php');
 require_once(__DIR__.'/../../html/componenti/header.php');
 
-if (!isLogged()) header("Location: ../../html/pagine_altre/not_found.php");
+if (!isLogged()) header("Location: ../../html/pagine_altre/login.php");
 
 $_POST = array_map('empty_to_null', $_POST);
 

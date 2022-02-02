@@ -5,10 +5,9 @@ require_once(__DIR__ . '/../../html/componenti/header.php');
 require_once(__DIR__ . '/../../php/logic/functions.php');
 require_once(__DIR__ . '/../../php/database/utente.php');
 require_once(__DIR__ . '/../../php/database/scheda_utente.php');
-if ($_SESSION['logged'] == false) {
-	header('location: ../pagine_altre/accesso_negato.php');
-	exit();
-}
+
+if (!isLogged()) header("Location: ../../html/pagine_altre/login.php");
+
 $_POST = array_map('empty_to_null', $_POST);
 
 $page = file_get_contents(__DIR__ . '/profilo.html');
